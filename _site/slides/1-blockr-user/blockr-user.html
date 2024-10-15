@@ -562,7 +562,7 @@ Imagine if we could build an interactive datapipeline like we would prepare a me
 <span id="cb2-45"><a></a>  )</span>
 <span id="cb2-46"><a></a>}</span>
 <span id="cb2-47"><a></a></span>
-<span id="cb2-48"><a></a>new_stack(</span>
+<span id="cb2-48"><a></a>stack &lt;- new_stack(</span>
 <span id="cb2-49"><a></a>  data_block = new_dataset_block("penguins", "palmerpenguins"),</span>
 <span id="cb2-50"><a></a>  filter_block = new_filter_block("sex", "female", submit = TRUE),</span>
 <span id="cb2-51"><a></a>  plot_block = new_ggplot_block("body_mass_g", "flipper_length_mm"),</span>

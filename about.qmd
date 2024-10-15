@@ -25,4 +25,4 @@ David is lead Shiny developer at cynkra and holds a Ph.D. in applied mathematics
 
 # Aknowledgement
 
-Workshop authors want to warmly thank Nicolas Benett, Mike Page and Christoph Sax for their involvment in the blockr core development team.
+Workshop authors want to warmly thank Nicolas Bennett, Mike Page and Christoph Sax for their involvment in the blockr core development team.

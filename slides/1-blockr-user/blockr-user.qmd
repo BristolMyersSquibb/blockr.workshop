@@ -1,0 +1,391 @@
+---
+title: "Introduction to blockr for users"
+author: "Karma Tarap (BMS), John Coene (The Y Company) and David Granjon (cynkra GmbH)"
+format: 
+  revealjs:
+    #code-annotations: select
+    footer: "Funded by <img class=\"mb-4\" src=\"../../assets/images/bms.svg\"/>"
+    include-in-header:
+      - text: |
+          <script src="https://cdn.jsdelivr.net/npm/mermaid@10.9.1/dist/mermaid.min.js"></script>
+    #css: [
+    #  "assets/style/bootstrap.min.css",
+    #  "assets/style/extra.css"
+    #]
+    view-distance: 5
+    mermaid:
+      theme: default
+    height: 900
+    width: 1600
+    code-link: true
+    code-copy: true
+    fontsize: 24pt
+    navigation-mode: vertical
+    controls-layout: bottom-right
+    controls-tutorial: true
+    chalkboard: false
+    transition: none
+    background-transition: none
+filters:
+  - quarto-ext/shinylive
+editor:
+    render-on-save: true
+---
+
+```{r setup}
+library(shinylive)
+library(bslib)
+library(palmerpenguins)
+library(ggplot2)
+library(dplyr)
+```
+
+# {background-image="../../assets/images/bechamel-sauce.jpg" background-size="cover"}
+
+<!--
+Imagine if we could build an interactive datapipeline like we would prepare a meal 😳
+--->
+
+
+## ![shiny homepage](../../assets/images/easy-browser.png){.center width=50% style="margin-left: 350px;"}
+
+## ![shiny homepage corrected](../../assets/images/notsoeasy-browser.png){.center width=50% style="margin-left: 350px;"}
+
+## Developing enterprise-grade dashboards isn't easy {background-image="../../assets/images/undraw_lost_re_xqjt.svg" background-size="40%" style="font-size: 1.5em"}
+
+<!-- 
+- Do you know how to prepare a meal without the right recipe?
+- Do you have the right ingredients?
+-->
+
+
+
+## 💡 Introducing {blockr} {style="font-size: 1.5em"}
+
+::::{.columns}
+
+:::{.column}
+![](../../assets/images/undraw_empty_cart_co35.svg){width=75%}
+:::
+
+:::{.column}
+
+:::{.incremental}
+- __Supermarket__ for data analysis with R.
+- __No-Code__ Dashboard builder, "Shiny's WordPress" ...
+- ... __Extendable__ by developers.
+- Reproducible code.
+:::
+
+:::
+
+::::
+
+
+# blockr 101 {data-stack-name="blockr 101" background-image="../../assets/images/undraw_cooking_p7m1.svg" background-size="40%" style="margin-top: -350px; font-size: 1.5em"}
+
+## Palmer penguins plot {style="font-size: 1.5em"}
+
+. . . 
+
+What penguin species has the largest flippers?
+
+<!-- Histogram showing `flipper length` as function of `body mass` by `species` only for `female` penguins.
+
+-->
+
+. . .
+
+```{r}
+#| echo: true
+#| code-line-numbers: "1|2|3-8|9-15|"
+#| output-location: column-fragment
+penguins |>
+  filter(sex == "female") |>
+  ggplot(
+    aes(
+      x = body_mass_g, 
+      y = flipper_length_mm
+    )
+  ) +
+  geom_point(
+    aes(
+      color = species, 
+      shape = species
+    ), 
+    size = 2
+  )
+```
+
+## The stack: a data analysis recipe {style="font-size: 1.5em"}
+
+::::{.columns}
+
+:::{.column}
+```{mermaid}
+%%| mermaid-format: svg
+flowchart TD
+  subgraph stack1[Stack]
+    direction TB
+    subgraph input_block[Block 1]
+      input(Data: dataset, browser, ...)
+    end
+    subgraph transform_block[Block 2]
+      transform(Transform block: filter, select ...)
+    end
+    subgraph output_block[Block 3]
+      output(Result/transform: plot, filter, ...)
+    end
+    input_block --> |data| transform_block --> |data| output_block
+  end
+```
+:::
+
+:::{.column}
+Collection of instructions, __blocks__, from __data import__ to __wrangling/visualization__.
+:::
+
+::::
+
+## Demo
+
+```{shinylive-r}
+#| standalone: true
+#| components: [viewer]
+#| column: screen-inset-shaded
+#| viewerHeight: 800
+webr::install("blockr", repos = "https://bristolmyerssquibb.github.io/webr-repos/")
+
+library(blockr)
+library(palmerpenguins)
+library(ggplot2)
+
+new_ggplot_block <- function(col_x = character(), col_y = character(), ...) {
+
+  data_cols <- function(data) colnames(data)
+
+  new_block(
+    fields = list(
+      x = new_select_field(col_x, data_cols, type = "name"),
+      y = new_select_field(col_y, data_cols, type = "name")
+    ),
+    expr = quote(
+      ggplot(mapping = aes(x = .(x), y = .(y)))
+    ),
+    class = c("ggplot_block", "plot_block"),
+    ...
+  )
+}
+
+new_geompoint_block <- function(color = character(), shape = character(), ...) {
+
+  data_cols <- function(data) colnames(data$data)
+
+  new_block(
+    fields = list(
+      color = new_select_field(color, data_cols, type = "name"),
+      shape = new_select_field(shape, data_cols, type = "name")
+    ),
+    expr = quote(
+      geom_point(aes(color = .(color), shape = .(shape)), size = 2)
+    ),
+    class = c("plot_layer_block", "plot_block"),
+    ...
+  )
+}
+
+new_stack(
+  data_block = new_dataset_block("penguins", "palmerpenguins"),
+  filter_block = new_filter_block("sex", "female", submit = TRUE),
+  plot_block = new_ggplot_block("body_mass_g", "flipper_length_mm"),
+  layer_block = new_geompoint_block("species", "species")
+)
+serve_stack(stack)
+```
+
+
+## How much code would it take with Shiny? {style="font-size: 1.5em"}
+
+. . .
+
+::: {style="font-size: 40%;" id="code-with-shiny"}
+```{r, echo=TRUE, eval=FALSE}
+library(shiny)
+library(bslib)
+library(ggplot2)
+library(palmerpenguins)
+
+shinyApp(
+  ui = page_fluid(
+    layout_sidebar(
+      sidebar = sidebar(
+        radioButtons("sex", "Sex", unique(penguins$sex), "female"),
+        selectInput(
+          "xvar", 
+          "X var", 
+          colnames(dplyr::select(penguins, where(is.numeric))),
+          "body_mass_g"
+        ),
+        selectInput(
+          "yvar",
+          "Y var",
+          colnames(dplyr::select(penguins, where(is.numeric))),
+          "flipper_length_mm"
+        ),
+        selectInput(
+          "color",
+          "Color and shape",
+          colnames(dplyr::select(penguins, where(is.factor))),
+          "species"
+        )
+      ),
+      plotOutput("plot")
+    )
+  ),
+  server = function(input, output, session) {
+    output$plot <- renderPlot({
+      penguins |>
+        filter(sex == !!input$sex) |>
+        ggplot(aes(x = !!input$xvar, y = !!input$yvar)) +
+        geom_point(aes(color = !!input$color, shape = !!input$color), size = 2)
+    })
+  }
+)
+```
+:::
+
+## It's much easier with blockr {style="font-size: 1.5em"}
+
+. . .
+
+```{r, echo=TRUE, eval=FALSE}
+library(blockr)
+new_stack( # <1>
+  data_block = new_dataset_block("penguins", "palmerpenguins"), # <2>
+  filter_block = new_filter_block("sex", "female"), #<2>
+  plot_block = new_ggplot_block("body_mass_g", "flipper_length_mm"), # <3>
+  layer_block = new_geompoint_block("species", "species") # <4>
+)
+serve_stack(stack) # <5>
+```
+
+1. Create the stack.
+2. Import data.
+3. Create the plot.
+4. Add it a layer.
+5. Serve a Shiny app.
+
+## Connecting stacks: towards a dinner party {background-image="../../assets/images/undraw_special_event.svg" background-size="40%" style="font-size: 1.5em"}
+
+
+## The workspace {style="font-size: 1.5em"}
+
+::::{.columns}
+
+:::{.column width=60%}
+```{mermaid}
+%%| mermaid-format: svg
+flowchart TD
+  subgraph s1[Stack 1]
+    direction TB
+    input_s1(Data)
+    transform_s1(Transform)
+    input_s1 --> |data| transform_s1
+  end
+  transform_s1 --> |data| input_s2
+  subgraph s2[Stack 2]
+    direction TB
+    input_s2(Data)
+    transform_s2(Transform)
+    output_s2(Visualize)
+    input_s2 --> |data| transform_s2 --> |data| output_s2
+  end
+```
+:::
+
+:::{.column width=40%}
+Collection of __recipes__ (stacks) to build a __dashboard__.
+
+:::
+
+::::
+
+
+## Demo
+
+```{shinylive-r}
+#| standalone: true
+#| components: [viewer]
+#| column: screen-inset-shaded
+#| viewerHeight: 800
+webr::install("blockr", repos = "https://bristolmyerssquibb.github.io/webr-repos/")
+
+library(blockr)
+library(palmerpenguins)
+library(ggplot2)
+
+new_ggplot_block <- function(col_x = character(), col_y = character(), ...) {
+
+  data_cols <- function(data) colnames(data)
+
+  new_block(
+    fields = list(
+      x = new_select_field(col_x, data_cols, type = "name"),
+      y = new_select_field(col_y, data_cols, type = "name")
+    ),
+    expr = quote(
+      ggplot(mapping = aes(x = .(x), y = .(y)))
+    ),
+    class = c("ggplot_block", "plot_block"),
+    ...
+  )
+}
+
+new_geompoint_block <- function(color = character(), shape = character(), ...) {
+
+  data_cols <- function(data) colnames(data$data)
+
+  new_block(
+    fields = list(
+      color = new_select_field(color, data_cols, type = "name"),
+      shape = new_select_field(shape, data_cols, type = "name")
+    ),
+    expr = quote(
+      geom_point(aes(color = .(color), shape = .(shape)), size = 2)
+    ),
+    class = c("plot_layer_block", "plot_block"),
+    ...
+  )
+}
+
+set_workspace(
+  data = new_stack(
+    data_block = new_dataset_block("penguins", "palmerpenguins"),
+    filter_block = new_filter_block("sex", "female", submit = TRUE)
+  )
+  plot = new_stack(
+    plot_block = new_ggplot_block("body_mass_g", "flipper_length_mm"),
+    layer_block = new_geompoint_block("species", "species")
+  )
+)
+serve_workspace()
+```
+
+## How do I create a workspace? {style="font-size: 1.5em"}
+
+```r
+library(blockr)
+# Creates an empty workspace
+set_workspace( # <1>
+  stack_1 = new_stack() # <2>
+  stack_2 = new_stack()
+)
+serve_workspace() # <3>
+```
+
+1. Initialise.
+2. Optional: add stacks.
+3. Serve Shiny app.
+
+
+## How far can I go with blockr? {background-image="../../assets/images/undraw_add_post_re_174w.svg" background-size="90%" style="margin-left: 450px; margin-top: 700px; font-size: 1.5em"}

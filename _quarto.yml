@@ -1,0 +1,23 @@
+project:
+  type: website
+
+website:
+  title: "blockr.workshop"
+  navbar:
+    left:
+      - href: index.qmd
+        text: Home
+      - about.qmd
+    logo: ./assets/images/bms.png
+  page-footer:
+    left: "Except where otherwise noted, content on this blog is licensed under the [CC BY-NC-ND 4.0](https://creativecommons.org/licenses/by-nc-nd/4.0/) licence."
+    right: Blog created with [Quarto](https://quarto.org/).
+
+format:
+  html:
+    theme: cosmo
+    css: styles.css
+    toc: true
+
+
+

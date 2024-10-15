@@ -1,0 +1,28 @@
+---
+title: "About us"
+editor: 
+    render-on-save: true
+---
+
+# Karma Tarap (BMS)
+
+![](./assets/images/karma.png)
+
+Karma Tarap is an Innovation Strategy and Solutions Lead at Bristol Myers Squibb, bringing over a decade of experience as a statistical programmer in the pharmaceutical industry. With degrees in immunology, microbiology, bioinformatics, and data science. His work focuses on integrating advanced data analytics with insights to accelerate innovation and improve patient outcomes. Additionally, Karma has led multiple introductory R workshops within the industry.
+
+# John Coene (The Y Company)
+
+![](./assets/images/john.png)
+
+John is a senior developer and data analytics professional with 9 years of working experience. He is the founder and co-founder of Opifex and The Y company. He is an expert in the R/JavaScript and Go languages and has developed hundreds of R packages. John has given numerous talks and workshops, at WhyR, eRum, as a guest on the Shiny dev series podcast discussing user experience, and R in Pharma. John is also the author of the book JavaScript for R published by CRC Press as part of the R series.
+
+# David Granjon (cynkra)
+
+![](./assets/images/david.jpg)
+
+David is lead Shiny developer at cynkra and holds a Ph.D. in applied mathematics from Université Pierre et Marie Curie and Université de Lausanne. He is the founder of the open source Interface organization, where he develops Shiny extensions, writes books and delivers advanced Shiny workshops from Posit Conf to R in Pharma. David worked 5 years in the pharma industry where he helped design production-ready Shiny apps.
+
+
+# Aknowledgement
+
+Workshop authors want to warmly thank Nicolas Benett, Mike Page and Christoph Sax for their involvment in the blockr core development team.

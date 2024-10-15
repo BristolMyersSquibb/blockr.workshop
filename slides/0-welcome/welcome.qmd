@@ -1,0 +1,62 @@
+---
+title: "Introduction"
+author: "Karma Tarap (BMS), John Coene (The Y Company) and David Granjon (cynkra GmbH)"
+format: 
+  revealjs:
+    #code-annotations: select
+    footer: "Funded by <img class=\"mb-4\" src=\"../../assets/images/bms.svg\"/>"
+    height: 900
+    width: 1600
+    code-link: true
+    code-copy: true
+    fontsize: 24pt
+    navigation-mode: vertical
+    controls-layout: bottom-right
+    controls-tutorial: true
+    chalkboard: false
+    transition: none
+    background-transition: none
+editor:
+    render-on-save: true
+---
+
+# Important information
+
+## Before we start
+
+- Link to Posit Cloud: TBD 
+- ...
+
+
+# Who are you?
+
+## Workshop pre-requisites
+
+- You are interested into data analysis.
+- You are an R user.
+- You are an __R developer__ with package development knowledge.
+
+# Who are we?
+
+## **Karma**
+
+![](./../../assets/images/karma.png){fig-align="center"}
+
+<p style="text-align: center">Karma is an Innovation Strategy and Solutions Lead at Bristol Myers Squibb.</p>
+
+## **John**
+
+![](./../../assets/images/john.png){fig-align="center"}
+
+<p style="text-align: center">John is senior R/JS/Go developer and founder/co-founder of [Opifex](https://opifex.org/) and [The Y company](https://the-y-company.com/).</p>
+
+## **David Granjon** 
+
+![](./../../assets/images/david.jpg){fig-align="center"}
+
+<p style="text-align: center">David works as a Lead Shiny Developer at Cynkra and founder of the open source [__RinteRface__](https://rinterface.com/) organisation.</p>
+
+# Objectives
+
+- As an end-user: learn how to leverage block to create data analysises in minutes without writing any code.
+- As a developer: learn how to empower users to use blockr by developing new blockr and deploying blockr applications.

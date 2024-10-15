@@ -758,13 +758,14 @@ Imagine if we could build an interactive datapipeline like we would prepare a me
 <span id="cb4-49"><a></a>  data = new_stack(</span>
 <span id="cb4-50"><a></a>    data_block = new_dataset_block("penguins", "palmerpenguins"),</span>
 <span id="cb4-51"><a></a>    filter_block = new_filter_block("sex", "female", submit = TRUE)</span>
-<span id="cb4-52"><a></a>  )</span>
+<span id="cb4-52"><a></a>  ),</span>
 <span id="cb4-53"><a></a>  plot = new_stack(</span>
-<span id="cb4-54"><a></a>    plot_block = new_ggplot_block("body_mass_g", "flipper_length_mm"),</span>
-<span id="cb4-55"><a></a>    layer_block = new_geompoint_block("species", "species")</span>
-<span id="cb4-56"><a></a>  )</span>
-<span id="cb4-57"><a></a>)</span>
-<span id="cb4-58"><a></a>serve_workspace()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb4-54"><a></a>    result_block = new_result_block(stack = "data"),</span>
+<span id="cb4-55"><a></a>    plot_block = new_ggplot_block("body_mass_g", "flipper_length_mm"),</span>
+<span id="cb4-56"><a></a>    layer_block = new_geompoint_block("species", "species")</span>
+<span id="cb4-57"><a></a>  )</span>
+<span id="cb4-58"><a></a>)</span>
+<span id="cb4-59"><a></a>serve_workspace()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section><section id="how-do-i-create-a-workspace" class="slide level2" style="font-size: 1.5em"><h2>How do I create a workspace?</h2>
 <div class="sourceCode" id="annotated-cell-5"><pre class="sourceCode numberSource r code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode r"><span id="annotated-cell-5-1"><a href="#annotated-cell-5-1"></a><span class="fu">library</span>(blockr)</span>
 <span id="annotated-cell-5-2"><a href="#annotated-cell-5-2"></a><span class="co"># Creates an empty workspace</span></span>

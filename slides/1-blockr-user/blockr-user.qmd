@@ -362,8 +362,9 @@ set_workspace(
   data = new_stack(
     data_block = new_dataset_block("penguins", "palmerpenguins"),
     filter_block = new_filter_block("sex", "female", submit = TRUE)
-  )
+  ),
   plot = new_stack(
+    result_block = new_result_block(stack = "data"),
     plot_block = new_ggplot_block("body_mass_g", "flipper_length_mm"),
     layer_block = new_geompoint_block("species", "species")
   )

@@ -58,9 +58,24 @@ Imagine if we could build an interactive datapipeline like we would prepare a me
 - Do you have the right ingredients?
 -->
 
+## Commercial solutions {background-size="40%" style="font-size: 1.5em"}
+::: {layout-ncol=2}
+![](../../assets/images/tableau.svg)
+
+![](../../assets/images/power-bi.svg)
+:::
+
+- License cost 💲💲💲.
+- Not R specific.
 
 
 ## 💡 Introducing {blockr} {style="font-size: 1.5em"}
+
+. . .
+
+> "Shiny's WordPress" (John Coene, 2024)
+
+. . .
 
 ::::{.columns}
 
@@ -72,9 +87,10 @@ Imagine if we could build an interactive datapipeline like we would prepare a me
 
 :::{.incremental}
 - __Supermarket__ for data analysis with R.
-- __No-Code__ Dashboard builder, "Shiny's WordPress" ...
+- __No-Code__ dashboard builder ...
 - ... __Extendable__ by developers.
-- Reproducible code.
+- __Collaborative__ tool.
+- __Reproducible__ code.
 :::
 
 :::
@@ -84,7 +100,7 @@ Imagine if we could build an interactive datapipeline like we would prepare a me
 
 # blockr 101 {data-stack-name="blockr 101" background-image="../../assets/images/undraw_cooking_p7m1.svg" background-size="40%" style="margin-top: -350px; font-size: 1.5em"}
 
-## Palmer penguins plot {style="font-size: 1.5em"}
+## Problem: palmer penguins plot {style="font-size: 1.5em"}
 
 . . . 
 
@@ -97,9 +113,9 @@ What penguin species has the largest flippers?
 . . .
 
 ```{r}
-#| echo: true
-#| code-line-numbers: "1|2|3-8|9-15|"
-#| output-location: column-fragment
+#| echo: false
+#| fig-align: center
+#| out-width: 80%
 penguins |>
   filter(sex == "female") |>
   ggplot(
@@ -116,6 +132,14 @@ penguins |>
     size = 2
   )
 ```
+
+. . .
+
+- How can I produce this plot?
+
+. . .
+
+- Should I ask my colleagues to develop an interactive app for this?
 
 ## The stack: a data analysis recipe {style="font-size: 1.5em"}
 
@@ -147,7 +171,46 @@ Collection of instructions, __blocks__, from __data import__ to __wrangling/visu
 
 ::::
 
-## Demo
+## Zoom on blocks {style="font-size: 1.5em"}
+
+- Blocks categories: import (data), transform, plot, ...
+- Provided by developers (or us).
+
+
+## Example: transform blocks {style="font-size: 1.5em"}
+
+::::{.columns}
+
+:::{.column width="70%"}
+```{mermaid}
+%%| mermaid-format: svg
+flowchart TD
+  blk_data_in(Data input)
+  blk_data_out[Output]
+  subgraph blk_block[Transform block]
+    blk_field1(Field 1)
+    blk_field2(Field 2)
+    blk_field1 --> |interactivity| blk_expr
+    blk_field2 --> |interactivity| blk_expr
+    blk_expr(Expression)
+    blk_res(result)
+    blk_expr --> |evaluate| blk_res
+  end
+  blk_data_in --> blk_block --> blk_data_out
+```
+:::
+
+:::{.column width="30%"}
+A __transform__ block:
+
+- Takes input data.
+- May expose __interactive__ input to transform the data.
+- Returns the transformed data.
+:::
+::::
+
+
+## Palmer penguins with blockr {style="font-size: 1.5em"}
 
 ```{shinylive-r}
 #| standalone: true
@@ -313,7 +376,7 @@ Collection of __recipes__ (stacks) to build a __dashboard__.
 
 ## Demo
 
-```{shinylive-r}
+<!-- ```{shinylive-r}
 #| standalone: true
 #| components: [viewer]
 #| column: screen-inset-shaded
@@ -370,7 +433,7 @@ set_workspace(
   )
 )
 serve_workspace()
-```
+``` -->
 
 ## How do I create a workspace? {style="font-size: 1.5em"}
 

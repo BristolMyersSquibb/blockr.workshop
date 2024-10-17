@@ -417,7 +417,30 @@ Imagine if we could build an interactive datapipeline like we would prepare a me
 - Do you know how to prepare a meal without the right recipe?
 - Do you have the right ingredients?
 -->
-</section><section id="introducing-blockr" class="slide level2" style="font-size: 1.5em"><h2>💡 Introducing {blockr}</h2>
+</section><section id="commercial-solutions" class="slide level2" data-background-size="40%" style="font-size: 1.5em"><h2>Commercial solutions</h2>
+<div>
+
+</div>
+<div class="quarto-layout-panel" data-layout-ncol="2">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<p><img data-src="../../assets/images/tableau.svg"></p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<p><img data-src="../../assets/images/power-bi.svg"></p>
+</div>
+</div>
+</div>
+<ul>
+<li>License cost 💲💲💲.</li>
+<li>Not R specific.</li>
+</ul></section><section id="introducing-blockr" class="slide level2" style="font-size: 1.5em"><h2>💡 Introducing {blockr}</h2>
+<div class="fragment">
+<blockquote>
+<p>“Shiny’s WordPress” (John Coene, 2024)</p>
+</blockquote>
+</div>
+<div class="fragment">
 <div class="columns">
 <div class="column">
 <p><img data-src="../../assets/images/undraw_empty_cart_co35.svg" style="width:75.0%"></p>
@@ -427,15 +450,19 @@ Imagine if we could build an interactive datapipeline like we would prepare a me
 <li class="fragment">
 <strong>Supermarket</strong> for data analysis with R.</li>
 <li class="fragment">
-<strong>No-Code</strong> Dashboard builder, “Shiny’s WordPress” …</li>
+<strong>No-Code</strong> dashboard builder …</li>
 <li class="fragment">… <strong>Extendable</strong> by developers.</li>
-<li class="fragment">Reproducible code.</li>
+<li class="fragment">
+<strong>Collaborative</strong> tool.</li>
+<li class="fragment">
+<strong>Reproducible</strong> code.</li>
 </ul>
 </div>
 </div></div>
+</div>
 </section></section><section><section id="blockr-101" class="title-slide slide level1 center" data-stack-name="blockr 101" data-background-image="../../assets/images/undraw_cooking_p7m1.svg" data-background-size="40%" style="margin-top: -350px; font-size: 1.5em"><h1>blockr 101</h1>
 
-</section><section id="palmer-penguins-plot" class="slide level2" style="font-size: 1.5em"><h2>Palmer penguins plot</h2>
+</section><section id="problem-palmer-penguins-plot" class="slide level2" style="font-size: 1.5em"><h2>Problem: palmer penguins plot</h2>
 <div class="fragment">
 <p>What penguin species has the largest flippers?</p>
 <!-- Histogram showing `flipper length` as function of `body mass` by `species` only for `female` penguins.
@@ -443,31 +470,24 @@ Imagine if we could build an interactive datapipeline like we would prepare a me
 -->
 </div>
 <div class="fragment">
-<div class="cell columns column-output-location">
-<div class="column">
-<div class="sourceCode cell-code" id="cb1" data-code-line-numbers="1|2|3-8|9-15|"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a>penguins <span class="sc">|&gt;</span></span>
-<span id="cb1-2"><a></a>  <span class="fu">filter</span>(sex <span class="sc">==</span> <span class="st">"female"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb1-3"><a></a>  <span class="fu">ggplot</span>(</span>
-<span id="cb1-4"><a></a>    <span class="fu">aes</span>(</span>
-<span id="cb1-5"><a></a>      <span class="at">x =</span> body_mass_g, </span>
-<span id="cb1-6"><a></a>      <span class="at">y =</span> flipper_length_mm</span>
-<span id="cb1-7"><a></a>    )</span>
-<span id="cb1-8"><a></a>  ) <span class="sc">+</span></span>
-<span id="cb1-9"><a></a>  <span class="fu">geom_point</span>(</span>
-<span id="cb1-10"><a></a>    <span class="fu">aes</span>(</span>
-<span id="cb1-11"><a></a>      <span class="at">color =</span> species, </span>
-<span id="cb1-12"><a></a>      <span class="at">shape =</span> species</span>
-<span id="cb1-13"><a></a>    ), </span>
-<span id="cb1-14"><a></a>    <span class="at">size =</span> <span class="dv">2</span></span>
-<span id="cb1-15"><a></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div><div class="column fragment">
+<div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div>
-<figure><p><img data-src="blockr-user_files/figure-revealjs/unnamed-chunk-1-1.png" width="960"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure><p><img data-src="blockr-user_files/figure-revealjs/unnamed-chunk-1-1.png" class="quarto-figure quarto-figure-center" style="width:80.0%"></p>
 </figure>
 </div>
 </div>
-</div></div>
+</div>
+</div>
+<div class="fragment">
+<ul>
+<li>How can I produce this plot?</li>
+</ul>
+</div>
+<div class="fragment">
+<ul>
+<li>Should I ask my colleagues to develop an interactive app for this?</li>
+</ul>
 </div>
 </section><section id="the-stack-a-data-analysis-recipe" class="slide level2" style="font-size: 1.5em"><h2>The stack: a data analysis recipe</h2>
 <div class="columns">
@@ -514,141 +534,204 @@ Imagine if we could build an interactive datapipeline like we would prepare a me
 </div><div class="column">
 <p>Collection of instructions, <strong>blocks</strong>, from <strong>data import</strong> to <strong>wrangling/visualization</strong>.</p>
 </div></div>
-</section><section id="demo" class="slide level2"><h2>Demo</h2>
-<div class="sourceCode" id="cb2" data-engine="r"><pre class="sourceCode numberSource shinylive-r number-lines code-with-copy"><code class="sourceCode"><span id="cb2-1"><a></a>#| '!! shinylive warning !!': |</span>
-<span id="cb2-2"><a></a>#|   shinylive does not work in self-contained HTML documents.</span>
-<span id="cb2-3"><a></a>#|   Please set `embed-resources: false` in your metadata.</span>
-<span id="cb2-4"><a></a>#| standalone: true</span>
-<span id="cb2-5"><a></a>#| components: [viewer]</span>
-<span id="cb2-6"><a></a>#| column: screen-inset-shaded</span>
-<span id="cb2-7"><a></a>#| viewerHeight: 800</span>
-<span id="cb2-8"><a></a>webr::install("blockr", repos = "https://bristolmyerssquibb.github.io/webr-repos/")</span>
-<span id="cb2-9"><a></a></span>
-<span id="cb2-10"><a></a>library(blockr)</span>
-<span id="cb2-11"><a></a>library(palmerpenguins)</span>
-<span id="cb2-12"><a></a>library(ggplot2)</span>
-<span id="cb2-13"><a></a></span>
-<span id="cb2-14"><a></a>new_ggplot_block &lt;- function(col_x = character(), col_y = character(), ...) {</span>
-<span id="cb2-15"><a></a></span>
-<span id="cb2-16"><a></a>  data_cols &lt;- function(data) colnames(data)</span>
-<span id="cb2-17"><a></a></span>
-<span id="cb2-18"><a></a>  new_block(</span>
-<span id="cb2-19"><a></a>    fields = list(</span>
-<span id="cb2-20"><a></a>      x = new_select_field(col_x, data_cols, type = "name"),</span>
-<span id="cb2-21"><a></a>      y = new_select_field(col_y, data_cols, type = "name")</span>
-<span id="cb2-22"><a></a>    ),</span>
-<span id="cb2-23"><a></a>    expr = quote(</span>
-<span id="cb2-24"><a></a>      ggplot(mapping = aes(x = .(x), y = .(y)))</span>
-<span id="cb2-25"><a></a>    ),</span>
-<span id="cb2-26"><a></a>    class = c("ggplot_block", "plot_block"),</span>
-<span id="cb2-27"><a></a>    ...</span>
-<span id="cb2-28"><a></a>  )</span>
-<span id="cb2-29"><a></a>}</span>
-<span id="cb2-30"><a></a></span>
-<span id="cb2-31"><a></a>new_geompoint_block &lt;- function(color = character(), shape = character(), ...) {</span>
-<span id="cb2-32"><a></a></span>
-<span id="cb2-33"><a></a>  data_cols &lt;- function(data) colnames(data$data)</span>
-<span id="cb2-34"><a></a></span>
-<span id="cb2-35"><a></a>  new_block(</span>
-<span id="cb2-36"><a></a>    fields = list(</span>
-<span id="cb2-37"><a></a>      color = new_select_field(color, data_cols, type = "name"),</span>
-<span id="cb2-38"><a></a>      shape = new_select_field(shape, data_cols, type = "name")</span>
-<span id="cb2-39"><a></a>    ),</span>
-<span id="cb2-40"><a></a>    expr = quote(</span>
-<span id="cb2-41"><a></a>      geom_point(aes(color = .(color), shape = .(shape)), size = 2)</span>
-<span id="cb2-42"><a></a>    ),</span>
-<span id="cb2-43"><a></a>    class = c("plot_layer_block", "plot_block"),</span>
-<span id="cb2-44"><a></a>    ...</span>
-<span id="cb2-45"><a></a>  )</span>
-<span id="cb2-46"><a></a>}</span>
-<span id="cb2-47"><a></a></span>
-<span id="cb2-48"><a></a>stack &lt;- new_stack(</span>
-<span id="cb2-49"><a></a>  data_block = new_dataset_block("penguins", "palmerpenguins"),</span>
-<span id="cb2-50"><a></a>  filter_block = new_filter_block("sex", "female", submit = TRUE),</span>
-<span id="cb2-51"><a></a>  plot_block = new_ggplot_block("body_mass_g", "flipper_length_mm"),</span>
-<span id="cb2-52"><a></a>  layer_block = new_geompoint_block("species", "species")</span>
-<span id="cb2-53"><a></a>)</span>
-<span id="cb2-54"><a></a>serve_stack(stack)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section><section id="zoom-on-blocks" class="slide level2" style="font-size: 1.5em"><h2>Zoom on blocks</h2>
+<ul>
+<li>Blocks categories: import (data), transform, plot, …</li>
+<li>Provided by developers (or us).</li>
+</ul></section><section id="example-transform-blocks" class="slide level2" style="font-size: 1.5em"><h2>Example: transform blocks</h2>
+<div class="columns">
+<div class="column" style="width:70%;">
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class=""></figure><p></p>
+<div>
+<svg aria-roledescription="flowchart-v2" role="graphics-document document" viewbox="-7.5 -8 276.44140625 470.5" style="; display: block; margin: auto auto auto auto" xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" width="960" id="mermaid-figure-3" height="480"><style>#mermaid-figure-3{font-family:"trebuchet ms",verdana,arial,sans-serif;font-size:16px;fill:#333;}#mermaid-figure-3 .error-icon{fill:#552222;}#mermaid-figure-3 .error-text{fill:#552222;stroke:#552222;}#mermaid-figure-3 .edge-thickness-normal{stroke-width:2px;}#mermaid-figure-3 .edge-thickness-thick{stroke-width:3.5px;}#mermaid-figure-3 .edge-pattern-solid{stroke-dasharray:0;}#mermaid-figure-3 .edge-pattern-dashed{stroke-dasharray:3;}#mermaid-figure-3 .edge-pattern-dotted{stroke-dasharray:2;}#mermaid-figure-3 .marker{fill:#333333;stroke:#333333;}#mermaid-figure-3 .marker.cross{stroke:#333333;}#mermaid-figure-3 svg{font-family:"trebuchet ms",verdana,arial,sans-serif;font-size:16px;}#mermaid-figure-3 .label{font-family:"trebuchet ms",verdana,arial,sans-serif;color:#333;}#mermaid-figure-3 .cluster-label text{fill:#333;}#mermaid-figure-3 .cluster-label span,#mermaid-figure-3 p{color:#333;}#mermaid-figure-3 .label text,#mermaid-figure-3 span,#mermaid-figure-3 p{fill:#333;color:#333;}#mermaid-figure-3 .node rect,#mermaid-figure-3 .node circle,#mermaid-figure-3 .node ellipse,#mermaid-figure-3 .node polygon,#mermaid-figure-3 .node path{fill:#ECECFF;stroke:#9370DB;stroke-width:1px;}#mermaid-figure-3 .flowchart-label text{text-anchor:middle;}#mermaid-figure-3 .node .label{text-align:center;}#mermaid-figure-3 .node.clickable{cursor:pointer;}#mermaid-figure-3 .arrowheadPath{fill:#333333;}#mermaid-figure-3 .edgePath .path{stroke:#333333;stroke-width:2.0px;}#mermaid-figure-3 .flowchart-link{stroke:#333333;fill:none;}#mermaid-figure-3 .edgeLabel{background-color:#e8e8e8;text-align:center;}#mermaid-figure-3 .edgeLabel rect{opacity:0.5;background-color:#e8e8e8;fill:#e8e8e8;}#mermaid-figure-3 .cluster rect{fill:#ffffde;stroke:#aaaa33;stroke-width:1px;}#mermaid-figure-3 .cluster text{fill:#333;}#mermaid-figure-3 .cluster span,#mermaid-figure-3 p{color:#333;}#mermaid-figure-3 div.mermaidTooltip{position:absolute;text-align:center;max-width:200px;padding:2px;font-family:"trebuchet ms",verdana,arial,sans-serif;font-size:12px;background:hsl(80, 100%, 96.2745098039%);border:1px solid #aaaa33;border-radius:2px;pointer-events:none;z-index:100;}#mermaid-figure-3 .flowchartTitleText{text-anchor:middle;font-size:18px;fill:#333;}#mermaid-figure-3 :root{--mermaid-font-family:"trebuchet ms",verdana,arial,sans-serif;}</style>
+<g><marker orient="auto" markerheight="12" markerwidth="12" markerunits="userSpaceOnUse" refy="5" refx="10" viewbox="0 0 10 10" class="marker flowchart" id="flowchart-pointEnd"><path style="stroke-width: 1; stroke-dasharray: 1, 0;" class="arrowMarkerPath" d="M 0 0 L 10 5 L 0 10 z"></path></marker><marker orient="auto" markerheight="12" markerwidth="12" markerunits="userSpaceOnUse" refy="5" refx="0" viewbox="0 0 10 10" class="marker flowchart" id="flowchart-pointStart"><path style="stroke-width: 1; stroke-dasharray: 1, 0;" class="arrowMarkerPath" d="M 0 5 L 10 10 L 10 0 z"></path></marker><marker orient="auto" markerheight="11" markerwidth="11" markerunits="userSpaceOnUse" refy="5" refx="11" viewbox="0 0 10 10" class="marker flowchart" id="flowchart-circleEnd"><circle style="stroke-width: 1; stroke-dasharray: 1, 0;" class="arrowMarkerPath" r="5" cy="5" cx="5"></circle></marker><marker orient="auto" markerheight="11" markerwidth="11" markerunits="userSpaceOnUse" refy="5" refx="-1" viewbox="0 0 10 10" class="marker flowchart" id="flowchart-circleStart"><circle style="stroke-width: 1; stroke-dasharray: 1, 0;" class="arrowMarkerPath" r="5" cy="5" cx="5"></circle></marker><marker orient="auto" markerheight="11" markerwidth="11" markerunits="userSpaceOnUse" refy="5.2" refx="12" viewbox="0 0 11 11" class="marker cross flowchart" id="flowchart-crossEnd"><path style="stroke-width: 2; stroke-dasharray: 1, 0;" class="arrowMarkerPath" d="M 1,1 l 9,9 M 10,1 l -9,9"></path></marker><marker orient="auto" markerheight="11" markerwidth="11" markerunits="userSpaceOnUse" refy="5.2" refx="-1" viewbox="0 0 11 11" class="marker cross flowchart" id="flowchart-crossStart"><path style="stroke-width: 2; stroke-dasharray: 1, 0;" class="arrowMarkerPath" d="M 1,1 l 9,9 M 10,1 l -9,9"></path></marker><g class="root"><g class="clusters"></g><g class="edgePaths"><path marker-end="url(#flowchart-pointEnd)" style="fill:none;" class="edge-thickness-normal edge-pattern-solid flowchart-link LS-blk_data_in LE-blk_block" id="L-blk_data_in-blk_block-0" d="M130.220703125,33.5L130.220703125,37.666666666666664C130.220703125,41.833333333333336,130.220703125,50.166666666666664,130.220703125,58.5C130.220703125,66.83333333333333,130.220703125,75.16666666666667,130.220703125,79.33333333333333L130.220703125,83.5"></path><path marker-end="url(#flowchart-pointEnd)" style="fill:none;" class="edge-thickness-normal edge-pattern-solid flowchart-link LS-blk_block LE-blk_data_out" id="L-blk_block-blk_data_out-0" d="M130.220703125,371L130.220703125,375.1666666666667C130.220703125,379.3333333333333,130.220703125,387.6666666666667,130.220703125,396C130.220703125,404.3333333333333,130.220703125,412.6666666666667,130.220703125,416.8333333333333L130.220703125,421"></path></g><g class="edgeLabels"><g class="edgeLabel"><g transform="translate(0, 0)" class="label"><foreignobject height="0" width="0"><div style="display: inline-block; white-space: nowrap;" data-xmlns="http://www.w3.org/1999/xhtml">
+<span class="edgeLabel"></span>
+</div>
+</foreignobject></g></g><g class="edgeLabel"><g transform="translate(0, 0)" class="label"><foreignobject height="0" width="0"><div style="display: inline-block; white-space: nowrap;" data-xmlns="http://www.w3.org/1999/xhtml">
+<span class="edgeLabel"></span>
+</div>
+</foreignobject></g></g></g><g class="nodes"><g transform="translate(-7.5, 75.5)" class="root"><g class="clusters"><g id="blk_block" class="cluster default flowchart-label"><rect height="287.5" width="260.44140625" y="8" x="8" ry="0" rx="0" style=""></rect><g transform="translate(81.017578125, 8)" class="cluster-label"><foreignobject height="18.5" width="114.40625"><div style="display: inline-block; white-space: nowrap;" data-xmlns="http://www.w3.org/1999/xhtml">
+<span class="nodeLabel">Transform block</span>
+</div>
+</foreignobject></g></g></g><g class="edgePaths"><path marker-end="url(#flowchart-pointEnd)" style="fill:none;" class="edge-thickness-normal edge-pattern-solid flowchart-link LS-blk_field1 LE-blk_expr" id="L-blk_field1-blk_expr-0" d="M81.455078125,66.5L81.455078125,72.20833333333333C81.455078125,77.91666666666667,81.455078125,89.33333333333333,87.80874693627452,100.75C94.16241574754902,112.16666666666667,106.86975337009805,123.58333333333333,113.22342218137256,129.29166666666666L119.57709099264706,135"></path><path marker-end="url(#flowchart-pointEnd)" style="fill:none;" class="edge-thickness-normal edge-pattern-solid flowchart-link LS-blk_field2 LE-blk_expr" id="L-blk_field2-blk_expr-0" d="M194.986328125,66.5L194.986328125,72.20833333333333C194.986328125,77.91666666666667,194.986328125,89.33333333333333,188.6326593137255,100.75C182.27899050245097,112.16666666666667,169.57165287990196,123.58333333333333,163.21798406862743,129.29166666666666L156.86431525735293,135"></path><path marker-end="url(#flowchart-pointEnd)" style="fill:none;" class="edge-thickness-normal edge-pattern-solid flowchart-link LS-blk_expr LE-blk_res" id="L-blk_expr-blk_res-0" d="M138.220703125,168.5L138.220703125,174.20833333333334C138.220703125,179.91666666666666,138.220703125,191.33333333333334,138.220703125,202.75C138.220703125,214.16666666666666,138.220703125,225.58333333333334,138.220703125,231.29166666666666L138.220703125,237"></path></g><g class="edgeLabels"><g transform="translate(81.455078125, 100.75)" class="edgeLabel"><g transform="translate(-44.23046875, -9.25)" class="label"><foreignobject height="18.5" width="88.4609375"><div style="display: inline-block; white-space: nowrap;" data-xmlns="http://www.w3.org/1999/xhtml">
+<span class="edgeLabel">interactivity</span>
+</div>
+</foreignobject></g></g><g transform="translate(194.986328125, 100.75)" class="edgeLabel"><g transform="translate(-44.23046875, -9.25)" class="label"><foreignobject height="18.5" width="88.4609375"><div style="display: inline-block; white-space: nowrap;" data-xmlns="http://www.w3.org/1999/xhtml">
+<span class="edgeLabel">interactivity</span>
+</div>
+</foreignobject></g></g><g transform="translate(138.220703125, 202.75)" class="edgeLabel"><g transform="translate(-30.953125, -9.25)" class="label"><foreignobject height="18.5" width="61.90625"><div style="display: inline-block; white-space: nowrap;" data-xmlns="http://www.w3.org/1999/xhtml">
+<span class="edgeLabel">evaluate</span>
+</div>
+</foreignobject></g></g></g><g class="nodes"><g transform="translate(81.455078125, 49.75)" id="flowchart-blk_field1-32" class="node default default flowchart-label"><rect height="33.5" width="63.53125" y="-16.75" x="-31.765625" ry="5" rx="5" style="" class="basic label-container"></rect><g transform="translate(-24.265625, -9.25)" style="" class="label"><rect></rect><foreignobject height="18.5" width="48.53125"><div style="display: inline-block; white-space: nowrap;" data-xmlns="http://www.w3.org/1999/xhtml">
+<span class="nodeLabel">Field 1</span>
+</div>
+</foreignobject></g></g><g transform="translate(138.220703125, 151.75)" id="flowchart-blk_expr-35" class="node default default flowchart-label"><rect height="33.5" width="90.2890625" y="-16.75" x="-45.14453125" ry="5" rx="5" style="" class="basic label-container"></rect><g transform="translate(-37.64453125, -9.25)" style="" class="label"><rect></rect><foreignobject height="18.5" width="75.2890625"><div style="display: inline-block; white-space: nowrap;" data-xmlns="http://www.w3.org/1999/xhtml">
+<span class="nodeLabel">Expression</span>
+</div>
+</foreignobject></g></g><g transform="translate(194.986328125, 49.75)" id="flowchart-blk_field2-33" class="node default default flowchart-label"><rect height="33.5" width="63.53125" y="-16.75" x="-31.765625" ry="5" rx="5" style="" class="basic label-container"></rect><g transform="translate(-24.265625, -9.25)" style="" class="label"><rect></rect><foreignobject height="18.5" width="48.53125"><div style="display: inline-block; white-space: nowrap;" data-xmlns="http://www.w3.org/1999/xhtml">
+<span class="nodeLabel">Field 2</span>
+</div>
+</foreignobject></g></g><g transform="translate(138.220703125, 253.75)" id="flowchart-blk_res-39" class="node default default flowchart-label"><rect height="33.5" width="56.2265625" y="-16.75" x="-28.11328125" ry="5" rx="5" style="" class="basic label-container"></rect><g transform="translate(-20.61328125, -9.25)" style="" class="label"><rect></rect><foreignobject height="18.5" width="41.2265625"><div style="display: inline-block; white-space: nowrap;" data-xmlns="http://www.w3.org/1999/xhtml">
+<span class="nodeLabel">result</span>
+</div>
+</foreignobject></g></g></g></g><g transform="translate(130.220703125, 16.75)" id="flowchart-blk_data_in-30" class="node default default flowchart-label"><rect height="33.5" width="90.09375" y="-16.75" x="-45.046875" ry="5" rx="5" style="" class="basic label-container"></rect><g transform="translate(-37.546875, -9.25)" style="" class="label"><rect></rect><foreignobject height="18.5" width="75.09375"><div style="display: inline-block; white-space: nowrap;" data-xmlns="http://www.w3.org/1999/xhtml">
+<span class="nodeLabel">Data input</span>
+</div>
+</foreignobject></g></g><g transform="translate(130.220703125, 437.75)" id="flowchart-blk_data_out-31" class="node default default flowchart-label"><rect height="33.5" width="64.8671875" y="-16.75" x="-32.43359375" ry="0" rx="0" style="" class="basic label-container"></rect><g transform="translate(-24.93359375, -9.25)" style="" class="label"><rect></rect><foreignobject height="18.5" width="49.8671875"><div style="display: inline-block; white-space: nowrap;" data-xmlns="http://www.w3.org/1999/xhtml">
+<span class="nodeLabel">Output</span>
+</div>
+</foreignobject></g></g></g></g></g></svg>
+</div>
+<p></p>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:30%;">
+<p>A <strong>transform</strong> block:</p>
+<ul>
+<li>Takes input data.</li>
+<li>May expose <strong>interactive</strong> input to transform the data.</li>
+<li>Returns the transformed data.</li>
+</ul>
+</div></div>
+</section><section id="palmer-penguins-with-blockr" class="slide level2" style="font-size: 1.5em"><h2>Palmer penguins with blockr</h2>
+<div class="sourceCode" id="cb1" data-engine="r"><pre class="sourceCode numberSource shinylive-r number-lines code-with-copy"><code class="sourceCode"><span id="cb1-1"><a></a>#| '!! shinylive warning !!': |</span>
+<span id="cb1-2"><a></a>#|   shinylive does not work in self-contained HTML documents.</span>
+<span id="cb1-3"><a></a>#|   Please set `embed-resources: false` in your metadata.</span>
+<span id="cb1-4"><a></a>#| standalone: true</span>
+<span id="cb1-5"><a></a>#| components: [viewer]</span>
+<span id="cb1-6"><a></a>#| column: screen-inset-shaded</span>
+<span id="cb1-7"><a></a>#| viewerHeight: 800</span>
+<span id="cb1-8"><a></a>webr::install("blockr", repos = "https://bristolmyerssquibb.github.io/webr-repos/")</span>
+<span id="cb1-9"><a></a></span>
+<span id="cb1-10"><a></a>library(blockr)</span>
+<span id="cb1-11"><a></a>library(palmerpenguins)</span>
+<span id="cb1-12"><a></a>library(ggplot2)</span>
+<span id="cb1-13"><a></a></span>
+<span id="cb1-14"><a></a>new_ggplot_block &lt;- function(col_x = character(), col_y = character(), ...) {</span>
+<span id="cb1-15"><a></a></span>
+<span id="cb1-16"><a></a>  data_cols &lt;- function(data) colnames(data)</span>
+<span id="cb1-17"><a></a></span>
+<span id="cb1-18"><a></a>  new_block(</span>
+<span id="cb1-19"><a></a>    fields = list(</span>
+<span id="cb1-20"><a></a>      x = new_select_field(col_x, data_cols, type = "name"),</span>
+<span id="cb1-21"><a></a>      y = new_select_field(col_y, data_cols, type = "name")</span>
+<span id="cb1-22"><a></a>    ),</span>
+<span id="cb1-23"><a></a>    expr = quote(</span>
+<span id="cb1-24"><a></a>      ggplot(mapping = aes(x = .(x), y = .(y)))</span>
+<span id="cb1-25"><a></a>    ),</span>
+<span id="cb1-26"><a></a>    class = c("ggplot_block", "plot_block"),</span>
+<span id="cb1-27"><a></a>    ...</span>
+<span id="cb1-28"><a></a>  )</span>
+<span id="cb1-29"><a></a>}</span>
+<span id="cb1-30"><a></a></span>
+<span id="cb1-31"><a></a>new_geompoint_block &lt;- function(color = character(), shape = character(), ...) {</span>
+<span id="cb1-32"><a></a></span>
+<span id="cb1-33"><a></a>  data_cols &lt;- function(data) colnames(data$data)</span>
+<span id="cb1-34"><a></a></span>
+<span id="cb1-35"><a></a>  new_block(</span>
+<span id="cb1-36"><a></a>    fields = list(</span>
+<span id="cb1-37"><a></a>      color = new_select_field(color, data_cols, type = "name"),</span>
+<span id="cb1-38"><a></a>      shape = new_select_field(shape, data_cols, type = "name")</span>
+<span id="cb1-39"><a></a>    ),</span>
+<span id="cb1-40"><a></a>    expr = quote(</span>
+<span id="cb1-41"><a></a>      geom_point(aes(color = .(color), shape = .(shape)), size = 2)</span>
+<span id="cb1-42"><a></a>    ),</span>
+<span id="cb1-43"><a></a>    class = c("plot_layer_block", "plot_block"),</span>
+<span id="cb1-44"><a></a>    ...</span>
+<span id="cb1-45"><a></a>  )</span>
+<span id="cb1-46"><a></a>}</span>
+<span id="cb1-47"><a></a></span>
+<span id="cb1-48"><a></a>stack &lt;- new_stack(</span>
+<span id="cb1-49"><a></a>  data_block = new_dataset_block("penguins", "palmerpenguins"),</span>
+<span id="cb1-50"><a></a>  filter_block = new_filter_block("sex", "female", submit = TRUE),</span>
+<span id="cb1-51"><a></a>  plot_block = new_ggplot_block("body_mass_g", "flipper_length_mm"),</span>
+<span id="cb1-52"><a></a>  layer_block = new_geompoint_block("species", "species")</span>
+<span id="cb1-53"><a></a>)</span>
+<span id="cb1-54"><a></a>serve_stack(stack)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section><section id="how-much-code-would-it-take-with-shiny" class="slide level2" style="font-size: 1.5em"><h2>How much code would it take with Shiny?</h2>
 <div class="fragment">
 <div id="code-with-shiny" style="font-size: 40%;">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a><span class="fu">library</span>(shiny)</span>
-<span id="cb3-2"><a></a><span class="fu">library</span>(bslib)</span>
-<span id="cb3-3"><a></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb3-4"><a></a><span class="fu">library</span>(palmerpenguins)</span>
-<span id="cb3-5"><a></a></span>
-<span id="cb3-6"><a></a><span class="fu">shinyApp</span>(</span>
-<span id="cb3-7"><a></a>  <span class="at">ui =</span> <span class="fu">page_fluid</span>(</span>
-<span id="cb3-8"><a></a>    <span class="fu">layout_sidebar</span>(</span>
-<span id="cb3-9"><a></a>      <span class="at">sidebar =</span> <span class="fu">sidebar</span>(</span>
-<span id="cb3-10"><a></a>        <span class="fu">radioButtons</span>(<span class="st">"sex"</span>, <span class="st">"Sex"</span>, <span class="fu">unique</span>(penguins<span class="sc">$</span>sex), <span class="st">"female"</span>),</span>
-<span id="cb3-11"><a></a>        <span class="fu">selectInput</span>(</span>
-<span id="cb3-12"><a></a>          <span class="st">"xvar"</span>, </span>
-<span id="cb3-13"><a></a>          <span class="st">"X var"</span>, </span>
-<span id="cb3-14"><a></a>          <span class="fu">colnames</span>(dplyr<span class="sc">::</span><span class="fu">select</span>(penguins, <span class="fu">where</span>(is.numeric))),</span>
-<span id="cb3-15"><a></a>          <span class="st">"body_mass_g"</span></span>
-<span id="cb3-16"><a></a>        ),</span>
-<span id="cb3-17"><a></a>        <span class="fu">selectInput</span>(</span>
-<span id="cb3-18"><a></a>          <span class="st">"yvar"</span>,</span>
-<span id="cb3-19"><a></a>          <span class="st">"Y var"</span>,</span>
-<span id="cb3-20"><a></a>          <span class="fu">colnames</span>(dplyr<span class="sc">::</span><span class="fu">select</span>(penguins, <span class="fu">where</span>(is.numeric))),</span>
-<span id="cb3-21"><a></a>          <span class="st">"flipper_length_mm"</span></span>
-<span id="cb3-22"><a></a>        ),</span>
-<span id="cb3-23"><a></a>        <span class="fu">selectInput</span>(</span>
-<span id="cb3-24"><a></a>          <span class="st">"color"</span>,</span>
-<span id="cb3-25"><a></a>          <span class="st">"Color and shape"</span>,</span>
-<span id="cb3-26"><a></a>          <span class="fu">colnames</span>(dplyr<span class="sc">::</span><span class="fu">select</span>(penguins, <span class="fu">where</span>(is.factor))),</span>
-<span id="cb3-27"><a></a>          <span class="st">"species"</span></span>
-<span id="cb3-28"><a></a>        )</span>
-<span id="cb3-29"><a></a>      ),</span>
-<span id="cb3-30"><a></a>      <span class="fu">plotOutput</span>(<span class="st">"plot"</span>)</span>
-<span id="cb3-31"><a></a>    )</span>
-<span id="cb3-32"><a></a>  ),</span>
-<span id="cb3-33"><a></a>  <span class="at">server =</span> <span class="cf">function</span>(input, output, session) {</span>
-<span id="cb3-34"><a></a>    output<span class="sc">$</span>plot <span class="ot">&lt;-</span> <span class="fu">renderPlot</span>({</span>
-<span id="cb3-35"><a></a>      penguins <span class="sc">|&gt;</span></span>
-<span id="cb3-36"><a></a>        <span class="fu">filter</span>(sex <span class="sc">==</span> <span class="sc">!!</span>input<span class="sc">$</span>sex) <span class="sc">|&gt;</span></span>
-<span id="cb3-37"><a></a>        <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="sc">!!</span>input<span class="sc">$</span>xvar, <span class="at">y =</span> <span class="sc">!!</span>input<span class="sc">$</span>yvar)) <span class="sc">+</span></span>
-<span id="cb3-38"><a></a>        <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> <span class="sc">!!</span>input<span class="sc">$</span>color, <span class="at">shape =</span> <span class="sc">!!</span>input<span class="sc">$</span>color), <span class="at">size =</span> <span class="dv">2</span>)</span>
-<span id="cb3-39"><a></a>    })</span>
-<span id="cb3-40"><a></a>  }</span>
-<span id="cb3-41"><a></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a></a><span class="fu">library</span>(shiny)</span>
+<span id="cb2-2"><a></a><span class="fu">library</span>(bslib)</span>
+<span id="cb2-3"><a></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb2-4"><a></a><span class="fu">library</span>(palmerpenguins)</span>
+<span id="cb2-5"><a></a></span>
+<span id="cb2-6"><a></a><span class="fu">shinyApp</span>(</span>
+<span id="cb2-7"><a></a>  <span class="at">ui =</span> <span class="fu">page_fluid</span>(</span>
+<span id="cb2-8"><a></a>    <span class="fu">layout_sidebar</span>(</span>
+<span id="cb2-9"><a></a>      <span class="at">sidebar =</span> <span class="fu">sidebar</span>(</span>
+<span id="cb2-10"><a></a>        <span class="fu">radioButtons</span>(<span class="st">"sex"</span>, <span class="st">"Sex"</span>, <span class="fu">unique</span>(penguins<span class="sc">$</span>sex), <span class="st">"female"</span>),</span>
+<span id="cb2-11"><a></a>        <span class="fu">selectInput</span>(</span>
+<span id="cb2-12"><a></a>          <span class="st">"xvar"</span>, </span>
+<span id="cb2-13"><a></a>          <span class="st">"X var"</span>, </span>
+<span id="cb2-14"><a></a>          <span class="fu">colnames</span>(dplyr<span class="sc">::</span><span class="fu">select</span>(penguins, <span class="fu">where</span>(is.numeric))),</span>
+<span id="cb2-15"><a></a>          <span class="st">"body_mass_g"</span></span>
+<span id="cb2-16"><a></a>        ),</span>
+<span id="cb2-17"><a></a>        <span class="fu">selectInput</span>(</span>
+<span id="cb2-18"><a></a>          <span class="st">"yvar"</span>,</span>
+<span id="cb2-19"><a></a>          <span class="st">"Y var"</span>,</span>
+<span id="cb2-20"><a></a>          <span class="fu">colnames</span>(dplyr<span class="sc">::</span><span class="fu">select</span>(penguins, <span class="fu">where</span>(is.numeric))),</span>
+<span id="cb2-21"><a></a>          <span class="st">"flipper_length_mm"</span></span>
+<span id="cb2-22"><a></a>        ),</span>
+<span id="cb2-23"><a></a>        <span class="fu">selectInput</span>(</span>
+<span id="cb2-24"><a></a>          <span class="st">"color"</span>,</span>
+<span id="cb2-25"><a></a>          <span class="st">"Color and shape"</span>,</span>
+<span id="cb2-26"><a></a>          <span class="fu">colnames</span>(dplyr<span class="sc">::</span><span class="fu">select</span>(penguins, <span class="fu">where</span>(is.factor))),</span>
+<span id="cb2-27"><a></a>          <span class="st">"species"</span></span>
+<span id="cb2-28"><a></a>        )</span>
+<span id="cb2-29"><a></a>      ),</span>
+<span id="cb2-30"><a></a>      <span class="fu">plotOutput</span>(<span class="st">"plot"</span>)</span>
+<span id="cb2-31"><a></a>    )</span>
+<span id="cb2-32"><a></a>  ),</span>
+<span id="cb2-33"><a></a>  <span class="at">server =</span> <span class="cf">function</span>(input, output, session) {</span>
+<span id="cb2-34"><a></a>    output<span class="sc">$</span>plot <span class="ot">&lt;-</span> <span class="fu">renderPlot</span>({</span>
+<span id="cb2-35"><a></a>      penguins <span class="sc">|&gt;</span></span>
+<span id="cb2-36"><a></a>        <span class="fu">filter</span>(sex <span class="sc">==</span> <span class="sc">!!</span>input<span class="sc">$</span>sex) <span class="sc">|&gt;</span></span>
+<span id="cb2-37"><a></a>        <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="sc">!!</span>input<span class="sc">$</span>xvar, <span class="at">y =</span> <span class="sc">!!</span>input<span class="sc">$</span>yvar)) <span class="sc">+</span></span>
+<span id="cb2-38"><a></a>        <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> <span class="sc">!!</span>input<span class="sc">$</span>color, <span class="at">shape =</span> <span class="sc">!!</span>input<span class="sc">$</span>color), <span class="at">size =</span> <span class="dv">2</span>)</span>
+<span id="cb2-39"><a></a>    })</span>
+<span id="cb2-40"><a></a>  }</span>
+<span id="cb2-41"><a></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
 </section><section id="its-much-easier-with-blockr" class="slide level2" style="font-size: 1.5em"><h2>It’s much easier with blockr</h2>
 <div class="fragment">
 <div class="cell">
-<div class="sourceCode cell-code" id="annotated-cell-3"><pre class="sourceCode numberSource r code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode r"><span id="annotated-cell-3-1"><a href="#annotated-cell-3-1"></a><span class="fu">library</span>(blockr)</span>
-<a class="code-annotation-anchor" data-target-cell="annotated-cell-3" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-3-2" class="code-annotation-target"><a href="#annotated-cell-3-2"></a><span class="fu">new_stack</span>(</span>
-<a class="code-annotation-anchor" data-target-cell="annotated-cell-3" data-target-annotation="2" onclick="event.preventDefault();">2</a><span id="annotated-cell-3-3" class="code-annotation-target"><a href="#annotated-cell-3-3"></a>  <span class="at">data_block =</span> <span class="fu">new_dataset_block</span>(<span class="st">"penguins"</span>, <span class="st">"palmerpenguins"</span>),</span>
-<span id="annotated-cell-3-4"><a href="#annotated-cell-3-4"></a>  <span class="at">filter_block =</span> <span class="fu">new_filter_block</span>(<span class="st">"sex"</span>, <span class="st">"female"</span>),</span>
-<a class="code-annotation-anchor" data-target-cell="annotated-cell-3" data-target-annotation="3" onclick="event.preventDefault();">3</a><span id="annotated-cell-3-5" class="code-annotation-target"><a href="#annotated-cell-3-5"></a>  <span class="at">plot_block =</span> <span class="fu">new_ggplot_block</span>(<span class="st">"body_mass_g"</span>, <span class="st">"flipper_length_mm"</span>),</span>
-<a class="code-annotation-anchor" data-target-cell="annotated-cell-3" data-target-annotation="4" onclick="event.preventDefault();">4</a><span id="annotated-cell-3-6" class="code-annotation-target"><a href="#annotated-cell-3-6"></a>  <span class="at">layer_block =</span> <span class="fu">new_geompoint_block</span>(<span class="st">"species"</span>, <span class="st">"species"</span>)</span>
-<span id="annotated-cell-3-7"><a href="#annotated-cell-3-7"></a>)</span>
-<a class="code-annotation-anchor" data-target-cell="annotated-cell-3" data-target-annotation="5" onclick="event.preventDefault();">5</a><span id="annotated-cell-3-8" class="code-annotation-target"><a href="#annotated-cell-3-8"></a><span class="fu">serve_stack</span>(stack)</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="annotated-cell-2"><pre class="sourceCode numberSource r code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode r"><span id="annotated-cell-2-1"><a href="#annotated-cell-2-1"></a><span class="fu">library</span>(blockr)</span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-2" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-2-2" class="code-annotation-target"><a href="#annotated-cell-2-2"></a><span class="fu">new_stack</span>(</span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-2" data-target-annotation="2" onclick="event.preventDefault();">2</a><span id="annotated-cell-2-3" class="code-annotation-target"><a href="#annotated-cell-2-3"></a>  <span class="at">data_block =</span> <span class="fu">new_dataset_block</span>(<span class="st">"penguins"</span>, <span class="st">"palmerpenguins"</span>),</span>
+<span id="annotated-cell-2-4"><a href="#annotated-cell-2-4"></a>  <span class="at">filter_block =</span> <span class="fu">new_filter_block</span>(<span class="st">"sex"</span>, <span class="st">"female"</span>),</span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-2" data-target-annotation="3" onclick="event.preventDefault();">3</a><span id="annotated-cell-2-5" class="code-annotation-target"><a href="#annotated-cell-2-5"></a>  <span class="at">plot_block =</span> <span class="fu">new_ggplot_block</span>(<span class="st">"body_mass_g"</span>, <span class="st">"flipper_length_mm"</span>),</span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-2" data-target-annotation="4" onclick="event.preventDefault();">4</a><span id="annotated-cell-2-6" class="code-annotation-target"><a href="#annotated-cell-2-6"></a>  <span class="at">layer_block =</span> <span class="fu">new_geompoint_block</span>(<span class="st">"species"</span>, <span class="st">"species"</span>)</span>
+<span id="annotated-cell-2-7"><a href="#annotated-cell-2-7"></a>)</span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-2" data-target-annotation="5" onclick="event.preventDefault();">5</a><span id="annotated-cell-2-8" class="code-annotation-target"><a href="#annotated-cell-2-8"></a><span class="fu">serve_stack</span>(stack)</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-annotation">
 <dl class="code-annotation-container-grid">
-<dt data-target-cell="annotated-cell-3" data-target-annotation="1">1</dt>
+<dt data-target-cell="annotated-cell-2" data-target-annotation="1">1</dt>
 <dd>
-<span data-code-cell="annotated-cell-3" data-code-lines="2" data-code-annotation="1">Create the stack.</span>
+<span data-code-cell="annotated-cell-2" data-code-lines="2" data-code-annotation="1">Create the stack.</span>
 </dd>
-<dt data-target-cell="annotated-cell-3" data-target-annotation="2">2</dt>
+<dt data-target-cell="annotated-cell-2" data-target-annotation="2">2</dt>
 <dd>
-<span data-code-cell="annotated-cell-3" data-code-lines="3,4" data-code-annotation="2">Import data.</span>
+<span data-code-cell="annotated-cell-2" data-code-lines="3,4" data-code-annotation="2">Import data.</span>
 </dd>
-<dt data-target-cell="annotated-cell-3" data-target-annotation="3">3</dt>
+<dt data-target-cell="annotated-cell-2" data-target-annotation="3">3</dt>
 <dd>
-<span data-code-cell="annotated-cell-3" data-code-lines="5" data-code-annotation="3">Create the plot.</span>
+<span data-code-cell="annotated-cell-2" data-code-lines="5" data-code-annotation="3">Create the plot.</span>
 </dd>
-<dt data-target-cell="annotated-cell-3" data-target-annotation="4">4</dt>
+<dt data-target-cell="annotated-cell-2" data-target-annotation="4">4</dt>
 <dd>
-<span data-code-cell="annotated-cell-3" data-code-lines="6" data-code-annotation="4">Add it a layer.</span>
+<span data-code-cell="annotated-cell-2" data-code-lines="6" data-code-annotation="4">Add it a layer.</span>
 </dd>
-<dt data-target-cell="annotated-cell-3" data-target-annotation="5">5</dt>
+<dt data-target-cell="annotated-cell-2" data-target-annotation="5">5</dt>
 <dd>
-<span data-code-cell="annotated-cell-3" data-code-lines="8" data-code-annotation="5">Serve a Shiny app.</span>
+<span data-code-cell="annotated-cell-2" data-code-lines="8" data-code-annotation="5">Serve a Shiny app.</span>
 </dd>
 </dl>
 </div>
@@ -706,86 +789,85 @@ Imagine if we could build an interactive datapipeline like we would prepare a me
 </div><div class="column" style="width:40%;">
 <p>Collection of <strong>recipes</strong> (stacks) to build a <strong>dashboard</strong>.</p>
 </div></div>
-</section><section id="demo-1" class="slide level2"><h2>Demo</h2>
-<div class="sourceCode" id="cb4" data-engine="r"><pre class="sourceCode numberSource shinylive-r number-lines code-with-copy"><code class="sourceCode"><span id="cb4-1"><a></a>#| '!! shinylive warning !!': |</span>
-<span id="cb4-2"><a></a>#|   shinylive does not work in self-contained HTML documents.</span>
-<span id="cb4-3"><a></a>#|   Please set `embed-resources: false` in your metadata.</span>
-<span id="cb4-4"><a></a>#| standalone: true</span>
-<span id="cb4-5"><a></a>#| components: [viewer]</span>
-<span id="cb4-6"><a></a>#| column: screen-inset-shaded</span>
-<span id="cb4-7"><a></a>#| viewerHeight: 800</span>
-<span id="cb4-8"><a></a>webr::install("blockr", repos = "https://bristolmyerssquibb.github.io/webr-repos/")</span>
-<span id="cb4-9"><a></a></span>
-<span id="cb4-10"><a></a>library(blockr)</span>
-<span id="cb4-11"><a></a>library(palmerpenguins)</span>
-<span id="cb4-12"><a></a>library(ggplot2)</span>
-<span id="cb4-13"><a></a></span>
-<span id="cb4-14"><a></a>new_ggplot_block &lt;- function(col_x = character(), col_y = character(), ...) {</span>
-<span id="cb4-15"><a></a></span>
-<span id="cb4-16"><a></a>  data_cols &lt;- function(data) colnames(data)</span>
-<span id="cb4-17"><a></a></span>
-<span id="cb4-18"><a></a>  new_block(</span>
-<span id="cb4-19"><a></a>    fields = list(</span>
-<span id="cb4-20"><a></a>      x = new_select_field(col_x, data_cols, type = "name"),</span>
-<span id="cb4-21"><a></a>      y = new_select_field(col_y, data_cols, type = "name")</span>
-<span id="cb4-22"><a></a>    ),</span>
-<span id="cb4-23"><a></a>    expr = quote(</span>
-<span id="cb4-24"><a></a>      ggplot(mapping = aes(x = .(x), y = .(y)))</span>
-<span id="cb4-25"><a></a>    ),</span>
-<span id="cb4-26"><a></a>    class = c("ggplot_block", "plot_block"),</span>
-<span id="cb4-27"><a></a>    ...</span>
-<span id="cb4-28"><a></a>  )</span>
-<span id="cb4-29"><a></a>}</span>
-<span id="cb4-30"><a></a></span>
-<span id="cb4-31"><a></a>new_geompoint_block &lt;- function(color = character(), shape = character(), ...) {</span>
-<span id="cb4-32"><a></a></span>
-<span id="cb4-33"><a></a>  data_cols &lt;- function(data) colnames(data$data)</span>
-<span id="cb4-34"><a></a></span>
-<span id="cb4-35"><a></a>  new_block(</span>
-<span id="cb4-36"><a></a>    fields = list(</span>
-<span id="cb4-37"><a></a>      color = new_select_field(color, data_cols, type = "name"),</span>
-<span id="cb4-38"><a></a>      shape = new_select_field(shape, data_cols, type = "name")</span>
-<span id="cb4-39"><a></a>    ),</span>
-<span id="cb4-40"><a></a>    expr = quote(</span>
-<span id="cb4-41"><a></a>      geom_point(aes(color = .(color), shape = .(shape)), size = 2)</span>
-<span id="cb4-42"><a></a>    ),</span>
-<span id="cb4-43"><a></a>    class = c("plot_layer_block", "plot_block"),</span>
-<span id="cb4-44"><a></a>    ...</span>
-<span id="cb4-45"><a></a>  )</span>
-<span id="cb4-46"><a></a>}</span>
-<span id="cb4-47"><a></a></span>
-<span id="cb4-48"><a></a>set_workspace(</span>
-<span id="cb4-49"><a></a>  data = new_stack(</span>
-<span id="cb4-50"><a></a>    data_block = new_dataset_block("penguins", "palmerpenguins"),</span>
-<span id="cb4-51"><a></a>    filter_block = new_filter_block("sex", "female", submit = TRUE)</span>
-<span id="cb4-52"><a></a>  ),</span>
-<span id="cb4-53"><a></a>  plot = new_stack(</span>
-<span id="cb4-54"><a></a>    result_block = new_result_block(stack = "data"),</span>
-<span id="cb4-55"><a></a>    plot_block = new_ggplot_block("body_mass_g", "flipper_length_mm"),</span>
-<span id="cb4-56"><a></a>    layer_block = new_geompoint_block("species", "species")</span>
-<span id="cb4-57"><a></a>  )</span>
-<span id="cb4-58"><a></a>)</span>
-<span id="cb4-59"><a></a>serve_workspace()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section><section id="demo" class="slide level2"><h2>Demo</h2>
+<!-- ```{shinylive-r}
+#| standalone: true
+#| components: [viewer]
+#| column: screen-inset-shaded
+#| viewerHeight: 800
+webr::install("blockr", repos = "https://bristolmyerssquibb.github.io/webr-repos/")
+
+library(blockr)
+library(palmerpenguins)
+library(ggplot2)
+
+new_ggplot_block <- function(col_x = character(), col_y = character(), ...) {
+
+  data_cols <- function(data) colnames(data)
+
+  new_block(
+    fields = list(
+      x = new_select_field(col_x, data_cols, type = "name"),
+      y = new_select_field(col_y, data_cols, type = "name")
+    ),
+    expr = quote(
+      ggplot(mapping = aes(x = .(x), y = .(y)))
+    ),
+    class = c("ggplot_block", "plot_block"),
+    ...
+  )
+}
+
+new_geompoint_block <- function(color = character(), shape = character(), ...) {
+
+  data_cols <- function(data) colnames(data$data)
+
+  new_block(
+    fields = list(
+      color = new_select_field(color, data_cols, type = "name"),
+      shape = new_select_field(shape, data_cols, type = "name")
+    ),
+    expr = quote(
+      geom_point(aes(color = .(color), shape = .(shape)), size = 2)
+    ),
+    class = c("plot_layer_block", "plot_block"),
+    ...
+  )
+}
+
+set_workspace(
+  data = new_stack(
+    data_block = new_dataset_block("penguins", "palmerpenguins"),
+    filter_block = new_filter_block("sex", "female", submit = TRUE)
+  ),
+  plot = new_stack(
+    result_block = new_result_block(stack = "data"),
+    plot_block = new_ggplot_block("body_mass_g", "flipper_length_mm"),
+    layer_block = new_geompoint_block("species", "species")
+  )
+)
+serve_workspace()
+``` -->
 </section><section id="how-do-i-create-a-workspace" class="slide level2" style="font-size: 1.5em"><h2>How do I create a workspace?</h2>
-<div class="sourceCode" id="annotated-cell-5"><pre class="sourceCode numberSource r code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode r"><span id="annotated-cell-5-1"><a href="#annotated-cell-5-1"></a><span class="fu">library</span>(blockr)</span>
-<span id="annotated-cell-5-2"><a href="#annotated-cell-5-2"></a><span class="co"># Creates an empty workspace</span></span>
-<a class="code-annotation-anchor" data-target-cell="annotated-cell-5" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-5-3" class="code-annotation-target"><a href="#annotated-cell-5-3"></a><span class="fu">set_workspace</span>(</span>
-<a class="code-annotation-anchor" data-target-cell="annotated-cell-5" data-target-annotation="2" onclick="event.preventDefault();">2</a><span id="annotated-cell-5-4" class="code-annotation-target"><a href="#annotated-cell-5-4"></a>  <span class="at">stack_1 =</span> <span class="fu">new_stack</span>()</span>
-<span id="annotated-cell-5-5"><a href="#annotated-cell-5-5"></a>  <span class="at">stack_2 =</span> <span class="fu">new_stack</span>()</span>
-<span id="annotated-cell-5-6"><a href="#annotated-cell-5-6"></a>)</span>
-<a class="code-annotation-anchor" data-target-cell="annotated-cell-5" data-target-annotation="3" onclick="event.preventDefault();">3</a><span id="annotated-cell-5-7" class="code-annotation-target"><a href="#annotated-cell-5-7"></a><span class="fu">serve_workspace</span>()</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="annotated-cell-3"><pre class="sourceCode numberSource r code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode r"><span id="annotated-cell-3-1"><a href="#annotated-cell-3-1"></a><span class="fu">library</span>(blockr)</span>
+<span id="annotated-cell-3-2"><a href="#annotated-cell-3-2"></a><span class="co"># Creates an empty workspace</span></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-3" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-3-3" class="code-annotation-target"><a href="#annotated-cell-3-3"></a><span class="fu">set_workspace</span>(</span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-3" data-target-annotation="2" onclick="event.preventDefault();">2</a><span id="annotated-cell-3-4" class="code-annotation-target"><a href="#annotated-cell-3-4"></a>  <span class="at">stack_1 =</span> <span class="fu">new_stack</span>()</span>
+<span id="annotated-cell-3-5"><a href="#annotated-cell-3-5"></a>  <span class="at">stack_2 =</span> <span class="fu">new_stack</span>()</span>
+<span id="annotated-cell-3-6"><a href="#annotated-cell-3-6"></a>)</span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-3" data-target-annotation="3" onclick="event.preventDefault();">3</a><span id="annotated-cell-3-7" class="code-annotation-target"><a href="#annotated-cell-3-7"></a><span class="fu">serve_workspace</span>()</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <dl class="code-annotation-container-grid">
-<dt data-target-cell="annotated-cell-5" data-target-annotation="1">1</dt>
+<dt data-target-cell="annotated-cell-3" data-target-annotation="1">1</dt>
 <dd>
-<span data-code-cell="annotated-cell-5" data-code-lines="3" data-code-annotation="1">Initialise.</span>
+<span data-code-cell="annotated-cell-3" data-code-lines="3" data-code-annotation="1">Initialise.</span>
 </dd>
-<dt data-target-cell="annotated-cell-5" data-target-annotation="2">2</dt>
+<dt data-target-cell="annotated-cell-3" data-target-annotation="2">2</dt>
 <dd>
-<span data-code-cell="annotated-cell-5" data-code-lines="4" data-code-annotation="2">Optional: add stacks.</span>
+<span data-code-cell="annotated-cell-3" data-code-lines="4" data-code-annotation="2">Optional: add stacks.</span>
 </dd>
-<dt data-target-cell="annotated-cell-5" data-target-annotation="3">3</dt>
+<dt data-target-cell="annotated-cell-3" data-target-annotation="3">3</dt>
 <dd>
-<span data-code-cell="annotated-cell-5" data-code-lines="7" data-code-annotation="3">Serve Shiny app.</span>
+<span data-code-cell="annotated-cell-3" data-code-lines="7" data-code-annotation="3">Serve Shiny app.</span>
 </dd>
 </dl></section><section id="how-far-can-i-go-with-blockr" class="slide level2" data-background-image="../../assets/images/undraw_add_post_re_174w.svg" data-background-size="90%" style="margin-left: 450px; margin-top: 700px; font-size: 1.5em"><h2>How far can I go with blockr?</h2>
 

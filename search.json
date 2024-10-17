@@ -1,26 +1,5 @@
 [
   {
-    "objectID": "about.html",
-    "href": "about.html",
-    "title": "About us",
-    "section": "",
-    "text": "Karma Tarap (BMS)\n\nKarma Tarap is an Innovation Strategy and Solutions Lead at Bristol Myers Squibb, bringing over a decade of experience as a statistical programmer in the pharmaceutical industry. With degrees in immunology, microbiology, bioinformatics, and data science. His work focuses on integrating advanced data analytics with insights to accelerate innovation and improve patient outcomes. Additionally, Karma has led multiple introductory R workshops within the industry.\n\n\nJohn Coene (The Y Company)\n\nJohn is a senior developer and data analytics professional with 9 years of working experience. He is the founder and co-founder of Opifex and The Y company. He is an expert in the R/JavaScript and Go languages and has developed hundreds of R packages. John has given numerous talks and workshops, at WhyR, eRum, as a guest on the Shiny dev series podcast discussing user experience, and R in Pharma. John is also the author of the book JavaScript for R published by CRC Press as part of the R series.\n\n\nDavid Granjon (cynkra)\n\nDavid is lead Shiny developer at cynkra and holds a Ph.D. in applied mathematics from Université Pierre et Marie Curie and Université de Lausanne. He is the founder of the open source Interface organization, where he develops Shiny extensions, writes books and delivers advanced Shiny workshops from Posit Conf to R in Pharma. David worked 5 years in the pharma industry where he helped design production-ready Shiny apps.\n\n\nAknowledgement\nWorkshop authors want to warmly thank Nicolas Benett, Mike Page and Christoph Sax for their involvment in the blockr core development team."
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "blockr.workshop",
-    "section": "",
-    "text": "Despite widespread adoption of tools such as Shiny and dplyr, creating dashboards in R remains challenging for non-coding developers. Solutions like PowerBI or Tableau, while popular, are proprietary and expensive, offer limited reproducibility, and have restricted integration with the R ecosystem. To address this gap, we introduce blockr, an open-source dashboard builder (https://github.com/blockr-org). blockr simplifies the construction of parameterised data pipelines as a web application, enabling collaboration and easy sharing of results through self-contained code generation. We emphasize modularity by decomposing pipelines into ‘blocks’. These ‘blocks’ can be assembled into ‘stacks’, which can be connected so that the output of one stack serves as the input for others. This architecture results in a reactive dashboard that allows upstream changes to cascade through the analysis, providing instant feedback to the user. General-purpose blocks provided by blockr can be combined with user-created blocks to expand functionality to use-case specific needs. This approach makes it easy to leverage the vast and mature ecosystem of R packages."
-  },
-  {
-    "objectID": "index.html#detailed-schedule",
-    "href": "index.html#detailed-schedule",
-    "title": "blockr.workshop",
-    "section": "Detailed schedule",
-    "text": "Detailed schedule\n\nIntroduction to blockr (1h30):\n\nData analysis is like cooking!\nDefinition of fields (ingredients), blocks (instructions), stack (cooking recipie), workspace (dinner party).\nExercise: create your first stack interactively: some data + plots.\nExercise: Use the previously created stack and connect it to anothe within the workspace.\n\nYour first new block (1h30):\n\nIntro about blocks constructors: new_block.\nExercise: Develop a clinical table block.\nIntroduction to the registry, the blocks “supermarket”.\nExercise: use the registry to expose this block to the outside world.\nLeverage S3 to customise part of the UI/server.\nExercise: Add a new render method to display interactive tables."
-  },
-  {
     "objectID": "slides/0-welcome/welcome.html#before-we-start",
     "href": "slides/0-welcome/welcome.html#before-we-start",
     "title": "Introduction",
@@ -56,6 +35,27 @@
     "text": "David Granjon\n\n\nDavid works as a Lead Shiny Developer at Cynkra and founder of the open source RinteRface organisation."
   },
   {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About us",
+    "section": "",
+    "text": "Karma Tarap (BMS)\n\nKarma Tarap is an Innovation Strategy and Solutions Lead at Bristol Myers Squibb, bringing over a decade of experience as a statistical programmer in the pharmaceutical industry. With degrees in immunology, microbiology, bioinformatics, and data science. His work focuses on integrating advanced data analytics with insights to accelerate innovation and improve patient outcomes. Additionally, Karma has led multiple introductory R workshops within the industry.\n\n\nJohn Coene (The Y Company)\n\nJohn is a senior developer and data analytics professional with 9 years of working experience. He is the founder and co-founder of Opifex and The Y company. He is an expert in the R/JavaScript and Go languages and has developed hundreds of R packages. John has given numerous talks and workshops, at WhyR, eRum, as a guest on the Shiny dev series podcast discussing user experience, and R in Pharma. John is also the author of the book JavaScript for R published by CRC Press as part of the R series.\n\n\nDavid Granjon (cynkra)\n\nDavid is lead Shiny developer at cynkra and holds a Ph.D. in applied mathematics from Université Pierre et Marie Curie and Université de Lausanne. He is the founder of the open source Interface organization, where he develops Shiny extensions, writes books and delivers advanced Shiny workshops from Posit Conf to R in Pharma. David worked 5 years in the pharma industry where he helped design production-ready Shiny apps.\n\n\nAknowledgement\nWorkshop authors want to warmly thank Nicolas Bennett, Mike Page and Christoph Sax for their involvment in the blockr core development team."
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "blockr.workshop",
+    "section": "",
+    "text": "Despite widespread adoption of tools such as Shiny and dplyr, creating dashboards in R remains challenging for non-coding developers. Solutions like PowerBI or Tableau, while popular, are proprietary and expensive, offer limited reproducibility, and have restricted integration with the R ecosystem. To address this gap, we introduce blockr, an open-source dashboard builder (https://github.com/blockr-org). blockr simplifies the construction of parameterised data pipelines as a web application, enabling collaboration and easy sharing of results through self-contained code generation. We emphasize modularity by decomposing pipelines into ‘blocks’. These ‘blocks’ can be assembled into ‘stacks’, which can be connected so that the output of one stack serves as the input for others. This architecture results in a reactive dashboard that allows upstream changes to cascade through the analysis, providing instant feedback to the user. General-purpose blocks provided by blockr can be combined with user-created blocks to expand functionality to use-case specific needs. This approach makes it easy to leverage the vast and mature ecosystem of R packages."
+  },
+  {
+    "objectID": "index.html#detailed-schedule",
+    "href": "index.html#detailed-schedule",
+    "title": "blockr.workshop",
+    "section": "Detailed schedule",
+    "text": "Detailed schedule\n\nIntroduction to blockr (1h30):\n\nData analysis is like cooking!\nDefinition of fields (ingredients), blocks (instructions), stack (cooking recipie), workspace (dinner party).\nExercise: create your first stack interactively: some data + plots.\nExercise: Use the previously created stack and connect it to anothe within the workspace.\n\nYour first new block (1h30):\n\nIntro about blocks constructors: new_block.\nExercise: Develop a clinical table block.\nIntroduction to the registry, the blocks “supermarket”.\nExercise: use the registry to expose this block to the outside world.\nLeverage S3 to customise part of the UI/server.\nExercise: Add a new render method to display interactive tables."
+  },
+  {
     "objectID": "slides/1-blockr-user/blockr-user.html#developing-enterprise-grade-dashboards-isnt-easy",
     "href": "slides/1-blockr-user/blockr-user.html#developing-enterprise-grade-dashboards-isnt-easy",
     "title": "Introduction to blockr for users",
@@ -63,32 +63,53 @@
     "text": "Developing enterprise-grade dashboards isn’t easy"
   },
   {
+    "objectID": "slides/1-blockr-user/blockr-user.html#commercial-solutions",
+    "href": "slides/1-blockr-user/blockr-user.html#commercial-solutions",
+    "title": "Introduction to blockr for users",
+    "section": "Commercial solutions",
+    "text": "Commercial solutions\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nLicense cost 💲💲💲.\nNot R specific."
+  },
+  {
     "objectID": "slides/1-blockr-user/blockr-user.html#introducing-blockr",
     "href": "slides/1-blockr-user/blockr-user.html#introducing-blockr",
     "title": "Introduction to blockr for users",
     "section": "💡 Introducing {blockr}",
-    "text": "💡 Introducing {blockr}\n\n\n\n\n\n\n\nSupermarket for data analysis with R.\n\nNo-Code Dashboard builder, “Shiny’s WordPress” …\n… Extendable by developers.\nReproducible code."
+    "text": "💡 Introducing {blockr}\n\n\n“Shiny’s WordPress” (John Coene, 2024)\n\n\n\n\n\n\n\n\n\nSupermarket for data analysis with R.\nNo-Code dashboard builder …\n… Extendable by developers.\nCollaborative tool.\nReproducible code."
   },
   {
-    "objectID": "slides/1-blockr-user/blockr-user.html#palmer-penguins-plot",
-    "href": "slides/1-blockr-user/blockr-user.html#palmer-penguins-plot",
+    "objectID": "slides/1-blockr-user/blockr-user.html#problem-palmer-penguins-plot",
+    "href": "slides/1-blockr-user/blockr-user.html#problem-palmer-penguins-plot",
     "title": "Introduction to blockr for users",
-    "section": "Palmer penguins plot",
-    "text": "Palmer penguins plot\n\nWhat penguin species has the largest flippers?\n\n\n\n\n\npenguins |&gt;\n  filter(sex == \"female\") |&gt;\n  ggplot(\n    aes(\n      x = body_mass_g, \n      y = flipper_length_mm\n    )\n  ) +\n  geom_point(\n    aes(\n      color = species, \n      shape = species\n    ), \n    size = 2\n  )"
+    "section": "Problem: palmer penguins plot",
+    "text": "Problem: palmer penguins plot\n\nWhat penguin species has the largest flippers?\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nHow can I produce this plot?\n\n\n\n\nShould I ask my colleagues to develop an interactive app for this?"
   },
   {
     "objectID": "slides/1-blockr-user/blockr-user.html#the-stack-a-data-analysis-recipe",
     "href": "slides/1-blockr-user/blockr-user.html#the-stack-a-data-analysis-recipe",
     "title": "Introduction to blockr for users",
     "section": "The stack: a data analysis recipe",
-    "text": "The stack: a data analysis recipe\n\n\n\n\n\n\n\n\n\nStack\n\n\ndata\n\n\ndata\n\n\nBlock 1\n\n\nData: dataset, browser, …\n\n\nBlock 2\n\n\nTransform block: filter, select …\n\n\nBlock 3\n\n\nResult/transform: plot, filter, …\n\n\n\n\n\n\n\n\nCollection of instructions, blocks, from data import to wrangling/visualization."
+    "text": "The stack: a data analysis recipe\n\n\n\n\n\n\n\n\n\n\n\nStack\n\n\n\ndata\n\n\n\ndata\n\n\n\nBlock 1\n\n\n\nData: dataset, browser, …\n\n\n\nBlock 2\n\n\n\nTransform block: filter, select …\n\n\n\nBlock 3\n\n\n\nResult/transform: plot, filter, …\n\n\n\n\n\n\n\n\n\nCollection of instructions, blocks, from data import to wrangling/visualization."
   },
   {
-    "objectID": "slides/1-blockr-user/blockr-user.html#demo",
-    "href": "slides/1-blockr-user/blockr-user.html#demo",
+    "objectID": "slides/1-blockr-user/blockr-user.html#zoom-on-blocks",
+    "href": "slides/1-blockr-user/blockr-user.html#zoom-on-blocks",
     "title": "Introduction to blockr for users",
-    "section": "Demo",
-    "text": "Demo\n#| '!! shinylive warning !!': |\n#|   shinylive does not work in self-contained HTML documents.\n#|   Please set `embed-resources: false` in your metadata.\n#| standalone: true\n#| components: [viewer]\n#| column: screen-inset-shaded\n#| viewerHeight: 800\nwebr::install(\"blockr\", repos = \"https://bristolmyerssquibb.github.io/webr-repos/\")\n\nlibrary(blockr)\nlibrary(palmerpenguins)\nlibrary(ggplot2)\n\nnew_ggplot_block &lt;- function(col_x = character(), col_y = character(), ...) {\n\n  data_cols &lt;- function(data) colnames(data)\n\n  new_block(\n    fields = list(\n      x = new_select_field(col_x, data_cols, type = \"name\"),\n      y = new_select_field(col_y, data_cols, type = \"name\")\n    ),\n    expr = quote(\n      ggplot(mapping = aes(x = .(x), y = .(y)))\n    ),\n    class = c(\"ggplot_block\", \"plot_block\"),\n    ...\n  )\n}\n\nnew_geompoint_block &lt;- function(color = character(), shape = character(), ...) {\n\n  data_cols &lt;- function(data) colnames(data$data)\n\n  new_block(\n    fields = list(\n      color = new_select_field(color, data_cols, type = \"name\"),\n      shape = new_select_field(shape, data_cols, type = \"name\")\n    ),\n    expr = quote(\n      geom_point(aes(color = .(color), shape = .(shape)), size = 2)\n    ),\n    class = c(\"plot_layer_block\", \"plot_block\"),\n    ...\n  )\n}\n\nnew_stack(\n  data_block = new_dataset_block(\"penguins\", \"palmerpenguins\"),\n  filter_block = new_filter_block(\"sex\", \"female\", submit = TRUE),\n  plot_block = new_ggplot_block(\"body_mass_g\", \"flipper_length_mm\"),\n  layer_block = new_geompoint_block(\"species\", \"species\")\n)\nserve_stack(stack)"
+    "section": "Zoom on blocks",
+    "text": "Zoom on blocks\n\nBlocks categories: import (data), transform, plot, …\nProvided by developers (or us)."
+  },
+  {
+    "objectID": "slides/1-blockr-user/blockr-user.html#example-transform-blocks",
+    "href": "slides/1-blockr-user/blockr-user.html#example-transform-blocks",
+    "title": "Introduction to blockr for users",
+    "section": "Example: transform blocks",
+    "text": "Example: transform blocks\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nTransform block\n\n\n\ninteractivity\n\n\n\ninteractivity\n\n\n\nevaluate\n\n\n\nField 1\n\n\n\nExpression\n\n\n\nField 2\n\n\n\nresult\n\n\n\nData input\n\n\n\nOutput\n\n\n\n\n\n\n\n\n\nA transform block:\n\nTakes input data.\nMay expose interactive input to transform the data.\nReturns the transformed data."
+  },
+  {
+    "objectID": "slides/1-blockr-user/blockr-user.html#palmer-penguins-with-blockr",
+    "href": "slides/1-blockr-user/blockr-user.html#palmer-penguins-with-blockr",
+    "title": "Introduction to blockr for users",
+    "section": "Palmer penguins with blockr",
+    "text": "Palmer penguins with blockr\n#| '!! shinylive warning !!': |\n#|   shinylive does not work in self-contained HTML documents.\n#|   Please set `embed-resources: false` in your metadata.\n#| standalone: true\n#| components: [viewer]\n#| column: screen-inset-shaded\n#| viewerHeight: 800\nwebr::install(\"blockr\", repos = \"https://bristolmyerssquibb.github.io/webr-repos/\")\n\nlibrary(blockr)\nlibrary(palmerpenguins)\nlibrary(ggplot2)\n\nnew_ggplot_block &lt;- function(col_x = character(), col_y = character(), ...) {\n\n  data_cols &lt;- function(data) colnames(data)\n\n  new_block(\n    fields = list(\n      x = new_select_field(col_x, data_cols, type = \"name\"),\n      y = new_select_field(col_y, data_cols, type = \"name\")\n    ),\n    expr = quote(\n      ggplot(mapping = aes(x = .(x), y = .(y)))\n    ),\n    class = c(\"ggplot_block\", \"plot_block\"),\n    ...\n  )\n}\n\nnew_geompoint_block &lt;- function(color = character(), shape = character(), ...) {\n\n  data_cols &lt;- function(data) colnames(data$data)\n\n  new_block(\n    fields = list(\n      color = new_select_field(color, data_cols, type = \"name\"),\n      shape = new_select_field(shape, data_cols, type = \"name\")\n    ),\n    expr = quote(\n      geom_point(aes(color = .(color), shape = .(shape)), size = 2)\n    ),\n    class = c(\"plot_layer_block\", \"plot_block\"),\n    ...\n  )\n}\n\nstack &lt;- new_stack(\n  data_block = new_dataset_block(\"penguins\", \"palmerpenguins\"),\n  filter_block = new_filter_block(\"sex\", \"female\", submit = TRUE),\n  plot_block = new_ggplot_block(\"body_mass_g\", \"flipper_length_mm\"),\n  layer_block = new_geompoint_block(\"species\", \"species\")\n)\nserve_stack(stack)"
   },
   {
     "objectID": "slides/1-blockr-user/blockr-user.html#how-much-code-would-it-take-with-shiny",
@@ -116,14 +137,14 @@
     "href": "slides/1-blockr-user/blockr-user.html#the-workspace",
     "title": "Introduction to blockr for users",
     "section": "The workspace",
-    "text": "The workspace\n\n\n\n\n\n\n\n\n\nStack 2\n\n\nStack 1\n\n\ndata\n\n\ndata\n\n\ndata\n\n\ndata\n\n\nData\n\n\nTransform\n\n\nVisualize\n\n\nData\n\n\nTransform\n\n\n\n\n\n\n\n\nCollection of recipes (stacks) to build a dashboard."
+    "text": "The workspace\n\n\n\n\n\n\n\n\n\n\n\nStack 2\n\n\n\nStack 1\n\n\n\ndata\n\n\n\ndata\n\n\n\ndata\n\n\n\ndata\n\n\n\nData\n\n\n\nTransform\n\n\n\nVisualize\n\n\n\nData\n\n\n\nTransform\n\n\n\n\n\n\n\n\n\nCollection of recipes (stacks) to build a dashboard."
   },
   {
-    "objectID": "slides/1-blockr-user/blockr-user.html#demo-1",
-    "href": "slides/1-blockr-user/blockr-user.html#demo-1",
+    "objectID": "slides/1-blockr-user/blockr-user.html#demo",
+    "href": "slides/1-blockr-user/blockr-user.html#demo",
     "title": "Introduction to blockr for users",
     "section": "Demo",
-    "text": "Demo\n#| '!! shinylive warning !!': |\n#|   shinylive does not work in self-contained HTML documents.\n#|   Please set `embed-resources: false` in your metadata.\n#| standalone: true\n#| components: [viewer]\n#| column: screen-inset-shaded\n#| viewerHeight: 800\nwebr::install(\"blockr\", repos = \"https://bristolmyerssquibb.github.io/webr-repos/\")\n\nlibrary(blockr)\nlibrary(palmerpenguins)\nlibrary(ggplot2)\n\nnew_ggplot_block &lt;- function(col_x = character(), col_y = character(), ...) {\n\n  data_cols &lt;- function(data) colnames(data)\n\n  new_block(\n    fields = list(\n      x = new_select_field(col_x, data_cols, type = \"name\"),\n      y = new_select_field(col_y, data_cols, type = \"name\")\n    ),\n    expr = quote(\n      ggplot(mapping = aes(x = .(x), y = .(y)))\n    ),\n    class = c(\"ggplot_block\", \"plot_block\"),\n    ...\n  )\n}\n\nnew_geompoint_block &lt;- function(color = character(), shape = character(), ...) {\n\n  data_cols &lt;- function(data) colnames(data$data)\n\n  new_block(\n    fields = list(\n      color = new_select_field(color, data_cols, type = \"name\"),\n      shape = new_select_field(shape, data_cols, type = \"name\")\n    ),\n    expr = quote(\n      geom_point(aes(color = .(color), shape = .(shape)), size = 2)\n    ),\n    class = c(\"plot_layer_block\", \"plot_block\"),\n    ...\n  )\n}\n\nset_workspace(\n  data = new_stack(\n    data_block = new_dataset_block(\"penguins\", \"palmerpenguins\"),\n    filter_block = new_filter_block(\"sex\", \"female\", submit = TRUE)\n  )\n  plot = new_stack(\n    plot_block = new_ggplot_block(\"body_mass_g\", \"flipper_length_mm\"),\n    layer_block = new_geompoint_block(\"species\", \"species\")\n  )\n)\nserve_workspace()"
+    "text": "Demo"
   },
   {
     "objectID": "slides/1-blockr-user/blockr-user.html#how-do-i-create-a-workspace",

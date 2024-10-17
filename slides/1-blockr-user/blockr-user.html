@@ -9,20 +9,20 @@
 <link href="../../site_libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <meta name="shinylive:serviceworker_dir" content="../..">
-<script src="../../site_libs/quarto-contrib/shinylive-0.7.0/shinylive/load-shinylive-sw.js" type="module"></script>
-<script src="../../site_libs/quarto-contrib/shinylive-0.7.0/shinylive/run-python-blocks.js" type="module"></script>
-<link href="../../site_libs/quarto-contrib/shinylive-0.7.0/shinylive/shinylive.css" rel="stylesheet">
-<link href="../../site_libs/quarto-contrib/shinylive-quarto-css/shinylive-quarto.css" rel="stylesheet"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.57">
-<meta name="author" content="Karma Tarap (BMS), John Coene (The Y Company) and David Granjon (cynkra GmbH)">
-<title>blockr.workshop – Introduction to blockr for users</title>
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
-<link rel="stylesheet" href="../../site_libs/revealjs/dist/reset.css">
-<link rel="stylesheet" href="../../site_libs/revealjs/dist/reveal.css">
-<style>
+<script src="../../site_libs/quarto-contrib/shinylive-0.8.0/shinylive/load-shinylive-sw.js" type="module"></script>
+<script src="../../site_libs/quarto-contrib/shinylive-0.8.0/shinylive/run-python-blocks.js" type="module"></script>
+<link href="../../site_libs/quarto-contrib/shinylive-0.8.0/shinylive/shinylive.css" rel="stylesheet">
+<link href="../../site_libs/quarto-contrib/shinylive-quarto-css/shinylive-quarto.css" rel="stylesheet"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.5.57">
+
+  <meta name="author" content="Karma Tarap (BMS), John Coene (The Y Company) and David Granjon (cynkra GmbH)">
+  <title>blockr.workshop – Introduction to blockr for users</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="../../site_libs/revealjs/dist/reset.css">
+  <link rel="stylesheet" href="../../site_libs/revealjs/dist/reveal.css">
+  <style>
     code{white-space: pre-wrap;}
     span.smallcaps{font-variant: small-caps;}
     div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -100,12 +100,12 @@
     code span.vs { color: #20794d; } /* VerbatimString */
     code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
-<link rel="stylesheet" href="../../site_libs/revealjs/dist/theme/quarto.css">
-<link href="../../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
-<link href="../../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
-<link href="../../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
-<link href="../../site_libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
-<style type="text/css">
+  <link rel="stylesheet" href="../../site_libs/revealjs/dist/theme/quarto.css">
+  <link href="../../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+  <link href="../../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+  <link href="../../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="../../site_libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+  <style type="text/css">
 
   .callout {
     margin-top: 1em;
@@ -303,7 +303,7 @@
   }
 
   </style>
-<style type="text/css">
+  <style type="text/css">
     .reveal div.sourceCode {
       margin: 0;
       overflow: auto;
@@ -390,13 +390,15 @@
       margin-right: 0; 
     }
   </style>
-<script src="../../site_libs/quarto-diagram/mermaid-postprocess-shim.js"></script><script src="https://cdn.jsdelivr.net/npm/mermaid@10.9.1/dist/mermaid.min.js"></script>
+  <script src="../../site_libs/quarto-diagram/mermaid-postprocess-shim.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10.9.1/dist/mermaid.min.js"></script>
 </head>
 <body class="quarto-light">
   <div class="reveal">
     <div class="slides">
 
-<section id="title-slide" class="quarto-title-block center"><h1 class="title">Introduction to blockr for users</h1>
+<section id="title-slide" class="quarto-title-block center">
+  <h1 class="title">Introduction to blockr for users</h1>
 
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
@@ -406,36 +408,78 @@ Karma Tarap (BMS), John Coene (The Y Company) and David Granjon (cynkra GmbH)
 </div>
 </div>
 
-</section><section><section id="section" class="title-slide slide level1 center" data-background-image="../../assets/images/bechamel-sauce.jpg" data-background-size="cover"><h1></h1>
+</section>
+<section>
+<section id="section" class="title-slide slide level1 center" data-background-image="../../assets/images/bechamel-sauce.jpg" data-background-size="cover">
+<h1></h1>
 <!--
 Imagine if we could build an interactive datapipeline like we would prepare a meal 😳
 --->
-</section><section id="shiny-homepage" class="slide level2"><h2><img data-src="../../assets/images/easy-browser.png" class="center" style="margin-left: 350px;;width:50.0%" alt="shiny homepage"></h2>
-</section><section id="shiny-homepage-corrected" class="slide level2"><h2><img data-src="../../assets/images/notsoeasy-browser.png" class="center" style="margin-left: 350px;;width:50.0%" alt="shiny homepage corrected"></h2>
-</section><section id="developing-enterprise-grade-dashboards-isnt-easy" class="slide level2" data-background-image="../../assets/images/undraw_lost_re_xqjt.svg" data-background-size="40%" style="font-size: 1.5em"><h2>Developing enterprise-grade dashboards isn’t easy</h2>
+</section>
+<section id="shiny-homepage" class="slide level2">
+<h2><img data-src="../../assets/images/easy-browser.png" class="center" style="margin-left: 350px;;width:50.0%" alt="shiny homepage"></h2>
+</section>
+<section id="shiny-homepage-corrected" class="slide level2">
+<h2><img data-src="../../assets/images/notsoeasy-browser.png" class="center" style="margin-left: 350px;;width:50.0%" alt="shiny homepage corrected"></h2>
+</section>
+<section id="developing-enterprise-grade-dashboards-isnt-easy" class="slide level2" data-background-image="../../assets/images/undraw_lost_re_xqjt.svg" data-background-size="40%" style="font-size: 1.5em">
+<h2>Developing enterprise-grade dashboards isn’t easy</h2>
 <!-- 
 - Do you know how to prepare a meal without the right recipe?
 - Do you have the right ingredients?
 -->
-</section><section id="introducing-blockr" class="slide level2" style="font-size: 1.5em"><h2>💡 Introducing {blockr}</h2>
+</section>
+<section id="commercial-solutions" class="slide level2" data-background-size="40%" style="font-size: 1.5em">
+<h2>Commercial solutions</h2>
+<div>
+
+</div>
+<div class="quarto-layout-panel" data-layout-ncol="2">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<p><img data-src="../../assets/images/tableau.svg"></p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<p><img data-src="../../assets/images/power-bi.svg"></p>
+</div>
+</div>
+</div>
+<ul>
+<li>License cost 💲💲💲.</li>
+<li>Not R specific.</li>
+</ul>
+</section>
+<section id="introducing-blockr" class="slide level2" style="font-size: 1.5em">
+<h2>💡 Introducing {blockr}</h2>
+<div class="fragment">
+<blockquote>
+<p>“Shiny’s WordPress” (John Coene, 2024)</p>
+</blockquote>
+</div>
+<div class="fragment">
 <div class="columns">
 <div class="column">
 <p><img data-src="../../assets/images/undraw_empty_cart_co35.svg" style="width:75.0%"></p>
 </div><div class="column">
 <div>
 <ul>
-<li class="fragment">
-<strong>Supermarket</strong> for data analysis with R.</li>
-<li class="fragment">
-<strong>No-Code</strong> Dashboard builder, “Shiny’s WordPress” …</li>
+<li class="fragment"><strong>Supermarket</strong> for data analysis with R.</li>
+<li class="fragment"><strong>No-Code</strong> dashboard builder …</li>
 <li class="fragment">… <strong>Extendable</strong> by developers.</li>
-<li class="fragment">Reproducible code.</li>
+<li class="fragment"><strong>Collaborative</strong> tool.</li>
+<li class="fragment"><strong>Reproducible</strong> code.</li>
 </ul>
 </div>
 </div></div>
-</section></section><section><section id="blockr-101" class="title-slide slide level1 center" data-stack-name="blockr 101" data-background-image="../../assets/images/undraw_cooking_p7m1.svg" data-background-size="40%" style="margin-top: -350px; font-size: 1.5em"><h1>blockr 101</h1>
+</div>
+</section></section>
+<section>
+<section id="blockr-101" class="title-slide slide level1 center" data-stack-name="blockr 101" data-background-image="../../assets/images/undraw_cooking_p7m1.svg" data-background-size="40%" style="margin-top: -350px; font-size: 1.5em">
+<h1>blockr 101</h1>
 
-</section><section id="palmer-penguins-plot" class="slide level2" style="font-size: 1.5em"><h2>Palmer penguins plot</h2>
+</section>
+<section id="problem-palmer-penguins-plot" class="slide level2" style="font-size: 1.5em">
+<h2>Problem: palmer penguins plot</h2>
 <div class="fragment">
 <p>What penguin species has the largest flippers?</p>
 <!-- Histogram showing `flipper length` as function of `body mass` by `species` only for `female` penguins.
@@ -443,350 +487,469 @@ Imagine if we could build an interactive datapipeline like we would prepare a me
 -->
 </div>
 <div class="fragment">
-<div class="cell columns column-output-location">
-<div class="column">
-<div class="sourceCode cell-code" id="cb1" data-code-line-numbers="1|2|3-8|9-15|"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a>penguins <span class="sc">|&gt;</span></span>
-<span id="cb1-2"><a></a>  <span class="fu">filter</span>(sex <span class="sc">==</span> <span class="st">"female"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb1-3"><a></a>  <span class="fu">ggplot</span>(</span>
-<span id="cb1-4"><a></a>    <span class="fu">aes</span>(</span>
-<span id="cb1-5"><a></a>      <span class="at">x =</span> body_mass_g, </span>
-<span id="cb1-6"><a></a>      <span class="at">y =</span> flipper_length_mm</span>
-<span id="cb1-7"><a></a>    )</span>
-<span id="cb1-8"><a></a>  ) <span class="sc">+</span></span>
-<span id="cb1-9"><a></a>  <span class="fu">geom_point</span>(</span>
-<span id="cb1-10"><a></a>    <span class="fu">aes</span>(</span>
-<span id="cb1-11"><a></a>      <span class="at">color =</span> species, </span>
-<span id="cb1-12"><a></a>      <span class="at">shape =</span> species</span>
-<span id="cb1-13"><a></a>    ), </span>
-<span id="cb1-14"><a></a>    <span class="at">size =</span> <span class="dv">2</span></span>
-<span id="cb1-15"><a></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div><div class="column fragment">
+<div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div>
-<figure><p><img data-src="blockr-user_files/figure-revealjs/unnamed-chunk-1-1.png" width="960"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="blockr-user_files/figure-revealjs/unnamed-chunk-1-1.png" class="quarto-figure quarto-figure-center" style="width:80.0%"></p>
 </figure>
 </div>
 </div>
-</div></div>
 </div>
-</section><section id="the-stack-a-data-analysis-recipe" class="slide level2" style="font-size: 1.5em"><h2>The stack: a data analysis recipe</h2>
+</div>
+<div class="fragment">
+<ul>
+<li>How can I produce this plot?</li>
+</ul>
+</div>
+<div class="fragment">
+<ul>
+<li>Should I ask my colleagues to develop an interactive app for this?</li>
+</ul>
+</div>
+</section>
+<section id="the-stack-a-data-analysis-recipe" class="slide level2" style="font-size: 1.5em">
+<h2>The stack: a data analysis recipe</h2>
 <div class="columns">
 <div class="column">
 <div class="cell" data-layout-align="default">
 <div class="cell-output-display">
 <div>
-<p></p><figure class=""></figure><p></p>
+<p></p><figure class=""><p></p>
 <div>
-<svg aria-roledescription="flowchart-v2" role="graphics-document document" viewbox="-7.5 -8 386.359375 513.5" style="; display: block; margin: auto auto auto auto" xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" width="960" id="mermaid-figure-1" height="480"><style>#mermaid-figure-1{font-family:"trebuchet ms",verdana,arial,sans-serif;font-size:16px;fill:#333;}#mermaid-figure-1 .error-icon{fill:#552222;}#mermaid-figure-1 .error-text{fill:#552222;stroke:#552222;}#mermaid-figure-1 .edge-thickness-normal{stroke-width:2px;}#mermaid-figure-1 .edge-thickness-thick{stroke-width:3.5px;}#mermaid-figure-1 .edge-pattern-solid{stroke-dasharray:0;}#mermaid-figure-1 .edge-pattern-dashed{stroke-dasharray:3;}#mermaid-figure-1 .edge-pattern-dotted{stroke-dasharray:2;}#mermaid-figure-1 .marker{fill:#333333;stroke:#333333;}#mermaid-figure-1 .marker.cross{stroke:#333333;}#mermaid-figure-1 svg{font-family:"trebuchet ms",verdana,arial,sans-serif;font-size:16px;}#mermaid-figure-1 .label{font-family:"trebuchet ms",verdana,arial,sans-serif;color:#333;}#mermaid-figure-1 .cluster-label text{fill:#333;}#mermaid-figure-1 .cluster-label span,#mermaid-figure-1 p{color:#333;}#mermaid-figure-1 .label text,#mermaid-figure-1 span,#mermaid-figure-1 p{fill:#333;color:#333;}#mermaid-figure-1 .node rect,#mermaid-figure-1 .node circle,#mermaid-figure-1 .node ellipse,#mermaid-figure-1 .node polygon,#mermaid-figure-1 .node path{fill:#ECECFF;stroke:#9370DB;stroke-width:1px;}#mermaid-figure-1 .flowchart-label text{text-anchor:middle;}#mermaid-figure-1 .node .label{text-align:center;}#mermaid-figure-1 .node.clickable{cursor:pointer;}#mermaid-figure-1 .arrowheadPath{fill:#333333;}#mermaid-figure-1 .edgePath .path{stroke:#333333;stroke-width:2.0px;}#mermaid-figure-1 .flowchart-link{stroke:#333333;fill:none;}#mermaid-figure-1 .edgeLabel{background-color:#e8e8e8;text-align:center;}#mermaid-figure-1 .edgeLabel rect{opacity:0.5;background-color:#e8e8e8;fill:#e8e8e8;}#mermaid-figure-1 .cluster rect{fill:#ffffde;stroke:#aaaa33;stroke-width:1px;}#mermaid-figure-1 .cluster text{fill:#333;}#mermaid-figure-1 .cluster span,#mermaid-figure-1 p{color:#333;}#mermaid-figure-1 div.mermaidTooltip{position:absolute;text-align:center;max-width:200px;padding:2px;font-family:"trebuchet ms",verdana,arial,sans-serif;font-size:12px;background:hsl(80, 100%, 96.2745098039%);border:1px solid #aaaa33;border-radius:2px;pointer-events:none;z-index:100;}#mermaid-figure-1 .flowchartTitleText{text-anchor:middle;font-size:18px;fill:#333;}#mermaid-figure-1 :root{--mermaid-font-family:"trebuchet ms",verdana,arial,sans-serif;}</style>
-<g><marker orient="auto" markerheight="12" markerwidth="12" markerunits="userSpaceOnUse" refy="5" refx="10" viewbox="0 0 10 10" class="marker flowchart" id="flowchart-pointEnd"><path style="stroke-width: 1; stroke-dasharray: 1, 0;" class="arrowMarkerPath" d="M 0 0 L 10 5 L 0 10 z"></path></marker><marker orient="auto" markerheight="12" markerwidth="12" markerunits="userSpaceOnUse" refy="5" refx="0" viewbox="0 0 10 10" class="marker flowchart" id="flowchart-pointStart"><path style="stroke-width: 1; stroke-dasharray: 1, 0;" class="arrowMarkerPath" d="M 0 5 L 10 10 L 10 0 z"></path></marker><marker orient="auto" markerheight="11" markerwidth="11" markerunits="userSpaceOnUse" refy="5" refx="11" viewbox="0 0 10 10" class="marker flowchart" id="flowchart-circleEnd"><circle style="stroke-width: 1; stroke-dasharray: 1, 0;" class="arrowMarkerPath" r="5" cy="5" cx="5"></circle></marker><marker orient="auto" markerheight="11" markerwidth="11" markerunits="userSpaceOnUse" refy="5" refx="-1" viewbox="0 0 10 10" class="marker flowchart" id="flowchart-circleStart"><circle style="stroke-width: 1; stroke-dasharray: 1, 0;" class="arrowMarkerPath" r="5" cy="5" cx="5"></circle></marker><marker orient="auto" markerheight="11" markerwidth="11" markerunits="userSpaceOnUse" refy="5.2" refx="12" viewbox="0 0 11 11" class="marker cross flowchart" id="flowchart-crossEnd"><path style="stroke-width: 2; stroke-dasharray: 1, 0;" class="arrowMarkerPath" d="M 1,1 l 9,9 M 10,1 l -9,9"></path></marker><marker orient="auto" markerheight="11" markerwidth="11" markerunits="userSpaceOnUse" refy="5.2" refx="-1" viewbox="0 0 11 11" class="marker cross flowchart" id="flowchart-crossStart"><path style="stroke-width: 2; stroke-dasharray: 1, 0;" class="arrowMarkerPath" d="M 1,1 l 9,9 M 10,1 l -9,9"></path></marker><g class="root"><g class="clusters"></g><g class="edgePaths"></g><g class="edgeLabels"></g><g class="nodes"><g transform="translate(-7.5, -8)" class="root"><g class="clusters"><g id="stack1" class="cluster default flowchart-label"><rect height="497.5" width="370.359375" y="8" x="8" ry="0" rx="0" style=""></rect><g transform="translate(173.9609375, 8)" class="cluster-label"><foreignobject height="18.5" width="38.4375"><div style="display: inline-block; white-space: nowrap;" data-xmlns="http://www.w3.org/1999/xhtml">
+<svg aria-roledescription="flowchart-v2" role="graphics-document document" viewbox="-7.5 -8 371.8125 511" style="; display: block; margin: auto auto auto auto" xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" width="960" id="mermaid-figure-1" height="480">
+<style>#mermaid-figure-1{font-family:"trebuchet ms",verdana,arial,sans-serif;font-size:16px;fill:#333;}#mermaid-figure-1 .error-icon{fill:#552222;}#mermaid-figure-1 .error-text{fill:#552222;stroke:#552222;}#mermaid-figure-1 .edge-thickness-normal{stroke-width:2px;}#mermaid-figure-1 .edge-thickness-thick{stroke-width:3.5px;}#mermaid-figure-1 .edge-pattern-solid{stroke-dasharray:0;}#mermaid-figure-1 .edge-pattern-dashed{stroke-dasharray:3;}#mermaid-figure-1 .edge-pattern-dotted{stroke-dasharray:2;}#mermaid-figure-1 .marker{fill:#333333;stroke:#333333;}#mermaid-figure-1 .marker.cross{stroke:#333333;}#mermaid-figure-1 svg{font-family:"trebuchet ms",verdana,arial,sans-serif;font-size:16px;}#mermaid-figure-1 .label{font-family:"trebuchet ms",verdana,arial,sans-serif;color:#333;}#mermaid-figure-1 .cluster-label text{fill:#333;}#mermaid-figure-1 .cluster-label span,#mermaid-figure-1 p{color:#333;}#mermaid-figure-1 .label text,#mermaid-figure-1 span,#mermaid-figure-1 p{fill:#333;color:#333;}#mermaid-figure-1 .node rect,#mermaid-figure-1 .node circle,#mermaid-figure-1 .node ellipse,#mermaid-figure-1 .node polygon,#mermaid-figure-1 .node path{fill:#ECECFF;stroke:#9370DB;stroke-width:1px;}#mermaid-figure-1 .flowchart-label text{text-anchor:middle;}#mermaid-figure-1 .node .label{text-align:center;}#mermaid-figure-1 .node.clickable{cursor:pointer;}#mermaid-figure-1 .arrowheadPath{fill:#333333;}#mermaid-figure-1 .edgePath .path{stroke:#333333;stroke-width:2.0px;}#mermaid-figure-1 .flowchart-link{stroke:#333333;fill:none;}#mermaid-figure-1 .edgeLabel{background-color:#e8e8e8;text-align:center;}#mermaid-figure-1 .edgeLabel rect{opacity:0.5;background-color:#e8e8e8;fill:#e8e8e8;}#mermaid-figure-1 .cluster rect{fill:#ffffde;stroke:#aaaa33;stroke-width:1px;}#mermaid-figure-1 .cluster text{fill:#333;}#mermaid-figure-1 .cluster span,#mermaid-figure-1 p{color:#333;}#mermaid-figure-1 div.mermaidTooltip{position:absolute;text-align:center;max-width:200px;padding:2px;font-family:"trebuchet ms",verdana,arial,sans-serif;font-size:12px;background:hsl(80, 100%, 96.2745098039%);border:1px solid #aaaa33;border-radius:2px;pointer-events:none;z-index:100;}#mermaid-figure-1 .flowchartTitleText{text-anchor:middle;font-size:18px;fill:#333;}#mermaid-figure-1 :root{--mermaid-font-family:"trebuchet ms",verdana,arial,sans-serif;}</style>
+<g><marker orient="auto" markerheight="12" markerwidth="12" markerunits="userSpaceOnUse" refy="5" refx="10" viewbox="0 0 10 10" class="marker flowchart" id="flowchart-pointEnd"><path style="stroke-width: 1; stroke-dasharray: 1, 0;" class="arrowMarkerPath" d="M 0 0 L 10 5 L 0 10 z"></path></marker><marker orient="auto" markerheight="12" markerwidth="12" markerunits="userSpaceOnUse" refy="5" refx="0" viewbox="0 0 10 10" class="marker flowchart" id="flowchart-pointStart"><path style="stroke-width: 1; stroke-dasharray: 1, 0;" class="arrowMarkerPath" d="M 0 5 L 10 10 L 10 0 z"></path></marker><marker orient="auto" markerheight="11" markerwidth="11" markerunits="userSpaceOnUse" refy="5" refx="11" viewbox="0 0 10 10" class="marker flowchart" id="flowchart-circleEnd"><circle style="stroke-width: 1; stroke-dasharray: 1, 0;" class="arrowMarkerPath" r="5" cy="5" cx="5"></circle></marker><marker orient="auto" markerheight="11" markerwidth="11" markerunits="userSpaceOnUse" refy="5" refx="-1" viewbox="0 0 10 10" class="marker flowchart" id="flowchart-circleStart"><circle style="stroke-width: 1; stroke-dasharray: 1, 0;" class="arrowMarkerPath" r="5" cy="5" cx="5"></circle></marker><marker orient="auto" markerheight="11" markerwidth="11" markerunits="userSpaceOnUse" refy="5.2" refx="12" viewbox="0 0 11 11" class="marker cross flowchart" id="flowchart-crossEnd"><path style="stroke-width: 2; stroke-dasharray: 1, 0;" class="arrowMarkerPath" d="M 1,1 l 9,9 M 10,1 l -9,9"></path></marker><marker orient="auto" markerheight="11" markerwidth="11" markerunits="userSpaceOnUse" refy="5.2" refx="-1" viewbox="0 0 11 11" class="marker cross flowchart" id="flowchart-crossStart"><path style="stroke-width: 2; stroke-dasharray: 1, 0;" class="arrowMarkerPath" d="M 1,1 l 9,9 M 10,1 l -9,9"></path></marker><g class="root"><g class="clusters"></g><g class="edgePaths"></g><g class="edgeLabels"></g><g class="nodes"><g transform="translate(-7.5, -8)" class="root"><g class="clusters"><g id="stack1" class="cluster default flowchart-label"><rect height="495" width="355.8125" y="8" x="8" ry="0" rx="0" style=""></rect><g transform="translate(165.8984375, 8)" class="cluster-label"><foreignobject height="18" width="40.015625">
+<div style="display: inline-block; white-space: nowrap;" data-xmlns="http://www.w3.org/1999/xhtml">
 <span class="nodeLabel">Stack</span>
 </div>
-</foreignobject></g></g></g><g class="edgePaths"><path marker-end="url(#flowchart-pointEnd)" style="fill:none;" class="edge-thickness-normal edge-pattern-solid flowchart-link LS-input_block LE-transform_block" id="L-input_block-transform_block-0" d="M193.1796875,136.5L193.1796875,142.20833333333334C193.1796875,147.91666666666666,193.1796875,159.33333333333334,193.1796875,170.75C193.1796875,182.16666666666666,193.1796875,193.58333333333334,193.1796875,199.29166666666666L193.1796875,205"></path><path marker-end="url(#flowchart-pointEnd)" style="fill:none;" class="edge-thickness-normal edge-pattern-solid flowchart-link LS-transform_block LE-output_block" id="L-transform_block-output_block-0" d="M193.1796875,308.5L193.1796875,314.2083333333333C193.1796875,319.9166666666667,193.1796875,331.3333333333333,193.1796875,342.75C193.1796875,354.1666666666667,193.1796875,365.5833333333333,193.1796875,371.2916666666667L193.1796875,377"></path></g><g class="edgeLabels"><g transform="translate(193.1796875, 170.75)" class="edgeLabel"><g transform="translate(-16.03515625, -9.25)" class="label"><foreignobject height="18.5" width="32.0703125"><div style="display: inline-block; white-space: nowrap;" data-xmlns="http://www.w3.org/1999/xhtml">
+</foreignobject></g></g></g><g class="edgePaths"><path marker-end="url(#flowchart-pointEnd)" style="fill:none;" class="edge-thickness-normal edge-pattern-solid flowchart-link LS-input_block LE-transform_block" id="L-input_block-transform_block-0" d="M185.90625,136L185.90625,141.66666666666666C185.90625,147.33333333333334,185.90625,158.66666666666666,185.90625,170C185.90625,181.33333333333334,185.90625,192.66666666666666,185.90625,198.33333333333334L185.90625,204"></path><path marker-end="url(#flowchart-pointEnd)" style="fill:none;" class="edge-thickness-normal edge-pattern-solid flowchart-link LS-transform_block LE-output_block" id="L-transform_block-output_block-0" d="M185.90625,307L185.90625,312.6666666666667C185.90625,318.3333333333333,185.90625,329.6666666666667,185.90625,341C185.90625,352.3333333333333,185.90625,363.6666666666667,185.90625,369.3333333333333L185.90625,375"></path></g><g class="edgeLabels"><g transform="translate(185.90625, 170)" class="edgeLabel"><g transform="translate(-15.5703125, -9)" class="label"><foreignobject height="18" width="31.140625">
+<div style="display: inline-block; white-space: nowrap;" data-xmlns="http://www.w3.org/1999/xhtml">
 <span class="edgeLabel">data</span>
 </div>
-</foreignobject></g></g><g transform="translate(193.1796875, 342.75)" class="edgeLabel"><g transform="translate(-16.03515625, -9.25)" class="label"><foreignobject height="18.5" width="32.0703125"><div style="display: inline-block; white-space: nowrap;" data-xmlns="http://www.w3.org/1999/xhtml">
+</foreignobject></g></g><g transform="translate(185.90625, 341)" class="edgeLabel"><g transform="translate(-15.5703125, -9)" class="label"><foreignobject height="18" width="31.140625">
+<div style="display: inline-block; white-space: nowrap;" data-xmlns="http://www.w3.org/1999/xhtml">
 <span class="edgeLabel">data</span>
 </div>
-</foreignobject></g></g></g><g class="nodes"><g transform="translate(57.6484375, 25)" class="root"><g class="clusters"><g id="input_block" class="cluster default flowchart-label"><rect height="103.5" width="256.0625" y="8" x="8" ry="0" rx="0" style=""></rect><g transform="translate(110.25, 8)" class="cluster-label"><foreignobject height="18.5" width="51.5625"><div style="display: inline-block; white-space: nowrap;" data-xmlns="http://www.w3.org/1999/xhtml">
+</foreignobject></g></g></g><g class="nodes"><g transform="translate(54.75, 25)" class="root"><g class="clusters"><g id="input_block" class="cluster default flowchart-label"><rect height="103" width="247.3125" y="8" x="8" ry="0" rx="0" style=""></rect><g transform="translate(105.421875, 8)" class="cluster-label"><foreignobject height="18" width="52.46875">
+<div style="display: inline-block; white-space: nowrap;" data-xmlns="http://www.w3.org/1999/xhtml">
 <span class="nodeLabel">Block 1</span>
 </div>
-</foreignobject></g></g></g><g class="edgePaths"></g><g class="edgeLabels"></g><g class="nodes"><g transform="translate(136.03125, 59.75)" id="flowchart-input-12" class="node default default flowchart-label"><rect height="33.5" width="206.0625" y="-16.75" x="-103.03125" ry="5" rx="5" style="" class="basic label-container"></rect><g transform="translate(-95.53125, -9.25)" style="" class="label"><rect></rect><foreignobject height="18.5" width="191.0625"><div style="display: inline-block; white-space: nowrap;" data-xmlns="http://www.w3.org/1999/xhtml">
+</foreignobject></g></g></g><g class="edgePaths"></g><g class="edgeLabels"></g><g class="nodes"><g transform="translate(131.65625, 59.5)" id="flowchart-input-12" class="node default default flowchart-label"><rect height="33" width="197.3125" y="-16.5" x="-98.65625" ry="5" rx="5" style="" class="basic label-container"></rect><g transform="translate(-91.15625, -9)" style="" class="label"><rect></rect><foreignobject height="18" width="182.3125">
+<div style="display: inline-block; white-space: nowrap;" data-xmlns="http://www.w3.org/1999/xhtml">
 <span class="nodeLabel">Data: dataset, browser, …</span>
 </div>
-</foreignobject></g></g></g></g><g transform="translate(35.5, 197)" class="root"><g class="clusters"><g id="transform_block" class="cluster default flowchart-label"><rect height="103.5" width="300.359375" y="8" x="8" ry="0" rx="0" style=""></rect><g transform="translate(132.3984375, 8)" class="cluster-label"><foreignobject height="18.5" width="51.5625"><div style="display: inline-block; white-space: nowrap;" data-xmlns="http://www.w3.org/1999/xhtml">
+</foreignobject></g></g></g></g><g transform="translate(35.5, 196)" class="root"><g class="clusters"><g id="transform_block" class="cluster default flowchart-label"><rect height="103" width="285.8125" y="8" x="8" ry="0" rx="0" style=""></rect><g transform="translate(124.671875, 8)" class="cluster-label"><foreignobject height="18" width="52.46875">
+<div style="display: inline-block; white-space: nowrap;" data-xmlns="http://www.w3.org/1999/xhtml">
 <span class="nodeLabel">Block 2</span>
 </div>
-</foreignobject></g></g></g><g class="edgePaths"></g><g class="edgeLabels"></g><g class="nodes"><g transform="translate(158.1796875, 59.75)" id="flowchart-transform-13" class="node default default flowchart-label"><rect height="33.5" width="250.359375" y="-16.75" x="-125.1796875" ry="5" rx="5" style="" class="basic label-container"></rect><g transform="translate(-117.6796875, -9.25)" style="" class="label"><rect></rect><foreignobject height="18.5" width="235.359375"><div style="display: inline-block; white-space: nowrap;" data-xmlns="http://www.w3.org/1999/xhtml">
+</foreignobject></g></g></g><g class="edgePaths"></g><g class="edgeLabels"></g><g class="nodes"><g transform="translate(150.90625, 59.5)" id="flowchart-transform-13" class="node default default flowchart-label"><rect height="33" width="235.8125" y="-16.5" x="-117.90625" ry="5" rx="5" style="" class="basic label-container"></rect><g transform="translate(-110.40625, -9)" style="" class="label"><rect></rect><foreignobject height="18" width="220.8125">
+<div style="display: inline-block; white-space: nowrap;" data-xmlns="http://www.w3.org/1999/xhtml">
 <span class="nodeLabel">Transform block: filter, select …</span>
 </div>
-</foreignobject></g></g></g></g><g transform="translate(35.81640625, 369)" class="root"><g class="clusters"><g id="output_block" class="cluster default flowchart-label"><rect height="103.5" width="299.7265625" y="8" x="8" ry="0" rx="0" style=""></rect><g transform="translate(132.08203125, 8)" class="cluster-label"><foreignobject height="18.5" width="51.5625"><div style="display: inline-block; white-space: nowrap;" data-xmlns="http://www.w3.org/1999/xhtml">
+</foreignobject></g></g></g></g><g transform="translate(39.6484375, 367)" class="root"><g class="clusters"><g id="output_block" class="cluster default flowchart-label"><rect height="103" width="277.515625" y="8" x="8" ry="0" rx="0" style=""></rect><g transform="translate(120.5234375, 8)" class="cluster-label"><foreignobject height="18" width="52.46875">
+<div style="display: inline-block; white-space: nowrap;" data-xmlns="http://www.w3.org/1999/xhtml">
 <span class="nodeLabel">Block 3</span>
 </div>
-</foreignobject></g></g></g><g class="edgePaths"></g><g class="edgeLabels"></g><g class="nodes"><g transform="translate(157.86328125, 59.75)" id="flowchart-output-14" class="node default default flowchart-label"><rect height="33.5" width="249.7265625" y="-16.75" x="-124.86328125" ry="5" rx="5" style="" class="basic label-container"></rect><g transform="translate(-117.36328125, -9.25)" style="" class="label"><rect></rect><foreignobject height="18.5" width="234.7265625"><div style="display: inline-block; white-space: nowrap;" data-xmlns="http://www.w3.org/1999/xhtml">
+</foreignobject></g></g></g><g class="edgePaths"></g><g class="edgeLabels"></g><g class="nodes"><g transform="translate(146.7578125, 59.5)" id="flowchart-output-14" class="node default default flowchart-label"><rect height="33" width="227.515625" y="-16.5" x="-113.7578125" ry="5" rx="5" style="" class="basic label-container"></rect><g transform="translate(-106.2578125, -9)" style="" class="label"><rect></rect><foreignobject height="18" width="212.515625">
+<div style="display: inline-block; white-space: nowrap;" data-xmlns="http://www.w3.org/1999/xhtml">
 <span class="nodeLabel">Result/transform: plot, filter, …</span>
 </div>
-</foreignobject></g></g></g></g></g></g></g></g></g></svg>
+</foreignobject></g></g></g></g></g></g></g></g></g>
+</svg>
 </div>
-<p></p>
+<p></p></figure><p></p>
 </div>
 </div>
 </div>
 </div><div class="column">
 <p>Collection of instructions, <strong>blocks</strong>, from <strong>data import</strong> to <strong>wrangling/visualization</strong>.</p>
 </div></div>
-</section><section id="demo" class="slide level2"><h2>Demo</h2>
-<div class="sourceCode" id="cb2" data-engine="r"><pre class="sourceCode numberSource shinylive-r number-lines code-with-copy"><code class="sourceCode"><span id="cb2-1"><a></a>#| '!! shinylive warning !!': |</span>
-<span id="cb2-2"><a></a>#|   shinylive does not work in self-contained HTML documents.</span>
-<span id="cb2-3"><a></a>#|   Please set `embed-resources: false` in your metadata.</span>
-<span id="cb2-4"><a></a>#| standalone: true</span>
-<span id="cb2-5"><a></a>#| components: [viewer]</span>
-<span id="cb2-6"><a></a>#| column: screen-inset-shaded</span>
-<span id="cb2-7"><a></a>#| viewerHeight: 800</span>
-<span id="cb2-8"><a></a>webr::install("blockr", repos = "https://bristolmyerssquibb.github.io/webr-repos/")</span>
-<span id="cb2-9"><a></a></span>
-<span id="cb2-10"><a></a>library(blockr)</span>
-<span id="cb2-11"><a></a>library(palmerpenguins)</span>
-<span id="cb2-12"><a></a>library(ggplot2)</span>
-<span id="cb2-13"><a></a></span>
-<span id="cb2-14"><a></a>new_ggplot_block &lt;- function(col_x = character(), col_y = character(), ...) {</span>
-<span id="cb2-15"><a></a></span>
-<span id="cb2-16"><a></a>  data_cols &lt;- function(data) colnames(data)</span>
-<span id="cb2-17"><a></a></span>
-<span id="cb2-18"><a></a>  new_block(</span>
-<span id="cb2-19"><a></a>    fields = list(</span>
-<span id="cb2-20"><a></a>      x = new_select_field(col_x, data_cols, type = "name"),</span>
-<span id="cb2-21"><a></a>      y = new_select_field(col_y, data_cols, type = "name")</span>
-<span id="cb2-22"><a></a>    ),</span>
-<span id="cb2-23"><a></a>    expr = quote(</span>
-<span id="cb2-24"><a></a>      ggplot(mapping = aes(x = .(x), y = .(y)))</span>
-<span id="cb2-25"><a></a>    ),</span>
-<span id="cb2-26"><a></a>    class = c("ggplot_block", "plot_block"),</span>
-<span id="cb2-27"><a></a>    ...</span>
-<span id="cb2-28"><a></a>  )</span>
-<span id="cb2-29"><a></a>}</span>
-<span id="cb2-30"><a></a></span>
-<span id="cb2-31"><a></a>new_geompoint_block &lt;- function(color = character(), shape = character(), ...) {</span>
-<span id="cb2-32"><a></a></span>
-<span id="cb2-33"><a></a>  data_cols &lt;- function(data) colnames(data$data)</span>
-<span id="cb2-34"><a></a></span>
-<span id="cb2-35"><a></a>  new_block(</span>
-<span id="cb2-36"><a></a>    fields = list(</span>
-<span id="cb2-37"><a></a>      color = new_select_field(color, data_cols, type = "name"),</span>
-<span id="cb2-38"><a></a>      shape = new_select_field(shape, data_cols, type = "name")</span>
-<span id="cb2-39"><a></a>    ),</span>
-<span id="cb2-40"><a></a>    expr = quote(</span>
-<span id="cb2-41"><a></a>      geom_point(aes(color = .(color), shape = .(shape)), size = 2)</span>
-<span id="cb2-42"><a></a>    ),</span>
-<span id="cb2-43"><a></a>    class = c("plot_layer_block", "plot_block"),</span>
-<span id="cb2-44"><a></a>    ...</span>
-<span id="cb2-45"><a></a>  )</span>
-<span id="cb2-46"><a></a>}</span>
-<span id="cb2-47"><a></a></span>
-<span id="cb2-48"><a></a>new_stack(</span>
-<span id="cb2-49"><a></a>  data_block = new_dataset_block("penguins", "palmerpenguins"),</span>
-<span id="cb2-50"><a></a>  filter_block = new_filter_block("sex", "female", submit = TRUE),</span>
-<span id="cb2-51"><a></a>  plot_block = new_ggplot_block("body_mass_g", "flipper_length_mm"),</span>
-<span id="cb2-52"><a></a>  layer_block = new_geompoint_block("species", "species")</span>
-<span id="cb2-53"><a></a>)</span>
-<span id="cb2-54"><a></a>serve_stack(stack)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section><section id="how-much-code-would-it-take-with-shiny" class="slide level2" style="font-size: 1.5em"><h2>How much code would it take with Shiny?</h2>
+</section>
+<section id="zoom-on-blocks" class="slide level2" style="font-size: 1.5em">
+<h2>Zoom on blocks</h2>
+<ul>
+<li>Blocks categories: import (data), transform, plot, …</li>
+<li>Provided by developers (or us).</li>
+</ul>
+</section>
+<section id="example-transform-blocks" class="slide level2" style="font-size: 1.5em">
+<h2>Example: transform blocks</h2>
+<div class="columns">
+<div class="column" style="width:70%;">
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class=""><p></p>
+<div>
+<svg aria-roledescription="flowchart-v2" role="graphics-document document" viewbox="-7.5 -8 277.625 467" style="; display: block; margin: auto auto auto auto" xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" width="960" id="mermaid-figure-3" height="480">
+<style>#mermaid-figure-3{font-family:"trebuchet ms",verdana,arial,sans-serif;font-size:16px;fill:#333;}#mermaid-figure-3 .error-icon{fill:#552222;}#mermaid-figure-3 .error-text{fill:#552222;stroke:#552222;}#mermaid-figure-3 .edge-thickness-normal{stroke-width:2px;}#mermaid-figure-3 .edge-thickness-thick{stroke-width:3.5px;}#mermaid-figure-3 .edge-pattern-solid{stroke-dasharray:0;}#mermaid-figure-3 .edge-pattern-dashed{stroke-dasharray:3;}#mermaid-figure-3 .edge-pattern-dotted{stroke-dasharray:2;}#mermaid-figure-3 .marker{fill:#333333;stroke:#333333;}#mermaid-figure-3 .marker.cross{stroke:#333333;}#mermaid-figure-3 svg{font-family:"trebuchet ms",verdana,arial,sans-serif;font-size:16px;}#mermaid-figure-3 .label{font-family:"trebuchet ms",verdana,arial,sans-serif;color:#333;}#mermaid-figure-3 .cluster-label text{fill:#333;}#mermaid-figure-3 .cluster-label span,#mermaid-figure-3 p{color:#333;}#mermaid-figure-3 .label text,#mermaid-figure-3 span,#mermaid-figure-3 p{fill:#333;color:#333;}#mermaid-figure-3 .node rect,#mermaid-figure-3 .node circle,#mermaid-figure-3 .node ellipse,#mermaid-figure-3 .node polygon,#mermaid-figure-3 .node path{fill:#ECECFF;stroke:#9370DB;stroke-width:1px;}#mermaid-figure-3 .flowchart-label text{text-anchor:middle;}#mermaid-figure-3 .node .label{text-align:center;}#mermaid-figure-3 .node.clickable{cursor:pointer;}#mermaid-figure-3 .arrowheadPath{fill:#333333;}#mermaid-figure-3 .edgePath .path{stroke:#333333;stroke-width:2.0px;}#mermaid-figure-3 .flowchart-link{stroke:#333333;fill:none;}#mermaid-figure-3 .edgeLabel{background-color:#e8e8e8;text-align:center;}#mermaid-figure-3 .edgeLabel rect{opacity:0.5;background-color:#e8e8e8;fill:#e8e8e8;}#mermaid-figure-3 .cluster rect{fill:#ffffde;stroke:#aaaa33;stroke-width:1px;}#mermaid-figure-3 .cluster text{fill:#333;}#mermaid-figure-3 .cluster span,#mermaid-figure-3 p{color:#333;}#mermaid-figure-3 div.mermaidTooltip{position:absolute;text-align:center;max-width:200px;padding:2px;font-family:"trebuchet ms",verdana,arial,sans-serif;font-size:12px;background:hsl(80, 100%, 96.2745098039%);border:1px solid #aaaa33;border-radius:2px;pointer-events:none;z-index:100;}#mermaid-figure-3 .flowchartTitleText{text-anchor:middle;font-size:18px;fill:#333;}#mermaid-figure-3 :root{--mermaid-font-family:"trebuchet ms",verdana,arial,sans-serif;}</style>
+<g><marker orient="auto" markerheight="12" markerwidth="12" markerunits="userSpaceOnUse" refy="5" refx="10" viewbox="0 0 10 10" class="marker flowchart" id="flowchart-pointEnd"><path style="stroke-width: 1; stroke-dasharray: 1, 0;" class="arrowMarkerPath" d="M 0 0 L 10 5 L 0 10 z"></path></marker><marker orient="auto" markerheight="12" markerwidth="12" markerunits="userSpaceOnUse" refy="5" refx="0" viewbox="0 0 10 10" class="marker flowchart" id="flowchart-pointStart"><path style="stroke-width: 1; stroke-dasharray: 1, 0;" class="arrowMarkerPath" d="M 0 5 L 10 10 L 10 0 z"></path></marker><marker orient="auto" markerheight="11" markerwidth="11" markerunits="userSpaceOnUse" refy="5" refx="11" viewbox="0 0 10 10" class="marker flowchart" id="flowchart-circleEnd"><circle style="stroke-width: 1; stroke-dasharray: 1, 0;" class="arrowMarkerPath" r="5" cy="5" cx="5"></circle></marker><marker orient="auto" markerheight="11" markerwidth="11" markerunits="userSpaceOnUse" refy="5" refx="-1" viewbox="0 0 10 10" class="marker flowchart" id="flowchart-circleStart"><circle style="stroke-width: 1; stroke-dasharray: 1, 0;" class="arrowMarkerPath" r="5" cy="5" cx="5"></circle></marker><marker orient="auto" markerheight="11" markerwidth="11" markerunits="userSpaceOnUse" refy="5.2" refx="12" viewbox="0 0 11 11" class="marker cross flowchart" id="flowchart-crossEnd"><path style="stroke-width: 2; stroke-dasharray: 1, 0;" class="arrowMarkerPath" d="M 1,1 l 9,9 M 10,1 l -9,9"></path></marker><marker orient="auto" markerheight="11" markerwidth="11" markerunits="userSpaceOnUse" refy="5.2" refx="-1" viewbox="0 0 11 11" class="marker cross flowchart" id="flowchart-crossStart"><path style="stroke-width: 2; stroke-dasharray: 1, 0;" class="arrowMarkerPath" d="M 1,1 l 9,9 M 10,1 l -9,9"></path></marker><g class="root"><g class="clusters"></g><g class="edgePaths"><path marker-end="url(#flowchart-pointEnd)" style="fill:none;" class="edge-thickness-normal edge-pattern-solid flowchart-link LS-blk_data_in LE-blk_block" id="L-blk_data_in-blk_block-0" d="M130.8125,33L130.8125,37.166666666666664C130.8125,41.333333333333336,130.8125,49.666666666666664,130.8125,58C130.8125,66.33333333333333,130.8125,74.66666666666667,130.8125,78.83333333333333L130.8125,83"></path><path marker-end="url(#flowchart-pointEnd)" style="fill:none;" class="edge-thickness-normal edge-pattern-solid flowchart-link LS-blk_block LE-blk_data_out" id="L-blk_block-blk_data_out-0" d="M130.8125,368L130.8125,372.1666666666667C130.8125,376.3333333333333,130.8125,384.6666666666667,130.8125,393C130.8125,401.3333333333333,130.8125,409.6666666666667,130.8125,413.8333333333333L130.8125,418"></path></g><g class="edgeLabels"><g class="edgeLabel"><g transform="translate(0, 0)" class="label"><foreignobject height="0" width="0">
+<div style="display: inline-block; white-space: nowrap;" data-xmlns="http://www.w3.org/1999/xhtml">
+<span class="edgeLabel"></span>
+</div>
+</foreignobject></g></g><g class="edgeLabel"><g transform="translate(0, 0)" class="label"><foreignobject height="0" width="0">
+<div style="display: inline-block; white-space: nowrap;" data-xmlns="http://www.w3.org/1999/xhtml">
+<span class="edgeLabel"></span>
+</div>
+</foreignobject></g></g></g><g class="nodes"><g transform="translate(-7.5, 75)" class="root"><g class="clusters"><g id="blk_block" class="cluster default flowchart-label"><rect height="285" width="261.625" y="8" x="8" ry="0" rx="0" style=""></rect><g transform="translate(81.7578125, 8)" class="cluster-label"><foreignobject height="18" width="114.109375">
+<div style="display: inline-block; white-space: nowrap;" data-xmlns="http://www.w3.org/1999/xhtml">
+<span class="nodeLabel">Transform block</span>
+</div>
+</foreignobject></g></g></g><g class="edgePaths"><path marker-end="url(#flowchart-pointEnd)" style="fill:none;" class="edge-thickness-normal edge-pattern-solid flowchart-link LS-blk_field1 LE-blk_expr" id="L-blk_field1-blk_expr-0" d="M82.296875,66L82.296875,71.66666666666667C82.296875,77.33333333333333,82.296875,88.66666666666667,88.63856229372936,100C94.98024958745874,111.33333333333333,107.6636241749175,122.66666666666667,114.00531146864687,128.33333333333334L120.34699876237624,134"></path><path marker-end="url(#flowchart-pointEnd)" style="fill:none;" class="edge-thickness-normal edge-pattern-solid flowchart-link LS-blk_field2 LE-blk_expr" id="L-blk_field2-blk_expr-0" d="M195.328125,66L195.328125,71.66666666666667C195.328125,77.33333333333333,195.328125,88.66666666666667,188.98643770627064,100C182.64475041254127,111.33333333333333,169.9613758250825,122.66666666666667,163.61968853135315,128.33333333333334L157.27800123762376,134"></path><path marker-end="url(#flowchart-pointEnd)" style="fill:none;" class="edge-thickness-normal edge-pattern-solid flowchart-link LS-blk_expr LE-blk_res" id="L-blk_expr-blk_res-0" d="M138.8125,167L138.8125,172.66666666666666C138.8125,178.33333333333334,138.8125,189.66666666666666,138.8125,201C138.8125,212.33333333333334,138.8125,223.66666666666666,138.8125,229.33333333333334L138.8125,235"></path></g><g class="edgeLabels"><g transform="translate(82.296875, 100)" class="edgeLabel"><g transform="translate(-40.015625, -9)" class="label"><foreignobject height="18" width="80.03125">
+<div style="display: inline-block; white-space: nowrap;" data-xmlns="http://www.w3.org/1999/xhtml">
+<span class="edgeLabel">interactivity</span>
+</div>
+</foreignobject></g></g><g transform="translate(195.328125, 100)" class="edgeLabel"><g transform="translate(-40.015625, -9)" class="label"><foreignobject height="18" width="80.03125">
+<div style="display: inline-block; white-space: nowrap;" data-xmlns="http://www.w3.org/1999/xhtml">
+<span class="edgeLabel">interactivity</span>
+</div>
+</foreignobject></g></g><g transform="translate(138.8125, 201)" class="edgeLabel"><g transform="translate(-30.25, -9)" class="label"><foreignobject height="18" width="60.5">
+<div style="display: inline-block; white-space: nowrap;" data-xmlns="http://www.w3.org/1999/xhtml">
+<span class="edgeLabel">evaluate</span>
+</div>
+</foreignobject></g></g></g><g class="nodes"><g transform="translate(82.296875, 49.5)" id="flowchart-blk_field1-32" class="node default default flowchart-label"><rect height="33" width="63.03125" y="-16.5" x="-31.515625" ry="5" rx="5" style="" class="basic label-container"></rect><g transform="translate(-24.015625, -9)" style="" class="label"><rect></rect><foreignobject height="18" width="48.03125">
+<div style="display: inline-block; white-space: nowrap;" data-xmlns="http://www.w3.org/1999/xhtml">
+<span class="nodeLabel">Field 1</span>
+</div>
+</foreignobject></g></g><g transform="translate(138.8125, 150.5)" id="flowchart-blk_expr-35" class="node default default flowchart-label"><rect height="33" width="94.15625" y="-16.5" x="-47.078125" ry="5" rx="5" style="" class="basic label-container"></rect><g transform="translate(-39.578125, -9)" style="" class="label"><rect></rect><foreignobject height="18" width="79.15625">
+<div style="display: inline-block; white-space: nowrap;" data-xmlns="http://www.w3.org/1999/xhtml">
+<span class="nodeLabel">Expression</span>
+</div>
+</foreignobject></g></g><g transform="translate(195.328125, 49.5)" id="flowchart-blk_field2-33" class="node default default flowchart-label"><rect height="33" width="63.03125" y="-16.5" x="-31.515625" ry="5" rx="5" style="" class="basic label-container"></rect><g transform="translate(-24.015625, -9)" style="" class="label"><rect></rect><foreignobject height="18" width="48.03125">
+<div style="display: inline-block; white-space: nowrap;" data-xmlns="http://www.w3.org/1999/xhtml">
+<span class="nodeLabel">Field 2</span>
+</div>
+</foreignobject></g></g><g transform="translate(138.8125, 251.5)" id="flowchart-blk_res-39" class="node default default flowchart-label"><rect height="33" width="54.125" y="-16.5" x="-27.0625" ry="5" rx="5" style="" class="basic label-container"></rect><g transform="translate(-19.5625, -9)" style="" class="label"><rect></rect><foreignobject height="18" width="39.125">
+<div style="display: inline-block; white-space: nowrap;" data-xmlns="http://www.w3.org/1999/xhtml">
+<span class="nodeLabel">result</span>
+</div>
+</foreignobject></g></g></g></g><g transform="translate(130.8125, 16.5)" id="flowchart-blk_data_in-30" class="node default default flowchart-label"><rect height="33" width="87.9375" y="-16.5" x="-43.96875" ry="5" rx="5" style="" class="basic label-container"></rect><g transform="translate(-36.46875, -9)" style="" class="label"><rect></rect><foreignobject height="18" width="72.9375">
+<div style="display: inline-block; white-space: nowrap;" data-xmlns="http://www.w3.org/1999/xhtml">
+<span class="nodeLabel">Data input</span>
+</div>
+</foreignobject></g></g><g transform="translate(130.8125, 434.5)" id="flowchart-blk_data_out-31" class="node default default flowchart-label"><rect height="33" width="63.03125" y="-16.5" x="-31.515625" ry="0" rx="0" style="" class="basic label-container"></rect><g transform="translate(-24.015625, -9)" style="" class="label"><rect></rect><foreignobject height="18" width="48.03125">
+<div style="display: inline-block; white-space: nowrap;" data-xmlns="http://www.w3.org/1999/xhtml">
+<span class="nodeLabel">Output</span>
+</div>
+</foreignobject></g></g></g></g></g>
+</svg>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:30%;">
+<p>A <strong>transform</strong> block:</p>
+<ul>
+<li>Takes input data.</li>
+<li>May expose <strong>interactive</strong> input to transform the data.</li>
+<li>Returns the transformed data.</li>
+</ul>
+</div></div>
+</section>
+<section id="palmer-penguins-with-blockr" class="slide level2" style="font-size: 1.5em">
+<h2>Palmer penguins with blockr</h2>
+<div class="sourceCode" id="cb1" data-engine="r"><pre class="sourceCode numberSource shinylive-r number-lines code-with-copy"><code class="sourceCode"><span id="cb1-1"><a></a>#| '!! shinylive warning !!': |</span>
+<span id="cb1-2"><a></a>#|   shinylive does not work in self-contained HTML documents.</span>
+<span id="cb1-3"><a></a>#|   Please set `embed-resources: false` in your metadata.</span>
+<span id="cb1-4"><a></a>#| standalone: true</span>
+<span id="cb1-5"><a></a>#| components: [viewer]</span>
+<span id="cb1-6"><a></a>#| column: screen-inset-shaded</span>
+<span id="cb1-7"><a></a>#| viewerHeight: 800</span>
+<span id="cb1-8"><a></a>webr::install("blockr", repos = "https://bristolmyerssquibb.github.io/webr-repos/")</span>
+<span id="cb1-9"><a></a></span>
+<span id="cb1-10"><a></a>library(blockr)</span>
+<span id="cb1-11"><a></a>library(palmerpenguins)</span>
+<span id="cb1-12"><a></a>library(ggplot2)</span>
+<span id="cb1-13"><a></a></span>
+<span id="cb1-14"><a></a>new_ggplot_block &lt;- function(col_x = character(), col_y = character(), ...) {</span>
+<span id="cb1-15"><a></a></span>
+<span id="cb1-16"><a></a>  data_cols &lt;- function(data) colnames(data)</span>
+<span id="cb1-17"><a></a></span>
+<span id="cb1-18"><a></a>  new_block(</span>
+<span id="cb1-19"><a></a>    fields = list(</span>
+<span id="cb1-20"><a></a>      x = new_select_field(col_x, data_cols, type = "name"),</span>
+<span id="cb1-21"><a></a>      y = new_select_field(col_y, data_cols, type = "name")</span>
+<span id="cb1-22"><a></a>    ),</span>
+<span id="cb1-23"><a></a>    expr = quote(</span>
+<span id="cb1-24"><a></a>      ggplot(mapping = aes(x = .(x), y = .(y)))</span>
+<span id="cb1-25"><a></a>    ),</span>
+<span id="cb1-26"><a></a>    class = c("ggplot_block", "plot_block"),</span>
+<span id="cb1-27"><a></a>    ...</span>
+<span id="cb1-28"><a></a>  )</span>
+<span id="cb1-29"><a></a>}</span>
+<span id="cb1-30"><a></a></span>
+<span id="cb1-31"><a></a>new_geompoint_block &lt;- function(color = character(), shape = character(), ...) {</span>
+<span id="cb1-32"><a></a></span>
+<span id="cb1-33"><a></a>  data_cols &lt;- function(data) colnames(data$data)</span>
+<span id="cb1-34"><a></a></span>
+<span id="cb1-35"><a></a>  new_block(</span>
+<span id="cb1-36"><a></a>    fields = list(</span>
+<span id="cb1-37"><a></a>      color = new_select_field(color, data_cols, type = "name"),</span>
+<span id="cb1-38"><a></a>      shape = new_select_field(shape, data_cols, type = "name")</span>
+<span id="cb1-39"><a></a>    ),</span>
+<span id="cb1-40"><a></a>    expr = quote(</span>
+<span id="cb1-41"><a></a>      geom_point(aes(color = .(color), shape = .(shape)), size = 2)</span>
+<span id="cb1-42"><a></a>    ),</span>
+<span id="cb1-43"><a></a>    class = c("plot_layer_block", "plot_block"),</span>
+<span id="cb1-44"><a></a>    ...</span>
+<span id="cb1-45"><a></a>  )</span>
+<span id="cb1-46"><a></a>}</span>
+<span id="cb1-47"><a></a></span>
+<span id="cb1-48"><a></a>stack &lt;- new_stack(</span>
+<span id="cb1-49"><a></a>  data_block = new_dataset_block("penguins", "palmerpenguins"),</span>
+<span id="cb1-50"><a></a>  filter_block = new_filter_block("sex", "female", submit = TRUE),</span>
+<span id="cb1-51"><a></a>  plot_block = new_ggplot_block("body_mass_g", "flipper_length_mm"),</span>
+<span id="cb1-52"><a></a>  layer_block = new_geompoint_block("species", "species")</span>
+<span id="cb1-53"><a></a>)</span>
+<span id="cb1-54"><a></a>serve_stack(stack)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="how-much-code-would-it-take-with-shiny" class="slide level2" style="font-size: 1.5em">
+<h2>How much code would it take with Shiny?</h2>
 <div class="fragment">
 <div id="code-with-shiny" style="font-size: 40%;">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a><span class="fu">library</span>(shiny)</span>
-<span id="cb3-2"><a></a><span class="fu">library</span>(bslib)</span>
-<span id="cb3-3"><a></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb3-4"><a></a><span class="fu">library</span>(palmerpenguins)</span>
-<span id="cb3-5"><a></a></span>
-<span id="cb3-6"><a></a><span class="fu">shinyApp</span>(</span>
-<span id="cb3-7"><a></a>  <span class="at">ui =</span> <span class="fu">page_fluid</span>(</span>
-<span id="cb3-8"><a></a>    <span class="fu">layout_sidebar</span>(</span>
-<span id="cb3-9"><a></a>      <span class="at">sidebar =</span> <span class="fu">sidebar</span>(</span>
-<span id="cb3-10"><a></a>        <span class="fu">radioButtons</span>(<span class="st">"sex"</span>, <span class="st">"Sex"</span>, <span class="fu">unique</span>(penguins<span class="sc">$</span>sex), <span class="st">"female"</span>),</span>
-<span id="cb3-11"><a></a>        <span class="fu">selectInput</span>(</span>
-<span id="cb3-12"><a></a>          <span class="st">"xvar"</span>, </span>
-<span id="cb3-13"><a></a>          <span class="st">"X var"</span>, </span>
-<span id="cb3-14"><a></a>          <span class="fu">colnames</span>(dplyr<span class="sc">::</span><span class="fu">select</span>(penguins, <span class="fu">where</span>(is.numeric))),</span>
-<span id="cb3-15"><a></a>          <span class="st">"body_mass_g"</span></span>
-<span id="cb3-16"><a></a>        ),</span>
-<span id="cb3-17"><a></a>        <span class="fu">selectInput</span>(</span>
-<span id="cb3-18"><a></a>          <span class="st">"yvar"</span>,</span>
-<span id="cb3-19"><a></a>          <span class="st">"Y var"</span>,</span>
-<span id="cb3-20"><a></a>          <span class="fu">colnames</span>(dplyr<span class="sc">::</span><span class="fu">select</span>(penguins, <span class="fu">where</span>(is.numeric))),</span>
-<span id="cb3-21"><a></a>          <span class="st">"flipper_length_mm"</span></span>
-<span id="cb3-22"><a></a>        ),</span>
-<span id="cb3-23"><a></a>        <span class="fu">selectInput</span>(</span>
-<span id="cb3-24"><a></a>          <span class="st">"color"</span>,</span>
-<span id="cb3-25"><a></a>          <span class="st">"Color and shape"</span>,</span>
-<span id="cb3-26"><a></a>          <span class="fu">colnames</span>(dplyr<span class="sc">::</span><span class="fu">select</span>(penguins, <span class="fu">where</span>(is.factor))),</span>
-<span id="cb3-27"><a></a>          <span class="st">"species"</span></span>
-<span id="cb3-28"><a></a>        )</span>
-<span id="cb3-29"><a></a>      ),</span>
-<span id="cb3-30"><a></a>      <span class="fu">plotOutput</span>(<span class="st">"plot"</span>)</span>
-<span id="cb3-31"><a></a>    )</span>
-<span id="cb3-32"><a></a>  ),</span>
-<span id="cb3-33"><a></a>  <span class="at">server =</span> <span class="cf">function</span>(input, output, session) {</span>
-<span id="cb3-34"><a></a>    output<span class="sc">$</span>plot <span class="ot">&lt;-</span> <span class="fu">renderPlot</span>({</span>
-<span id="cb3-35"><a></a>      penguins <span class="sc">|&gt;</span></span>
-<span id="cb3-36"><a></a>        <span class="fu">filter</span>(sex <span class="sc">==</span> <span class="sc">!!</span>input<span class="sc">$</span>sex) <span class="sc">|&gt;</span></span>
-<span id="cb3-37"><a></a>        <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="sc">!!</span>input<span class="sc">$</span>xvar, <span class="at">y =</span> <span class="sc">!!</span>input<span class="sc">$</span>yvar)) <span class="sc">+</span></span>
-<span id="cb3-38"><a></a>        <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> <span class="sc">!!</span>input<span class="sc">$</span>color, <span class="at">shape =</span> <span class="sc">!!</span>input<span class="sc">$</span>color), <span class="at">size =</span> <span class="dv">2</span>)</span>
-<span id="cb3-39"><a></a>    })</span>
-<span id="cb3-40"><a></a>  }</span>
-<span id="cb3-41"><a></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a></a><span class="fu">library</span>(shiny)</span>
+<span id="cb2-2"><a></a><span class="fu">library</span>(bslib)</span>
+<span id="cb2-3"><a></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb2-4"><a></a><span class="fu">library</span>(palmerpenguins)</span>
+<span id="cb2-5"><a></a></span>
+<span id="cb2-6"><a></a><span class="fu">shinyApp</span>(</span>
+<span id="cb2-7"><a></a>  <span class="at">ui =</span> <span class="fu">page_fluid</span>(</span>
+<span id="cb2-8"><a></a>    <span class="fu">layout_sidebar</span>(</span>
+<span id="cb2-9"><a></a>      <span class="at">sidebar =</span> <span class="fu">sidebar</span>(</span>
+<span id="cb2-10"><a></a>        <span class="fu">radioButtons</span>(<span class="st">"sex"</span>, <span class="st">"Sex"</span>, <span class="fu">unique</span>(penguins<span class="sc">$</span>sex), <span class="st">"female"</span>),</span>
+<span id="cb2-11"><a></a>        <span class="fu">selectInput</span>(</span>
+<span id="cb2-12"><a></a>          <span class="st">"xvar"</span>, </span>
+<span id="cb2-13"><a></a>          <span class="st">"X var"</span>, </span>
+<span id="cb2-14"><a></a>          <span class="fu">colnames</span>(dplyr<span class="sc">::</span><span class="fu">select</span>(penguins, <span class="fu">where</span>(is.numeric))),</span>
+<span id="cb2-15"><a></a>          <span class="st">"body_mass_g"</span></span>
+<span id="cb2-16"><a></a>        ),</span>
+<span id="cb2-17"><a></a>        <span class="fu">selectInput</span>(</span>
+<span id="cb2-18"><a></a>          <span class="st">"yvar"</span>,</span>
+<span id="cb2-19"><a></a>          <span class="st">"Y var"</span>,</span>
+<span id="cb2-20"><a></a>          <span class="fu">colnames</span>(dplyr<span class="sc">::</span><span class="fu">select</span>(penguins, <span class="fu">where</span>(is.numeric))),</span>
+<span id="cb2-21"><a></a>          <span class="st">"flipper_length_mm"</span></span>
+<span id="cb2-22"><a></a>        ),</span>
+<span id="cb2-23"><a></a>        <span class="fu">selectInput</span>(</span>
+<span id="cb2-24"><a></a>          <span class="st">"color"</span>,</span>
+<span id="cb2-25"><a></a>          <span class="st">"Color and shape"</span>,</span>
+<span id="cb2-26"><a></a>          <span class="fu">colnames</span>(dplyr<span class="sc">::</span><span class="fu">select</span>(penguins, <span class="fu">where</span>(is.factor))),</span>
+<span id="cb2-27"><a></a>          <span class="st">"species"</span></span>
+<span id="cb2-28"><a></a>        )</span>
+<span id="cb2-29"><a></a>      ),</span>
+<span id="cb2-30"><a></a>      <span class="fu">plotOutput</span>(<span class="st">"plot"</span>)</span>
+<span id="cb2-31"><a></a>    )</span>
+<span id="cb2-32"><a></a>  ),</span>
+<span id="cb2-33"><a></a>  <span class="at">server =</span> <span class="cf">function</span>(input, output, session) {</span>
+<span id="cb2-34"><a></a>    output<span class="sc">$</span>plot <span class="ot">&lt;-</span> <span class="fu">renderPlot</span>({</span>
+<span id="cb2-35"><a></a>      penguins <span class="sc">|&gt;</span></span>
+<span id="cb2-36"><a></a>        <span class="fu">filter</span>(sex <span class="sc">==</span> <span class="sc">!!</span>input<span class="sc">$</span>sex) <span class="sc">|&gt;</span></span>
+<span id="cb2-37"><a></a>        <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="sc">!!</span>input<span class="sc">$</span>xvar, <span class="at">y =</span> <span class="sc">!!</span>input<span class="sc">$</span>yvar)) <span class="sc">+</span></span>
+<span id="cb2-38"><a></a>        <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> <span class="sc">!!</span>input<span class="sc">$</span>color, <span class="at">shape =</span> <span class="sc">!!</span>input<span class="sc">$</span>color), <span class="at">size =</span> <span class="dv">2</span>)</span>
+<span id="cb2-39"><a></a>    })</span>
+<span id="cb2-40"><a></a>  }</span>
+<span id="cb2-41"><a></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
-</section><section id="its-much-easier-with-blockr" class="slide level2" style="font-size: 1.5em"><h2>It’s much easier with blockr</h2>
+</section>
+<section id="its-much-easier-with-blockr" class="slide level2" style="font-size: 1.5em">
+<h2>It’s much easier with blockr</h2>
 <div class="fragment">
 <div class="cell">
-<div class="sourceCode cell-code" id="annotated-cell-3"><pre class="sourceCode numberSource r code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode r"><span id="annotated-cell-3-1"><a href="#annotated-cell-3-1"></a><span class="fu">library</span>(blockr)</span>
-<a class="code-annotation-anchor" data-target-cell="annotated-cell-3" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-3-2" class="code-annotation-target"><a href="#annotated-cell-3-2"></a><span class="fu">new_stack</span>(</span>
-<a class="code-annotation-anchor" data-target-cell="annotated-cell-3" data-target-annotation="2" onclick="event.preventDefault();">2</a><span id="annotated-cell-3-3" class="code-annotation-target"><a href="#annotated-cell-3-3"></a>  <span class="at">data_block =</span> <span class="fu">new_dataset_block</span>(<span class="st">"penguins"</span>, <span class="st">"palmerpenguins"</span>),</span>
-<span id="annotated-cell-3-4"><a href="#annotated-cell-3-4"></a>  <span class="at">filter_block =</span> <span class="fu">new_filter_block</span>(<span class="st">"sex"</span>, <span class="st">"female"</span>),</span>
-<a class="code-annotation-anchor" data-target-cell="annotated-cell-3" data-target-annotation="3" onclick="event.preventDefault();">3</a><span id="annotated-cell-3-5" class="code-annotation-target"><a href="#annotated-cell-3-5"></a>  <span class="at">plot_block =</span> <span class="fu">new_ggplot_block</span>(<span class="st">"body_mass_g"</span>, <span class="st">"flipper_length_mm"</span>),</span>
-<a class="code-annotation-anchor" data-target-cell="annotated-cell-3" data-target-annotation="4" onclick="event.preventDefault();">4</a><span id="annotated-cell-3-6" class="code-annotation-target"><a href="#annotated-cell-3-6"></a>  <span class="at">layer_block =</span> <span class="fu">new_geompoint_block</span>(<span class="st">"species"</span>, <span class="st">"species"</span>)</span>
-<span id="annotated-cell-3-7"><a href="#annotated-cell-3-7"></a>)</span>
-<a class="code-annotation-anchor" data-target-cell="annotated-cell-3" data-target-annotation="5" onclick="event.preventDefault();">5</a><span id="annotated-cell-3-8" class="code-annotation-target"><a href="#annotated-cell-3-8"></a><span class="fu">serve_stack</span>(stack)</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="annotated-cell-2"><pre class="sourceCode numberSource r code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode r"><span id="annotated-cell-2-1"><a href="#annotated-cell-2-1"></a><span class="fu">library</span>(blockr)</span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-2" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-2-2" class="code-annotation-target"><a href="#annotated-cell-2-2"></a><span class="fu">new_stack</span>(</span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-2" data-target-annotation="2" onclick="event.preventDefault();">2</a><span id="annotated-cell-2-3" class="code-annotation-target"><a href="#annotated-cell-2-3"></a>  <span class="at">data_block =</span> <span class="fu">new_dataset_block</span>(<span class="st">"penguins"</span>, <span class="st">"palmerpenguins"</span>),</span>
+<span id="annotated-cell-2-4"><a href="#annotated-cell-2-4"></a>  <span class="at">filter_block =</span> <span class="fu">new_filter_block</span>(<span class="st">"sex"</span>, <span class="st">"female"</span>),</span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-2" data-target-annotation="3" onclick="event.preventDefault();">3</a><span id="annotated-cell-2-5" class="code-annotation-target"><a href="#annotated-cell-2-5"></a>  <span class="at">plot_block =</span> <span class="fu">new_ggplot_block</span>(<span class="st">"body_mass_g"</span>, <span class="st">"flipper_length_mm"</span>),</span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-2" data-target-annotation="4" onclick="event.preventDefault();">4</a><span id="annotated-cell-2-6" class="code-annotation-target"><a href="#annotated-cell-2-6"></a>  <span class="at">layer_block =</span> <span class="fu">new_geompoint_block</span>(<span class="st">"species"</span>, <span class="st">"species"</span>)</span>
+<span id="annotated-cell-2-7"><a href="#annotated-cell-2-7"></a>)</span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-2" data-target-annotation="5" onclick="event.preventDefault();">5</a><span id="annotated-cell-2-8" class="code-annotation-target"><a href="#annotated-cell-2-8"></a><span class="fu">serve_stack</span>(stack)</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-annotation">
 <dl class="code-annotation-container-grid">
-<dt data-target-cell="annotated-cell-3" data-target-annotation="1">1</dt>
+<dt data-target-cell="annotated-cell-2" data-target-annotation="1">1</dt>
 <dd>
-<span data-code-cell="annotated-cell-3" data-code-lines="2" data-code-annotation="1">Create the stack.</span>
+<span data-code-cell="annotated-cell-2" data-code-lines="2" data-code-annotation="1">Create the stack.</span>
 </dd>
-<dt data-target-cell="annotated-cell-3" data-target-annotation="2">2</dt>
+<dt data-target-cell="annotated-cell-2" data-target-annotation="2">2</dt>
 <dd>
-<span data-code-cell="annotated-cell-3" data-code-lines="3,4" data-code-annotation="2">Import data.</span>
+<span data-code-cell="annotated-cell-2" data-code-lines="3,4" data-code-annotation="2">Import data.</span>
 </dd>
-<dt data-target-cell="annotated-cell-3" data-target-annotation="3">3</dt>
+<dt data-target-cell="annotated-cell-2" data-target-annotation="3">3</dt>
 <dd>
-<span data-code-cell="annotated-cell-3" data-code-lines="5" data-code-annotation="3">Create the plot.</span>
+<span data-code-cell="annotated-cell-2" data-code-lines="5" data-code-annotation="3">Create the plot.</span>
 </dd>
-<dt data-target-cell="annotated-cell-3" data-target-annotation="4">4</dt>
+<dt data-target-cell="annotated-cell-2" data-target-annotation="4">4</dt>
 <dd>
-<span data-code-cell="annotated-cell-3" data-code-lines="6" data-code-annotation="4">Add it a layer.</span>
+<span data-code-cell="annotated-cell-2" data-code-lines="6" data-code-annotation="4">Add it a layer.</span>
 </dd>
-<dt data-target-cell="annotated-cell-3" data-target-annotation="5">5</dt>
+<dt data-target-cell="annotated-cell-2" data-target-annotation="5">5</dt>
 <dd>
-<span data-code-cell="annotated-cell-3" data-code-lines="8" data-code-annotation="5">Serve a Shiny app.</span>
+<span data-code-cell="annotated-cell-2" data-code-lines="8" data-code-annotation="5">Serve a Shiny app.</span>
 </dd>
 </dl>
 </div>
 </div>
 </div>
-</section><section id="connecting-stacks-towards-a-dinner-party" class="slide level2" data-background-image="../../assets/images/undraw_special_event.svg" data-background-size="40%" style="font-size: 1.5em"><h2>Connecting stacks: towards a dinner party</h2>
-</section><section id="the-workspace" class="slide level2" style="font-size: 1.5em"><h2>The workspace</h2>
+</section>
+<section id="connecting-stacks-towards-a-dinner-party" class="slide level2" data-background-image="../../assets/images/undraw_special_event.svg" data-background-size="40%" style="font-size: 1.5em">
+<h2>Connecting stacks: towards a dinner party</h2>
+</section>
+<section id="the-workspace" class="slide level2" style="font-size: 1.5em">
+<h2>The workspace</h2>
 <div class="columns">
 <div class="column" style="width:60%;">
 <div class="cell" data-layout-align="default">
 <div class="cell-output-display">
 <div>
-<p></p><figure class=""></figure><p></p>
+<p></p><figure class=""><p></p>
 <div>
-<svg aria-roledescription="flowchart-v2" role="graphics-document document" viewbox="-8 -8 172.375 557.5" style="; display: block; margin: auto auto auto auto" xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" width="960" id="mermaid-figure-2" height="480"><style>#mermaid-figure-2{font-family:"trebuchet ms",verdana,arial,sans-serif;font-size:16px;fill:#333;}#mermaid-figure-2 .error-icon{fill:#552222;}#mermaid-figure-2 .error-text{fill:#552222;stroke:#552222;}#mermaid-figure-2 .edge-thickness-normal{stroke-width:2px;}#mermaid-figure-2 .edge-thickness-thick{stroke-width:3.5px;}#mermaid-figure-2 .edge-pattern-solid{stroke-dasharray:0;}#mermaid-figure-2 .edge-pattern-dashed{stroke-dasharray:3;}#mermaid-figure-2 .edge-pattern-dotted{stroke-dasharray:2;}#mermaid-figure-2 .marker{fill:#333333;stroke:#333333;}#mermaid-figure-2 .marker.cross{stroke:#333333;}#mermaid-figure-2 svg{font-family:"trebuchet ms",verdana,arial,sans-serif;font-size:16px;}#mermaid-figure-2 .label{font-family:"trebuchet ms",verdana,arial,sans-serif;color:#333;}#mermaid-figure-2 .cluster-label text{fill:#333;}#mermaid-figure-2 .cluster-label span,#mermaid-figure-2 p{color:#333;}#mermaid-figure-2 .label text,#mermaid-figure-2 span,#mermaid-figure-2 p{fill:#333;color:#333;}#mermaid-figure-2 .node rect,#mermaid-figure-2 .node circle,#mermaid-figure-2 .node ellipse,#mermaid-figure-2 .node polygon,#mermaid-figure-2 .node path{fill:#ECECFF;stroke:#9370DB;stroke-width:1px;}#mermaid-figure-2 .flowchart-label text{text-anchor:middle;}#mermaid-figure-2 .node .label{text-align:center;}#mermaid-figure-2 .node.clickable{cursor:pointer;}#mermaid-figure-2 .arrowheadPath{fill:#333333;}#mermaid-figure-2 .edgePath .path{stroke:#333333;stroke-width:2.0px;}#mermaid-figure-2 .flowchart-link{stroke:#333333;fill:none;}#mermaid-figure-2 .edgeLabel{background-color:#e8e8e8;text-align:center;}#mermaid-figure-2 .edgeLabel rect{opacity:0.5;background-color:#e8e8e8;fill:#e8e8e8;}#mermaid-figure-2 .cluster rect{fill:#ffffde;stroke:#aaaa33;stroke-width:1px;}#mermaid-figure-2 .cluster text{fill:#333;}#mermaid-figure-2 .cluster span,#mermaid-figure-2 p{color:#333;}#mermaid-figure-2 div.mermaidTooltip{position:absolute;text-align:center;max-width:200px;padding:2px;font-family:"trebuchet ms",verdana,arial,sans-serif;font-size:12px;background:hsl(80, 100%, 96.2745098039%);border:1px solid #aaaa33;border-radius:2px;pointer-events:none;z-index:100;}#mermaid-figure-2 .flowchartTitleText{text-anchor:middle;font-size:18px;fill:#333;}#mermaid-figure-2 :root{--mermaid-font-family:"trebuchet ms",verdana,arial,sans-serif;}</style>
-<g><marker orient="auto" markerheight="12" markerwidth="12" markerunits="userSpaceOnUse" refy="5" refx="10" viewbox="0 0 10 10" class="marker flowchart" id="flowchart-pointEnd"><path style="stroke-width: 1; stroke-dasharray: 1, 0;" class="arrowMarkerPath" d="M 0 0 L 10 5 L 0 10 z"></path></marker><marker orient="auto" markerheight="12" markerwidth="12" markerunits="userSpaceOnUse" refy="5" refx="0" viewbox="0 0 10 10" class="marker flowchart" id="flowchart-pointStart"><path style="stroke-width: 1; stroke-dasharray: 1, 0;" class="arrowMarkerPath" d="M 0 5 L 10 10 L 10 0 z"></path></marker><marker orient="auto" markerheight="11" markerwidth="11" markerunits="userSpaceOnUse" refy="5" refx="11" viewbox="0 0 10 10" class="marker flowchart" id="flowchart-circleEnd"><circle style="stroke-width: 1; stroke-dasharray: 1, 0;" class="arrowMarkerPath" r="5" cy="5" cx="5"></circle></marker><marker orient="auto" markerheight="11" markerwidth="11" markerunits="userSpaceOnUse" refy="5" refx="-1" viewbox="0 0 10 10" class="marker flowchart" id="flowchart-circleStart"><circle style="stroke-width: 1; stroke-dasharray: 1, 0;" class="arrowMarkerPath" r="5" cy="5" cx="5"></circle></marker><marker orient="auto" markerheight="11" markerwidth="11" markerunits="userSpaceOnUse" refy="5.2" refx="12" viewbox="0 0 11 11" class="marker cross flowchart" id="flowchart-crossEnd"><path style="stroke-width: 2; stroke-dasharray: 1, 0;" class="arrowMarkerPath" d="M 1,1 l 9,9 M 10,1 l -9,9"></path></marker><marker orient="auto" markerheight="11" markerwidth="11" markerunits="userSpaceOnUse" refy="5.2" refx="-1" viewbox="0 0 11 11" class="marker cross flowchart" id="flowchart-crossStart"><path style="stroke-width: 2; stroke-dasharray: 1, 0;" class="arrowMarkerPath" d="M 1,1 l 9,9 M 10,1 l -9,9"></path></marker><g class="root"><g class="clusters"><g id="s2" class="cluster default flowchart-label"><rect height="287.5" width="156.375" y="254" x="0" ry="0" rx="0" style=""></rect><g transform="translate(52.36328125, 254)" class="cluster-label"><foreignobject height="18.5" width="51.6484375"><div style="display: inline-block; white-space: nowrap;" data-xmlns="http://www.w3.org/1999/xhtml">
+<svg aria-roledescription="flowchart-v2" role="graphics-document document" viewbox="-8 -8 173.3125 553" style="; display: block; margin: auto auto auto auto" xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" width="960" id="mermaid-figure-2" height="480">
+<style>#mermaid-figure-2{font-family:"trebuchet ms",verdana,arial,sans-serif;font-size:16px;fill:#333;}#mermaid-figure-2 .error-icon{fill:#552222;}#mermaid-figure-2 .error-text{fill:#552222;stroke:#552222;}#mermaid-figure-2 .edge-thickness-normal{stroke-width:2px;}#mermaid-figure-2 .edge-thickness-thick{stroke-width:3.5px;}#mermaid-figure-2 .edge-pattern-solid{stroke-dasharray:0;}#mermaid-figure-2 .edge-pattern-dashed{stroke-dasharray:3;}#mermaid-figure-2 .edge-pattern-dotted{stroke-dasharray:2;}#mermaid-figure-2 .marker{fill:#333333;stroke:#333333;}#mermaid-figure-2 .marker.cross{stroke:#333333;}#mermaid-figure-2 svg{font-family:"trebuchet ms",verdana,arial,sans-serif;font-size:16px;}#mermaid-figure-2 .label{font-family:"trebuchet ms",verdana,arial,sans-serif;color:#333;}#mermaid-figure-2 .cluster-label text{fill:#333;}#mermaid-figure-2 .cluster-label span,#mermaid-figure-2 p{color:#333;}#mermaid-figure-2 .label text,#mermaid-figure-2 span,#mermaid-figure-2 p{fill:#333;color:#333;}#mermaid-figure-2 .node rect,#mermaid-figure-2 .node circle,#mermaid-figure-2 .node ellipse,#mermaid-figure-2 .node polygon,#mermaid-figure-2 .node path{fill:#ECECFF;stroke:#9370DB;stroke-width:1px;}#mermaid-figure-2 .flowchart-label text{text-anchor:middle;}#mermaid-figure-2 .node .label{text-align:center;}#mermaid-figure-2 .node.clickable{cursor:pointer;}#mermaid-figure-2 .arrowheadPath{fill:#333333;}#mermaid-figure-2 .edgePath .path{stroke:#333333;stroke-width:2.0px;}#mermaid-figure-2 .flowchart-link{stroke:#333333;fill:none;}#mermaid-figure-2 .edgeLabel{background-color:#e8e8e8;text-align:center;}#mermaid-figure-2 .edgeLabel rect{opacity:0.5;background-color:#e8e8e8;fill:#e8e8e8;}#mermaid-figure-2 .cluster rect{fill:#ffffde;stroke:#aaaa33;stroke-width:1px;}#mermaid-figure-2 .cluster text{fill:#333;}#mermaid-figure-2 .cluster span,#mermaid-figure-2 p{color:#333;}#mermaid-figure-2 div.mermaidTooltip{position:absolute;text-align:center;max-width:200px;padding:2px;font-family:"trebuchet ms",verdana,arial,sans-serif;font-size:12px;background:hsl(80, 100%, 96.2745098039%);border:1px solid #aaaa33;border-radius:2px;pointer-events:none;z-index:100;}#mermaid-figure-2 .flowchartTitleText{text-anchor:middle;font-size:18px;fill:#333;}#mermaid-figure-2 :root{--mermaid-font-family:"trebuchet ms",verdana,arial,sans-serif;}</style>
+<g><marker orient="auto" markerheight="12" markerwidth="12" markerunits="userSpaceOnUse" refy="5" refx="10" viewbox="0 0 10 10" class="marker flowchart" id="flowchart-pointEnd"><path style="stroke-width: 1; stroke-dasharray: 1, 0;" class="arrowMarkerPath" d="M 0 0 L 10 5 L 0 10 z"></path></marker><marker orient="auto" markerheight="12" markerwidth="12" markerunits="userSpaceOnUse" refy="5" refx="0" viewbox="0 0 10 10" class="marker flowchart" id="flowchart-pointStart"><path style="stroke-width: 1; stroke-dasharray: 1, 0;" class="arrowMarkerPath" d="M 0 5 L 10 10 L 10 0 z"></path></marker><marker orient="auto" markerheight="11" markerwidth="11" markerunits="userSpaceOnUse" refy="5" refx="11" viewbox="0 0 10 10" class="marker flowchart" id="flowchart-circleEnd"><circle style="stroke-width: 1; stroke-dasharray: 1, 0;" class="arrowMarkerPath" r="5" cy="5" cx="5"></circle></marker><marker orient="auto" markerheight="11" markerwidth="11" markerunits="userSpaceOnUse" refy="5" refx="-1" viewbox="0 0 10 10" class="marker flowchart" id="flowchart-circleStart"><circle style="stroke-width: 1; stroke-dasharray: 1, 0;" class="arrowMarkerPath" r="5" cy="5" cx="5"></circle></marker><marker orient="auto" markerheight="11" markerwidth="11" markerunits="userSpaceOnUse" refy="5.2" refx="12" viewbox="0 0 11 11" class="marker cross flowchart" id="flowchart-crossEnd"><path style="stroke-width: 2; stroke-dasharray: 1, 0;" class="arrowMarkerPath" d="M 1,1 l 9,9 M 10,1 l -9,9"></path></marker><marker orient="auto" markerheight="11" markerwidth="11" markerunits="userSpaceOnUse" refy="5.2" refx="-1" viewbox="0 0 11 11" class="marker cross flowchart" id="flowchart-crossStart"><path style="stroke-width: 2; stroke-dasharray: 1, 0;" class="arrowMarkerPath" d="M 1,1 l 9,9 M 10,1 l -9,9"></path></marker><g class="root"><g class="clusters"><g id="s2" class="cluster default flowchart-label"><rect height="285" width="157.3125" y="252" x="0" ry="0" rx="0" style=""></rect><g transform="translate(51.9765625, 252)" class="cluster-label"><foreignobject height="18" width="53.359375">
+<div style="display: inline-block; white-space: nowrap;" data-xmlns="http://www.w3.org/1999/xhtml">
 <span class="nodeLabel">Stack 2</span>
 </div>
-</foreignobject></g></g><g id="s1" class="cluster default flowchart-label"><rect height="185.5" width="156.375" y="0" x="0" ry="0" rx="0" style=""></rect><g transform="translate(52.36328125, 0)" class="cluster-label"><foreignobject height="18.5" width="51.6484375"><div style="display: inline-block; white-space: nowrap;" data-xmlns="http://www.w3.org/1999/xhtml">
+</foreignobject></g></g><g id="s1" class="cluster default flowchart-label"><rect height="184" width="157.3125" y="0" x="0" ry="0" rx="0" style=""></rect><g transform="translate(51.9765625, 0)" class="cluster-label"><foreignobject height="18" width="53.359375">
+<div style="display: inline-block; white-space: nowrap;" data-xmlns="http://www.w3.org/1999/xhtml">
 <span class="nodeLabel">Stack 1</span>
 </div>
-</foreignobject></g></g></g><g class="edgePaths"><path marker-end="url(#flowchart-pointEnd)" style="fill:none;" class="edge-thickness-normal edge-pattern-solid flowchart-link LS-input_s1 LE-transform_s1" id="L-input_s1-transform_s1-0" d="M78.1875,58.5L78.1875,64.20833333333333C78.1875,69.91666666666667,78.1875,81.33333333333333,78.1875,92.75C78.1875,104.16666666666667,78.1875,115.58333333333333,78.1875,121.29166666666667L78.1875,127"></path><path marker-end="url(#flowchart-pointEnd)" style="fill:none;" class="edge-thickness-normal edge-pattern-solid flowchart-link LS-transform_s1 LE-input_s2" id="L-transform_s1-input_s2-0" d="M78.1875,160.5L78.1875,164.66666666666666C78.1875,168.83333333333334,78.1875,177.16666666666666,78.1875,187.04166666666666C78.1875,196.91666666666666,78.1875,208.33333333333334,78.1875,219.75C78.1875,231.16666666666666,78.1875,242.58333333333334,78.1875,252.45833333333334C78.1875,262.3333333333333,78.1875,270.6666666666667,78.1875,274.8333333333333L78.1875,279"></path><path marker-end="url(#flowchart-pointEnd)" style="fill:none;" class="edge-thickness-normal edge-pattern-solid flowchart-link LS-input_s2 LE-transform_s2" id="L-input_s2-transform_s2-0" d="M78.1875,312.5L78.1875,318.2083333333333C78.1875,323.9166666666667,78.1875,335.3333333333333,78.1875,346.75C78.1875,358.1666666666667,78.1875,369.5833333333333,78.1875,375.2916666666667L78.1875,381"></path><path marker-end="url(#flowchart-pointEnd)" style="fill:none;" class="edge-thickness-normal edge-pattern-solid flowchart-link LS-transform_s2 LE-output_s2" id="L-transform_s2-output_s2-0" d="M78.1875,414.5L78.1875,420.2083333333333C78.1875,425.9166666666667,78.1875,437.3333333333333,78.1875,448.75C78.1875,460.1666666666667,78.1875,471.5833333333333,78.1875,477.2916666666667L78.1875,483"></path></g><g class="edgeLabels"><g transform="translate(78.1875, 92.75)" class="edgeLabel"><g transform="translate(-16.03515625, -9.25)" class="label"><foreignobject height="18.5" width="32.0703125"><div style="display: inline-block; white-space: nowrap;" data-xmlns="http://www.w3.org/1999/xhtml">
+</foreignobject></g></g></g><g class="edgePaths"><path marker-end="url(#flowchart-pointEnd)" style="fill:none;" class="edge-thickness-normal edge-pattern-solid flowchart-link LS-input_s1 LE-transform_s1" id="L-input_s1-transform_s1-0" d="M78.65625,58L78.65625,63.666666666666664C78.65625,69.33333333333333,78.65625,80.66666666666667,78.65625,92C78.65625,103.33333333333333,78.65625,114.66666666666667,78.65625,120.33333333333333L78.65625,126"></path><path marker-end="url(#flowchart-pointEnd)" style="fill:none;" class="edge-thickness-normal edge-pattern-solid flowchart-link LS-transform_s1 LE-input_s2" id="L-transform_s1-input_s2-0" d="M78.65625,159L78.65625,163.16666666666666C78.65625,167.33333333333334,78.65625,175.66666666666666,78.65625,185.5C78.65625,195.33333333333334,78.65625,206.66666666666666,78.65625,218C78.65625,229.33333333333334,78.65625,240.66666666666666,78.65625,250.5C78.65625,260.3333333333333,78.65625,268.6666666666667,78.65625,272.8333333333333L78.65625,277"></path><path marker-end="url(#flowchart-pointEnd)" style="fill:none;" class="edge-thickness-normal edge-pattern-solid flowchart-link LS-input_s2 LE-transform_s2" id="L-input_s2-transform_s2-0" d="M78.65625,310L78.65625,315.6666666666667C78.65625,321.3333333333333,78.65625,332.6666666666667,78.65625,344C78.65625,355.3333333333333,78.65625,366.6666666666667,78.65625,372.3333333333333L78.65625,378"></path><path marker-end="url(#flowchart-pointEnd)" style="fill:none;" class="edge-thickness-normal edge-pattern-solid flowchart-link LS-transform_s2 LE-output_s2" id="L-transform_s2-output_s2-0" d="M78.65625,411L78.65625,416.6666666666667C78.65625,422.3333333333333,78.65625,433.6666666666667,78.65625,445C78.65625,456.3333333333333,78.65625,467.6666666666667,78.65625,473.3333333333333L78.65625,479"></path></g><g class="edgeLabels"><g transform="translate(78.65625, 92)" class="edgeLabel"><g transform="translate(-15.5703125, -9)" class="label"><foreignobject height="18" width="31.140625">
+<div style="display: inline-block; white-space: nowrap;" data-xmlns="http://www.w3.org/1999/xhtml">
 <span class="edgeLabel">data</span>
 </div>
-</foreignobject></g></g><g transform="translate(78.1875, 219.75)" class="edgeLabel"><g transform="translate(-16.03515625, -9.25)" class="label"><foreignobject height="18.5" width="32.0703125"><div style="display: inline-block; white-space: nowrap;" data-xmlns="http://www.w3.org/1999/xhtml">
+</foreignobject></g></g><g transform="translate(78.65625, 218)" class="edgeLabel"><g transform="translate(-15.5703125, -9)" class="label"><foreignobject height="18" width="31.140625">
+<div style="display: inline-block; white-space: nowrap;" data-xmlns="http://www.w3.org/1999/xhtml">
 <span class="edgeLabel">data</span>
 </div>
-</foreignobject></g></g><g transform="translate(78.1875, 346.75)" class="edgeLabel"><g transform="translate(-16.03515625, -9.25)" class="label"><foreignobject height="18.5" width="32.0703125"><div style="display: inline-block; white-space: nowrap;" data-xmlns="http://www.w3.org/1999/xhtml">
+</foreignobject></g></g><g transform="translate(78.65625, 344)" class="edgeLabel"><g transform="translate(-15.5703125, -9)" class="label"><foreignobject height="18" width="31.140625">
+<div style="display: inline-block; white-space: nowrap;" data-xmlns="http://www.w3.org/1999/xhtml">
 <span class="edgeLabel">data</span>
 </div>
-</foreignobject></g></g><g transform="translate(78.1875, 448.75)" class="edgeLabel"><g transform="translate(-16.03515625, -9.25)" class="label"><foreignobject height="18.5" width="32.0703125"><div style="display: inline-block; white-space: nowrap;" data-xmlns="http://www.w3.org/1999/xhtml">
+</foreignobject></g></g><g transform="translate(78.65625, 445)" class="edgeLabel"><g transform="translate(-15.5703125, -9)" class="label"><foreignobject height="18" width="31.140625">
+<div style="display: inline-block; white-space: nowrap;" data-xmlns="http://www.w3.org/1999/xhtml">
 <span class="edgeLabel">data</span>
 </div>
-</foreignobject></g></g></g><g class="nodes"><g transform="translate(78.1875, 295.75)" id="flowchart-input_s2-29" class="node default default flowchart-label"><rect height="33.5" width="47.96875" y="-16.75" x="-23.984375" ry="5" rx="5" style="" class="basic label-container"></rect><g transform="translate(-16.484375, -9.25)" style="" class="label"><rect></rect><foreignobject height="18.5" width="32.96875"><div style="display: inline-block; white-space: nowrap;" data-xmlns="http://www.w3.org/1999/xhtml">
+</foreignobject></g></g></g><g class="nodes"><g transform="translate(78.65625, 293.5)" id="flowchart-input_s2-29" class="node default default flowchart-label"><rect height="33" width="48.796875" y="-16.5" x="-24.3984375" ry="5" rx="5" style="" class="basic label-container"></rect><g transform="translate(-16.8984375, -9)" style="" class="label"><rect></rect><foreignobject height="18" width="33.796875">
+<div style="display: inline-block; white-space: nowrap;" data-xmlns="http://www.w3.org/1999/xhtml">
 <span class="nodeLabel">Data</span>
 </div>
-</foreignobject></g></g><g transform="translate(78.1875, 397.75)" id="flowchart-transform_s2-31" class="node default default flowchart-label"><rect height="33.5" width="86.375" y="-16.75" x="-43.1875" ry="5" rx="5" style="" class="basic label-container"></rect><g transform="translate(-35.6875, -9.25)" style="" class="label"><rect></rect><foreignobject height="18.5" width="71.375"><div style="display: inline-block; white-space: nowrap;" data-xmlns="http://www.w3.org/1999/xhtml">
+</foreignobject></g></g><g transform="translate(78.65625, 394.5)" id="flowchart-transform_s2-31" class="node default default flowchart-label"><rect height="33" width="87.3125" y="-16.5" x="-43.65625" ry="5" rx="5" style="" class="basic label-container"></rect><g transform="translate(-36.15625, -9)" style="" class="label"><rect></rect><foreignobject height="18" width="72.3125">
+<div style="display: inline-block; white-space: nowrap;" data-xmlns="http://www.w3.org/1999/xhtml">
 <span class="nodeLabel">Transform</span>
 </div>
-</foreignobject></g></g><g transform="translate(78.1875, 499.75)" id="flowchart-output_s2-32" class="node default default flowchart-label"><rect height="33.5" width="77.8984375" y="-16.75" x="-38.94921875" ry="5" rx="5" style="" class="basic label-container"></rect><g transform="translate(-31.44921875, -9.25)" style="" class="label"><rect></rect><foreignobject height="18.5" width="62.8984375"><div style="display: inline-block; white-space: nowrap;" data-xmlns="http://www.w3.org/1999/xhtml">
+</foreignobject></g></g><g transform="translate(78.65625, 495.5)" id="flowchart-output_s2-32" class="node default default flowchart-label"><rect height="33" width="78.75" y="-16.5" x="-39.375" ry="5" rx="5" style="" class="basic label-container"></rect><g transform="translate(-31.875, -9)" style="" class="label"><rect></rect><foreignobject height="18" width="63.75">
+<div style="display: inline-block; white-space: nowrap;" data-xmlns="http://www.w3.org/1999/xhtml">
 <span class="nodeLabel">Visualize</span>
 </div>
-</foreignobject></g></g><g transform="translate(78.1875, 41.75)" id="flowchart-input_s1-24" class="node default default flowchart-label"><rect height="33.5" width="47.96875" y="-16.75" x="-23.984375" ry="5" rx="5" style="" class="basic label-container"></rect><g transform="translate(-16.484375, -9.25)" style="" class="label"><rect></rect><foreignobject height="18.5" width="32.96875"><div style="display: inline-block; white-space: nowrap;" data-xmlns="http://www.w3.org/1999/xhtml">
+</foreignobject></g></g><g transform="translate(78.65625, 41.5)" id="flowchart-input_s1-24" class="node default default flowchart-label"><rect height="33" width="48.796875" y="-16.5" x="-24.3984375" ry="5" rx="5" style="" class="basic label-container"></rect><g transform="translate(-16.8984375, -9)" style="" class="label"><rect></rect><foreignobject height="18" width="33.796875">
+<div style="display: inline-block; white-space: nowrap;" data-xmlns="http://www.w3.org/1999/xhtml">
 <span class="nodeLabel">Data</span>
 </div>
-</foreignobject></g></g><g transform="translate(78.1875, 143.75)" id="flowchart-transform_s1-25" class="node default default flowchart-label"><rect height="33.5" width="86.375" y="-16.75" x="-43.1875" ry="5" rx="5" style="" class="basic label-container"></rect><g transform="translate(-35.6875, -9.25)" style="" class="label"><rect></rect><foreignobject height="18.5" width="71.375"><div style="display: inline-block; white-space: nowrap;" data-xmlns="http://www.w3.org/1999/xhtml">
+</foreignobject></g></g><g transform="translate(78.65625, 142.5)" id="flowchart-transform_s1-25" class="node default default flowchart-label"><rect height="33" width="87.3125" y="-16.5" x="-43.65625" ry="5" rx="5" style="" class="basic label-container"></rect><g transform="translate(-36.15625, -9)" style="" class="label"><rect></rect><foreignobject height="18" width="72.3125">
+<div style="display: inline-block; white-space: nowrap;" data-xmlns="http://www.w3.org/1999/xhtml">
 <span class="nodeLabel">Transform</span>
 </div>
-</foreignobject></g></g></g></g></g></svg>
+</foreignobject></g></g></g></g></g>
+</svg>
 </div>
-<p></p>
+<p></p></figure><p></p>
 </div>
 </div>
 </div>
 </div><div class="column" style="width:40%;">
 <p>Collection of <strong>recipes</strong> (stacks) to build a <strong>dashboard</strong>.</p>
 </div></div>
-</section><section id="demo-1" class="slide level2"><h2>Demo</h2>
-<div class="sourceCode" id="cb4" data-engine="r"><pre class="sourceCode numberSource shinylive-r number-lines code-with-copy"><code class="sourceCode"><span id="cb4-1"><a></a>#| '!! shinylive warning !!': |</span>
-<span id="cb4-2"><a></a>#|   shinylive does not work in self-contained HTML documents.</span>
-<span id="cb4-3"><a></a>#|   Please set `embed-resources: false` in your metadata.</span>
-<span id="cb4-4"><a></a>#| standalone: true</span>
-<span id="cb4-5"><a></a>#| components: [viewer]</span>
-<span id="cb4-6"><a></a>#| column: screen-inset-shaded</span>
-<span id="cb4-7"><a></a>#| viewerHeight: 800</span>
-<span id="cb4-8"><a></a>webr::install("blockr", repos = "https://bristolmyerssquibb.github.io/webr-repos/")</span>
-<span id="cb4-9"><a></a></span>
-<span id="cb4-10"><a></a>library(blockr)</span>
-<span id="cb4-11"><a></a>library(palmerpenguins)</span>
-<span id="cb4-12"><a></a>library(ggplot2)</span>
-<span id="cb4-13"><a></a></span>
-<span id="cb4-14"><a></a>new_ggplot_block &lt;- function(col_x = character(), col_y = character(), ...) {</span>
-<span id="cb4-15"><a></a></span>
-<span id="cb4-16"><a></a>  data_cols &lt;- function(data) colnames(data)</span>
-<span id="cb4-17"><a></a></span>
-<span id="cb4-18"><a></a>  new_block(</span>
-<span id="cb4-19"><a></a>    fields = list(</span>
-<span id="cb4-20"><a></a>      x = new_select_field(col_x, data_cols, type = "name"),</span>
-<span id="cb4-21"><a></a>      y = new_select_field(col_y, data_cols, type = "name")</span>
-<span id="cb4-22"><a></a>    ),</span>
-<span id="cb4-23"><a></a>    expr = quote(</span>
-<span id="cb4-24"><a></a>      ggplot(mapping = aes(x = .(x), y = .(y)))</span>
-<span id="cb4-25"><a></a>    ),</span>
-<span id="cb4-26"><a></a>    class = c("ggplot_block", "plot_block"),</span>
-<span id="cb4-27"><a></a>    ...</span>
-<span id="cb4-28"><a></a>  )</span>
-<span id="cb4-29"><a></a>}</span>
-<span id="cb4-30"><a></a></span>
-<span id="cb4-31"><a></a>new_geompoint_block &lt;- function(color = character(), shape = character(), ...) {</span>
-<span id="cb4-32"><a></a></span>
-<span id="cb4-33"><a></a>  data_cols &lt;- function(data) colnames(data$data)</span>
-<span id="cb4-34"><a></a></span>
-<span id="cb4-35"><a></a>  new_block(</span>
-<span id="cb4-36"><a></a>    fields = list(</span>
-<span id="cb4-37"><a></a>      color = new_select_field(color, data_cols, type = "name"),</span>
-<span id="cb4-38"><a></a>      shape = new_select_field(shape, data_cols, type = "name")</span>
-<span id="cb4-39"><a></a>    ),</span>
-<span id="cb4-40"><a></a>    expr = quote(</span>
-<span id="cb4-41"><a></a>      geom_point(aes(color = .(color), shape = .(shape)), size = 2)</span>
-<span id="cb4-42"><a></a>    ),</span>
-<span id="cb4-43"><a></a>    class = c("plot_layer_block", "plot_block"),</span>
-<span id="cb4-44"><a></a>    ...</span>
-<span id="cb4-45"><a></a>  )</span>
-<span id="cb4-46"><a></a>}</span>
-<span id="cb4-47"><a></a></span>
-<span id="cb4-48"><a></a>set_workspace(</span>
-<span id="cb4-49"><a></a>  data = new_stack(</span>
-<span id="cb4-50"><a></a>    data_block = new_dataset_block("penguins", "palmerpenguins"),</span>
-<span id="cb4-51"><a></a>    filter_block = new_filter_block("sex", "female", submit = TRUE)</span>
-<span id="cb4-52"><a></a>  )</span>
-<span id="cb4-53"><a></a>  plot = new_stack(</span>
-<span id="cb4-54"><a></a>    plot_block = new_ggplot_block("body_mass_g", "flipper_length_mm"),</span>
-<span id="cb4-55"><a></a>    layer_block = new_geompoint_block("species", "species")</span>
-<span id="cb4-56"><a></a>  )</span>
-<span id="cb4-57"><a></a>)</span>
-<span id="cb4-58"><a></a>serve_workspace()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section><section id="how-do-i-create-a-workspace" class="slide level2" style="font-size: 1.5em"><h2>How do I create a workspace?</h2>
-<div class="sourceCode" id="annotated-cell-5"><pre class="sourceCode numberSource r code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode r"><span id="annotated-cell-5-1"><a href="#annotated-cell-5-1"></a><span class="fu">library</span>(blockr)</span>
-<span id="annotated-cell-5-2"><a href="#annotated-cell-5-2"></a><span class="co"># Creates an empty workspace</span></span>
-<a class="code-annotation-anchor" data-target-cell="annotated-cell-5" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-5-3" class="code-annotation-target"><a href="#annotated-cell-5-3"></a><span class="fu">set_workspace</span>(</span>
-<a class="code-annotation-anchor" data-target-cell="annotated-cell-5" data-target-annotation="2" onclick="event.preventDefault();">2</a><span id="annotated-cell-5-4" class="code-annotation-target"><a href="#annotated-cell-5-4"></a>  <span class="at">stack_1 =</span> <span class="fu">new_stack</span>()</span>
-<span id="annotated-cell-5-5"><a href="#annotated-cell-5-5"></a>  <span class="at">stack_2 =</span> <span class="fu">new_stack</span>()</span>
-<span id="annotated-cell-5-6"><a href="#annotated-cell-5-6"></a>)</span>
-<a class="code-annotation-anchor" data-target-cell="annotated-cell-5" data-target-annotation="3" onclick="event.preventDefault();">3</a><span id="annotated-cell-5-7" class="code-annotation-target"><a href="#annotated-cell-5-7"></a><span class="fu">serve_workspace</span>()</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="demo" class="slide level2">
+<h2>Demo</h2>
+<!-- ```{shinylive-r}
+#| standalone: true
+#| components: [viewer]
+#| column: screen-inset-shaded
+#| viewerHeight: 800
+webr::install("blockr", repos = "https://bristolmyerssquibb.github.io/webr-repos/")
+
+library(blockr)
+library(palmerpenguins)
+library(ggplot2)
+
+new_ggplot_block <- function(col_x = character(), col_y = character(), ...) {
+
+  data_cols <- function(data) colnames(data)
+
+  new_block(
+    fields = list(
+      x = new_select_field(col_x, data_cols, type = "name"),
+      y = new_select_field(col_y, data_cols, type = "name")
+    ),
+    expr = quote(
+      ggplot(mapping = aes(x = .(x), y = .(y)))
+    ),
+    class = c("ggplot_block", "plot_block"),
+    ...
+  )
+}
+
+new_geompoint_block <- function(color = character(), shape = character(), ...) {
+
+  data_cols <- function(data) colnames(data$data)
+
+  new_block(
+    fields = list(
+      color = new_select_field(color, data_cols, type = "name"),
+      shape = new_select_field(shape, data_cols, type = "name")
+    ),
+    expr = quote(
+      geom_point(aes(color = .(color), shape = .(shape)), size = 2)
+    ),
+    class = c("plot_layer_block", "plot_block"),
+    ...
+  )
+}
+
+set_workspace(
+  data = new_stack(
+    data_block = new_dataset_block("penguins", "palmerpenguins"),
+    filter_block = new_filter_block("sex", "female", submit = TRUE)
+  ),
+  plot = new_stack(
+    result_block = new_result_block(stack = "data"),
+    plot_block = new_ggplot_block("body_mass_g", "flipper_length_mm"),
+    layer_block = new_geompoint_block("species", "species")
+  )
+)
+serve_workspace()
+``` -->
+</section>
+<section id="how-do-i-create-a-workspace" class="slide level2" style="font-size: 1.5em">
+<h2>How do I create a workspace?</h2>
+<div class="sourceCode" id="annotated-cell-3"><pre class="sourceCode numberSource r code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode r"><span id="annotated-cell-3-1"><a href="#annotated-cell-3-1"></a><span class="fu">library</span>(blockr)</span>
+<span id="annotated-cell-3-2"><a href="#annotated-cell-3-2"></a><span class="co"># Creates an empty workspace</span></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-3" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-3-3" class="code-annotation-target"><a href="#annotated-cell-3-3"></a><span class="fu">set_workspace</span>(</span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-3" data-target-annotation="2" onclick="event.preventDefault();">2</a><span id="annotated-cell-3-4" class="code-annotation-target"><a href="#annotated-cell-3-4"></a>  <span class="at">stack_1 =</span> <span class="fu">new_stack</span>()</span>
+<span id="annotated-cell-3-5"><a href="#annotated-cell-3-5"></a>  <span class="at">stack_2 =</span> <span class="fu">new_stack</span>()</span>
+<span id="annotated-cell-3-6"><a href="#annotated-cell-3-6"></a>)</span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-3" data-target-annotation="3" onclick="event.preventDefault();">3</a><span id="annotated-cell-3-7" class="code-annotation-target"><a href="#annotated-cell-3-7"></a><span class="fu">serve_workspace</span>()</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <dl class="code-annotation-container-grid">
-<dt data-target-cell="annotated-cell-5" data-target-annotation="1">1</dt>
+<dt data-target-cell="annotated-cell-3" data-target-annotation="1">1</dt>
 <dd>
-<span data-code-cell="annotated-cell-5" data-code-lines="3" data-code-annotation="1">Initialise.</span>
+<span data-code-cell="annotated-cell-3" data-code-lines="3" data-code-annotation="1">Initialise.</span>
 </dd>
-<dt data-target-cell="annotated-cell-5" data-target-annotation="2">2</dt>
+<dt data-target-cell="annotated-cell-3" data-target-annotation="2">2</dt>
 <dd>
-<span data-code-cell="annotated-cell-5" data-code-lines="4" data-code-annotation="2">Optional: add stacks.</span>
+<span data-code-cell="annotated-cell-3" data-code-lines="4" data-code-annotation="2">Optional: add stacks.</span>
 </dd>
-<dt data-target-cell="annotated-cell-5" data-target-annotation="3">3</dt>
+<dt data-target-cell="annotated-cell-3" data-target-annotation="3">3</dt>
 <dd>
-<span data-code-cell="annotated-cell-5" data-code-lines="7" data-code-annotation="3">Serve Shiny app.</span>
+<span data-code-cell="annotated-cell-3" data-code-lines="7" data-code-annotation="3">Serve Shiny app.</span>
 </dd>
-</dl></section><section id="how-far-can-i-go-with-blockr" class="slide level2" data-background-image="../../assets/images/undraw_add_post_re_174w.svg" data-background-size="90%" style="margin-left: 450px; margin-top: 700px; font-size: 1.5em"><h2>How far can I go with blockr?</h2>
+</dl>
+</section>
+<section id="how-far-can-i-go-with-blockr" class="slide level2" data-background-image="../../assets/images/undraw_add_post_re_174w.svg" data-background-size="90%" style="margin-left: 450px; margin-top: 700px; font-size: 1.5em">
+<h2>How far can I go with blockr?</h2>
 
 <div class="quarto-auto-generated-content">
 <div class="footer footer-default">
@@ -794,10 +957,26 @@ Imagine if we could build an interactive datapipeline like we would prepare a me
 </div>
 </div>
 </section></section>
-</div>
+    </div>
   </div>
 
-  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="../../site_libs/revealjs/dist/reveal.js"></script><!-- reveal.js plugins --><script src="../../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script><script src="../../site_libs/revealjs/plugin/pdf-export/pdfexport.js"></script><script src="../../site_libs/revealjs/plugin/reveal-menu/menu.js"></script><script src="../../site_libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script><script src="../../site_libs/revealjs/plugin/quarto-support/support.js"></script><script src="../../site_libs/revealjs/plugin/notes/notes.js"></script><script src="../../site_libs/revealjs/plugin/search/search.js"></script><script src="../../site_libs/revealjs/plugin/zoom/zoom.js"></script><script src="../../site_libs/revealjs/plugin/math/math.js"></script><script>window.define = window.backupDefine; window.backupDefine = undefined;</script><script>
+  <script>window.backupDefine = window.define; window.define = undefined;</script>
+  <script src="../../site_libs/revealjs/dist/reveal.js"></script>
+  <!-- reveal.js plugins -->
+  <script src="../../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
+  <script src="../../site_libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
+  <script src="../../site_libs/revealjs/plugin/reveal-menu/menu.js"></script>
+  <script src="../../site_libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="../../site_libs/revealjs/plugin/quarto-support/support.js"></script>
+  
+
+  <script src="../../site_libs/revealjs/plugin/notes/notes.js"></script>
+  <script src="../../site_libs/revealjs/plugin/search/search.js"></script>
+  <script src="../../site_libs/revealjs/plugin/zoom/zoom.js"></script>
+  <script src="../../site_libs/revealjs/plugin/math/math.js"></script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
+
+  <script>
 
       // Full list of configuration options available at:
       // https://revealjs.com/config/
@@ -987,7 +1166,9 @@ Imagine if we could build an interactive datapipeline like we would prepare a me
           RevealZoom
         ]
       });
-    </script><script>
+    </script>
+    
+    <script>
       // htmlwidgets need to know to resize themselves when slides are shown/hidden.
       // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
       // slide changes (different for each slide format).
@@ -1022,7 +1203,9 @@ Imagine if we could build an interactive datapipeline like we would prepare a me
         }
 
       })();
-    </script><script id="quarto-html-after-body" type="application/javascript">
+    </script>
+
+    <script id="quarto-html-after-body" type="application/javascript">
     window.document.addEventListener("DOMContentLoaded", function (event) {
       const toggleBodyColorMode = (bsSheetEl) => {
         const mode = bsSheetEl.getAttribute("data-mode");
@@ -1111,7 +1294,7 @@ Imagine if we could build an interactive datapipeline like we would prepare a me
       }
         var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
         var mailtoRegex = new RegExp(/^mailto:/);
-          var filterRegex = new RegExp('/' + window.location.host + '/');
+          var filterRegex = new RegExp("https:\/\/BristolMyersSquibb\.github\.io\/blockr\.workshop\/");
         var isInternal = (href) => {
             return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
         }
@@ -1209,6 +1392,6 @@ Imagine if we could build an interactive datapipeline like we would prepare a me
       }
     });
     </script>
-
+    
 
 </body></html>

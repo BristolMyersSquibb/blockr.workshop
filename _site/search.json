@@ -88,7 +88,7 @@
     "href": "slides/1-blockr-user/blockr-user.html#demo",
     "title": "Introduction to blockr for users",
     "section": "Demo",
-    "text": "Demo"
+    "text": "Demo\n#| '!! shinylive warning !!': |\n#|   shinylive does not work in self-contained HTML documents.\n#|   Please set `embed-resources: false` in your metadata.\n#| standalone: true\n#| components: [viewer]\n#| column: screen-inset-shaded\n#| viewerHeight: 800\nwebr::install(\"blockr\", repos = \"https://bristolmyerssquibb.github.io/webr-repos/\")\n\nlibrary(blockr)\nlibrary(palmerpenguins)\nlibrary(ggplot2)\n\nnew_ggplot_block &lt;- function(col_x = character(), col_y = character(), ...) {\n\n  data_cols &lt;- function(data) colnames(data)\n\n  new_block(\n    fields = list(\n      x = new_select_field(col_x, data_cols, type = \"name\"),\n      y = new_select_field(col_y, data_cols, type = \"name\")\n    ),\n    expr = quote(\n      ggplot(mapping = aes(x = .(x), y = .(y)))\n    ),\n    class = c(\"ggplot_block\", \"plot_block\"),\n    ...\n  )\n}\n\nnew_geompoint_block &lt;- function(color = character(), shape = character(), ...) {\n\n  data_cols &lt;- function(data) colnames(data$data)\n\n  new_block(\n    fields = list(\n      color = new_select_field(color, data_cols, type = \"name\"),\n      shape = new_select_field(shape, data_cols, type = \"name\")\n    ),\n    expr = quote(\n      geom_point(aes(color = .(color), shape = .(shape)), size = 2)\n    ),\n    class = c(\"plot_layer_block\", \"plot_block\"),\n    ...\n  )\n}\n\nset_workspace(\n  data = new_stack(\n    data_block = new_dataset_block(\"penguins\", \"palmerpenguins\"),\n    filter_block = new_filter_block(\"sex\", \"female\", submit = TRUE)\n  )\n)\nserve_workspace()"
   },
   {
     "objectID": "slides/1-blockr-user/blockr-user.html#how-much-code-would-it-take-with-shiny",
@@ -116,7 +116,7 @@
     "href": "slides/1-blockr-user/blockr-user.html#the-workspace",
     "title": "Introduction to blockr for users",
     "section": "The workspace",
-    "text": "The workspace\n\n\n\n\n\n\n\n\n\nStack 2\n\n\nStack 1\n\n\ndata\n\n\ndata\n\n\ndata\n\n\ndata\n\n\nData\n\n\nTransform\n\n\nVisualize\n\n\nData\n\n\nTransform\n\n\n\n\n\n\n\n\nCollection of recipes (stacks) to build a dashboard."
+    "text": "The workspace\n\n\n\n\n\n\n\n\n\nWorkspace\n\n\ndata\n\n\n… data\n\n\nStack\n\n\ndata\n\n\ndata\n\n\nBlock 1\n\n\nData: dataset, browser, …\n\n\nBlock 2\n\n\nTransform block: filter, select …\n\n\nBlock 3\n\n\nResult/transform: plot, filter, …\n\n\nStack 2\n\n\ndata\n\n\nTransform\n\n\nStack 1 data\n\n\nStack n\n\n\ndata\n\n\ndata\n\n\nVisualize\n\n\nStack i data\n\n\nTransform\n\n\n\n\n\n\n\n\nCollection of recipes (stacks) to build a dashboard."
   },
   {
     "objectID": "slides/1-blockr-user/blockr-user.html#demo-1",
@@ -130,14 +130,14 @@
     "href": "slides/1-blockr-user/blockr-user.html#how-do-i-create-a-workspace",
     "title": "Introduction to blockr for users",
     "section": "How do I create a workspace?",
-    "text": "How do I create a workspace?\nlibrary(blockr)\n# Creates an empty workspace\n1set_workspace(\n2  stack_1 = new_stack()\n  stack_2 = new_stack()\n)\n3serve_workspace()\n\n1\n\nInitialise.\n\n2\n\nOptional: add stacks.\n\n3\n\nServe Shiny app."
+    "text": "How do I create a workspace?\nlibrary(blockr)\n# Creates an empty workspace\n1set_workspace(\n2  stack_1 = new_stack()\n  stack_2 = new_stack()\n)\n3serve_workspace(clear = FALSE)\n\n1\n\nInitialise.\n\n2\n\nOptional: add stacks.\n\n3\n\nServe Shiny app."
   },
   {
     "objectID": "slides/1-blockr-user/blockr-user.html#how-far-can-i-go-with-blockr",
     "href": "slides/1-blockr-user/blockr-user.html#how-far-can-i-go-with-blockr",
     "title": "Introduction to blockr for users",
     "section": "How far can I go with blockr?",
-    "text": "How far can I go with blockr?\n\n\n\nFunded by"
+    "text": "How far can I go with blockr?"
   },
   {
     "objectID": "slides/1-blockr-user/blockr-user.html#commercial-solutions",
@@ -180,5 +180,40 @@
     "title": "Introduction to blockr for users",
     "section": "Zoom on blocks: processing units",
     "text": "Zoom on blocks: processing units\n\nBlocks categories: import (data), transform data, visualize, …\nProvided by developers (or us).\n\n\n\n\nDesigned by upklyak / Freepik"
+  },
+  {
+    "objectID": "slides/1-blockr-user/blockr-user.html#exercise",
+    "href": "slides/1-blockr-user/blockr-user.html#exercise",
+    "title": "Introduction to blockr for users",
+    "section": "Exercise",
+    "text": "Exercise\n#| '!! shinylive warning !!': |\n#|   shinylive does not work in self-contained HTML documents.\n#|   Please set `embed-resources: false` in your metadata.\n#| standalone: true\n#| components: [viewer]\n#| column: screen-inset-shaded\n#| viewerHeight: 800\nwebr::install(\"blockr\", repos = \"https://bristolmyerssquibb.github.io/webr-repos/\")\n\nlibrary(blockr)\nlibrary(palmerpenguins)\nlibrary(ggplot2)\n\nnew_ggplot_block &lt;- function(col_x = character(), col_y = character(), ...) {\n\n  data_cols &lt;- function(data) colnames(data)\n\n  new_block(\n    fields = list(\n      x = new_select_field(col_x, data_cols, type = \"name\"),\n      y = new_select_field(col_y, data_cols, type = \"name\")\n    ),\n    expr = quote(\n      ggplot(mapping = aes(x = .(x), y = .(y)))\n    ),\n    class = c(\"ggplot_block\", \"plot_block\"),\n    ...\n  )\n}\n\nnew_geompoint_block &lt;- function(color = character(), shape = character(), ...) {\n\n  data_cols &lt;- function(data) colnames(data$data)\n\n  new_block(\n    fields = list(\n      color = new_select_field(color, data_cols, type = \"name\"),\n      shape = new_select_field(shape, data_cols, type = \"name\")\n    ),\n    expr = quote(\n      geom_point(aes(color = .(color), shape = .(shape)), size = 2)\n    ),\n    class = c(\"plot_layer_block\", \"plot_block\"),\n    ...\n  )\n}\n\nset_workspace(\n  data = new_stack(\n    data_block = new_dataset_block(\"penguins\", \"palmerpenguins\"),\n    filter_block = new_filter_block(\"sex\", \"female\", submit = TRUE)\n  )\n)\nserve_workspace(clear = FALSE)"
+  },
+  {
+    "objectID": "slides/1-blockr-user/blockr-user.html#exercise-1",
+    "href": "slides/1-blockr-user/blockr-user.html#exercise-1",
+    "title": "Introduction to blockr for users",
+    "section": "🧪 Exercise 1",
+    "text": "🧪 Exercise 1\n\n\n#| '!! shinylive warning !!': |\n#|   shinylive does not work in self-contained HTML documents.\n#|   Please set `embed-resources: false` in your metadata.\n#| standalone: true\n#| components: [viewer]\n#| column: screen-inset-shaded\n#| viewerHeight: 800\nwebr::install(\"blockr\", repos = \"https://bristolmyerssquibb.github.io/webr-repos/\")\n\nlibrary(blockr)\nlibrary(palmerpenguins)\nlibrary(ggplot2)\n\nnew_ggplot_block &lt;- function(col_x = character(), col_y = character(), ...) {\n\n  data_cols &lt;- function(data) colnames(data)\n\n  new_block(\n    fields = list(\n      x = new_select_field(col_x, data_cols, type = \"name\"),\n      y = new_select_field(col_y, data_cols, type = \"name\")\n    ),\n    expr = quote(\n      ggplot(mapping = aes(x = .(x), y = .(y)))\n    ),\n    class = c(\"ggplot_block\", \"plot_block\"),\n    ...\n  )\n}\n\nnew_geompoint_block &lt;- function(color = character(), shape = character(), ...) {\n\n  data_cols &lt;- function(data) colnames(data$data)\n\n  new_block(\n    fields = list(\n      color = new_select_field(color, data_cols, type = \"name\"),\n      shape = new_select_field(shape, data_cols, type = \"name\")\n    ),\n    expr = quote(\n      geom_point(aes(color = .(color), shape = .(shape)), size = 2)\n    ),\n    class = c(\"plot_layer_block\", \"plot_block\"),\n    ...\n  )\n}\n\nnew_penguins_block &lt;- function(selected = character()) {\n  new_dataset_block(selected, package = \"palmerpenguins\")\n}\n\nregister_blocks(\n  constructor = c(new_penguins_block, new_ggplot_block, new_geompoint_block),\n  name = c(\"penguins block\", \"ggplot block\", \"geompoint block\"),\n  description = c(\n    \"Data from palmerpenguins package\",\n    \"Builds a ggplot object\",\n    \"Add points geom to ggplot object\"\n  ),\n  classes = list(\n    c(\"palmer_penguins\", \"dataset_block\", \"data_block\"),\n    c(\"ggplot_block\", \"plot_block\"),\n    c(\"geompoint_block\", \"plot_layer_block\", \"plot_block\")\n  ),\n  input = c(NA_character_, \"data.frame\", \"ggplot\"),\n  output = c(\"data.frame\", \"ggplot\", \"ggplot\"),\n  package = \"blockr.demo\",\n  category = c(\"custom data\", \"visualisation\", \"visualisation\")\n)\n\nstack &lt;- new_stack()\nserve_stack(stack)\n\nInstructions:\n\nClick on the + button (top right corner).\nAdd a palmer_penguins block. You may search in the list.\nAdd a new filter_block, selecting sex as column and female as value. Click on run.\nAdd a new ggplot_block. Select x and y wizely.\nAdd a new geompoint_block. You may change shape and color.\nYou can remove and re-add blocks as you like …\nExport the stack code and try to run it."
+  },
+  {
+    "objectID": "slides/1-blockr-user/blockr-user.html#exercise-1-solution",
+    "href": "slides/1-blockr-user/blockr-user.html#exercise-1-solution",
+    "title": "Introduction to blockr for users",
+    "section": "🧪 Exercise 1 (solution)",
+    "text": "🧪 Exercise 1 (solution)\n#| '!! shinylive warning !!': |\n#|   shinylive does not work in self-contained HTML documents.\n#|   Please set `embed-resources: false` in your metadata.\n#| standalone: true\n#| components: [viewer]\n#| column: screen-inset-shaded\n#| viewerHeight: 800\nwebr::install(\"blockr\", repos = \"https://bristolmyerssquibb.github.io/webr-repos/\")\n\nlibrary(blockr)\nlibrary(palmerpenguins)\nlibrary(ggplot2)\n\nnew_ggplot_block &lt;- function(col_x = character(), col_y = character(), ...) {\n\n  data_cols &lt;- function(data) colnames(data)\n\n  new_block(\n    fields = list(\n      x = new_select_field(col_x, data_cols, type = \"name\"),\n      y = new_select_field(col_y, data_cols, type = \"name\")\n    ),\n    expr = quote(\n      ggplot(mapping = aes(x = .(x), y = .(y)))\n    ),\n    class = c(\"ggplot_block\", \"plot_block\"),\n    ...\n  )\n}\n\nnew_geompoint_block &lt;- function(color = character(), shape = character(), ...) {\n\n  data_cols &lt;- function(data) colnames(data$data)\n\n  new_block(\n    fields = list(\n      color = new_select_field(color, data_cols, type = \"name\"),\n      shape = new_select_field(shape, data_cols, type = \"name\")\n    ),\n    expr = quote(\n      geom_point(aes(color = .(color), shape = .(shape)), size = 2)\n    ),\n    class = c(\"plot_layer_block\", \"plot_block\"),\n    ...\n  )\n}\n\nstack &lt;- new_stack(\n  data_block = new_dataset_block(\"penguins\", \"palmerpenguins\"),\n  filter_block = new_filter_block(\"sex\", \"female\", submit = TRUE),\n  plot_block = new_ggplot_block(\"body_mass_g\", \"flipper_length_mm\"),\n  layer_block = new_geompoint_block(\"species\", \"species\")\n)\nserve_stack(stack)"
+  },
+  {
+    "objectID": "slides/1-blockr-user/blockr-user.html#exercise-2",
+    "href": "slides/1-blockr-user/blockr-user.html#exercise-2",
+    "title": "Introduction to blockr for users",
+    "section": "🧪 Exercise 2",
+    "text": "🧪 Exercise 2\n\n\n#| '!! shinylive warning !!': |\n#|   shinylive does not work in self-contained HTML documents.\n#|   Please set `embed-resources: false` in your metadata.\n#| standalone: true\n#| components: [viewer]\n#| column: screen-inset-shaded\n#| viewerHeight: 800\nwebr::install(\"blockr\", repos = \"https://bristolmyerssquibb.github.io/webr-repos/\")\n\nlibrary(blockr)\nlibrary(palmerpenguins)\nlibrary(ggplot2)\n\nnew_ggplot_block &lt;- function(col_x = character(), col_y = character(), ...) {\n\n  data_cols &lt;- function(data) colnames(data)\n\n  new_block(\n    fields = list(\n      x = new_select_field(col_x, data_cols, type = \"name\"),\n      y = new_select_field(col_y, data_cols, type = \"name\")\n    ),\n    expr = quote(\n      ggplot(mapping = aes(x = .(x), y = .(y)))\n    ),\n    class = c(\"ggplot_block\", \"plot_block\"),\n    ...\n  )\n}\n\nnew_geompoint_block &lt;- function(color = character(), shape = character(), ...) {\n\n  data_cols &lt;- function(data) colnames(data$data)\n\n  new_block(\n    fields = list(\n      color = new_select_field(color, data_cols, type = \"name\"),\n      shape = new_select_field(shape, data_cols, type = \"name\")\n    ),\n    expr = quote(\n      geom_point(aes(color = .(color), shape = .(shape)), size = 2)\n    ),\n    class = c(\"plot_layer_block\", \"plot_block\"),\n    ...\n  )\n}\n\nregister_blocks(\n  constructor = c(new_ggplot_block, new_geompoint_block),\n  name = c(\"ggplot block\", \"geompoint block\"),\n  description = c(\n    \"Builds a ggplot object\",\n    \"Add points geom to ggplot object\"\n  ),\n  classes = list(\n    c(\"ggplot_block\", \"plot_block\"),\n    c(\"geompoint_block\", \"plot_layer_block\", \"plot_block\")\n  ),\n  input = c(\"data.frame\", \"ggplot\"),\n  output = c(\"ggplot\", \"ggplot\"),\n  package = \"blockr.demo\",\n  category = c(\"visualisation\", \"visualisation\")\n)\n\nset_workspace(\n  data = new_stack(\n    data_block = new_dataset_block(\"penguins\", \"palmerpenguins\")\n  )\n)\nserve_workspace(clear = FALSE)\n\nInstructions:\n\nClick on Add stack.\nFrom the new stack: click on + to add a new result_block.\nAdd a new filter_block to stack 1, with sex as column and female as value.\nNotice how the result of the second stack changes.\nAdd a new ggplot_block.\nAdd a new geom_point block."
+  },
+  {
+    "objectID": "slides/1-blockr-user/blockr-user.html#exercise-3-pharma-data",
+    "href": "slides/1-blockr-user/blockr-user.html#exercise-3-pharma-data",
+    "title": "Introduction to blockr for users",
+    "section": "Exercise 3: pharma data",
+    "text": "Exercise 3: pharma data\nTBD\n\n\n\nFunded by"
   }
 ]

@@ -8,10 +8,9 @@ format:
     include-in-header:
       - text: |
           <script src="https://cdn.jsdelivr.net/npm/mermaid@10.9.1/dist/mermaid.min.js"></script>
-    #css: [
-    #  "assets/style/bootstrap.min.css",
-    #  "assets/style/extra.css"
-    #]
+    css: [
+      "../../assets/css/custom.css"
+    ]
     view-distance: 5
     mermaid:
       theme: default
@@ -115,7 +114,7 @@ What penguin species has the largest flippers?
 ```{r}
 #| echo: false
 #| fig-align: center
-#| out-width: 80%
+#| out-width: 65%
 penguins |>
   filter(sex == "female") |>
   ggplot(
@@ -212,8 +211,99 @@ A __transform__ block:
 :::
 ::::
 
+## 🧪 Exercise 1
 
-## Palmer penguins with blockr {style="font-size: 1.5em"}
+::::{.columns}
+
+:::{.column}
+```{shinylive-r}
+#| standalone: true
+#| components: [viewer]
+#| column: screen-inset-shaded
+#| viewerHeight: 800
+webr::install("blockr", repos = "https://bristolmyerssquibb.github.io/webr-repos/")
+
+library(blockr)
+library(palmerpenguins)
+library(ggplot2)
+
+new_ggplot_block <- function(col_x = character(), col_y = character(), ...) {
+
+  data_cols <- function(data) colnames(data)
+
+  new_block(
+    fields = list(
+      x = new_select_field(col_x, data_cols, type = "name"),
+      y = new_select_field(col_y, data_cols, type = "name")
+    ),
+    expr = quote(
+      ggplot(mapping = aes(x = .(x), y = .(y)))
+    ),
+    class = c("ggplot_block", "plot_block"),
+    ...
+  )
+}
+
+new_geompoint_block <- function(color = character(), shape = character(), ...) {
+
+  data_cols <- function(data) colnames(data$data)
+
+  new_block(
+    fields = list(
+      color = new_select_field(color, data_cols, type = "name"),
+      shape = new_select_field(shape, data_cols, type = "name")
+    ),
+    expr = quote(
+      geom_point(aes(color = .(color), shape = .(shape)), size = 2)
+    ),
+    class = c("plot_layer_block", "plot_block"),
+    ...
+  )
+}
+
+new_penguins_block <- function(selected = character()) {
+  new_dataset_block(selected, package = "palmerpenguins")
+}
+
+register_blocks(
+  constructor = c(new_penguins_block, new_ggplot_block, new_geompoint_block),
+  name = c("penguins block", "ggplot block", "geompoint block"),
+  description = c(
+    "Data from palmerpenguins package",
+    "Builds a ggplot object",
+    "Add points geom to ggplot object"
+  ),
+  classes = list(
+    c("palmer_penguins", "dataset_block", "data_block"),
+    c("ggplot_block", "plot_block"),
+    c("geompoint_block", "plot_layer_block", "plot_block")
+  ),
+  input = c(NA_character_, "data.frame", "ggplot"),
+  output = c("data.frame", "ggplot", "ggplot"),
+  package = "blockr.demo",
+  category = c("custom data", "visualisation", "visualisation")
+)
+
+stack <- new_stack()
+serve_stack(stack)
+```
+:::
+
+:::{.column}
+Instructions:
+
+- Click on the `+` button (top right corner).
+- Add a `palmer_penguins` block. You may search in the list.
+- Add a new `filter_block`, selecting `sex` as __column__ and `female` as __value__. Click on `run`.
+- Add a new `ggplot_block`. Select `x` and `y` wizely.
+- Add a new `geompoint_block`. You may change `shape` and `color`.
+- You can remove and re-add blocks as you like ...
+- Export the stack code and try to run it.
+:::
+
+::::
+
+## 🧪 Exercise 1 (solution) {style="font-size: 1.5em"}
 
 ```{shinylive-r}
 #| standalone: true
@@ -352,19 +442,28 @@ serve_stack(stack) # <5>
 ```{mermaid}
 %%| mermaid-format: svg
 flowchart TD
-  subgraph s1[Stack 1]
-    direction TB
-    input_s1(Data)
-    transform_s1(Transform)
-    input_s1 --> |data| transform_s1
-  end
-  transform_s1 --> |data| input_s2
-  subgraph s2[Stack 2]
-    direction TB
-    input_s2(Data)
-    transform_s2(Transform)
-    output_s2(Visualize)
-    input_s2 --> |data| transform_s2 --> |data| output_s2
+  subgraph LR workspace[Workspace]
+    subgraph stack1[Stack]
+      direction LR
+      subgraph input_block[Block 1]
+        input(Data: dataset, browser, ...)
+      end
+      subgraph transform_block[Block 2]
+        transform(Transform block: filter, select ...)
+      end
+      subgraph output_block[Block 3]
+        output(Result/transform: plot, filter, ...)
+      end
+      input_block --> |data| transform_block --> |data| output_block
+    end
+    subgraph stack2[Stack 2]
+      stack1_data[Stack 1 data] --> |data| transform2[Transform]
+    end
+    stack1 --> |data| stack2
+    subgraph stackn[Stack n]
+      stacki_data[Stack i data] --> |data| transformn[Transform] --> |data| Visualize
+    end
+    stack2 ---> |... data| stackn
   end
 ```
 :::
@@ -377,9 +476,12 @@ Collection of __recipes__ (stacks) to build a __dashboard__.
 ::::
 
 
-## Demo
+## 🧪 Exercise 2
 
-<!-- ```{shinylive-r}
+::::{.columns}
+
+:::{.column width="60%"}
+```{shinylive-r}
 #| standalone: true
 #| components: [viewer]
 #| column: screen-inset-shaded
@@ -424,19 +526,44 @@ new_geompoint_block <- function(color = character(), shape = character(), ...) {
   )
 }
 
+register_blocks(
+  constructor = c(new_ggplot_block, new_geompoint_block),
+  name = c("ggplot block", "geompoint block"),
+  description = c(
+    "Builds a ggplot object",
+    "Add points geom to ggplot object"
+  ),
+  classes = list(
+    c("ggplot_block", "plot_block"),
+    c("geompoint_block", "plot_layer_block", "plot_block")
+  ),
+  input = c("data.frame", "ggplot"),
+  output = c("ggplot", "ggplot"),
+  package = "blockr.demo",
+  category = c("visualisation", "visualisation")
+)
+
 set_workspace(
   data = new_stack(
-    data_block = new_dataset_block("penguins", "palmerpenguins"),
-    filter_block = new_filter_block("sex", "female", submit = TRUE)
-  ),
-  plot = new_stack(
-    result_block = new_result_block(stack = "data"),
-    plot_block = new_ggplot_block("body_mass_g", "flipper_length_mm"),
-    layer_block = new_geompoint_block("species", "species")
+    data_block = new_dataset_block("penguins", "palmerpenguins")
   )
 )
-serve_workspace()
-``` -->
+serve_workspace(clear = FALSE)
+```
+:::
+
+:::{.column width="40%"}
+Instructions:
+
+- Click on `Add stack`.
+- From the new stack: click on `+` to add a new `result_block`.
+- Add a new `filter_block` to stack 1, with `sex` as __column__ and `female` as __value__.
+- Notice how the result of the second stack changes.
+- Add a new `ggplot_block`.
+- Add a new `geom_point block`.
+:::
+
+::::
 
 ## How do I create a workspace? {style="font-size: 1.5em"}
 
@@ -447,7 +574,7 @@ set_workspace( # <1>
   stack_1 = new_stack() # <2>
   stack_2 = new_stack()
 )
-serve_workspace() # <3>
+serve_workspace(clear = FALSE) # <3>
 ```
 
 1. Initialise.
@@ -456,3 +583,7 @@ serve_workspace() # <3>
 
 
 ## How far can I go with blockr? {background-image="../../assets/images/undraw_add_post_re_174w.svg" background-size="90%" style="margin-left: 450px; margin-top: 700px; font-size: 1.5em"}
+
+## Exercise 3: pharma data
+
+TBD

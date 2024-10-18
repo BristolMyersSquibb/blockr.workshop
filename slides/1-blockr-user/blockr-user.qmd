@@ -171,21 +171,24 @@ Collection of instructions, __blocks__, from __data import__ to __wrangling/visu
 
 ::::
 
-## Zoom on blocks {style="font-size: 1.5em"}
+## Zoom on blocks: processing units {style="font-size: 1.5em"}
 
-- Blocks categories: import (data), transform, plot, ...
+- Blocks categories: __import__ (data), __transform__ data, __visualize__, ...
 - Provided by developers (or us).
 
+. . .
+
+![[Designed by upklyak / Freepik](https://fr.freepik.com/vecteurs-libre/bande-transporteuse-bouteilles-lait-bras-robotiques_9668766.htm#fromView=keyword&page=1&position=15&uuid=f6eefbdf-ed34-4642-a174-c12ea709a666:~:text=Image%20de%20upklyak%20sur%20Freepik)](../../assets/images/factory.jpg)
 
 ## Example: transform blocks {style="font-size: 1.5em"}
 
 ::::{.columns}
 
-:::{.column width="70%"}
+:::{.column width="50%"}
 ```{mermaid}
 %%| mermaid-format: svg
 flowchart TD
-  blk_data_in(Data input)
+  blk_data_in(Input data)
   blk_data_out[Output]
   subgraph blk_block[Transform block]
     blk_field1(Field 1)
@@ -200,11 +203,11 @@ flowchart TD
 ```
 :::
 
-:::{.column width="30%"}
+:::{.column width="50%"}
 A __transform__ block:
 
 - Takes input data.
-- May expose __interactive__ input to transform the data.
+- Exposes __interactive__ input to transform the data (select column, filter rows, ...).
 - Returns the transformed data.
 :::
 ::::

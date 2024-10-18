@@ -165,7 +165,7 @@
     "href": "slides/1-blockr-user/blockr-user.html#example-transform-blocks",
     "title": "Introduction to blockr for users",
     "section": "Example: transform blocks",
-    "text": "Example: transform blocks\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nTransform block\n\n\ninteractivity\n\n\ninteractivity\n\n\nevaluate\n\n\nField 1\n\n\nExpression\n\n\nField 2\n\n\nresult\n\n\nData input\n\n\nOutput\n\n\n\n\n\n\n\n\nA transform block:\n\nTakes input data.\nMay expose interactive input to transform the data.\nReturns the transformed data."
+    "text": "Example: transform blocks\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nTransform block\n\n\ninteractivity\n\n\ninteractivity\n\n\nevaluate\n\n\nField 1\n\n\nExpression\n\n\nField 2\n\n\nresult\n\n\nInput data\n\n\nOutput\n\n\n\n\n\n\n\n\nA transform block:\n\nTakes input data.\nExposes interactive input to transform the data (select column, filter rows, …).\nReturns the transformed data."
   },
   {
     "objectID": "slides/1-blockr-user/blockr-user.html#palmer-penguins-with-blockr",
@@ -173,5 +173,12 @@
     "title": "Introduction to blockr for users",
     "section": "Palmer penguins with blockr",
     "text": "Palmer penguins with blockr\n#| '!! shinylive warning !!': |\n#|   shinylive does not work in self-contained HTML documents.\n#|   Please set `embed-resources: false` in your metadata.\n#| standalone: true\n#| components: [viewer]\n#| column: screen-inset-shaded\n#| viewerHeight: 800\nwebr::install(\"blockr\", repos = \"https://bristolmyerssquibb.github.io/webr-repos/\")\n\nlibrary(blockr)\nlibrary(palmerpenguins)\nlibrary(ggplot2)\n\nnew_ggplot_block &lt;- function(col_x = character(), col_y = character(), ...) {\n\n  data_cols &lt;- function(data) colnames(data)\n\n  new_block(\n    fields = list(\n      x = new_select_field(col_x, data_cols, type = \"name\"),\n      y = new_select_field(col_y, data_cols, type = \"name\")\n    ),\n    expr = quote(\n      ggplot(mapping = aes(x = .(x), y = .(y)))\n    ),\n    class = c(\"ggplot_block\", \"plot_block\"),\n    ...\n  )\n}\n\nnew_geompoint_block &lt;- function(color = character(), shape = character(), ...) {\n\n  data_cols &lt;- function(data) colnames(data$data)\n\n  new_block(\n    fields = list(\n      color = new_select_field(color, data_cols, type = \"name\"),\n      shape = new_select_field(shape, data_cols, type = \"name\")\n    ),\n    expr = quote(\n      geom_point(aes(color = .(color), shape = .(shape)), size = 2)\n    ),\n    class = c(\"plot_layer_block\", \"plot_block\"),\n    ...\n  )\n}\n\nstack &lt;- new_stack(\n  data_block = new_dataset_block(\"penguins\", \"palmerpenguins\"),\n  filter_block = new_filter_block(\"sex\", \"female\", submit = TRUE),\n  plot_block = new_ggplot_block(\"body_mass_g\", \"flipper_length_mm\"),\n  layer_block = new_geompoint_block(\"species\", \"species\")\n)\nserve_stack(stack)"
+  },
+  {
+    "objectID": "slides/1-blockr-user/blockr-user.html#zoom-on-blocks-processing-units",
+    "href": "slides/1-blockr-user/blockr-user.html#zoom-on-blocks-processing-units",
+    "title": "Introduction to blockr for users",
+    "section": "Zoom on blocks: processing units",
+    "text": "Zoom on blocks: processing units\n\nBlocks categories: import (data), transform data, visualize, …\nProvided by developers (or us).\n\n\n\n\nDesigned by upklyak / Freepik"
   }
 ]

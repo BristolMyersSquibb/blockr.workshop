@@ -534,13 +534,20 @@ Imagine if we could build an interactive datapipeline like we would prepare a me
 </div><div class="column">
 <p>Collection of instructions, <strong>blocks</strong>, from <strong>data import</strong> to <strong>wrangling/visualization</strong>.</p>
 </div></div>
-</section><section id="zoom-on-blocks" class="slide level2" style="font-size: 1.5em"><h2>Zoom on blocks</h2>
+</section><section id="zoom-on-blocks-processing-units" class="slide level2" style="font-size: 1.5em"><h2>Zoom on blocks: processing units</h2>
 <ul>
-<li>Blocks categories: import (data), transform, plot, …</li>
+<li>Blocks categories: <strong>import</strong> (data), <strong>transform</strong> data, <strong>visualize</strong>, …</li>
 <li>Provided by developers (or us).</li>
-</ul></section><section id="example-transform-blocks" class="slide level2" style="font-size: 1.5em"><h2>Example: transform blocks</h2>
+</ul>
+<div class="fragment">
+<div class="quarto-figure quarto-figure-center">
+<figure><p><img data-src="../../assets/images/factory.jpg"></p>
+<figcaption><a href="https://fr.freepik.com/vecteurs-libre/bande-transporteuse-bouteilles-lait-bras-robotiques_9668766.htm#fromView=keyword&amp;page=1&amp;position=15&amp;uuid=f6eefbdf-ed34-4642-a174-c12ea709a666:~:text=Image%20de%20upklyak%20sur%20Freepik">Designed by upklyak / Freepik</a></figcaption></figure>
+</div>
+</div>
+</section><section id="example-transform-blocks" class="slide level2" style="font-size: 1.5em"><h2>Example: transform blocks</h2>
 <div class="columns">
-<div class="column" style="width:70%;">
+<div class="column" style="width:50%;">
 <div class="cell" data-layout-align="default">
 <div class="cell-output-display">
 <div>
@@ -577,8 +584,8 @@ Imagine if we could build an interactive datapipeline like we would prepare a me
 </foreignobject></g></g><g transform="translate(138.220703125, 253.75)" id="flowchart-blk_res-39" class="node default default flowchart-label"><rect height="33.5" width="56.2265625" y="-16.75" x="-28.11328125" ry="5" rx="5" style="" class="basic label-container"></rect><g transform="translate(-20.61328125, -9.25)" style="" class="label"><rect></rect><foreignobject height="18.5" width="41.2265625"><div style="display: inline-block; white-space: nowrap;" data-xmlns="http://www.w3.org/1999/xhtml">
 <span class="nodeLabel">result</span>
 </div>
-</foreignobject></g></g></g></g><g transform="translate(130.220703125, 16.75)" id="flowchart-blk_data_in-30" class="node default default flowchart-label"><rect height="33.5" width="90.09375" y="-16.75" x="-45.046875" ry="5" rx="5" style="" class="basic label-container"></rect><g transform="translate(-37.546875, -9.25)" style="" class="label"><rect></rect><foreignobject height="18.5" width="75.09375"><div style="display: inline-block; white-space: nowrap;" data-xmlns="http://www.w3.org/1999/xhtml">
-<span class="nodeLabel">Data input</span>
+</foreignobject></g></g></g></g><g transform="translate(130.220703125, 16.75)" id="flowchart-blk_data_in-30" class="node default default flowchart-label"><rect height="33.5" width="89.0859375" y="-16.75" x="-44.54296875" ry="5" rx="5" style="" class="basic label-container"></rect><g transform="translate(-37.04296875, -9.25)" style="" class="label"><rect></rect><foreignobject height="18.5" width="74.0859375"><div style="display: inline-block; white-space: nowrap;" data-xmlns="http://www.w3.org/1999/xhtml">
+<span class="nodeLabel">Input data</span>
 </div>
 </foreignobject></g></g><g transform="translate(130.220703125, 437.75)" id="flowchart-blk_data_out-31" class="node default default flowchart-label"><rect height="33.5" width="64.8671875" y="-16.75" x="-32.43359375" ry="0" rx="0" style="" class="basic label-container"></rect><g transform="translate(-24.93359375, -9.25)" style="" class="label"><rect></rect><foreignobject height="18.5" width="49.8671875"><div style="display: inline-block; white-space: nowrap;" data-xmlns="http://www.w3.org/1999/xhtml">
 <span class="nodeLabel">Output</span>
@@ -589,11 +596,11 @@ Imagine if we could build an interactive datapipeline like we would prepare a me
 </div>
 </div>
 </div>
-</div><div class="column" style="width:30%;">
+</div><div class="column" style="width:50%;">
 <p>A <strong>transform</strong> block:</p>
 <ul>
 <li>Takes input data.</li>
-<li>May expose <strong>interactive</strong> input to transform the data.</li>
+<li>Exposes <strong>interactive</strong> input to transform the data (select column, filter rows, …).</li>
 <li>Returns the transformed data.</li>
 </ul>
 </div></div>

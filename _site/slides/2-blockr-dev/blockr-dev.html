@@ -29,8 +29,74 @@
       margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
       vertical-align: middle;
     }
+    /* CSS for syntax highlighting */
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      { color: #003b4f; background-color: #f1f3f5; }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span { color: #003b4f; } /* Normal */
+    code span.al { color: #ad0000; } /* Alert */
+    code span.an { color: #5e5e5e; } /* Annotation */
+    code span.at { color: #657422; } /* Attribute */
+    code span.bn { color: #ad0000; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #003b4f; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #20794d; } /* Char */
+    code span.cn { color: #8f5902; } /* Constant */
+    code span.co { color: #5e5e5e; } /* Comment */
+    code span.cv { color: #5e5e5e; font-style: italic; } /* CommentVar */
+    code span.do { color: #5e5e5e; font-style: italic; } /* Documentation */
+    code span.dt { color: #ad0000; } /* DataType */
+    code span.dv { color: #ad0000; } /* DecVal */
+    code span.er { color: #ad0000; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #ad0000; } /* Float */
+    code span.fu { color: #4758ab; } /* Function */
+    code span.im { color: #00769e; } /* Import */
+    code span.in { color: #5e5e5e; } /* Information */
+    code span.kw { color: #003b4f; font-weight: bold; } /* Keyword */
+    code span.op { color: #5e5e5e; } /* Operator */
+    code span.ot { color: #003b4f; } /* Other */
+    code span.pp { color: #ad0000; } /* Preprocessor */
+    code span.sc { color: #5e5e5e; } /* SpecialChar */
+    code span.ss { color: #20794d; } /* SpecialString */
+    code span.st { color: #20794d; } /* String */
+    code span.va { color: #111111; } /* Variable */
+    code span.vs { color: #20794d; } /* VerbatimString */
+    code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
   <link rel="stylesheet" href="../../site_libs/revealjs/dist/theme/quarto.css">
+  <link rel="stylesheet" href="../../assets/css/custom.css">
   <link href="../../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="../../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="../../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -320,6 +386,7 @@
       margin-right: 0; 
     }
   </style>
+  <script src="../../site_libs/quarto-diagram/mermaid-postprocess-shim.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/mermaid@10.9.1/dist/mermaid.min.js"></script>
 </head>
 <body class="quarto-light">
@@ -338,15 +405,412 @@ Karma Tarap (BMS), John Coene (The Y Company) and David Granjon (cynkra GmbH)
 </div>
 
 </section>
-<section class="slide level2">
+<section>
+<section id="create-your-own-blocks-supermarket" class="title-slide slide level1 center" data-background-image="../../assets/images/undraw_empty_cart_co35.svg" data-background-size="60%" style="margin-top: -300px; font-size: 1.5em">
+<h1>Create your own blocks <br> supermarket</h1>
 
+</section>
+<section id="todays-mission" class="slide level2" style="font-size: 1.5em">
+<h2>Today’s mission</h2>
+<p>Create a new cardinal<sup>1</sup> block:</p>
+<p><code>cardinal::make_table_09_gtsum</code></p>
+<iframe src="https://pharmaverse.github.io/cardinal/quarto/table-templates/template-table_09.html" width="100%" height="500px">
+</iframe>
+<aside><ol class="aside-footnotes"><li id="fn1"><p>code: https://github.com/pharmaverse/cardinal/blob/main/R/fda-table_09.R#L375</p></li></ol></aside></section>
+<section id="create-new-blocks-cardinal-block-14" class="slide level2" data-auto-animate="true" style="font-size: 1.5em">
+<h2 data-id="quarto-animate-title">Create new blocks: cardinal block 1/4</h2>
+<div style="font-size: 1em">
+<div class="cell">
+<div class="sourceCode cell-code" id="annotated-cell-3"><pre class="sourceCode numberSource r code-annotation-code number-lines code-with-copy code-annotated" data-id="quarto-animate-code"><code class="sourceCode r hljs"><a class="code-annotation-anchor hljs-ln-code" data-target-cell="annotated-cell-3" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-3-1" class="code-annotation-target hljs-ln-code"><a href="#annotated-cell-3-1"></a>new_cardinal09_block <span class="ot">&lt;-</span> <span class="cf">function</span>(</span>
+<a class="code-annotation-anchor hljs-ln-code" data-target-cell="annotated-cell-3" data-target-annotation="2" onclick="event.preventDefault();">2</a><span id="annotated-cell-3-2" class="code-annotation-target hljs-ln-code"><a href="#annotated-cell-3-2"></a>  <span class="at">id_var =</span> <span class="st">"USUBJID"</span>,</span>
+<span id="annotated-cell-3-3" class="hljs-ln-code"><a href="#annotated-cell-3-3"></a>  <span class="at">arm_var =</span> <span class="st">"ARM"</span>,</span>
+<span id="annotated-cell-3-4" class="hljs-ln-code"><a href="#annotated-cell-3-4"></a>  <span class="at">saffl_var =</span> <span class="st">"SAFFL"</span>,</span>
+<span id="annotated-cell-3-5" class="hljs-ln-code"><a href="#annotated-cell-3-5"></a>  <span class="at">pref_var =</span> <span class="st">"AEDECOD"</span>,</span>
+<span id="annotated-cell-3-6" class="hljs-ln-code"><a href="#annotated-cell-3-6"></a>  <span class="at">show_colcounts =</span> <span class="cn">TRUE</span>,</span>
+<span id="annotated-cell-3-7" class="hljs-ln-code"><a href="#annotated-cell-3-7"></a>  ...) {</span>
+<span id="annotated-cell-3-8" class="hljs-ln-code"><a href="#annotated-cell-3-8"></a></span>
+<span id="annotated-cell-3-9" class="hljs-ln-code"><a href="#annotated-cell-3-9"></a>}</span><div class="code-annotation-gutter-bg hljs-ln-code"></div><div class="code-annotation-gutter hljs-ln-code"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-annotation">
+<dl class="code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-3" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-cell="annotated-cell-3" data-code-lines="1" data-code-annotation="1">Create the <code>constructor</code>.</span>
+</dd>
+<dt data-target-cell="annotated-cell-3" data-target-annotation="2">2</dt>
+<dd>
+<span data-code-cell="annotated-cell-3" data-code-lines="2,3,4,5,6" data-code-annotation="2">Select parameters to expose as <strong>interactive</strong> inputs.</span>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+</section>
+<section id="create-new-blocks-cardinal-block-24" class="slide level2" data-auto-animate="true" style="font-size: 1.5em">
+<h2 data-id="quarto-animate-title">Create new blocks: cardinal block 2/4</h2>
+<div style="font-size: 1em">
+<div class="cell">
+<div class="sourceCode cell-code" id="annotated-cell-4" data-code-line-numbers="9|11-17|20"><pre class="sourceCode numberSource r code-annotation-code number-lines code-with-copy code-annotated" data-id="quarto-animate-code"><code class="sourceCode r hljs"><span id="annotated-cell-4-1" class="hljs-ln-code"><a href="#annotated-cell-4-1"></a>new_cardinal09_block <span class="ot">&lt;-</span> <span class="cf">function</span>(</span>
+<span id="annotated-cell-4-2" class="hljs-ln-code"><a href="#annotated-cell-4-2"></a>  <span class="at">id_var =</span> <span class="st">"USUBJID"</span>,</span>
+<span id="annotated-cell-4-3" class="hljs-ln-code"><a href="#annotated-cell-4-3"></a>  <span class="at">arm_var =</span> <span class="st">"ARM"</span>,</span>
+<span id="annotated-cell-4-4" class="hljs-ln-code"><a href="#annotated-cell-4-4"></a>  <span class="at">saffl_var =</span> <span class="st">"SAFFL"</span>,</span>
+<span id="annotated-cell-4-5" class="hljs-ln-code"><a href="#annotated-cell-4-5"></a>  <span class="at">pref_var =</span> <span class="st">"AEDECOD"</span>,</span>
+<span id="annotated-cell-4-6" class="hljs-ln-code"><a href="#annotated-cell-4-6"></a>  <span class="at">show_colcounts =</span> <span class="cn">TRUE</span>,</span>
+<span id="annotated-cell-4-7" class="hljs-ln-code"><a href="#annotated-cell-4-7"></a>  ...) {</span>
+<span id="annotated-cell-4-8" class="hljs-ln-code"><a href="#annotated-cell-4-8"></a></span>
+<a class="code-annotation-anchor hljs-ln-code" data-target-cell="annotated-cell-4" data-target-annotation="3" onclick="event.preventDefault();">3</a><span id="annotated-cell-4-9" class="code-annotation-target hljs-ln-code"><a href="#annotated-cell-4-9"></a>  all_cols <span class="ot">&lt;-</span> <span class="cf">function</span>(data) <span class="fu">colnames</span>(data)</span>
+<span id="annotated-cell-4-10" class="hljs-ln-code"><a href="#annotated-cell-4-10"></a></span>
+<a class="code-annotation-anchor hljs-ln-code" data-target-cell="annotated-cell-4" data-target-annotation="4" onclick="event.preventDefault();">4</a><span id="annotated-cell-4-11" class="code-annotation-target hljs-ln-code"><a href="#annotated-cell-4-11"></a>  fields <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
+<span id="annotated-cell-4-12" class="hljs-ln-code"><a href="#annotated-cell-4-12"></a>    <span class="at">id_var =</span> <span class="fu">new_select_field</span>(id_var, all_cols, <span class="at">title =</span> <span class="st">"ID"</span>),</span>
+<span id="annotated-cell-4-13" class="hljs-ln-code"><a href="#annotated-cell-4-13"></a>    <span class="at">arm_var =</span> <span class="fu">new_select_field</span>(arm_var, all_cols, <span class="at">title =</span> <span class="st">"ARM"</span>),</span>
+<span id="annotated-cell-4-14" class="hljs-ln-code"><a href="#annotated-cell-4-14"></a>    <span class="at">saffl_var =</span> <span class="fu">new_select_field</span>(saffl_var, all_cols, <span class="at">title =</span> <span class="st">"SAFFL"</span>),</span>
+<span id="annotated-cell-4-15" class="hljs-ln-code"><a href="#annotated-cell-4-15"></a>    <span class="at">pref_var =</span> <span class="fu">new_select_field</span>(pref_var, all_cols, <span class="at">title =</span> <span class="st">"Pref"</span>),</span>
+<span id="annotated-cell-4-16" class="hljs-ln-code"><a href="#annotated-cell-4-16"></a>    <span class="at">show_colcounts =</span> <span class="fu">new_switch_field</span>(show_colcounts, <span class="at">title =</span> <span class="st">"Show column counts"</span>)</span>
+<span id="annotated-cell-4-17" class="hljs-ln-code"><a href="#annotated-cell-4-17"></a>  )</span>
+<span id="annotated-cell-4-18" class="hljs-ln-code"><a href="#annotated-cell-4-18"></a></span>
+<span id="annotated-cell-4-19" class="hljs-ln-code"><a href="#annotated-cell-4-19"></a>  <span class="fu">new_block</span>(</span>
+<span id="annotated-cell-4-20" class="hljs-ln-code"><a href="#annotated-cell-4-20"></a>    <span class="at">fields =</span> fields,</span>
+<span id="annotated-cell-4-21" class="hljs-ln-code"><a href="#annotated-cell-4-21"></a></span>
+<span id="annotated-cell-4-22" class="hljs-ln-code"><a href="#annotated-cell-4-22"></a>  )</span>
+<span id="annotated-cell-4-23" class="hljs-ln-code"><a href="#annotated-cell-4-23"></a>}</span><div class="code-annotation-gutter-bg hljs-ln-code"></div><div class="code-annotation-gutter hljs-ln-code"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-annotation">
+<dl class="code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-4" data-target-annotation="3">3</dt>
+<dd>
+<span data-code-cell="annotated-cell-4" data-code-lines="9" data-code-annotation="3">Construct columns dynamically.</span>
+</dd>
+<dt data-target-cell="annotated-cell-4" data-target-annotation="4">4</dt>
+<dd>
+<span data-code-cell="annotated-cell-4" data-code-lines="11,12,13,14,15,16,17,20" data-code-annotation="4">Add field(s) for interactivity. (Note: <code>type</code> allows to pass in cols as name instead of strings.)</span>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+</section>
+<section id="create-new-blocks-cardinal-block-34" class="slide level2" data-auto-animate="true" style="font-size: 1.5em">
+<h2 data-id="quarto-animate-title">Create new blocks: cardinal block 3/4</h2>
+<div style="font-size: 1em">
+<div class="cell">
+<div class="sourceCode cell-code" id="annotated-cell-5" data-code-line-numbers="21-30"><pre class="sourceCode numberSource r code-annotation-code number-lines code-with-copy code-annotated" data-id="quarto-animate-code"><code class="sourceCode r hljs"><span id="annotated-cell-5-1" class="hljs-ln-code"><a href="#annotated-cell-5-1"></a>new_cardinal09_block <span class="ot">&lt;-</span> <span class="cf">function</span>(</span>
+<span id="annotated-cell-5-2" class="hljs-ln-code"><a href="#annotated-cell-5-2"></a>  <span class="at">id_var =</span> <span class="st">"USUBJID"</span>,</span>
+<span id="annotated-cell-5-3" class="hljs-ln-code"><a href="#annotated-cell-5-3"></a>  <span class="at">arm_var =</span> <span class="st">"ARM"</span>,</span>
+<span id="annotated-cell-5-4" class="hljs-ln-code"><a href="#annotated-cell-5-4"></a>  <span class="at">saffl_var =</span> <span class="st">"SAFFL"</span>,</span>
+<span id="annotated-cell-5-5" class="hljs-ln-code"><a href="#annotated-cell-5-5"></a>  <span class="at">pref_var =</span> <span class="st">"AEDECOD"</span>,</span>
+<span id="annotated-cell-5-6" class="hljs-ln-code"><a href="#annotated-cell-5-6"></a>  <span class="at">show_colcounts =</span> <span class="cn">TRUE</span>,</span>
+<span id="annotated-cell-5-7" class="hljs-ln-code"><a href="#annotated-cell-5-7"></a>  ...) {</span>
+<span id="annotated-cell-5-8" class="hljs-ln-code"><a href="#annotated-cell-5-8"></a></span>
+<span id="annotated-cell-5-9" class="hljs-ln-code"><a href="#annotated-cell-5-9"></a>  all_cols <span class="ot">&lt;-</span> <span class="cf">function</span>(data) <span class="fu">colnames</span>(data)</span>
+<span id="annotated-cell-5-10" class="hljs-ln-code"><a href="#annotated-cell-5-10"></a></span>
+<span id="annotated-cell-5-11" class="hljs-ln-code"><a href="#annotated-cell-5-11"></a>  fields <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
+<span id="annotated-cell-5-12" class="hljs-ln-code"><a href="#annotated-cell-5-12"></a>    <span class="at">id_var =</span> <span class="fu">new_select_field</span>(id_var, all_cols, <span class="at">title =</span> <span class="st">"ID"</span>),</span>
+<span id="annotated-cell-5-13" class="hljs-ln-code"><a href="#annotated-cell-5-13"></a>    <span class="at">arm_var =</span> <span class="fu">new_select_field</span>(arm_var, all_cols, <span class="at">title =</span> <span class="st">"ARM"</span>),</span>
+<span id="annotated-cell-5-14" class="hljs-ln-code"><a href="#annotated-cell-5-14"></a>    <span class="at">saffl_var =</span> <span class="fu">new_select_field</span>(saffl_var, all_cols, <span class="at">title =</span> <span class="st">"SAFFL"</span>),</span>
+<span id="annotated-cell-5-15" class="hljs-ln-code"><a href="#annotated-cell-5-15"></a>    <span class="at">pref_var =</span> <span class="fu">new_select_field</span>(pref_var, all_cols, <span class="at">title =</span> <span class="st">"Pref"</span>),</span>
+<span id="annotated-cell-5-16" class="hljs-ln-code"><a href="#annotated-cell-5-16"></a>    <span class="at">show_colcounts =</span> <span class="fu">new_switch_field</span>(show_colcounts, <span class="at">title =</span> <span class="st">"Show column counts"</span>)</span>
+<span id="annotated-cell-5-17" class="hljs-ln-code"><a href="#annotated-cell-5-17"></a>  )</span>
+<span id="annotated-cell-5-18" class="hljs-ln-code"><a href="#annotated-cell-5-18"></a></span>
+<span id="annotated-cell-5-19" class="hljs-ln-code"><a href="#annotated-cell-5-19"></a>  <span class="fu">new_block</span>(</span>
+<span id="annotated-cell-5-20" class="hljs-ln-code"><a href="#annotated-cell-5-20"></a>    <span class="at">fields =</span> fields,</span>
+<a class="code-annotation-anchor hljs-ln-code" data-target-cell="annotated-cell-5" data-target-annotation="5" onclick="event.preventDefault();">5</a><span id="annotated-cell-5-21" class="code-annotation-target hljs-ln-code"><a href="#annotated-cell-5-21"></a>    <span class="at">expr =</span> <span class="fu">quote</span>({</span>
+<span id="annotated-cell-5-22" class="hljs-ln-code"><a href="#annotated-cell-5-22"></a>      cardinal<span class="sc">::</span><span class="fu">make_table_09_gtsum</span>(</span>
+<span id="annotated-cell-5-23" class="hljs-ln-code"><a href="#annotated-cell-5-23"></a>        <span class="at">adae =</span> data,</span>
+<span id="annotated-cell-5-24" class="hljs-ln-code"><a href="#annotated-cell-5-24"></a>        <span class="at">arm_var =</span> .(arm_var),</span>
+<span id="annotated-cell-5-25" class="hljs-ln-code"><a href="#annotated-cell-5-25"></a>        <span class="at">saffl_var =</span> .(saffl_var),</span>
+<span id="annotated-cell-5-26" class="hljs-ln-code"><a href="#annotated-cell-5-26"></a>        <span class="at">id_var =</span> .(id_var),</span>
+<span id="annotated-cell-5-27" class="hljs-ln-code"><a href="#annotated-cell-5-27"></a>        <span class="at">pref_var =</span> .(pref_var),</span>
+<span id="annotated-cell-5-28" class="hljs-ln-code"><a href="#annotated-cell-5-28"></a>        <span class="at">show_colcounts =</span> .(show_colcounts)</span>
+<span id="annotated-cell-5-29" class="hljs-ln-code"><a href="#annotated-cell-5-29"></a>      )</span>
+<span id="annotated-cell-5-30" class="hljs-ln-code"><a href="#annotated-cell-5-30"></a>    })</span>
+<span id="annotated-cell-5-31" class="hljs-ln-code"><a href="#annotated-cell-5-31"></a>  )</span>
+<span id="annotated-cell-5-32" class="hljs-ln-code"><a href="#annotated-cell-5-32"></a>}</span><div class="code-annotation-gutter-bg hljs-ln-code"></div><div class="code-annotation-gutter hljs-ln-code"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-annotation">
+<dl class="code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-5" data-target-annotation="5">5</dt>
+<dd>
+<span data-code-cell="annotated-cell-5" data-code-lines="21,22,23,24,25,26,27,28,29,30" data-code-annotation="5">Provide expression: use <code>quote</code> and pass field name with <code>.(field_name)</code>. <sup>1</sup></span>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+<aside><ol class="aside-footnotes"><li id="fn2"><p>Needed by <code>bquote</code> for partial substitution.</p></li></ol></aside></section>
+<section id="create-new-blocks-cardinal-block-44" class="slide level2" data-auto-animate="true" style="font-size: 1.5em">
+<h2 data-id="quarto-animate-title">Create new blocks: cardinal block 4/4</h2>
+<div style="font-size: 1em">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1" data-code-line-numbers="32"><pre class="sourceCode numberSource r number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode r hljs"><span id="cb1-1" class="hljs-ln-code"><a></a>new_cardinal09_block <span class="ot">&lt;-</span> <span class="cf">function</span>(</span>
+<span id="cb1-2" class="hljs-ln-code"><a></a>  <span class="at">id_var =</span> <span class="st">"USUBJID"</span>,</span>
+<span id="cb1-3" class="hljs-ln-code"><a></a>  <span class="at">arm_var =</span> <span class="st">"ARM"</span>,</span>
+<span id="cb1-4" class="hljs-ln-code"><a></a>  <span class="at">saffl_var =</span> <span class="st">"SAFFL"</span>,</span>
+<span id="cb1-5" class="hljs-ln-code"><a></a>  <span class="at">pref_var =</span> <span class="st">"AEDECOD"</span>,</span>
+<span id="cb1-6" class="hljs-ln-code"><a></a>  <span class="at">show_colcounts =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb1-7" class="hljs-ln-code"><a></a>  ...) {</span>
+<span id="cb1-8" class="hljs-ln-code"><a></a></span>
+<span id="cb1-9" class="hljs-ln-code"><a></a>  all_cols <span class="ot">&lt;-</span> <span class="cf">function</span>(data) <span class="fu">colnames</span>(data)</span>
+<span id="cb1-10" class="hljs-ln-code"><a></a></span>
+<span id="cb1-11" class="hljs-ln-code"><a></a>  fields <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
+<span id="cb1-12" class="hljs-ln-code"><a></a>    <span class="at">id_var =</span> <span class="fu">new_select_field</span>(id_var, all_cols, <span class="at">title =</span> <span class="st">"ID"</span>),</span>
+<span id="cb1-13" class="hljs-ln-code"><a></a>    <span class="at">arm_var =</span> <span class="fu">new_select_field</span>(arm_var, all_cols, <span class="at">title =</span> <span class="st">"ARM"</span>),</span>
+<span id="cb1-14" class="hljs-ln-code"><a></a>    <span class="at">saffl_var =</span> <span class="fu">new_select_field</span>(saffl_var, all_cols, <span class="at">title =</span> <span class="st">"SAFFL"</span>),</span>
+<span id="cb1-15" class="hljs-ln-code"><a></a>    <span class="at">pref_var =</span> <span class="fu">new_select_field</span>(pref_var, all_cols, <span class="at">title =</span> <span class="st">"Pref"</span>),</span>
+<span id="cb1-16" class="hljs-ln-code"><a></a>    <span class="at">show_colcounts =</span> <span class="fu">new_switch_field</span>(show_colcounts, <span class="at">title =</span> <span class="st">"Show column counts"</span>)</span>
+<span id="cb1-17" class="hljs-ln-code"><a></a>  )</span>
+<span id="cb1-18" class="hljs-ln-code"><a></a></span>
+<span id="cb1-19" class="hljs-ln-code"><a></a>  <span class="fu">new_block</span>(</span>
+<span id="cb1-20" class="hljs-ln-code"><a></a>    <span class="at">fields =</span> fields,</span>
+<span id="cb1-21" class="hljs-ln-code"><a></a>    <span class="at">expr =</span> <span class="fu">quote</span>({</span>
+<span id="cb1-22" class="hljs-ln-code"><a></a>      cardinal<span class="sc">::</span><span class="fu">make_table_09_gtsum</span>(</span>
+<span id="cb1-23" class="hljs-ln-code"><a></a>        <span class="at">adae =</span> data,</span>
+<span id="cb1-24" class="hljs-ln-code"><a></a>        <span class="at">arm_var =</span> .(arm_var),</span>
+<span id="cb1-25" class="hljs-ln-code"><a></a>        <span class="at">saffl_var =</span> .(saffl_var),</span>
+<span id="cb1-26" class="hljs-ln-code"><a></a>        <span class="at">id_var =</span> .(id_var),</span>
+<span id="cb1-27" class="hljs-ln-code"><a></a>        <span class="at">pref_var =</span> .(pref_var),</span>
+<span id="cb1-28" class="hljs-ln-code"><a></a>        <span class="at">show_colcounts =</span> .(show_colcounts)</span>
+<span id="cb1-29" class="hljs-ln-code"><a></a>      )</span>
+<span id="cb1-30" class="hljs-ln-code"><a></a>    }),</span>
+<span id="cb1-31" class="hljs-ln-code"><a></a>    ...,</span>
+<span id="cb1-32" class="hljs-ln-code"><a></a>    <span class="at">class =</span> <span class="fu">c</span>(<span class="st">"cardinal09_block"</span>)</span>
+<span id="cb1-33" class="hljs-ln-code"><a></a>  )</span>
+<span id="cb1-34" class="hljs-ln-code"><a></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ol start="5" type="1">
+<li>Give it the correct classes: as we don’t get data out of it, we can’t call it <code>transform_block</code>.</li>
+</ol>
+</div>
+</section>
+<section id="why-does-this-fail" class="slide level2" style="font-size: 1.5em">
+<h2>Why does this fail?</h2>
+<!-- ```{shinylive-r}
+#| standalone: true
+#| components: [viewer]
+#| viewerHeight: 550
+## file: app.R
+webr::install("blockr", repos = "https://bristolmyerssquibb.github.io/webr-repos/")
+webr::install("cardinal", repos = "https://bristolmyerssquibb.github.io/webr-repos/")
+library(blockr)
+library(cardinal)
+
+new_cardinal09_block <- function(
+  ...,
+  id_var = "USUBJID",
+  arm_var = "ARM",
+  saffl_var = "SAFFL",
+  pref_var = "AEDECOD",
+  show_colcounts = TRUE
+){
+  all_cols <- function(data) colnames(data)
+
+  fields <- list(
+    id_var = new_select_field(id_var, all_cols, title = "ID"),
+    arm_var = new_select_field(arm_var, all_cols, title = "ARM"),
+    saffl_var = new_select_field(saffl_var, all_cols, title = "SAFFL"),
+    pref_var = new_select_field(pref_var, all_cols, title = "Pref"),
+    show_colcounts = new_switch_field(show_colcounts, title = "Show column counts")
+  )
+
+  expr <- quote({
+    make_table_09_gtsum(
+      adae = data,
+      arm_var = .(arm_var),
+      saffl_var = .(saffl_var),
+      id_var = .(id_var),
+      pref_var = .(pref_var),
+      show_colcounts = .(show_colcounts)
+    )
+  })
+
+  blockr::new_block(
+    expr = expr,
+    fields = fields,
+    ...,
+    class = c("cardinal09_block", "transform_block")
+  )
+}
+
+# TBD: explain this
+generate_server.cardinal09_block <- blockr:::generate_server.
+transform_block
+
+# TBD: explain S3 customization
+uiOutputBlock.cardinal09_block <- function(x, ns) {
+  gt::gt_output(ns("res"))
+}
+
+server_output.cardinal09_block <- function(x, result, output) {
+  gt::render_gt(result())
+}
+
+my_stack <- new_stack(
+  new_dataset_block("cadae", "random.cdisc.data"),
+  new_cardinal09_block()
+)
+
+serve_stack(my_stack)
+``` -->
+</section>
+<section id="about-blockr-classes" class="slide level2" style="font-size: 1.5em">
+<h2>About blockr classes</h2>
+<div class="columns">
+<div class="column" style="width:60%;">
+<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource {mermaid} number-lines code-with-copy"><code class="sourceCode"><span id="cb2-1"><a></a>%%| mermaid-format: svg</span>
+<span id="cb2-2"><a></a>flowchart LR</span>
+<span id="cb2-3"><a></a>  block_generic[Block generic] --&gt; data_block_method[Data block method]</span>
+<span id="cb2-4"><a></a>  block_generic --&gt; transform_block_method[Transform block method]</span>
+<span id="cb2-5"><a></a>  block_generic --&gt; plot_block_method[Plot block method]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div><div class="column" style="width:40%;">
+<p><strong>S3 OO system</strong><sup>1</sup>: <strong>customize</strong> behavior depending on object <strong>class</strong>.</p>
+</div></div>
+<aside><ol class="aside-footnotes"><li id="fn3"><p>S3 Object Oriented system https://adv-r.hadley.nz/s3.html</p></li></ol></aside></section>
+<section id="adding-missing-pieces" class="slide level2">
+<h2>Adding missing pieces</h2>
+<ul>
+<li>We need a function that renders <code>gt</code> <strong>outputs</strong> (server and ui side).</li>
+<li>We need a server method for <code>cardinal09_block</code>. We can inherit the transform block one.</li>
+</ul>
+<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a>generate_server.cardinal09_block <span class="ot">&lt;-</span> blockr<span class="sc">:::</span>generate_server.</span>
+<span id="cb3-2"><a></a>transform_block</span>
+<span id="cb3-3"><a></a></span>
+<span id="cb3-4"><a></a>uiOutputBlock.cardinal09_block <span class="ot">&lt;-</span> <span class="cf">function</span>(x, ns) {</span>
+<span id="cb3-5"><a></a>  gt<span class="sc">::</span><span class="fu">gt_output</span>(<span class="fu">ns</span>(<span class="st">"res"</span>))</span>
+<span id="cb3-6"><a></a>}</span>
+<span id="cb3-7"><a></a></span>
+<span id="cb3-8"><a></a>server_output.cardinal09_block <span class="ot">&lt;-</span> <span class="cf">function</span>(x, result, output) {</span>
+<span id="cb3-9"><a></a>  gt<span class="sc">::</span><span class="fu">render_gt</span>(<span class="fu">result</span>())</span>
+<span id="cb3-10"><a></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="how-do-we-make-custom-blocks-available-to-users" class="slide level2" style="font-size: 1.5em" data-background-image="../../assets/images/undraw_shopping_app_flsj.svg" data-background-size="40%">
+<h2>How do we make custom blocks available to users?</h2>
+</section>
+<section id="the-registry-the-blocks-supermarket" class="slide level2" data-stack-name="Registry" style="font-size: 1.5em">
+<h2>The registry: the blocks supermarket</h2>
+<div class="columns">
+<div class="column" style="width:70%;">
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class=""><p></p>
+<div>
+<svg aria-roledescription="flowchart-v2" role="graphics-document document" viewbox="-7.5 -8 932.125 689" style="; display: block; margin: auto auto auto auto" xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" width="960" id="mermaid-figure-1" height="480">
+<style>#mermaid-figure-1{font-family:"trebuchet ms",verdana,arial,sans-serif;font-size:16px;fill:#333;}#mermaid-figure-1 .error-icon{fill:#552222;}#mermaid-figure-1 .error-text{fill:#552222;stroke:#552222;}#mermaid-figure-1 .edge-thickness-normal{stroke-width:2px;}#mermaid-figure-1 .edge-thickness-thick{stroke-width:3.5px;}#mermaid-figure-1 .edge-pattern-solid{stroke-dasharray:0;}#mermaid-figure-1 .edge-pattern-dashed{stroke-dasharray:3;}#mermaid-figure-1 .edge-pattern-dotted{stroke-dasharray:2;}#mermaid-figure-1 .marker{fill:#333333;stroke:#333333;}#mermaid-figure-1 .marker.cross{stroke:#333333;}#mermaid-figure-1 svg{font-family:"trebuchet ms",verdana,arial,sans-serif;font-size:16px;}#mermaid-figure-1 .label{font-family:"trebuchet ms",verdana,arial,sans-serif;color:#333;}#mermaid-figure-1 .cluster-label text{fill:#333;}#mermaid-figure-1 .cluster-label span,#mermaid-figure-1 p{color:#333;}#mermaid-figure-1 .label text,#mermaid-figure-1 span,#mermaid-figure-1 p{fill:#333;color:#333;}#mermaid-figure-1 .node rect,#mermaid-figure-1 .node circle,#mermaid-figure-1 .node ellipse,#mermaid-figure-1 .node polygon,#mermaid-figure-1 .node path{fill:#ECECFF;stroke:#9370DB;stroke-width:1px;}#mermaid-figure-1 .flowchart-label text{text-anchor:middle;}#mermaid-figure-1 .node .label{text-align:center;}#mermaid-figure-1 .node.clickable{cursor:pointer;}#mermaid-figure-1 .arrowheadPath{fill:#333333;}#mermaid-figure-1 .edgePath .path{stroke:#333333;stroke-width:2.0px;}#mermaid-figure-1 .flowchart-link{stroke:#333333;fill:none;}#mermaid-figure-1 .edgeLabel{background-color:#e8e8e8;text-align:center;}#mermaid-figure-1 .edgeLabel rect{opacity:0.5;background-color:#e8e8e8;fill:#e8e8e8;}#mermaid-figure-1 .cluster rect{fill:#ffffde;stroke:#aaaa33;stroke-width:1px;}#mermaid-figure-1 .cluster text{fill:#333;}#mermaid-figure-1 .cluster span,#mermaid-figure-1 p{color:#333;}#mermaid-figure-1 div.mermaidTooltip{position:absolute;text-align:center;max-width:200px;padding:2px;font-family:"trebuchet ms",verdana,arial,sans-serif;font-size:12px;background:hsl(80, 100%, 96.2745098039%);border:1px solid #aaaa33;border-radius:2px;pointer-events:none;z-index:100;}#mermaid-figure-1 .flowchartTitleText{text-anchor:middle;font-size:18px;fill:#333;}#mermaid-figure-1 :root{--mermaid-font-family:"trebuchet ms",verdana,arial,sans-serif;}</style>
+<g><marker orient="auto" markerheight="12" markerwidth="12" markerunits="userSpaceOnUse" refy="5" refx="10" viewbox="0 0 10 10" class="marker flowchart" id="flowchart-pointEnd"><path style="stroke-width: 1; stroke-dasharray: 1, 0;" class="arrowMarkerPath" d="M 0 0 L 10 5 L 0 10 z"></path></marker><marker orient="auto" markerheight="12" markerwidth="12" markerunits="userSpaceOnUse" refy="5" refx="0" viewbox="0 0 10 10" class="marker flowchart" id="flowchart-pointStart"><path style="stroke-width: 1; stroke-dasharray: 1, 0;" class="arrowMarkerPath" d="M 0 5 L 10 10 L 10 0 z"></path></marker><marker orient="auto" markerheight="11" markerwidth="11" markerunits="userSpaceOnUse" refy="5" refx="11" viewbox="0 0 10 10" class="marker flowchart" id="flowchart-circleEnd"><circle style="stroke-width: 1; stroke-dasharray: 1, 0;" class="arrowMarkerPath" r="5" cy="5" cx="5"></circle></marker><marker orient="auto" markerheight="11" markerwidth="11" markerunits="userSpaceOnUse" refy="5" refx="-1" viewbox="0 0 10 10" class="marker flowchart" id="flowchart-circleStart"><circle style="stroke-width: 1; stroke-dasharray: 1, 0;" class="arrowMarkerPath" r="5" cy="5" cx="5"></circle></marker><marker orient="auto" markerheight="11" markerwidth="11" markerunits="userSpaceOnUse" refy="5.2" refx="12" viewbox="0 0 11 11" class="marker cross flowchart" id="flowchart-crossEnd"><path style="stroke-width: 2; stroke-dasharray: 1, 0;" class="arrowMarkerPath" d="M 1,1 l 9,9 M 10,1 l -9,9"></path></marker><marker orient="auto" markerheight="11" markerwidth="11" markerunits="userSpaceOnUse" refy="5.2" refx="-1" viewbox="0 0 11 11" class="marker cross flowchart" id="flowchart-crossStart"><path style="stroke-width: 2; stroke-dasharray: 1, 0;" class="arrowMarkerPath" d="M 1,1 l 9,9 M 10,1 l -9,9"></path></marker><g class="root"><g class="clusters"></g><g class="edgePaths"><path marker-end="url(#flowchart-pointEnd)" style="fill:none;" class="edge-thickness-normal edge-pattern-solid flowchart-link LS-blockr_ggplot2 LE-registry" id="L-blockr_ggplot2-registry-0" d="M297.75,269.75L306.525390625,269.75C315.30078125,269.75,332.8515625,269.75,350.40234375,271.6445051925409C367.953125,273.5390103850819,385.50390625,277.32802077016373,394.279296875,279.22252596270465L403.0546875,281.1170311552456"></path><path marker-end="url(#flowchart-pointEnd)" style="fill:none;" class="edge-thickness-normal edge-pattern-solid flowchart-link LS-blockr_echarts4r LE-registry" id="L-blockr_echarts4r-registry-0" d="M297.75,403.25L306.525390625,403.25C315.30078125,403.25,332.8515625,403.25,350.40234375,401.3554948074591C367.953125,399.46098961491816,385.50390625,395.67197922983627,394.279296875,393.77747403729535L403.0546875,391.8829688447544"></path></g><g class="edgeLabels"><g transform="translate(350.40234375, 269.75)" class="edgeLabel"><g transform="translate(-27.65234375, -9.25)" class="label"><foreignobject height="18.5" width="55.3046875">
+<div style="display: inline-block; white-space: nowrap;" data-xmlns="http://www.w3.org/1999/xhtml">
+<span class="edgeLabel">register</span>
+</div>
+</foreignobject></g></g><g transform="translate(350.40234375, 403.25)" class="edgeLabel"><g transform="translate(-27.65234375, -9.25)" class="label"><foreignobject height="18.5" width="55.3046875">
+<div style="display: inline-block; white-space: nowrap;" data-xmlns="http://www.w3.org/1999/xhtml">
+<span class="edgeLabel">register</span>
+</div>
+</foreignobject></g></g></g><g class="nodes"><g transform="translate(395.5546875, -8)" class="root"><g class="clusters"><g id="registry" class="cluster default flowchart-label"><rect height="673" width="513.0703125" y="8" x="8" ry="0" rx="0" style=""></rect><g transform="translate(236.078125, 8)" class="cluster-label"><foreignobject height="18.5" width="56.9140625">
+<div style="display: inline-block; white-space: nowrap;" data-xmlns="http://www.w3.org/1999/xhtml">
+<span class="nodeLabel">Registry</span>
+</div>
+</foreignobject></g></g></g><g class="edgePaths"><path marker-end="url(#flowchart-crossEnd)" style="fill:none;" class="edge-thickness-normal edge-pattern-solid flowchart-link LS-filter_reg LE-trash" id="L-filter_reg-trash-0" d="M437.5703125,66.5L437.5703125,72.20833333333333C437.5703125,77.91666666666667,437.5703125,89.33333333333333,437.5703125,142.91666666666666C437.5703125,196.5,437.5703125,292.25,437.5703125,340.125L437.5703125,388"></path></g><g class="edgeLabels"><g transform="translate(437.5703125, 100.75)" class="edgeLabel"><g transform="translate(-36.39453125, -9.25)" class="label"><foreignobject height="18.5" width="72.7890625">
+<div style="display: inline-block; white-space: nowrap;" data-xmlns="http://www.w3.org/1999/xhtml">
+<span class="edgeLabel">unregister</span>
+</div>
+</foreignobject></g></g></g><g class="nodes"><g transform="translate(35.5, 127)" class="root"><g class="clusters"><g id="select_reg" class="cluster default flowchart-label"><rect height="521" width="337.0703125" y="8" x="8" ry="0" rx="0" style=""></rect><g transform="translate(132.953125, 8)" class="cluster-label"><foreignobject height="18.5" width="87.1640625">
+<div style="display: inline-block; white-space: nowrap;" data-xmlns="http://www.w3.org/1999/xhtml">
+<span class="nodeLabel">Select block</span>
+</div>
+</foreignobject></g></g></g><g class="edgePaths"></g><g class="edgeLabels"></g><g class="nodes"><g transform="translate(176.53515625, 59.75)" id="flowchart-reg_name-40" class="node default default flowchart-label"><rect height="33.5" width="152.265625" y="-16.75" x="-76.1328125" ry="0" rx="0" style="" class="basic label-container"></rect><g transform="translate(-68.6328125, -9.25)" style="" class="label"><rect></rect><foreignobject height="18.5" width="137.265625">
+<div style="display: inline-block; white-space: nowrap;" data-xmlns="http://www.w3.org/1999/xhtml">
+<span class="nodeLabel">Name: select block</span>
+</div>
+</foreignobject></g></g><g transform="translate(176.53515625, 143.25)" id="flowchart-reg_descr-41" class="node default default flowchart-label"><rect height="33.5" width="286.046875" y="-16.75" x="-143.0234375" ry="0" rx="0" style="" class="basic label-container"></rect><g transform="translate(-135.5234375, -9.25)" style="" class="label"><rect></rect><foreignobject height="18.5" width="271.046875">
+<div style="display: inline-block; white-space: nowrap;" data-xmlns="http://www.w3.org/1999/xhtml">
+<span class="nodeLabel">Description: select columns in a table</span>
+</div>
+</foreignobject></g></g><g transform="translate(176.53515625, 226.75)" id="flowchart-reg_classes-42" class="node default default flowchart-label"><rect height="33.5" width="287.0703125" y="-16.75" x="-143.53515625" ry="0" rx="0" style="" class="basic label-container"></rect><g transform="translate(-136.03515625, -9.25)" style="" class="label"><rect></rect><foreignobject height="18.5" width="272.0703125">
+<div style="display: inline-block; white-space: nowrap;" data-xmlns="http://www.w3.org/1999/xhtml">
+<span class="nodeLabel">Classes: select_block, tranform_block</span>
+</div>
+</foreignobject></g></g><g transform="translate(176.53515625, 310.25)" id="flowchart-reg_input-43" class="node default default flowchart-label"><rect height="33.5" width="143.3828125" y="-16.75" x="-71.69140625" ry="0" rx="0" style="" class="basic label-container"></rect><g transform="translate(-64.19140625, -9.25)" style="" class="label"><rect></rect><foreignobject height="18.5" width="128.3828125">
+<div style="display: inline-block; white-space: nowrap;" data-xmlns="http://www.w3.org/1999/xhtml">
+<span class="nodeLabel">Input: data.frame</span>
+</div>
+</foreignobject></g></g><g transform="translate(176.53515625, 393.75)" id="flowchart-reg_output-44" class="node default default flowchart-label"><rect height="33.5" width="156.0546875" y="-16.75" x="-78.02734375" ry="0" rx="0" style="" class="basic label-container"></rect><g transform="translate(-70.52734375, -9.25)" style="" class="label"><rect></rect><foreignobject height="18.5" width="141.0546875">
+<div style="display: inline-block; white-space: nowrap;" data-xmlns="http://www.w3.org/1999/xhtml">
+<span class="nodeLabel">Output: data.frame</span>
+</div>
+</foreignobject></g></g><g transform="translate(176.53515625, 477.25)" id="flowchart-reg_package-45" class="node default default flowchart-label"><rect height="33.5" width="127.859375" y="-16.75" x="-63.9296875" ry="0" rx="0" style="" class="basic label-container"></rect><g transform="translate(-56.4296875, -9.25)" style="" class="label"><rect></rect><foreignobject height="18.5" width="112.859375">
+<div style="display: inline-block; white-space: nowrap;" data-xmlns="http://www.w3.org/1999/xhtml">
+<span class="nodeLabel">Package: blockr</span>
+</div>
+</foreignobject></g></g></g></g><g transform="translate(437.5703125, 49.75)" id="flowchart-filter_reg-46" class="node default default flowchart-label"><rect height="33.5" width="97" y="-16.75" x="-48.5" ry="0" rx="0" style="" class="basic label-container"></rect><g transform="translate(-41, -9.25)" style="" class="label"><rect></rect><foreignobject height="18.5" width="82">
+<div style="display: inline-block; white-space: nowrap;" data-xmlns="http://www.w3.org/1999/xhtml">
+<span class="nodeLabel">Filter block</span>
+</div>
+</foreignobject></g></g><g transform="translate(437.5703125, 395.5)" id="flowchart-trash-47" class="node default default flowchart-label"><rect height="15" width="15" y="-7.5" x="-7.5" ry="0" rx="0" style="" class="basic label-container"></rect><g transform="translate(0, 0)" style="" class="label"><rect></rect><foreignobject height="0" width="0">
+<div style="display: inline-block; white-space: nowrap;" data-xmlns="http://www.w3.org/1999/xhtml">
+<span class="nodeLabel"><i class="fa fa-trash"></i></span>
+</div>
+</foreignobject></g></g></g></g><g transform="translate(-7.5, 353.5)" class="root"><g class="clusters"><g id="blockr_echarts4r" class="cluster default flowchart-label"><rect height="83.5" width="297.75" y="8" x="8" ry="0" rx="0" style=""></rect><g transform="translate(99.06640625, 8)" class="cluster-label"><foreignobject height="18.5" width="115.6171875">
+<div style="display: inline-block; white-space: nowrap;" data-xmlns="http://www.w3.org/1999/xhtml">
+<span class="nodeLabel">blockr.echarts4r</span>
+</div>
+</foreignobject></g></g></g><g class="edgePaths"></g><g class="edgeLabels"></g><g class="nodes"><g transform="translate(87.4375, 49.75)" id="flowchart-new_block3-34" class="node default default flowchart-label"><rect height="33.5" width="88.875" y="-16.75" x="-44.4375" ry="0" rx="0" style="" class="basic label-container"></rect><g transform="translate(-36.9375, -9.25)" style="" class="label"><rect></rect><foreignobject height="18.5" width="73.875">
+<div style="display: inline-block; white-space: nowrap;" data-xmlns="http://www.w3.org/1999/xhtml">
+<span class="nodeLabel">New block</span>
+</div>
+</foreignobject></g></g><g transform="translate(226.3125, 49.75)" id="flowchart-new_block4-35" class="node default default flowchart-label"><rect height="33.5" width="88.875" y="-16.75" x="-44.4375" ry="0" rx="0" style="" class="basic label-container"></rect><g transform="translate(-36.9375, -9.25)" style="" class="label"><rect></rect><foreignobject height="18.5" width="73.875">
+<div style="display: inline-block; white-space: nowrap;" data-xmlns="http://www.w3.org/1999/xhtml">
+<span class="nodeLabel">New block</span>
+</div>
+</foreignobject></g></g></g></g><g transform="translate(-7.5, 220)" class="root"><g class="clusters"><g id="blockr_ggplot2" class="cluster default flowchart-label"><rect height="83.5" width="297.75" y="8" x="8" ry="0" rx="0" style=""></rect><g transform="translate(106.28125, 8)" class="cluster-label"><foreignobject height="18.5" width="101.1875">
+<div style="display: inline-block; white-space: nowrap;" data-xmlns="http://www.w3.org/1999/xhtml">
+<span class="nodeLabel">blockr.ggplot2</span>
+</div>
+</foreignobject></g></g></g><g class="edgePaths"></g><g class="edgeLabels"></g><g class="nodes"><g transform="translate(87.4375, 49.75)" id="flowchart-new_block1-32" class="node default default flowchart-label"><rect height="33.5" width="88.875" y="-16.75" x="-44.4375" ry="0" rx="0" style="" class="basic label-container"></rect><g transform="translate(-36.9375, -9.25)" style="" class="label"><rect></rect><foreignobject height="18.5" width="73.875">
+<div style="display: inline-block; white-space: nowrap;" data-xmlns="http://www.w3.org/1999/xhtml">
+<span class="nodeLabel">New block</span>
+</div>
+</foreignobject></g></g><g transform="translate(226.3125, 49.75)" id="flowchart-new_block2-33" class="node default default flowchart-label"><rect height="33.5" width="88.875" y="-16.75" x="-44.4375" ry="0" rx="0" style="" class="basic label-container"></rect><g transform="translate(-36.9375, -9.25)" style="" class="label"><rect></rect><foreignobject height="18.5" width="73.875">
+<div style="display: inline-block; white-space: nowrap;" data-xmlns="http://www.w3.org/1999/xhtml">
+<span class="nodeLabel">New block</span>
+</div>
+</foreignobject></g></g></g></g></g></g></g>
+</svg>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:30%;">
+<ul>
+<li><strong>Information</strong> about blocks.</li>
+<li><strong>Shared</strong> between block packages.</li>
+</ul>
+</div></div>
+</section>
+<section id="filling-the-supermarket-with-block" class="slide level2" style="font-size: 1.5em">
+<h2>Filling the supermarket with block</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a></a>register_lm_block <span class="ot">&lt;-</span> <span class="cf">function</span>(pkg) {</span>
+<span id="cb4-2"><a></a>  <span class="fu">register_block</span>(</span>
+<span id="cb4-3"><a></a>    <span class="at">constructor =</span> new_cardinal09_block,</span>
+<span id="cb4-4"><a></a>    <span class="at">name =</span> <span class="st">"cardinal09 block"</span>,</span>
+<span id="cb4-5"><a></a>    <span class="at">description =</span> <span class="st">"Create a cardinal09 block"</span>,</span>
+<span id="cb4-6"><a></a>    <span class="at">classes =</span> <span class="fu">c</span>(<span class="st">"cardinal09_block"</span>, <span class="st">"transform_block"</span>),</span>
+<span id="cb4-7"><a></a>    <span class="at">input =</span> <span class="st">"data.frame"</span>,</span>
+<span id="cb4-8"><a></a>    <span class="at">output =</span> <span class="st">"gt"</span>,</span>
+<span id="cb4-9"><a></a>    <span class="at">package =</span> pkg</span>
+<span id="cb4-10"><a></a>  )</span>
+<span id="cb4-11"><a></a>}</span>
+<span id="cb4-12"><a></a></span>
+<span id="cb4-13"><a></a><span class="co"># Put in zzz.R</span></span>
+<span id="cb4-14"><a></a>.onLoad <span class="ot">&lt;-</span> <span class="cf">function</span>(libname, pkgname) {</span>
+<span id="cb4-15"><a></a>  <span class="fu">register_lm_block</span>(pkgname)</span>
+<span id="cb4-16"><a></a>  <span class="fu">invisible</span>(<span class="cn">NULL</span>)</span>
+<span id="cb4-17"><a></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 
 <div class="quarto-auto-generated-content">
 <div class="footer footer-default">
 <p>Funded by <img class="mb-4" src="../../assets/images/bms.svg"></p>
 </div>
 </div>
-</section>
+</section></section>
+
     </div>
   </div>
 
@@ -557,6 +1021,44 @@ Karma Tarap (BMS), John Coene (The Y Company) and David Granjon (cynkra GmbH)
         ]
       });
     </script>
+    
+    <script>
+      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
+      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
+      // slide changes (different for each slide format).
+      (function () {
+        // dispatch for htmlwidgets
+        function fireSlideEnter() {
+          const event = window.document.createEvent("Event");
+          event.initEvent("slideenter", true, true);
+          window.document.dispatchEvent(event);
+        }
+
+        function fireSlideChanged(previousSlide, currentSlide) {
+          fireSlideEnter();
+
+          // dispatch for shiny
+          if (window.jQuery) {
+            if (previousSlide) {
+              window.jQuery(previousSlide).trigger("hidden");
+            }
+            if (currentSlide) {
+              window.jQuery(currentSlide).trigger("shown");
+            }
+          }
+        }
+
+        // hookup for slidy
+        if (window.w3c_slidy) {
+          window.w3c_slidy.add_observer(function (slide_num) {
+            // slide_num starts at position 1
+            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
+          });
+        }
+
+      })();
+    </script>
+
     <script id="quarto-html-after-body" type="application/javascript">
     window.document.addEventListener("DOMContentLoaded", function (event) {
       const toggleBodyColorMode = (bsSheetEl) => {

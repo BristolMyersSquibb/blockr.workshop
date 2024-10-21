@@ -137,7 +137,7 @@
     "href": "slides/1-blockr-user/blockr-user.html#how-far-can-i-go-with-blockr",
     "title": "Introduction to blockr for users",
     "section": "How far can I go with blockr?",
-    "text": "How far can I go with blockr?"
+    "text": "How far can I go with blockr?\n\n\n\nFunded by"
   },
   {
     "objectID": "slides/1-blockr-user/blockr-user.html#commercial-solutions",
@@ -214,6 +214,125 @@
     "href": "slides/1-blockr-user/blockr-user.html#exercise-3-pharma-data",
     "title": "Introduction to blockr for users",
     "section": "Exercise 3: pharma data",
-    "text": "Exercise 3: pharma data\nTBD\n\n\n\nFunded by"
+    "text": "Exercise 3: pharma data\nTBD"
+  },
+  {
+    "objectID": "slides/2-blockr-dev/blockr-dev.html#todays-mission",
+    "href": "slides/2-blockr-dev/blockr-dev.html#todays-mission",
+    "title": "Introduction to blockr for developers",
+    "section": "Today’s mission",
+    "text": "Today’s mission\nCreate a new cardinal1 block:\ncardinal::make_table_09_gtsum\n\n\ncode: https://github.com/pharmaverse/cardinal/blob/main/R/fda-table_09.R#L375"
+  },
+  {
+    "objectID": "slides/2-blockr-dev/blockr-dev.html#create-new-blocks-lm-block-14",
+    "href": "slides/2-blockr-dev/blockr-dev.html#create-new-blocks-lm-block-14",
+    "title": "Introduction to blockr for developers",
+    "section": "Create new blocks: lm block 1/4",
+    "text": "Create new blocks: lm block 1/4\n\n\n1new_lm_block &lt;- function(y = character(), predictor = character(), ...) {\n\n}\n\n\n1\n\nCreate the constructor."
+  },
+  {
+    "objectID": "slides/2-blockr-dev/blockr-dev.html#create-new-blocks-lm-block-24",
+    "href": "slides/2-blockr-dev/blockr-dev.html#create-new-blocks-lm-block-24",
+    "title": "Introduction to blockr for developers",
+    "section": "Create new blocks: lm block 2/4",
+    "text": "Create new blocks: lm block 2/4\n\n\nnew_lm_block &lt;- function(y = character(), predictor = character(), ...) {\n\n2  all_cols &lt;- function(data) colnames(data)\n\n3  fields &lt;- list(\n    y = new_select_field(y, all_cols, type = \"name\"),\n    predictor = new_select_field(predictor, all_cols, type = \"name\")\n  )\n\n  new_block(\n    fields = fields,\n\n  )\n}\n\n\n2\n\nConstruct columns dynamically.\n\n3\n\nAdd field(s): y and predictor columns (type allows to pass in cols as name instead of strings.)"
+  },
+  {
+    "objectID": "slides/2-blockr-dev/blockr-dev.html#create-new-blocks-lm-block-34",
+    "href": "slides/2-blockr-dev/blockr-dev.html#create-new-blocks-lm-block-34",
+    "title": "Introduction to blockr for developers",
+    "section": "Create new blocks: lm block 3/4",
+    "text": "Create new blocks: lm block 3/4\n\n\nnew_lm_block &lt;- function(y = character(), predictor = character(), ...) {\n\n  all_cols &lt;- function(data) colnames(data)\n\n  fields &lt;- list(\n    y = new_select_field(y, all_cols, type = \"name\"),\n    predictor = new_select_field(predictor, all_cols, type = \"name\")\n  )\n\n  new_block(\n    fields = fields,\n4    expr = quote({\n      model &lt;- lm(data = data, formula = .(y) ~ .(predictor))\n      broom::tidy(model)\n    }),\n\n  )\n}\n\n\n4\n\nProvide expression: use quote and pass field name with .(field_name). 1\n\n\n\n\n\nNeeded by bquote for partial substitution."
+  },
+  {
+    "objectID": "slides/2-blockr-dev/blockr-dev.html#create-new-blocks-lm-block-44",
+    "href": "slides/2-blockr-dev/blockr-dev.html#create-new-blocks-lm-block-44",
+    "title": "Introduction to blockr for developers",
+    "section": "Create new blocks: lm block 4/4",
+    "text": "Create new blocks: lm block 4/4\n\n\nnew_lm_block &lt;- function(y = character(), predictor = character(), ...) {\n\n  all_cols &lt;- function(data) colnames(data)\n\n  fields &lt;- list(\n    y = new_select_field(y, all_cols, type = \"name\"),\n    predictor = new_select_field(predictor, all_cols, type = \"name\")\n  )\n\n  new_block(\n    fields = fields,\n    expr = quote({\n      model &lt;- lm(data = data, formula = .(y) ~ .(predictor))\n      broom::tidy(model)\n    }),\n    ...,\n    class = c(\"lm_block\", \"transform_block\")\n  )\n}\n\n\nGive it the correct classes: transform_block + a custom class."
+  },
+  {
+    "objectID": "slides/2-blockr-dev/blockr-dev.html#testing-our-new-block",
+    "href": "slides/2-blockr-dev/blockr-dev.html#testing-our-new-block",
+    "title": "Introduction to blockr for developers",
+    "section": "Testing our new block",
+    "text": "Testing our new block"
+  },
+  {
+    "objectID": "slides/2-blockr-dev/blockr-dev.html#how-do-we-make-custom-blocks-available-to-users",
+    "href": "slides/2-blockr-dev/blockr-dev.html#how-do-we-make-custom-blocks-available-to-users",
+    "title": "Introduction to blockr for developers",
+    "section": "How do we make custom blocks available to users?",
+    "text": "How do we make custom blocks available to users?"
+  },
+  {
+    "objectID": "slides/2-blockr-dev/blockr-dev.html#the-registry-the-blocks-supermarket",
+    "href": "slides/2-blockr-dev/blockr-dev.html#the-registry-the-blocks-supermarket",
+    "title": "Introduction to blockr for developers",
+    "section": "The registry: the blocks supermarket",
+    "text": "The registry: the blocks supermarket\n\n\n\n\n\n\n\n\n\n\n\nregister\n\n\n\nregister\n\n\n\nRegistry\n\n\n\nunregister\n\n\n\nSelect block\n\n\n\nName: select block\n\n\n\nDescription: select columns in a table\n\n\n\nClasses: select_block, tranform_block\n\n\n\nInput: data.frame\n\n\n\nOutput: data.frame\n\n\n\nPackage: blockr\n\n\n\nFilter block\n\n\n\n\n\n\n\nblockr.echarts4r\n\n\n\nNew block\n\n\n\nNew block\n\n\n\nblockr.ggplot2\n\n\n\nNew block\n\n\n\nNew block\n\n\n\n\n\n\n\n\n\n\nInformation about blocks.\nShared between block packages."
+  },
+  {
+    "objectID": "slides/2-blockr-dev/blockr-dev.html#filling-the-supermarket-with-block",
+    "href": "slides/2-blockr-dev/blockr-dev.html#filling-the-supermarket-with-block",
+    "title": "Introduction to blockr for developers",
+    "section": "Filling the supermarket with block",
+    "text": "Filling the supermarket with block\n\nregister_lm_block &lt;- function(pkg) {\n  register_block(\n    constructor = new_cardinal09_block,\n    name = \"cardinal09 block\",\n    description = \"Create a cardinal09 block\",\n    classes = c(\"cardinal09_block\", \"transform_block\"),\n    input = \"data.frame\",\n    output = \"gt\",\n    package = pkg\n  )\n}\n\n# Put in zzz.R\n.onLoad &lt;- function(libname, pkgname) {\n  register_lm_block(pkgname)\n  invisible(NULL)\n}\n\n\n\n\nFunded by"
+  },
+  {
+    "objectID": "slides/2-blockr-dev/blockr-dev.html#customize-blockr",
+    "href": "slides/2-blockr-dev/blockr-dev.html#customize-blockr",
+    "title": "Introduction to blockr for developers",
+    "section": "Customize blockr",
+    "text": "Customize blockr\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nBlock generic\n\n\n\nData block method\n\n\n\nPlot block method\n\n\n\nTransform block method\n\n\n\n\n\n\n\n\n\nS3 OO system1: customize behavior depending on object class.\n\n\n\n\nFunded by \n\n\nS3 Object Oriented system https://adv-r.hadley.nz/s3.html"
+  },
+  {
+    "objectID": "slides/2-blockr-dev/blockr-dev.html#create-new-blocks-cardinal-block-14",
+    "href": "slides/2-blockr-dev/blockr-dev.html#create-new-blocks-cardinal-block-14",
+    "title": "Introduction to blockr for developers",
+    "section": "Create new blocks: cardinal block 1/4",
+    "text": "Create new blocks: cardinal block 1/4\n\n\n1new_cardinal09_block &lt;- function(\n2  id_var = \"USUBJID\",\n  arm_var = \"ARM\",\n  saffl_var = \"SAFFL\",\n  pref_var = \"AEDECOD\",\n  show_colcounts = TRUE,\n  ...) {\n\n}\n\n\n1\n\nCreate the constructor.\n\n2\n\nSelect parameters to expose as interactive inputs."
+  },
+  {
+    "objectID": "slides/2-blockr-dev/blockr-dev.html#create-new-blocks-cardinal-block-24",
+    "href": "slides/2-blockr-dev/blockr-dev.html#create-new-blocks-cardinal-block-24",
+    "title": "Introduction to blockr for developers",
+    "section": "Create new blocks: cardinal block 2/4",
+    "text": "Create new blocks: cardinal block 2/4\n\n\nnew_cardinal09_block &lt;- function(\n  id_var = \"USUBJID\",\n  arm_var = \"ARM\",\n  saffl_var = \"SAFFL\",\n  pref_var = \"AEDECOD\",\n  show_colcounts = TRUE,\n  ...) {\n\n3  all_cols &lt;- function(data) colnames(data)\n\n4  fields &lt;- list(\n    id_var = new_select_field(id_var, all_cols, title = \"ID\"),\n    arm_var = new_select_field(arm_var, all_cols, title = \"ARM\"),\n    saffl_var = new_select_field(saffl_var, all_cols, title = \"SAFFL\"),\n    pref_var = new_select_field(pref_var, all_cols, title = \"Pref\"),\n    show_colcounts = new_switch_field(show_colcounts, title = \"Show column counts\")\n  )\n\n  new_block(\n    fields = fields,\n\n  )\n}\n\n\n3\n\nConstruct columns dynamically.\n\n4\n\nAdd field(s) for interactivity. (Note: type allows to pass in cols as name instead of strings.)"
+  },
+  {
+    "objectID": "slides/2-blockr-dev/blockr-dev.html#create-new-blocks-cardinal-block-34",
+    "href": "slides/2-blockr-dev/blockr-dev.html#create-new-blocks-cardinal-block-34",
+    "title": "Introduction to blockr for developers",
+    "section": "Create new blocks: cardinal block 3/4",
+    "text": "Create new blocks: cardinal block 3/4\n\n\nnew_cardinal09_block &lt;- function(\n  id_var = \"USUBJID\",\n  arm_var = \"ARM\",\n  saffl_var = \"SAFFL\",\n  pref_var = \"AEDECOD\",\n  show_colcounts = TRUE,\n  ...) {\n\n  all_cols &lt;- function(data) colnames(data)\n\n  fields &lt;- list(\n    id_var = new_select_field(id_var, all_cols, title = \"ID\"),\n    arm_var = new_select_field(arm_var, all_cols, title = \"ARM\"),\n    saffl_var = new_select_field(saffl_var, all_cols, title = \"SAFFL\"),\n    pref_var = new_select_field(pref_var, all_cols, title = \"Pref\"),\n    show_colcounts = new_switch_field(show_colcounts, title = \"Show column counts\")\n  )\n\n  new_block(\n    fields = fields,\n5    expr = quote({\n      cardinal::make_table_09_gtsum(\n        adae = data,\n        arm_var = .(arm_var),\n        saffl_var = .(saffl_var),\n        id_var = .(id_var),\n        pref_var = .(pref_var),\n        show_colcounts = .(show_colcounts)\n      )\n    })\n  )\n}\n\n\n5\n\nProvide expression: use quote and pass field name with .(field_name). 1\n\n\n\n\n\nNeeded by bquote for partial substitution."
+  },
+  {
+    "objectID": "slides/2-blockr-dev/blockr-dev.html#create-new-blocks-cardinal-block-44",
+    "href": "slides/2-blockr-dev/blockr-dev.html#create-new-blocks-cardinal-block-44",
+    "title": "Introduction to blockr for developers",
+    "section": "Create new blocks: cardinal block 4/4",
+    "text": "Create new blocks: cardinal block 4/4\n\n\nnew_cardinal09_block &lt;- function(\n  id_var = \"USUBJID\",\n  arm_var = \"ARM\",\n  saffl_var = \"SAFFL\",\n  pref_var = \"AEDECOD\",\n  show_colcounts = TRUE,\n  ...) {\n\n  all_cols &lt;- function(data) colnames(data)\n\n  fields &lt;- list(\n    id_var = new_select_field(id_var, all_cols, title = \"ID\"),\n    arm_var = new_select_field(arm_var, all_cols, title = \"ARM\"),\n    saffl_var = new_select_field(saffl_var, all_cols, title = \"SAFFL\"),\n    pref_var = new_select_field(pref_var, all_cols, title = \"Pref\"),\n    show_colcounts = new_switch_field(show_colcounts, title = \"Show column counts\")\n  )\n\n  new_block(\n    fields = fields,\n    expr = quote({\n      cardinal::make_table_09_gtsum(\n        adae = data,\n        arm_var = .(arm_var),\n        saffl_var = .(saffl_var),\n        id_var = .(id_var),\n        pref_var = .(pref_var),\n        show_colcounts = .(show_colcounts)\n      )\n    }),\n    ...,\n    class = c(\"cardinal09_block\")\n  )\n}\n\n\nGive it the correct classes: as we don’t get data out of it, we can’t call it transform_block."
+  },
+  {
+    "objectID": "slides/2-blockr-dev/blockr-dev.html#why-does-this-fail",
+    "href": "slides/2-blockr-dev/blockr-dev.html#why-does-this-fail",
+    "title": "Introduction to blockr for developers",
+    "section": "Why does this fail?",
+    "text": "Why does this fail?"
+  },
+  {
+    "objectID": "slides/2-blockr-dev/blockr-dev.html#about-blockr-classes",
+    "href": "slides/2-blockr-dev/blockr-dev.html#about-blockr-classes",
+    "title": "Introduction to blockr for developers",
+    "section": "About blockr classes",
+    "text": "About blockr classes\n\n\n%%| mermaid-format: svg\nflowchart LR\n  block_generic[Block generic] --&gt; data_block_method[Data block method]\n  block_generic --&gt; transform_block_method[Transform block method]\n  block_generic --&gt; plot_block_method[Plot block method]\n\nS3 OO system1: customize behavior depending on object class.\n\nS3 Object Oriented system https://adv-r.hadley.nz/s3.html"
+  },
+  {
+    "objectID": "slides/2-blockr-dev/blockr-dev.html#adding-missing-pieces",
+    "href": "slides/2-blockr-dev/blockr-dev.html#adding-missing-pieces",
+    "title": "Introduction to blockr for developers",
+    "section": "Adding missing pieces",
+    "text": "Adding missing pieces\n\nWe need a function that renders gt outputs (server and ui side).\nWe need a server method for cardinal09_block. We can inherit the transform block one.\n\ngenerate_server.cardinal09_block &lt;- blockr:::generate_server.\ntransform_block\n\nuiOutputBlock.cardinal09_block &lt;- function(x, ns) {\n  gt::gt_output(ns(\"res\"))\n}\n\nserver_output.cardinal09_block &lt;- function(x, result, output) {\n  gt::render_gt(result())\n}"
   }
 ]

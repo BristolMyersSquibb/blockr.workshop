@@ -12,7 +12,9 @@ Roxygen: list(markdown = TRUE)
 Imports:
   blockr,
   palmerpenguins,
-  ggplot2
+  ggplot2,
+  cardinal,
+  gt
 Remotes:
     BristolMyersSquibb/blockr
 RoxygenNote: 7.3.2

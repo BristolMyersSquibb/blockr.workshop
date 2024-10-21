@@ -582,8 +582,8 @@ serve_workspace(clear = FALSE) # <3>
 3. Serve Shiny app.
 
 
-## How far can I go with blockr? {background-image="../../assets/images/undraw_add_post_re_174w.svg" background-size="90%" style="margin-left: 450px; margin-top: 700px; font-size: 1.5em"}
-
 ## Exercise 3: pharma data
 
 TBD
+
+## How far can I go with blockr? {background-image="../../assets/images/undraw_add_post_re_174w.svg" background-size="90%" style="margin-left: 450px; margin-top: 700px; font-size: 1.5em"}

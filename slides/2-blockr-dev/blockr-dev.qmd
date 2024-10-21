@@ -8,10 +8,9 @@ format:
     include-in-header:
       - text: |
           <script src="https://cdn.jsdelivr.net/npm/mermaid@10.9.1/dist/mermaid.min.js"></script>
-    #css: [
-    #  "assets/style/bootstrap.min.css",
-    #  "assets/style/extra.css"
-    #]
+    css: [
+      "../../assets/css/custom.css"
+    ]
     view-distance: 5
     mermaid:
       theme: default
@@ -31,3 +30,335 @@ filters:
 editor:
     render-on-save: true
 ---
+
+
+# Create your own blocks </br> supermarket {background-image="../../assets/images/undraw_empty_cart_co35.svg" background-size="60%" style="margin-top: -300px; font-size: 1.5em"}
+
+## Today's mission {style="font-size: 1.5em"}
+
+Create a new cardinal[^cardinal] block: 
+
+`cardinal::make_table_09_gtsum`
+
+<iframe src="https://pharmaverse.github.io/cardinal/quarto/table-templates/template-table_09.html" width="100%" height="500px"></iframe>
+
+[^cardinal]: code: https://github.com/pharmaverse/cardinal/blob/main/R/fda-table_09.R#L375
+
+## Create new blocks: cardinal block 1/4 {auto-animate=true style="font-size: 1.5em"}
+
+::: {style="font-size: 1em"}
+```{r, eval=FALSE, echo=TRUE}
+new_cardinal09_block <- function( # <1>
+  id_var = "USUBJID", # <2>
+  arm_var = "ARM", # <2>
+  saffl_var = "SAFFL", # <2>
+  pref_var = "AEDECOD", # <2>
+  show_colcounts = TRUE, # <2>
+  ...) {
+
+}
+```
+
+1. Create the `constructor`.
+2. Select parameters to expose as __interactive__ inputs.
+
+:::
+
+## Create new blocks: cardinal block 2/4 {auto-animate=true style="font-size: 1.5em"}
+
+::: {style="font-size: 1em"}
+```{r, eval=FALSE, echo=TRUE}
+#| code-line-numbers: "9|11-17|20"
+new_cardinal09_block <- function(
+  id_var = "USUBJID",
+  arm_var = "ARM",
+  saffl_var = "SAFFL",
+  pref_var = "AEDECOD",
+  show_colcounts = TRUE,
+  ...) {
+
+  all_cols <- function(data) colnames(data) # <3>
+
+  fields <- list(# <4>
+    id_var = new_select_field(id_var, all_cols, title = "ID"), # <4>
+    arm_var = new_select_field(arm_var, all_cols, title = "ARM"), # <4>
+    saffl_var = new_select_field(saffl_var, all_cols, title = "SAFFL"), # <4>
+    pref_var = new_select_field(pref_var, all_cols, title = "Pref"), # <4>
+    show_colcounts = new_switch_field(show_colcounts, title = "Show column counts") # <4>
+  ) # <4>
+
+  new_block(
+    fields = fields, # <4>
+
+  )
+}
+```
+3. Construct columns dynamically.
+4. Add field(s) for interactivity. (Note: `type` allows to pass in cols as name instead of strings.)
+
+:::
+
+
+## Create new blocks: cardinal block 3/4 {auto-animate=true style="font-size: 1.5em"}
+
+
+::: {style="font-size: 1em"}
+```{r, eval=FALSE, echo=TRUE}
+#| code-line-numbers: "21-30"
+new_cardinal09_block <- function(
+  id_var = "USUBJID",
+  arm_var = "ARM",
+  saffl_var = "SAFFL",
+  pref_var = "AEDECOD",
+  show_colcounts = TRUE,
+  ...) {
+
+  all_cols <- function(data) colnames(data)
+
+  fields <- list(
+    id_var = new_select_field(id_var, all_cols, title = "ID"),
+    arm_var = new_select_field(arm_var, all_cols, title = "ARM"),
+    saffl_var = new_select_field(saffl_var, all_cols, title = "SAFFL"),
+    pref_var = new_select_field(pref_var, all_cols, title = "Pref"),
+    show_colcounts = new_switch_field(show_colcounts, title = "Show column counts")
+  )
+
+  new_block(
+    fields = fields,
+    expr = quote({ # <5>
+      cardinal::make_table_09_gtsum( # <5>
+        adae = data, # <5>
+        arm_var = .(arm_var), # <5>
+        saffl_var = .(saffl_var), # <5>
+        id_var = .(id_var), # <5>
+        pref_var = .(pref_var), # <5>
+        show_colcounts = .(show_colcounts) # <5>
+      ) # <5>
+    }) # <5>
+  )
+}
+```
+5. Provide expression: use `quote` and pass field name with `.(field_name)`. ^[Needed by `bquote` for partial substitution.]
+
+:::
+
+
+## Create new blocks: cardinal block 4/4 {auto-animate=true style="font-size: 1.5em"}
+:::{style="font-size: 1em"}
+```{r, eval=FALSE, echo=TRUE}
+#| code-line-numbers: "32"
+new_cardinal09_block <- function(
+  id_var = "USUBJID",
+  arm_var = "ARM",
+  saffl_var = "SAFFL",
+  pref_var = "AEDECOD",
+  show_colcounts = TRUE,
+  ...) {
+
+  all_cols <- function(data) colnames(data)
+
+  fields <- list(
+    id_var = new_select_field(id_var, all_cols, title = "ID"),
+    arm_var = new_select_field(arm_var, all_cols, title = "ARM"),
+    saffl_var = new_select_field(saffl_var, all_cols, title = "SAFFL"),
+    pref_var = new_select_field(pref_var, all_cols, title = "Pref"),
+    show_colcounts = new_switch_field(show_colcounts, title = "Show column counts")
+  )
+
+  new_block(
+    fields = fields,
+    expr = quote({
+      cardinal::make_table_09_gtsum(
+        adae = data,
+        arm_var = .(arm_var),
+        saffl_var = .(saffl_var),
+        id_var = .(id_var),
+        pref_var = .(pref_var),
+        show_colcounts = .(show_colcounts)
+      )
+    }),
+    ...,
+    class = c("cardinal09_block")
+  )
+}
+```
+5. Give it the correct classes: as we don't get data out of it, we can't call it `transform_block`.
+
+:::
+
+## Why does this fail? {style="font-size: 1.5em"}
+
+<!-- ```{shinylive-r}
+#| standalone: true
+#| components: [viewer]
+#| viewerHeight: 550
+## file: app.R
+webr::install("blockr", repos = "https://bristolmyerssquibb.github.io/webr-repos/")
+webr::install("cardinal", repos = "https://bristolmyerssquibb.github.io/webr-repos/")
+library(blockr)
+library(cardinal)
+
+new_cardinal09_block <- function(
+  ...,
+  id_var = "USUBJID",
+  arm_var = "ARM",
+  saffl_var = "SAFFL",
+  pref_var = "AEDECOD",
+  show_colcounts = TRUE
+){
+  all_cols <- function(data) colnames(data)
+
+  fields <- list(
+    id_var = new_select_field(id_var, all_cols, title = "ID"),
+    arm_var = new_select_field(arm_var, all_cols, title = "ARM"),
+    saffl_var = new_select_field(saffl_var, all_cols, title = "SAFFL"),
+    pref_var = new_select_field(pref_var, all_cols, title = "Pref"),
+    show_colcounts = new_switch_field(show_colcounts, title = "Show column counts")
+  )
+
+  expr <- quote({
+    make_table_09_gtsum(
+      adae = data,
+      arm_var = .(arm_var),
+      saffl_var = .(saffl_var),
+      id_var = .(id_var),
+      pref_var = .(pref_var),
+      show_colcounts = .(show_colcounts)
+    )
+  })
+
+  blockr::new_block(
+    expr = expr,
+    fields = fields,
+    ...,
+    class = c("cardinal09_block", "transform_block")
+  )
+}
+
+# TBD: explain this
+generate_server.cardinal09_block <- blockr:::generate_server.
+transform_block
+
+# TBD: explain S3 customization
+uiOutputBlock.cardinal09_block <- function(x, ns) {
+  gt::gt_output(ns("res"))
+}
+
+server_output.cardinal09_block <- function(x, result, output) {
+  gt::render_gt(result())
+}
+
+my_stack <- new_stack(
+  new_dataset_block("cadae", "random.cdisc.data"),
+  new_cardinal09_block()
+)
+
+serve_stack(my_stack)
+``` -->
+
+## About blockr classes {style="font-size: 1.5em"}
+
+::::{.columns}
+
+:::{.column width=60%}
+```{mermaid}
+%%| mermaid-format: svg
+flowchart LR
+  block_generic[Block generic] --> data_block_method[Data block method]
+  block_generic --> transform_block_method[Transform block method]
+  block_generic --> plot_block_method[Plot block method]
+```
+:::
+
+:::{.column width=40%}
+__S3 OO system__[^S3]: __customize__ behavior depending on object __class__.
+:::
+
+::::
+
+[^S3]: S3 Object Oriented system https://adv-r.hadley.nz/s3.html
+
+## Adding missing pieces
+
+- We need a function that renders `gt` __outputs__ (server and ui side).
+- We need a server method for `cardinal09_block`. We can inherit the transform block one.
+
+```r
+generate_server.cardinal09_block <- blockr:::generate_server.
+transform_block
+
+uiOutputBlock.cardinal09_block <- function(x, ns) {
+  gt::gt_output(ns("res"))
+}
+
+server_output.cardinal09_block <- function(x, result, output) {
+  gt::render_gt(result())
+}
+```
+
+
+## How do we make custom blocks available to users? {style="font-size: 1.5em" background-image="../../assets/images/undraw_shopping_app_flsj.svg" background-size="40%"}
+
+## The registry: the blocks supermarket {data-stack-name="Registry" style="font-size: 1.5em"}
+
+::::{.columns}
+
+:::{.column width=70%}
+```{mermaid}
+%%| mermaid-format: svg
+flowchart LR
+  subgraph blockr_ggplot2[blockr.ggplot2]
+    new_block1[New block]
+    new_block2[New block]
+  end
+  subgraph blockr_echarts4r[blockr.echarts4r]
+    new_block3[New block]
+    new_block4[New block]
+  end
+  blockr_ggplot2 --> |register| registry
+  blockr_echarts4r --> |register| registry
+  subgraph registry[Registry]
+    subgraph select_reg[Select block]
+      reg_name[Name: select block]
+      reg_descr[Description: select columns in a table]
+      reg_classes[Classes: select_block, tranform_block]
+      reg_input[Input: data.frame]
+      reg_output[Output: data.frame]
+      reg_package[Package: blockr]
+    end
+    subgraph filter_reg[Filter block]
+    end
+    filter_reg --x |unregister| trash["fa:fa-trash"]
+  end
+```
+:::
+
+:::{.column width=30%}
+- __Information__ about blocks. 
+- __Shared__ between block packages.
+:::
+
+::::
+
+
+## Filling the supermarket with block {style="font-size: 1.5em"}
+
+```{r echo=TRUE, eval=FALSE}
+register_lm_block <- function(pkg) {
+  register_block(
+    constructor = new_cardinal09_block,
+    name = "cardinal09 block",
+    description = "Create a cardinal09 block",
+    classes = c("cardinal09_block", "transform_block"),
+    input = "data.frame",
+    output = "gt",
+    package = pkg
+  )
+}
+
+# Put in zzz.R
+.onLoad <- function(libname, pkgname) {
+  register_lm_block(pkgname)
+  invisible(NULL)
+}
+```

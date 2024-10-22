@@ -571,7 +571,7 @@ Instructions:
 library(blockr)
 # Creates an empty workspace
 set_workspace( # <1>
-  stack_1 = new_stack() # <2>
+  stack_1 = new_stack(), # <2>
   stack_2 = new_stack()
 )
 serve_workspace(clear = FALSE) # <3>

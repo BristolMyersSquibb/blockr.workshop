@@ -16,7 +16,8 @@ Imports:
     cardinal,
     gt
 Remotes:
-    BristolMyersSquibb/blockr
+    BristolMyersSquibb/blockr,
+    pharmaverse/cardinal
 Suggests:
     pkgload
 RoxygenNote: 7.3.2

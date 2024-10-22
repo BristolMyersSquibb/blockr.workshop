@@ -567,7 +567,7 @@ Instructions:
 
 ## How do I create a workspace? {style="font-size: 1.5em"}
 
-```r
+```{r, eval=FALSE, echo=TRUE}
 library(blockr)
 # Creates an empty workspace
 set_workspace( # <1>

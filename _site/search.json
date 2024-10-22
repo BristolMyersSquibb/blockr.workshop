@@ -130,7 +130,7 @@
     "href": "slides/1-blockr-user/blockr-user.html#how-do-i-create-a-workspace",
     "title": "Introduction to blockr for users",
     "section": "How do I create a workspace?",
-    "text": "How do I create a workspace?\nlibrary(blockr)\n# Creates an empty workspace\n1set_workspace(\n2  stack_1 = new_stack()\n  stack_2 = new_stack()\n)\n3serve_workspace(clear = FALSE)\n\n1\n\nInitialise.\n\n2\n\nOptional: add stacks.\n\n3\n\nServe Shiny app."
+    "text": "How do I create a workspace?\n\nlibrary(blockr)\n# Creates an empty workspace\n1set_workspace(\n2  stack_1 = new_stack()\n  stack_2 = new_stack()\n)\n3serve_workspace(clear = FALSE)\n\n\n1\n\nInitialise.\n\n2\n\nOptional: add stacks.\n\n3\n\nServe Shiny app."
   },
   {
     "objectID": "slides/1-blockr-user/blockr-user.html#how-far-can-i-go-with-blockr",

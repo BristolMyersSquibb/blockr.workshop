@@ -221,7 +221,7 @@ A __transform__ block:
 #| components: [viewer]
 #| column: screen-inset-shaded
 #| viewerHeight: 800
-webr::install("blockr", repos = "https://bristolmyerssquibb.github.io/webr-repos/")
+webr::install("blockr", repos = c("https://bristolmyerssquibb.github.io/webr-repos/", "https://repo.r-wasm.org"))
 
 library(blockr)
 library(palmerpenguins)
@@ -310,7 +310,7 @@ Instructions:
 #| components: [viewer]
 #| column: screen-inset-shaded
 #| viewerHeight: 800
-webr::install("blockr", repos = "https://bristolmyerssquibb.github.io/webr-repos/")
+webr::install("blockr", repos = c("https://bristolmyerssquibb.github.io/webr-repos/", "https://repo.r-wasm.org"))
 
 library(blockr)
 library(palmerpenguins)
@@ -486,7 +486,7 @@ Collection of __recipes__ (stacks) to build a __dashboard__.
 #| components: [viewer]
 #| column: screen-inset-shaded
 #| viewerHeight: 800
-webr::install("blockr", repos = "https://bristolmyerssquibb.github.io/webr-repos/")
+webr::install("blockr", repos = c("https://bristolmyerssquibb.github.io/webr-repos/", "https://repo.r-wasm.org"))
 
 library(blockr)
 library(palmerpenguins)

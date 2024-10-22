@@ -14,7 +14,8 @@ Imports:
     palmerpenguins,
     ggplot2,
     cardinal,
-    gt
+    gt,
+    shinylive
 Remotes:
     BristolMyersSquibb/blockr,
     pharmaverse/cardinal

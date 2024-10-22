@@ -582,8 +582,66 @@ serve_workspace(clear = FALSE) # <3>
 3. Serve Shiny app.
 
 
-## Exercise 3: pharma data
+## 🧪 Exercise 3: pharma data
 
-TBD
+::::{.columns}
+
+:::{.column}
+```{shinylive-r}
+#| standalone: true
+#| components: [viewer]
+#| column: screen-inset-shaded
+#| viewerHeight: 800
+webr::install("blockr", repos = c("https://bristolmyerssquibb.github.io/webr-repos/", "https://repo.r-wasm.org"))
+webr::install("blockr.data", repos = c("https://bristolmyerssquibb.github.io/webr-repos/", "https://repo.r-wasm.org"))
+webr::install("blockr.ggplot2", repos = c("https://bristolmyerssquibb.github.io/webr-repos/", "https://repo.r-wasm.org"))
+
+library(blockr)
+library(blockr.ggplot2)
+
+blockr.ggplot2:::register_ggplot_blocks("blockr.ggplot2")
+
+new_customdata_block <- function(selected = character()) {
+  new_dataset_block(selected, package = "blockr.data")
+}
+
+register_blocks(
+  constructor = c(new_customdata_block, new_ggplot_block, new_geomhistogram_block, new_theme_block),
+  name = c("customdata block", "ggplot2 block", "geom histogram block", "theme block"),
+  description = c(
+    "Data from CDISC package",
+    "ggplot object",
+    "ggplot histogram layer",
+    "ggplot theme layer"
+  ),
+  classes = list(
+    c("customdata_block", "dataset_block", "data_block"),
+    c("ggplot_block", "plot_block"),
+    c("geomhistogram_block", "plot_layer_block", "plot_block"),
+    c("theme_block", "plot_layer_block", "plot_block")
+  ),
+  input = c(NA_character_, "data.frame", "ggplot", "ggplot"),
+  output = c("data.frame", "ggplot", "ggplot", "ggplot"),
+  package = "blockr.demo",
+  category = c("custom data", "visualization", "visualization", "visualization")
+)
+
+stack <- new_stack()
+serve_stack(stack)
+```
+:::
+
+:::{.column}
+Instructions:
+
+Objectives: distribution of age in demo dataset.
+
+1. Add a `new_customdata_block` with `demo` as __selected__ dataset.
+2. Add a `new_ggplot_block` with `x` as __func__ and `AGE` as __default_columns__.
+3. Add a `new_geomhistogram_block`.
+4. Add a `new_theme_block`.
+:::
+
+::::
 
 ## How far can I go with blockr? {background-image="../../assets/images/undraw_add_post_re_174w.svg" background-size="90%" style="margin-left: 450px; margin-top: 700px; font-size: 1.5em"}

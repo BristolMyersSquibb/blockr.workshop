@@ -1027,8 +1027,62 @@ Imagine if we could build an interactive datapipeline like we would prepare a me
 </dl>
 </div>
 </div>
-</section><section id="exercise-3-pharma-data" class="slide level2"><h2>Exercise 3: pharma data</h2>
-<p>TBD</p>
+</section><section id="exercise-3-pharma-data" class="slide level2"><h2>🧪 Exercise 3: pharma data</h2>
+<div class="columns">
+<div class="column">
+<div class="sourceCode" id="cb5" data-engine="r"><pre class="sourceCode numberSource shinylive-r number-lines code-with-copy"><code class="sourceCode"><span id="cb5-1"><a></a>#| '!! shinylive warning !!': |</span>
+<span id="cb5-2"><a></a>#|   shinylive does not work in self-contained HTML documents.</span>
+<span id="cb5-3"><a></a>#|   Please set `embed-resources: false` in your metadata.</span>
+<span id="cb5-4"><a></a>#| standalone: true</span>
+<span id="cb5-5"><a></a>#| components: [viewer]</span>
+<span id="cb5-6"><a></a>#| column: screen-inset-shaded</span>
+<span id="cb5-7"><a></a>#| viewerHeight: 800</span>
+<span id="cb5-8"><a></a>webr::install("blockr", repos = c("https://bristolmyerssquibb.github.io/webr-repos/", "https://repo.r-wasm.org"))</span>
+<span id="cb5-9"><a></a>webr::install("blockr.data", repos = c("https://bristolmyerssquibb.github.io/webr-repos/", "https://repo.r-wasm.org"))</span>
+<span id="cb5-10"><a></a>webr::install("blockr.ggplot2", repos = c("https://bristolmyerssquibb.github.io/webr-repos/", "https://repo.r-wasm.org"))</span>
+<span id="cb5-11"><a></a></span>
+<span id="cb5-12"><a></a>library(blockr)</span>
+<span id="cb5-13"><a></a>library(blockr.ggplot2)</span>
+<span id="cb5-14"><a></a></span>
+<span id="cb5-15"><a></a>blockr.ggplot2:::register_ggplot_blocks("blockr.ggplot2")</span>
+<span id="cb5-16"><a></a></span>
+<span id="cb5-17"><a></a>new_customdata_block &lt;- function(selected = character()) {</span>
+<span id="cb5-18"><a></a>  new_dataset_block(selected, package = "blockr.data")</span>
+<span id="cb5-19"><a></a>}</span>
+<span id="cb5-20"><a></a></span>
+<span id="cb5-21"><a></a>register_blocks(</span>
+<span id="cb5-22"><a></a>  constructor = c(new_customdata_block, new_ggplot_block, new_geomhistogram_block, new_theme_block),</span>
+<span id="cb5-23"><a></a>  name = c("customdata block", "ggplot2 block", "geom histogram block", "theme block"),</span>
+<span id="cb5-24"><a></a>  description = c(</span>
+<span id="cb5-25"><a></a>    "Data from CDISC package",</span>
+<span id="cb5-26"><a></a>    "ggplot object",</span>
+<span id="cb5-27"><a></a>    "ggplot histogram layer",</span>
+<span id="cb5-28"><a></a>    "ggplot theme layer"</span>
+<span id="cb5-29"><a></a>  ),</span>
+<span id="cb5-30"><a></a>  classes = list(</span>
+<span id="cb5-31"><a></a>    c("customdata_block", "dataset_block", "data_block"),</span>
+<span id="cb5-32"><a></a>    c("ggplot_block", "plot_block"),</span>
+<span id="cb5-33"><a></a>    c("geomhistogram_block", "plot_layer_block", "plot_block"),</span>
+<span id="cb5-34"><a></a>    c("theme_block", "plot_layer_block", "plot_block")</span>
+<span id="cb5-35"><a></a>  ),</span>
+<span id="cb5-36"><a></a>  input = c(NA_character_, "data.frame", "ggplot", "ggplot"),</span>
+<span id="cb5-37"><a></a>  output = c("data.frame", "ggplot", "ggplot", "ggplot"),</span>
+<span id="cb5-38"><a></a>  package = "blockr.demo",</span>
+<span id="cb5-39"><a></a>  category = c("custom data", "visualization", "visualization", "visualization")</span>
+<span id="cb5-40"><a></a>)</span>
+<span id="cb5-41"><a></a></span>
+<span id="cb5-42"><a></a>stack &lt;- new_stack()</span>
+<span id="cb5-43"><a></a>serve_stack(stack)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div><div class="column">
+<p>Instructions:</p>
+<p>Objectives: distribution of age in demo dataset.</p>
+<ol type="1">
+<li>Add a <code>new_customdata_block</code> with <code>demo</code> as <strong>selected</strong> dataset.</li>
+<li>Add a <code>new_ggplot_block</code> with <code>x</code> as <strong>func</strong> and <code>AGE</code> as <strong>default_columns</strong>.</li>
+<li>Add a <code>new_geomhistogram_block</code>.</li>
+<li>Add a <code>new_theme_block</code>.</li>
+</ol>
+</div></div>
 </section><section id="how-far-can-i-go-with-blockr" class="slide level2" data-background-image="../../assets/images/undraw_add_post_re_174w.svg" data-background-size="90%" style="margin-left: 450px; margin-top: 700px; font-size: 1.5em"><h2>How far can I go with blockr?</h2>
 
 <div class="quarto-auto-generated-content">

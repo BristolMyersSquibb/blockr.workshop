@@ -1,5 +1,82 @@
 [
   {
+    "objectID": "slides/2-blockr-dev/blockr-dev.html#todays-mission",
+    "href": "slides/2-blockr-dev/blockr-dev.html#todays-mission",
+    "title": "Introduction to blockr for developers",
+    "section": "Today’s mission",
+    "text": "Today’s mission\nCreate a new cardinal1 block:\ncardinal::make_table_09_gtsum\n\n\ncode: https://github.com/pharmaverse/cardinal/blob/main/R/fda-table_09.R#L375"
+  },
+  {
+    "objectID": "slides/2-blockr-dev/blockr-dev.html#create-new-blocks-cardinal-block-14",
+    "href": "slides/2-blockr-dev/blockr-dev.html#create-new-blocks-cardinal-block-14",
+    "title": "Introduction to blockr for developers",
+    "section": "Create new blocks: cardinal block 1/4",
+    "text": "Create new blocks: cardinal block 1/4\n\n\n1new_cardinal09_block &lt;- function(\n2  id_var = \"USUBJID\",\n  arm_var = \"ARM\",\n  saffl_var = \"SAFFL\",\n  pref_var = \"AEDECOD\",\n  show_colcounts = TRUE,\n  ...) {\n\n}\n\n\n1\n\nCreate the constructor.\n\n2\n\nSelect parameters to expose as interactive inputs."
+  },
+  {
+    "objectID": "slides/2-blockr-dev/blockr-dev.html#create-new-blocks-cardinal-block-24",
+    "href": "slides/2-blockr-dev/blockr-dev.html#create-new-blocks-cardinal-block-24",
+    "title": "Introduction to blockr for developers",
+    "section": "Create new blocks: cardinal block 2/4",
+    "text": "Create new blocks: cardinal block 2/4\n\n\nnew_cardinal09_block &lt;- function(\n  id_var = \"USUBJID\",\n  arm_var = \"ARM\",\n  saffl_var = \"SAFFL\",\n  pref_var = \"AEDECOD\",\n  show_colcounts = TRUE,\n  ...) {\n\n3  all_cols &lt;- function(data) colnames(data)\n\n4  fields &lt;- list(\n    id_var = new_select_field(id_var, all_cols, title = \"ID\"),\n    arm_var = new_select_field(arm_var, all_cols, title = \"ARM\"),\n    saffl_var = new_select_field(saffl_var, all_cols, title = \"SAFFL\"),\n    pref_var = new_select_field(pref_var, all_cols, title = \"Pref\"),\n    show_colcounts = new_switch_field(show_colcounts, title = \"Show column counts\")\n  )\n\n  new_block(\n    fields = fields,\n\n  )\n}\n\n\n3\n\nConstruct columns dynamically.\n\n4\n\nAdd field(s) for interactivity. (Note: type allows to pass in cols as name instead of strings.)"
+  },
+  {
+    "objectID": "slides/2-blockr-dev/blockr-dev.html#create-new-blocks-cardinal-block-34",
+    "href": "slides/2-blockr-dev/blockr-dev.html#create-new-blocks-cardinal-block-34",
+    "title": "Introduction to blockr for developers",
+    "section": "Create new blocks: cardinal block 3/4",
+    "text": "Create new blocks: cardinal block 3/4\n\n\nnew_cardinal09_block &lt;- function(\n  id_var = \"USUBJID\",\n  arm_var = \"ARM\",\n  saffl_var = \"SAFFL\",\n  pref_var = \"AEDECOD\",\n  show_colcounts = TRUE,\n  ...) {\n\n  all_cols &lt;- function(data) colnames(data)\n\n  fields &lt;- list(\n    id_var = new_select_field(id_var, all_cols, title = \"ID\"),\n    arm_var = new_select_field(arm_var, all_cols, title = \"ARM\"),\n    saffl_var = new_select_field(saffl_var, all_cols, title = \"SAFFL\"),\n    pref_var = new_select_field(pref_var, all_cols, title = \"Pref\"),\n    show_colcounts = new_switch_field(show_colcounts, title = \"Show column counts\")\n  )\n\n  new_block(\n    fields = fields,\n5    expr = quote({\n      cardinal::make_table_09_gtsum(\n        adae = data,\n        arm_var = .(arm_var),\n        saffl_var = .(saffl_var),\n        id_var = .(id_var),\n        pref_var = .(pref_var),\n        show_colcounts = .(show_colcounts)\n      )\n    })\n  )\n}\n\n\n5\n\nProvide expression: use quote and pass field name with .(field_name). 1\n\n\n\n\n\nNeeded by bquote for partial substitution."
+  },
+  {
+    "objectID": "slides/2-blockr-dev/blockr-dev.html#create-new-blocks-cardinal-block-44",
+    "href": "slides/2-blockr-dev/blockr-dev.html#create-new-blocks-cardinal-block-44",
+    "title": "Introduction to blockr for developers",
+    "section": "Create new blocks: cardinal block 4/4",
+    "text": "Create new blocks: cardinal block 4/4\n\n\nnew_cardinal09_block &lt;- function(\n  id_var = \"USUBJID\",\n  arm_var = \"ARM\",\n  saffl_var = \"SAFFL\",\n  pref_var = \"AEDECOD\",\n  show_colcounts = TRUE,\n  ...) {\n\n  all_cols &lt;- function(data) colnames(data)\n\n  fields &lt;- list(\n    id_var = new_select_field(id_var, all_cols, title = \"ID\"),\n    arm_var = new_select_field(arm_var, all_cols, title = \"ARM\"),\n    saffl_var = new_select_field(saffl_var, all_cols, title = \"SAFFL\"),\n    pref_var = new_select_field(pref_var, all_cols, title = \"Pref\"),\n    show_colcounts = new_switch_field(show_colcounts, title = \"Show column counts\")\n  )\n\n  new_block(\n    fields = fields,\n    expr = quote({\n      cardinal::make_table_09_gtsum(\n        adae = data,\n        arm_var = .(arm_var),\n        saffl_var = .(saffl_var),\n        id_var = .(id_var),\n        pref_var = .(pref_var),\n        show_colcounts = .(show_colcounts)\n      )\n    }),\n    ...,\n    class = c(\"cardinal09_block\")\n  )\n}\n\n\nGive it the correct classes: as we don’t get data out of it, we can’t call it transform_block."
+  },
+  {
+    "objectID": "slides/2-blockr-dev/blockr-dev.html#why-does-this-fail",
+    "href": "slides/2-blockr-dev/blockr-dev.html#why-does-this-fail",
+    "title": "Introduction to blockr for developers",
+    "section": "Why does this fail?",
+    "text": "Why does this fail?"
+  },
+  {
+    "objectID": "slides/2-blockr-dev/blockr-dev.html#about-blockr-classes",
+    "href": "slides/2-blockr-dev/blockr-dev.html#about-blockr-classes",
+    "title": "Introduction to blockr for developers",
+    "section": "About blockr classes",
+    "text": "About blockr classes\n\n\n\n\n\n\n\nflowchart LR\n  block_generic[Block generic] --&gt; data_block_method[Data block method]\n  block_generic --&gt; transform_block_method[Transform block method]\n  block_generic --&gt; plot_block_method[Plot block method]\n\n\n\n\n\n\n\nS3 OO system1: customize behavior depending on object class.\n\nS3 Object Oriented system https://adv-r.hadley.nz/s3.html"
+  },
+  {
+    "objectID": "slides/2-blockr-dev/blockr-dev.html#adding-missing-pieces",
+    "href": "slides/2-blockr-dev/blockr-dev.html#adding-missing-pieces",
+    "title": "Introduction to blockr for developers",
+    "section": "Adding missing pieces",
+    "text": "Adding missing pieces\n\nWe need a function that renders gt outputs (server and ui side).\nWe need a server method for cardinal09_block. We can inherit the transform block one.\n\ngenerate_server.cardinal09_block &lt;- blockr:::generate_server.\ntransform_block\n\nuiOutputBlock.cardinal09_block &lt;- function(x, ns) {\n  gt::gt_output(ns(\"res\"))\n}\n\nserver_output.cardinal09_block &lt;- function(x, result, output) {\n  gt::render_gt(result())\n}"
+  },
+  {
+    "objectID": "slides/2-blockr-dev/blockr-dev.html#how-do-we-make-custom-blocks-available-to-users",
+    "href": "slides/2-blockr-dev/blockr-dev.html#how-do-we-make-custom-blocks-available-to-users",
+    "title": "Introduction to blockr for developers",
+    "section": "How do we make custom blocks available to users?",
+    "text": "How do we make custom blocks available to users?"
+  },
+  {
+    "objectID": "slides/2-blockr-dev/blockr-dev.html#the-registry-the-blocks-supermarket",
+    "href": "slides/2-blockr-dev/blockr-dev.html#the-registry-the-blocks-supermarket",
+    "title": "Introduction to blockr for developers",
+    "section": "The registry: the blocks supermarket",
+    "text": "The registry: the blocks supermarket\n\n\n\n\n\n\n\n\n\n\n\nregister\n\n\n\nregister\n\n\n\nRegistry\n\n\n\nunregister\n\n\n\nSelect block\n\n\n\nName: select block\n\n\n\nDescription: select columns in a table\n\n\n\nClasses: select_block, tranform_block\n\n\n\nInput: data.frame\n\n\n\nOutput: data.frame\n\n\n\nPackage: blockr\n\n\n\nFilter block\n\n\n\n\n\n\n\nblockr.echarts4r\n\n\n\nNew block\n\n\n\nNew block\n\n\n\nblockr.ggplot2\n\n\n\nNew block\n\n\n\nNew block\n\n\n\n\n\n\n\n\n\n\nInformation about blocks.\nShared between block packages."
+  },
+  {
+    "objectID": "slides/2-blockr-dev/blockr-dev.html#filling-the-supermarket-with-block",
+    "href": "slides/2-blockr-dev/blockr-dev.html#filling-the-supermarket-with-block",
+    "title": "Introduction to blockr for developers",
+    "section": "Filling the supermarket with block",
+    "text": "Filling the supermarket with block\n\nregister_lm_block &lt;- function(pkg) {\n  register_block(\n    constructor = new_cardinal09_block,\n    name = \"cardinal09 block\",\n    description = \"Create a cardinal09 block\",\n    classes = c(\"cardinal09_block\", \"transform_block\"),\n    input = \"data.frame\",\n    output = \"gt\",\n    package = pkg\n  )\n}\n\n# Put in zzz.R\n.onLoad &lt;- function(libname, pkgname) {\n  register_lm_block(pkgname)\n  invisible(NULL)\n}\n\n\n\n\nFunded by"
+  },
+  {
     "objectID": "slides/0-welcome/welcome.html#before-we-start",
     "href": "slides/0-welcome/welcome.html#before-we-start",
     "title": "Introduction",
@@ -91,32 +168,32 @@
     "text": "The stack: a data analysis recipe\n\n\n\n\n\n\n\n\n\n\n\nStack\n\n\n\ndata\n\n\n\ndata\n\n\n\nBlock 1\n\n\n\nData: dataset, browser, …\n\n\n\nBlock 2\n\n\n\nTransform block: filter, select …\n\n\n\nBlock 3\n\n\n\nResult/transform: plot, filter, …\n\n\n\n\n\n\n\n\n\nCollection of instructions, blocks, from data import to wrangling/visualization."
   },
   {
-    "objectID": "slides/1-blockr-user/blockr-user.html#zoom-on-blocks",
-    "href": "slides/1-blockr-user/blockr-user.html#zoom-on-blocks",
+    "objectID": "slides/1-blockr-user/blockr-user.html#zoom-on-blocks-processing-units",
+    "href": "slides/1-blockr-user/blockr-user.html#zoom-on-blocks-processing-units",
     "title": "Introduction to blockr for users",
-    "section": "Zoom on blocks",
-    "text": "Zoom on blocks\n\nBlocks categories: import (data), transform, plot, …\nProvided by developers (or us)."
+    "section": "Zoom on blocks: processing units",
+    "text": "Zoom on blocks: processing units\n\nBlocks categories: import (data), transform data, visualize, …\nProvided by developers (or us).\n\n\n\n\n\nDesigned by upklyak / Freepik"
   },
   {
     "objectID": "slides/1-blockr-user/blockr-user.html#example-transform-blocks",
     "href": "slides/1-blockr-user/blockr-user.html#example-transform-blocks",
     "title": "Introduction to blockr for users",
     "section": "Example: transform blocks",
-    "text": "Example: transform blocks\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nTransform block\n\n\n\ninteractivity\n\n\n\ninteractivity\n\n\n\nevaluate\n\n\n\nField 1\n\n\n\nExpression\n\n\n\nField 2\n\n\n\nresult\n\n\n\nData input\n\n\n\nOutput\n\n\n\n\n\n\n\n\n\nA transform block:\n\nTakes input data.\nMay expose interactive input to transform the data.\nReturns the transformed data."
+    "text": "Example: transform blocks\n\n\n\n\n\n\n\nflowchart TD\n  blk_data_in(Input data)\n  blk_data_out[Output]\n  subgraph blk_block[Transform block]\n    blk_field1(Field 1)\n    blk_field2(Field 2)\n    blk_field1 --&gt; |interactivity| blk_expr\n    blk_field2 --&gt; |interactivity| blk_expr\n    blk_expr(Expression)\n    blk_res(result)\n    blk_expr --&gt; |evaluate| blk_res\n  end\n  blk_data_in --&gt; blk_block --&gt; blk_data_out\n\n\n\n\n\n\n\nA transform block:\n\nTakes input data.\nExposes interactive input to transform the data (select column, filter rows, …).\nReturns the transformed data."
   },
   {
-    "objectID": "slides/1-blockr-user/blockr-user.html#palmer-penguins-with-blockr",
-    "href": "slides/1-blockr-user/blockr-user.html#palmer-penguins-with-blockr",
+    "objectID": "slides/1-blockr-user/blockr-user.html#exercise-1",
+    "href": "slides/1-blockr-user/blockr-user.html#exercise-1",
     "title": "Introduction to blockr for users",
-    "section": "Palmer penguins with blockr",
-    "text": "Palmer penguins with blockr\n#| '!! shinylive warning !!': |\n#|   shinylive does not work in self-contained HTML documents.\n#|   Please set `embed-resources: false` in your metadata.\n#| standalone: true\n#| components: [viewer]\n#| column: screen-inset-shaded\n#| viewerHeight: 800\nwebr::install(\"blockr\", repos = \"https://bristolmyerssquibb.github.io/webr-repos/\")\n\nlibrary(blockr)\nlibrary(palmerpenguins)\nlibrary(ggplot2)\n\nnew_ggplot_block &lt;- function(col_x = character(), col_y = character(), ...) {\n\n  data_cols &lt;- function(data) colnames(data)\n\n  new_block(\n    fields = list(\n      x = new_select_field(col_x, data_cols, type = \"name\"),\n      y = new_select_field(col_y, data_cols, type = \"name\")\n    ),\n    expr = quote(\n      ggplot(mapping = aes(x = .(x), y = .(y)))\n    ),\n    class = c(\"ggplot_block\", \"plot_block\"),\n    ...\n  )\n}\n\nnew_geompoint_block &lt;- function(color = character(), shape = character(), ...) {\n\n  data_cols &lt;- function(data) colnames(data$data)\n\n  new_block(\n    fields = list(\n      color = new_select_field(color, data_cols, type = \"name\"),\n      shape = new_select_field(shape, data_cols, type = \"name\")\n    ),\n    expr = quote(\n      geom_point(aes(color = .(color), shape = .(shape)), size = 2)\n    ),\n    class = c(\"plot_layer_block\", \"plot_block\"),\n    ...\n  )\n}\n\nstack &lt;- new_stack(\n  data_block = new_dataset_block(\"penguins\", \"palmerpenguins\"),\n  filter_block = new_filter_block(\"sex\", \"female\", submit = TRUE),\n  plot_block = new_ggplot_block(\"body_mass_g\", \"flipper_length_mm\"),\n  layer_block = new_geompoint_block(\"species\", \"species\")\n)\nserve_stack(stack)"
+    "section": "🧪 Exercise 1",
+    "text": "🧪 Exercise 1\n\n\n\n\n\n\n\n\nInstructions:\n\nClick on the + button (top right corner).\nAdd a palmer_penguins block. You may search in the list.\nAdd a new filter_block, selecting sex as column and female as value. Click on run.\nAdd a new ggplot_block. Select x and y wizely.\nAdd a new geompoint_block. You may change shape and color.\nYou can remove and re-add blocks as you like …\nExport the stack code and try to run it."
   },
   {
     "objectID": "slides/1-blockr-user/blockr-user.html#how-much-code-would-it-take-with-shiny",
     "href": "slides/1-blockr-user/blockr-user.html#how-much-code-would-it-take-with-shiny",
     "title": "Introduction to blockr for users",
     "section": "How much code would it take with Shiny?",
-    "text": "How much code would it take with Shiny?\n\n\n\nlibrary(shiny)\nlibrary(bslib)\nlibrary(ggplot2)\nlibrary(palmerpenguins)\n\nshinyApp(\n  ui = page_fluid(\n    layout_sidebar(\n      sidebar = sidebar(\n        radioButtons(\"sex\", \"Sex\", unique(penguins$sex), \"female\"),\n        selectInput(\n          \"xvar\", \n          \"X var\", \n          colnames(dplyr::select(penguins, where(is.numeric))),\n          \"body_mass_g\"\n        ),\n        selectInput(\n          \"yvar\",\n          \"Y var\",\n          colnames(dplyr::select(penguins, where(is.numeric))),\n          \"flipper_length_mm\"\n        ),\n        selectInput(\n          \"color\",\n          \"Color and shape\",\n          colnames(dplyr::select(penguins, where(is.factor))),\n          \"species\"\n        )\n      ),\n      plotOutput(\"plot\")\n    )\n  ),\n  server = function(input, output, session) {\n    output$plot &lt;- renderPlot({\n      penguins |&gt;\n        filter(sex == !!input$sex) |&gt;\n        ggplot(aes(x = !!input$xvar, y = !!input$yvar)) +\n        geom_point(aes(color = !!input$color, shape = !!input$color), size = 2)\n    })\n  }\n)"
+    "text": "How much code would it take with Shiny?\n\n\n\nlibrary(shiny)\nlibrary(bslib)\nlibrary(ggplot2)\nlibrary(palmerpenguins)\n\nshinyApp(\n  ui = page_fluid(\n    layout_sidebar(\n      sidebar = sidebar(\n        radioButtons(\"sex\", \"Sex\", unique(penguins$sex), \"female\"),\n        selectInput(\n          \"xvar\", \n          \"X var\", \n          colnames(dplyr::select(penguins, where(is.numeric))),\n          \"body_mass_g\"\n        ),\n        selectInput(\n          \"yvar\",\n          \"Y var\",\n          colnames(dplyr::select(penguins, where(is.numeric))),\n          \"flipper_length_mm\"\n        ),\n        selectInput(\n          \"color\",\n          \"Color and shape\",\n          colnames(dplyr::select(penguins, where(is.factor))),\n          \"species\"\n        )\n      ),\n      plotOutput(\"plot\")\n    )\n  ),\n  server = function(input, output, session) {\n    output$plot &lt;- renderPlot({\n      penguins |&gt;\n        filter(sex == !!input$sex) |&gt;\n        ggplot(aes(x = !!input$xvar, y = !!input$yvar)) +\n        geom_point(aes(color = !!input$color, shape = !!input$color), size = 2)\n    })\n  }\n)\n\n\nChanging the data, you also need to change the entire hardcoded server logic!"
   },
   {
     "objectID": "slides/1-blockr-user/blockr-user.html#its-much-easier-with-blockr",
@@ -124,6 +201,13 @@
     "title": "Introduction to blockr for users",
     "section": "It’s much easier with blockr",
     "text": "It’s much easier with blockr\n\n\nlibrary(blockr)\n1new_stack(\n2  data_block = new_dataset_block(\"penguins\", \"palmerpenguins\"),\n  filter_block = new_filter_block(\"sex\", \"female\"),\n3  plot_block = new_ggplot_block(\"body_mass_g\", \"flipper_length_mm\"),\n4  layer_block = new_geompoint_block(\"species\", \"species\")\n)\n5serve_stack(stack)\n\n\n1\n\nCreate the stack.\n\n2\n\nImport data.\n\n3\n\nCreate the plot.\n\n4\n\nAdd it a layer.\n\n5\n\nServe a Shiny app."
+  },
+  {
+    "objectID": "slides/1-blockr-user/blockr-user.html#exercise-2-with-pharma-data",
+    "href": "slides/1-blockr-user/blockr-user.html#exercise-2-with-pharma-data",
+    "title": "Introduction to blockr for users",
+    "section": "🧪 Exercise 2: with pharma data",
+    "text": "🧪 Exercise 2: with pharma data\n\n\n\n\n\n\n\n\nInstructions: distribution of age in demo dataset\n\nAdd a customdata_block with demo as selected dataset.\nAdd a ggplot_block with x as func and AGE as default_columns.\nAdd a geomhistogram_block (you can leave default settings).\nAdd a labs_block with title = \"Distribution of Age\", x = \"Age (Years), y = \"Count\" as settings.\nAdd a theme_block.\nAdd a scalefillbrewer_block."
   },
   {
     "objectID": "slides/1-blockr-user/blockr-user.html#connecting-stacks-towards-a-dinner-party",
@@ -137,21 +221,28 @@
     "href": "slides/1-blockr-user/blockr-user.html#the-workspace",
     "title": "Introduction to blockr for users",
     "section": "The workspace",
-    "text": "The workspace\n\n\n\n\n\n\n\n\n\n\n\nStack 2\n\n\n\nStack 1\n\n\n\ndata\n\n\n\ndata\n\n\n\ndata\n\n\n\ndata\n\n\n\nData\n\n\n\nTransform\n\n\n\nVisualize\n\n\n\nData\n\n\n\nTransform\n\n\n\n\n\n\n\n\n\nCollection of recipes (stacks) to build a dashboard."
+    "text": "The workspace\n\n\n\n\n\n\n\nflowchart TD\n  subgraph LR workspace[Workspace]\n    subgraph stack1[Stack]\n      direction LR\n      subgraph input_block[Block 1]\n        input(Data: dataset, browser, ...)\n      end\n      subgraph transform_block[Block 2]\n        transform(Transform block: filter, select ...)\n      end\n      subgraph output_block[Block 3]\n        output(Result/transform: plot, filter, ...)\n      end\n      input_block --&gt; |data| transform_block --&gt; |data| output_block\n    end\n    subgraph stack2[Stack 2]\n      stack1_data[Stack 1 data] --&gt; |data| transform2[Transform]\n    end\n    stack1 --&gt; |data| stack2\n    subgraph stackn[Stack n]\n      stacki_data[Stack i data] --&gt; |data| transformn[Transform] --&gt; |data| Visualize\n    end\n    stack2 ---&gt; |... data| stackn\n  end\n\n\n\n\n\n\n\nCollection of recipes (stacks) to build a dashboard."
   },
   {
-    "objectID": "slides/1-blockr-user/blockr-user.html#demo",
-    "href": "slides/1-blockr-user/blockr-user.html#demo",
+    "objectID": "slides/1-blockr-user/blockr-user.html#exercise-3-share-data-between-stacks",
+    "href": "slides/1-blockr-user/blockr-user.html#exercise-3-share-data-between-stacks",
     "title": "Introduction to blockr for users",
-    "section": "Demo",
-    "text": "Demo"
+    "section": "🧪 Exercise 3: share data between stacks",
+    "text": "🧪 Exercise 3: share data between stacks\n\n\n\n\n\n\n\n\nInstructions:\n\nClick on Add stack.\nFrom the new stack: click on + to add a new result_block.\nAdd a new filter_block to stack 1, with sex as column and female as value.\nNotice how the result of the second stack changes.\nAdd a new ggplot_block.\nAdd a new geom_point block."
   },
   {
     "objectID": "slides/1-blockr-user/blockr-user.html#how-do-i-create-a-workspace",
     "href": "slides/1-blockr-user/blockr-user.html#how-do-i-create-a-workspace",
     "title": "Introduction to blockr for users",
     "section": "How do I create a workspace?",
-    "text": "How do I create a workspace?\nlibrary(blockr)\n# Creates an empty workspace\n1set_workspace(\n2  stack_1 = new_stack()\n  stack_2 = new_stack()\n)\n3serve_workspace()\n\n1\n\nInitialise.\n\n2\n\nOptional: add stacks.\n\n3\n\nServe Shiny app."
+    "text": "How do I create a workspace?\n\nlibrary(blockr)\n# Creates an empty workspace\n1set_workspace(\n2  stack_1 = new_stack(),\n  stack_2 = new_stack()\n)\n3serve_workspace(clear = FALSE)\n\n\n1\n\nInitialise.\n\n2\n\nOptional: add stacks.\n\n3\n\nServe Shiny app."
+  },
+  {
+    "objectID": "slides/1-blockr-user/blockr-user.html#exercise-4-with-pharma-data",
+    "href": "slides/1-blockr-user/blockr-user.html#exercise-4-with-pharma-data",
+    "title": "Introduction to blockr for users",
+    "section": "🧪 Exercise 4: with pharma data",
+    "text": "🧪 Exercise 4: with pharma data"
   },
   {
     "objectID": "slides/1-blockr-user/blockr-user.html#how-far-can-i-go-with-blockr",

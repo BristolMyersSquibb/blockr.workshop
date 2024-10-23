@@ -15,10 +15,14 @@ Imports:
     ggplot2,
     cardinal,
     gt,
-    shinylive
+    shinylive,
+    shiny,
+    bslib,
+    dplyr
 Remotes:
     BristolMyersSquibb/blockr,
-    pharmaverse/cardinal
+    pharmaverse/cardinal,
+    parmsam/r-shinylive@feat/encode-decode-url
 Suggests:
     pkgload
 RoxygenNote: 7.3.2

@@ -25,18 +25,16 @@ format:
     chalkboard: false
     transition: none
     background-transition: none
-filters:
-  - quarto-ext/shinylive
 editor:
     render-on-save: true
 ---
 
 ```{r setup}
-library(shinylive)
-library(bslib)
-library(palmerpenguins)
 library(ggplot2)
+library(palmerpenguins)
 library(dplyr)
+source("../../assets/R/shinylive/tools.R")
+shinylive_links <- create_shinylive_links("./shinylive")
 ```
 
 # {background-image="../../assets/images/bechamel-sauce.jpg" background-size="cover"}
@@ -185,7 +183,6 @@ Collection of instructions, __blocks__, from __data import__ to __wrangling/visu
 
 :::{.column width="50%"}
 ```{mermaid}
-%%| mermaid-format: svg
 flowchart TD
   blk_data_in(Input data)
   blk_data_out[Output]
@@ -216,76 +213,8 @@ A __transform__ block:
 ::::{.columns}
 
 :::{.column}
-```{shinylive-r}
-#| standalone: true
-#| components: [viewer]
-#| column: screen-inset-shaded
-#| viewerHeight: 800
-webr::install("blockr", repos = c("https://bristolmyerssquibb.github.io/webr-repos/", "https://repo.r-wasm.org"))
-
-library(blockr)
-library(palmerpenguins)
-library(ggplot2)
-
-new_ggplot_block <- function(col_x = character(), col_y = character(), ...) {
-
-  data_cols <- function(data) colnames(data)
-
-  new_block(
-    fields = list(
-      x = new_select_field(col_x, data_cols, type = "name"),
-      y = new_select_field(col_y, data_cols, type = "name")
-    ),
-    expr = quote(
-      ggplot(mapping = aes(x = .(x), y = .(y)))
-    ),
-    class = c("ggplot_block", "plot_block"),
-    ...
-  )
-}
-
-new_geompoint_block <- function(color = character(), shape = character(), ...) {
-
-  data_cols <- function(data) colnames(data$data)
-
-  new_block(
-    fields = list(
-      color = new_select_field(color, data_cols, type = "name"),
-      shape = new_select_field(shape, data_cols, type = "name")
-    ),
-    expr = quote(
-      geom_point(aes(color = .(color), shape = .(shape)), size = 2)
-    ),
-    class = c("plot_layer_block", "plot_block"),
-    ...
-  )
-}
-
-new_penguins_block <- function(selected = character()) {
-  new_dataset_block(selected, package = "palmerpenguins")
-}
-
-register_blocks(
-  constructor = c(new_penguins_block, new_ggplot_block, new_geompoint_block),
-  name = c("penguins block", "ggplot block", "geompoint block"),
-  description = c(
-    "Data from palmerpenguins package",
-    "Builds a ggplot object",
-    "Add points geom to ggplot object"
-  ),
-  classes = list(
-    c("palmer_penguins", "dataset_block", "data_block"),
-    c("ggplot_block", "plot_block"),
-    c("geompoint_block", "plot_layer_block", "plot_block")
-  ),
-  input = c(NA_character_, "data.frame", "ggplot"),
-  output = c("data.frame", "ggplot", "ggplot"),
-  package = "blockr.demo",
-  category = c("custom data", "visualisation", "visualisation")
-)
-
-stack <- new_stack()
-serve_stack(stack)
+```{r}
+create_link_iframe(shinylive_links["./shinylive/exercise-1"], header = FALSE)
 ```
 :::
 
@@ -302,63 +231,6 @@ Instructions:
 :::
 
 ::::
-
-## 🧪 Exercise 1 (solution) {style="font-size: 1.5em"}
-
-```{shinylive-r}
-#| standalone: true
-#| components: [viewer]
-#| column: screen-inset-shaded
-#| viewerHeight: 800
-webr::install("blockr", repos = c("https://bristolmyerssquibb.github.io/webr-repos/", "https://repo.r-wasm.org"))
-
-library(blockr)
-library(palmerpenguins)
-library(ggplot2)
-
-new_ggplot_block <- function(col_x = character(), col_y = character(), ...) {
-
-  data_cols <- function(data) colnames(data)
-
-  new_block(
-    fields = list(
-      x = new_select_field(col_x, data_cols, type = "name"),
-      y = new_select_field(col_y, data_cols, type = "name")
-    ),
-    expr = quote(
-      ggplot(mapping = aes(x = .(x), y = .(y)))
-    ),
-    class = c("ggplot_block", "plot_block"),
-    ...
-  )
-}
-
-new_geompoint_block <- function(color = character(), shape = character(), ...) {
-
-  data_cols <- function(data) colnames(data$data)
-
-  new_block(
-    fields = list(
-      color = new_select_field(color, data_cols, type = "name"),
-      shape = new_select_field(shape, data_cols, type = "name")
-    ),
-    expr = quote(
-      geom_point(aes(color = .(color), shape = .(shape)), size = 2)
-    ),
-    class = c("plot_layer_block", "plot_block"),
-    ...
-  )
-}
-
-stack <- new_stack(
-  data_block = new_dataset_block("penguins", "palmerpenguins"),
-  filter_block = new_filter_block("sex", "female", submit = TRUE),
-  plot_block = new_ggplot_block("body_mass_g", "flipper_length_mm"),
-  layer_block = new_geompoint_block("species", "species")
-)
-serve_stack(stack)
-```
-
 
 ## How much code would it take with Shiny? {style="font-size: 1.5em"}
 
@@ -410,6 +282,8 @@ shinyApp(
 ```
 :::
 
+Changing the data, you also need to change the entire hardcoded server logic!
+
 ## It's much easier with blockr {style="font-size: 1.5em"}
 
 . . .
@@ -431,6 +305,29 @@ serve_stack(stack) # <5>
 4. Add it a layer.
 5. Serve a Shiny app.
 
+## 🧪 Exercise 2: with pharma data
+
+::::{.columns}
+
+:::{.column}
+```{r}
+create_link_iframe(shinylive_links["./shinylive/exercise-2"], header = FALSE)
+```
+:::
+
+:::{.column}
+Instructions: distribution of age in demo dataset
+
+1. Add a `customdata_block` with `demo` as __selected__ dataset.
+2. Add a `ggplot_block` with `x` as __func__ and `AGE` as __default_columns__.
+3. Add a `geomhistogram_block` (you can leave default settings).
+4. Add a `labs_block` with `title = "Distribution of Age"`, `x = "Age (Years)`, `y = "Count"` as settings.
+5. Add a `theme_block`.
+6. Add a `scalefillbrewer_block`.
+:::
+
+::::
+
 ## Connecting stacks: towards a dinner party {background-image="../../assets/images/undraw_special_event.svg" background-size="40%" style="font-size: 1.5em"}
 
 
@@ -440,7 +337,6 @@ serve_stack(stack) # <5>
 
 :::{.column width=60%}
 ```{mermaid}
-%%| mermaid-format: svg
 flowchart TD
   subgraph LR workspace[Workspace]
     subgraph stack1[Stack]
@@ -476,79 +372,13 @@ Collection of __recipes__ (stacks) to build a __dashboard__.
 ::::
 
 
-## 🧪 Exercise 2
+## 🧪 Exercise 3: share data between stacks
 
 ::::{.columns}
 
 :::{.column width="60%"}
-```{shinylive-r}
-#| standalone: true
-#| components: [viewer]
-#| column: screen-inset-shaded
-#| viewerHeight: 800
-webr::install("blockr", repos = c("https://bristolmyerssquibb.github.io/webr-repos/", "https://repo.r-wasm.org"))
-
-library(blockr)
-library(palmerpenguins)
-library(ggplot2)
-
-new_ggplot_block <- function(col_x = character(), col_y = character(), ...) {
-
-  data_cols <- function(data) colnames(data)
-
-  new_block(
-    fields = list(
-      x = new_select_field(col_x, data_cols, type = "name"),
-      y = new_select_field(col_y, data_cols, type = "name")
-    ),
-    expr = quote(
-      ggplot(mapping = aes(x = .(x), y = .(y)))
-    ),
-    class = c("ggplot_block", "plot_block"),
-    ...
-  )
-}
-
-new_geompoint_block <- function(color = character(), shape = character(), ...) {
-
-  data_cols <- function(data) colnames(data$data)
-
-  new_block(
-    fields = list(
-      color = new_select_field(color, data_cols, type = "name"),
-      shape = new_select_field(shape, data_cols, type = "name")
-    ),
-    expr = quote(
-      geom_point(aes(color = .(color), shape = .(shape)), size = 2)
-    ),
-    class = c("plot_layer_block", "plot_block"),
-    ...
-  )
-}
-
-register_blocks(
-  constructor = c(new_ggplot_block, new_geompoint_block),
-  name = c("ggplot block", "geompoint block"),
-  description = c(
-    "Builds a ggplot object",
-    "Add points geom to ggplot object"
-  ),
-  classes = list(
-    c("ggplot_block", "plot_block"),
-    c("geompoint_block", "plot_layer_block", "plot_block")
-  ),
-  input = c("data.frame", "ggplot"),
-  output = c("ggplot", "ggplot"),
-  package = "blockr.demo",
-  category = c("visualisation", "visualisation")
-)
-
-set_workspace(
-  data = new_stack(
-    data_block = new_dataset_block("penguins", "palmerpenguins")
-  )
-)
-serve_workspace(clear = FALSE)
+```{r}
+create_link_iframe(shinylive_links["./shinylive/exercise-3"], header = FALSE)
 ```
 :::
 
@@ -558,7 +388,7 @@ Instructions:
 - Click on `Add stack`.
 - From the new stack: click on `+` to add a new `result_block`.
 - Add a new `filter_block` to stack 1, with `sex` as __column__ and `female` as __value__.
-- Notice how the result of the second stack changes.
+- Notice how the __result__ of the second stack changes.
 - Add a new `ggplot_block`.
 - Add a new `geom_point block`.
 :::
@@ -582,66 +412,11 @@ serve_workspace(clear = FALSE) # <3>
 3. Serve Shiny app.
 
 
-## 🧪 Exercise 3: pharma data
+## 🧪 Exercise 4: with pharma data
 
-::::{.columns}
 
-:::{.column}
-```{shinylive-r}
-#| standalone: true
-#| components: [viewer]
-#| column: screen-inset-shaded
-#| viewerHeight: 800
-webr::install("blockr", repos = c("https://bristolmyerssquibb.github.io/webr-repos/", "https://repo.r-wasm.org"))
-webr::install("blockr.data", repos = c("https://bristolmyerssquibb.github.io/webr-repos/", "https://repo.r-wasm.org"))
-webr::install("blockr.ggplot2", repos = c("https://bristolmyerssquibb.github.io/webr-repos/", "https://repo.r-wasm.org"))
-
-library(blockr)
-library(blockr.ggplot2)
-
-blockr.ggplot2:::register_ggplot_blocks("blockr.ggplot2")
-
-new_customdata_block <- function(selected = character()) {
-  new_dataset_block(selected, package = "blockr.data")
-}
-
-register_blocks(
-  constructor = c(new_customdata_block, new_ggplot_block, new_geomhistogram_block, new_theme_block),
-  name = c("customdata block", "ggplot2 block", "geom histogram block", "theme block"),
-  description = c(
-    "Data from CDISC package",
-    "ggplot object",
-    "ggplot histogram layer",
-    "ggplot theme layer"
-  ),
-  classes = list(
-    c("customdata_block", "dataset_block", "data_block"),
-    c("ggplot_block", "plot_block"),
-    c("geomhistogram_block", "plot_layer_block", "plot_block"),
-    c("theme_block", "plot_layer_block", "plot_block")
-  ),
-  input = c(NA_character_, "data.frame", "ggplot", "ggplot"),
-  output = c("data.frame", "ggplot", "ggplot", "ggplot"),
-  package = "blockr.demo",
-  category = c("custom data", "visualization", "visualization", "visualization")
-)
-
-stack <- new_stack()
-serve_stack(stack)
+```{r}
+create_link_iframe(shinylive_links["./shinylive/exercise-4"], header = FALSE)
 ```
-:::
-
-:::{.column}
-Instructions:
-
-Objectives: distribution of age in demo dataset.
-
-1. Add a `new_customdata_block` with `demo` as __selected__ dataset.
-2. Add a `new_ggplot_block` with `x` as __func__ and `AGE` as __default_columns__.
-3. Add a `new_geomhistogram_block`.
-4. Add a `new_theme_block`.
-:::
-
-::::
 
 ## How far can I go with blockr? {background-image="../../assets/images/undraw_add_post_re_174w.svg" background-size="90%" style="margin-left: 450px; margin-top: 700px; font-size: 1.5em"}

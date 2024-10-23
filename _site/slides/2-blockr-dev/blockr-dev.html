@@ -386,7 +386,10 @@
       margin-right: 0; 
     }
   </style>
-  <script src="../../site_libs/quarto-diagram/mermaid-postprocess-shim.js"></script>
+  <meta name="mermaid-theme" content="default">
+  <script src="../../site_libs/quarto-diagram/mermaid.min.js"></script>
+  <script src="../../site_libs/quarto-diagram/mermaid-init.js"></script>
+  <link href="../../site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/mermaid@10.9.1/dist/mermaid.min.js"></script>
 </head>
 <body class="quarto-light">
@@ -580,83 +583,26 @@ Karma Tarap (BMS), John Coene (The Y Company) and David Granjon (cynkra GmbH)
 </section>
 <section id="why-does-this-fail" class="slide level2" style="font-size: 1.5em">
 <h2>Why does this fail?</h2>
-<!-- ```{shinylive-r}
-#| standalone: true
-#| components: [viewer]
-#| viewerHeight: 550
-## file: app.R
-webr::install("blockr", repos = "https://bristolmyerssquibb.github.io/webr-repos/")
-webr::install("cardinal", repos = "https://bristolmyerssquibb.github.io/webr-repos/")
-library(blockr)
-library(cardinal)
-
-new_cardinal09_block <- function(
-  ...,
-  id_var = "USUBJID",
-  arm_var = "ARM",
-  saffl_var = "SAFFL",
-  pref_var = "AEDECOD",
-  show_colcounts = TRUE
-){
-  all_cols <- function(data) colnames(data)
-
-  fields <- list(
-    id_var = new_select_field(id_var, all_cols, title = "ID"),
-    arm_var = new_select_field(arm_var, all_cols, title = "ARM"),
-    saffl_var = new_select_field(saffl_var, all_cols, title = "SAFFL"),
-    pref_var = new_select_field(pref_var, all_cols, title = "Pref"),
-    show_colcounts = new_switch_field(show_colcounts, title = "Show column counts")
-  )
-
-  expr <- quote({
-    make_table_09_gtsum(
-      adae = data,
-      arm_var = .(arm_var),
-      saffl_var = .(saffl_var),
-      id_var = .(id_var),
-      pref_var = .(pref_var),
-      show_colcounts = .(show_colcounts)
-    )
-  })
-
-  blockr::new_block(
-    expr = expr,
-    fields = fields,
-    ...,
-    class = c("cardinal09_block", "transform_block")
-  )
-}
-
-# TBD: explain this
-generate_server.cardinal09_block <- blockr:::generate_server.
-transform_block
-
-# TBD: explain S3 customization
-uiOutputBlock.cardinal09_block <- function(x, ns) {
-  gt::gt_output(ns("res"))
-}
-
-server_output.cardinal09_block <- function(x, result, output) {
-  gt::render_gt(result())
-}
-
-my_stack <- new_stack(
-  new_dataset_block("cadae", "random.cdisc.data"),
-  new_cardinal09_block()
-)
-
-serve_stack(my_stack)
-``` -->
 </section>
 <section id="about-blockr-classes" class="slide level2" style="font-size: 1.5em">
 <h2>About blockr classes</h2>
 <div class="columns">
 <div class="column" style="width:60%;">
-<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource {mermaid} number-lines code-with-copy"><code class="sourceCode"><span id="cb2-1"><a></a>%%| mermaid-format: svg</span>
-<span id="cb2-2"><a></a>flowchart LR</span>
-<span id="cb2-3"><a></a>  block_generic[Block generic] --&gt; data_block_method[Data block method]</span>
-<span id="cb2-4"><a></a>  block_generic --&gt; transform_block_method[Transform block method]</span>
-<span id="cb2-5"><a></a>  block_generic --&gt; plot_block_method[Plot block method]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-reveal="true" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class=""><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart LR
+  block_generic[Block generic] --&gt; data_block_method[Data block method]
+  block_generic --&gt; transform_block_method[Transform block method]
+  block_generic --&gt; plot_block_method[Plot block method]
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
 </div><div class="column" style="width:40%;">
 <p><strong>S3 OO system</strong><sup>1</sup>: <strong>customize</strong> behavior depending on object <strong>class</strong>.</p>
 </div></div>
@@ -667,16 +613,16 @@ serve_stack(my_stack)
 <li>We need a function that renders <code>gt</code> <strong>outputs</strong> (server and ui side).</li>
 <li>We need a server method for <code>cardinal09_block</code>. We can inherit the transform block one.</li>
 </ul>
-<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a>generate_server.cardinal09_block <span class="ot">&lt;-</span> blockr<span class="sc">:::</span>generate_server.</span>
-<span id="cb3-2"><a></a>transform_block</span>
-<span id="cb3-3"><a></a></span>
-<span id="cb3-4"><a></a>uiOutputBlock.cardinal09_block <span class="ot">&lt;-</span> <span class="cf">function</span>(x, ns) {</span>
-<span id="cb3-5"><a></a>  gt<span class="sc">::</span><span class="fu">gt_output</span>(<span class="fu">ns</span>(<span class="st">"res"</span>))</span>
-<span id="cb3-6"><a></a>}</span>
-<span id="cb3-7"><a></a></span>
-<span id="cb3-8"><a></a>server_output.cardinal09_block <span class="ot">&lt;-</span> <span class="cf">function</span>(x, result, output) {</span>
-<span id="cb3-9"><a></a>  gt<span class="sc">::</span><span class="fu">render_gt</span>(<span class="fu">result</span>())</span>
-<span id="cb3-10"><a></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a></a>generate_server.cardinal09_block <span class="ot">&lt;-</span> blockr<span class="sc">:::</span>generate_server.</span>
+<span id="cb2-2"><a></a>transform_block</span>
+<span id="cb2-3"><a></a></span>
+<span id="cb2-4"><a></a>uiOutputBlock.cardinal09_block <span class="ot">&lt;-</span> <span class="cf">function</span>(x, ns) {</span>
+<span id="cb2-5"><a></a>  gt<span class="sc">::</span><span class="fu">gt_output</span>(<span class="fu">ns</span>(<span class="st">"res"</span>))</span>
+<span id="cb2-6"><a></a>}</span>
+<span id="cb2-7"><a></a></span>
+<span id="cb2-8"><a></a>server_output.cardinal09_block <span class="ot">&lt;-</span> <span class="cf">function</span>(x, result, output) {</span>
+<span id="cb2-9"><a></a>  gt<span class="sc">::</span><span class="fu">render_gt</span>(<span class="fu">result</span>())</span>
+<span id="cb2-10"><a></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="how-do-we-make-custom-blocks-available-to-users" class="slide level2" style="font-size: 1.5em" data-background-image="../../assets/images/undraw_shopping_app_flsj.svg" data-background-size="40%">
 <h2>How do we make custom blocks available to users?</h2>
@@ -785,23 +731,23 @@ serve_stack(my_stack)
 <section id="filling-the-supermarket-with-block" class="slide level2" style="font-size: 1.5em">
 <h2>Filling the supermarket with block</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a></a>register_lm_block <span class="ot">&lt;-</span> <span class="cf">function</span>(pkg) {</span>
-<span id="cb4-2"><a></a>  <span class="fu">register_block</span>(</span>
-<span id="cb4-3"><a></a>    <span class="at">constructor =</span> new_cardinal09_block,</span>
-<span id="cb4-4"><a></a>    <span class="at">name =</span> <span class="st">"cardinal09 block"</span>,</span>
-<span id="cb4-5"><a></a>    <span class="at">description =</span> <span class="st">"Create a cardinal09 block"</span>,</span>
-<span id="cb4-6"><a></a>    <span class="at">classes =</span> <span class="fu">c</span>(<span class="st">"cardinal09_block"</span>, <span class="st">"transform_block"</span>),</span>
-<span id="cb4-7"><a></a>    <span class="at">input =</span> <span class="st">"data.frame"</span>,</span>
-<span id="cb4-8"><a></a>    <span class="at">output =</span> <span class="st">"gt"</span>,</span>
-<span id="cb4-9"><a></a>    <span class="at">package =</span> pkg</span>
-<span id="cb4-10"><a></a>  )</span>
-<span id="cb4-11"><a></a>}</span>
-<span id="cb4-12"><a></a></span>
-<span id="cb4-13"><a></a><span class="co"># Put in zzz.R</span></span>
-<span id="cb4-14"><a></a>.onLoad <span class="ot">&lt;-</span> <span class="cf">function</span>(libname, pkgname) {</span>
-<span id="cb4-15"><a></a>  <span class="fu">register_lm_block</span>(pkgname)</span>
-<span id="cb4-16"><a></a>  <span class="fu">invisible</span>(<span class="cn">NULL</span>)</span>
-<span id="cb4-17"><a></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a>register_lm_block <span class="ot">&lt;-</span> <span class="cf">function</span>(pkg) {</span>
+<span id="cb3-2"><a></a>  <span class="fu">register_block</span>(</span>
+<span id="cb3-3"><a></a>    <span class="at">constructor =</span> new_cardinal09_block,</span>
+<span id="cb3-4"><a></a>    <span class="at">name =</span> <span class="st">"cardinal09 block"</span>,</span>
+<span id="cb3-5"><a></a>    <span class="at">description =</span> <span class="st">"Create a cardinal09 block"</span>,</span>
+<span id="cb3-6"><a></a>    <span class="at">classes =</span> <span class="fu">c</span>(<span class="st">"cardinal09_block"</span>, <span class="st">"transform_block"</span>),</span>
+<span id="cb3-7"><a></a>    <span class="at">input =</span> <span class="st">"data.frame"</span>,</span>
+<span id="cb3-8"><a></a>    <span class="at">output =</span> <span class="st">"gt"</span>,</span>
+<span id="cb3-9"><a></a>    <span class="at">package =</span> pkg</span>
+<span id="cb3-10"><a></a>  )</span>
+<span id="cb3-11"><a></a>}</span>
+<span id="cb3-12"><a></a></span>
+<span id="cb3-13"><a></a><span class="co"># Put in zzz.R</span></span>
+<span id="cb3-14"><a></a>.onLoad <span class="ot">&lt;-</span> <span class="cf">function</span>(libname, pkgname) {</span>
+<span id="cb3-15"><a></a>  <span class="fu">register_lm_block</span>(pkgname)</span>
+<span id="cb3-16"><a></a>  <span class="fu">invisible</span>(<span class="cn">NULL</span>)</span>
+<span id="cb3-17"><a></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 
 <div class="quarto-auto-generated-content">

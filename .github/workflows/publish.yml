@@ -25,14 +25,13 @@ jobs:
         with:
           use-public-rspm: true
 
-      - name: Avoid bundling Shinylive packages
-        run: echo "SHINYLIVE_WASM_PACKAGES=0" >> $GITHUB_ENV
+      #- name: Avoid bundling Shinylive packages
+      #  run: echo "SHINYLIVE_WASM_PACKAGES=0" >> $GITHUB_ENV
 
       - uses: r-lib/actions/setup-r-dependencies@v2
         with:
           working-directory: "./exercises"
           extra-packages: |
-            posit-dev/r-shinylive
             any::knitr
             any::rmarkdown
           cache-version: 2

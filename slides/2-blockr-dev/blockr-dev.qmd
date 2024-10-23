@@ -25,12 +25,13 @@ format:
     chalkboard: false
     transition: none
     background-transition: none
-filters:
-  - quarto-ext/shinylive
 editor:
     render-on-save: true
 ---
 
+```{r, setup}
+source("../../assets/R/shinylive/tools.R")
+```
 
 # Create your own blocks </br> supermarket {background-image="../../assets/images/undraw_empty_cart_co35.svg" background-size="60%" style="margin-top: -300px; font-size: 1.5em"}
 
@@ -188,11 +189,7 @@ new_cardinal09_block <- function(
 
 ## Why does this fail? {style="font-size: 1.5em"}
 
-<!-- ```{shinylive-r}
-#| standalone: true
-#| components: [viewer]
-#| viewerHeight: 550
-## file: app.R
+```{r, eval=FALSE}
 webr::install("blockr", repos = "https://bristolmyerssquibb.github.io/webr-repos/")
 webr::install("cardinal", repos = "https://bristolmyerssquibb.github.io/webr-repos/")
 library(blockr)
@@ -254,7 +251,7 @@ my_stack <- new_stack(
 )
 
 serve_stack(my_stack)
-``` -->
+```
 
 ## About blockr classes {style="font-size: 1.5em"}
 
@@ -262,7 +259,6 @@ serve_stack(my_stack)
 
 :::{.column width=60%}
 ```{mermaid}
-%%| mermaid-format: svg
 flowchart LR
   block_generic[Block generic] --> data_block_method[Data block method]
   block_generic --> transform_block_method[Transform block method]

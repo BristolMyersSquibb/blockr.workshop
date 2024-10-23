@@ -32,6 +32,7 @@ jobs:
         with:
           working-directory: "./exercises"
           extra-packages: |
+            parmsam/r-shinylive@feat/encode-decode-url
             any::knitr
             any::rmarkdown
           cache-version: 2

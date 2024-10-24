@@ -33,8 +33,7 @@ editor:
 library(ggplot2)
 library(palmerpenguins)
 library(dplyr)
-source("../../assets/R/shinylive/tools.R")
-shinylive_links <- create_shinylive_links("./shinylive")
+source("../../assets/R/tools.R")
 ```
 
 # {background-image="../../assets/images/bechamel-sauce.jpg" background-size="cover"}
@@ -214,7 +213,7 @@ A __transform__ block:
 
 :::{.column}
 ```{r}
-create_link_iframe(shinylive_links["./shinylive/exercise-1"], header = FALSE)
+create_link_iframe("https://rinpharma2024.rinterface.com/#exercise-1")
 ```
 :::
 
@@ -311,7 +310,7 @@ serve_stack(stack) # <5>
 
 :::{.column}
 ```{r}
-create_link_iframe(shinylive_links["./shinylive/exercise-2"], header = FALSE)
+create_link_iframe("https://rinpharma2024.rinterface.com/#exercise-2")
 ```
 :::
 
@@ -378,7 +377,7 @@ Collection of __recipes__ (stacks) to build a __dashboard__.
 
 :::{.column width="60%"}
 ```{r}
-create_link_iframe(shinylive_links["./shinylive/exercise-3"], header = FALSE)
+create_link_iframe("https://rinpharma2024.rinterface.com/#exercise-3")
 ```
 :::
 

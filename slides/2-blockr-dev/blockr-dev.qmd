@@ -30,7 +30,7 @@ editor:
 ---
 
 ```{r, setup}
-source("../../assets/R/shinylive/tools.R")
+
 ```
 
 # Create your own blocks </br> supermarket {background-image="../../assets/images/undraw_empty_cart_co35.svg" background-size="60%" style="margin-top: -300px; font-size: 1.5em"}

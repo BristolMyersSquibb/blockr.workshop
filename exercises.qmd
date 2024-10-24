@@ -1,0 +1,36 @@
+---
+title: "Exercises"
+editor: 
+    render-on-save: true
+---
+
+## Instructions
+
+```{r, echo=FALSE, warning=FALSE, message=FALSE}
+library(bslib)
+library(shiny)
+accordion(
+  class = "mb-5",
+  accordion_panel(
+    title = "Exercise 1: a palmer penguins single stack.",
+    tags$ol(
+      tags$li("Click on the `+` button (top right corner)."),
+      tags$li("Add a `palmer_penguins` block. You may search in the list."),
+      tags$li("Add a new `filter_block`, selecting `sex` as __column__ and `female` as __value__. Click on `run`."),
+      tags$li("Add a new `ggplot_block`. Select `x` and `y` wizely."),
+      tags$li("Add a new `geompoint_block`. You may change `shape` and `color`."),
+      tags$li("You can remove and re-add blocks as you like ..."),
+      tags$li("Export the stack code and try to run it.")
+    )
+  )
+)
+```
+
+## Playground
+
+:::{.column-screen-inset}
+```{r, echo=FALSE}
+source("./assets/R/tools.R")
+create_link_iframe("https://rinpharma2024.rinterface.com/")
+```
+:::

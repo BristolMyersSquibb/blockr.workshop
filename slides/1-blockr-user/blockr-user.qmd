@@ -415,8 +415,48 @@ serve_workspace(clear = FALSE) # <3>
 ## 🧪 Exercise 4: with pharma data
 
 
-```{r}
-create_link_iframe(shinylive_links["./shinylive/exercise-4"], header = FALSE)
-```
+::::{.columns style="font-size: 0.75em"}
+
+:::{.column}
+:::{.incremental}
+1. Click on `Add stack`, then add it a `customdata_block` with `lab` data. Change the title to `Lab data`.
+
+
+2. Click on `Add stack`, then add a `customdata_block` with `demo` data: 
+
+    a. Add a `join_block` with `y = "lab_data"`, `type = "inner"`, `by = c("STUDYID", "USUBJID")`.
+    b. Add a `filter_block` with `columns = "LBTEST"`, `values = "Hemoglobin"`.
+    c. Add an `arrange_block` with `VISITNUM`.
+    d. Add a `mutate_block` with the following expression: `VISIT = factor(VISIT, levels = unique(VISIT), ordered = TRUE)`.
+    e. Rename the stack to `Hemoglobin data`.
+
+
+3. Click on `Add stack`, then add a `result_block` selecting the `Hemoglobin_data` stack:
+
+    a. Add a `group_by_block` with `"VISIT` and `ACTARM` as columns.
+    b. Add a `summarize_block` with `func = c("mean", "se")`, `default_columns = c("LBSTRESN", "LBSTRESN")`.
+    c. Add an `ungroup_block`.
+    d. Add a `mutate_block` with `ymin = "MEAN -SE"` and then click `+` to add another expression, `ymax = "MEAN + SE"`.
+    e. Change the stack title to `Summary data`.
+:::
+
+:::
+
+:::{.column}
+:::{.incremental} 
+4. Click on `Add stack`, then add a `result_block`, targeting the `Summary data` stack:
+
+    a. Add a `ggplot_block` with `x = "VISIT"` and `y = "MEAN"` as aesthetics.
+    b. Add a `geompoint_block` with `func = c("color", "shape")` and `default_columns = c("ACTARM", "ACTARM")`.
+    c. Add a `geomerrorbar_block` with `ymin = ymin`, `ymax = ymax` and `color = ACTARM`.
+    d. Add a `geomline_block` with `group = ACTARM` and `color = ACTARM`.
+    e. Add a `labs_block` with `title = "Mean and SD of Hemoglobin by Visit"`, `x = "Visit Label"` and `y = "Hemoglobin (g/dL)"`.
+    f. Add a `theme_block`, selecting whatever theme you like.
+    g. TBC...
+:::
+
+:::
+
+::::
 
 ## How far can I go with blockr? {background-image="../../assets/images/undraw_add_post_re_174w.svg" background-size="90%" style="margin-left: 450px; margin-top: 700px; font-size: 1.5em"}

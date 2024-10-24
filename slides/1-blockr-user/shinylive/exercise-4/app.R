@@ -130,7 +130,7 @@ new_geomerrorbar_block <- function(func = c("ymin", "ymax", "color"), default_co
       })
     names(tmp_exprs) <- funcs
       bquote(ggplot2::geom_errorbar(ggplot2::aes(..(exprs))), list(exprs = tmp_exprs), 
-          splice = FALSE)
+          splice = TRUE)
   }
   func_choices <- c("ymin", "ymax", "color")
   fields <- list(
@@ -201,6 +201,94 @@ new_geomline_block <- function(func = c("group", "color"), default_columns = cha
   )
 }
 
+new_labs_block <- function(x_lab = character(), y_lab = x_lab, title = x_lab, ...) {
+  new_block(
+    fields = list(
+      x = new_string_field(x_lab), 
+      y = new_string_field(y_lab),
+      title = new_string_field(title)
+    ), 
+    expr = quote(ggplot2::labs(x = .(x), y = .(y), title = .(title))),
+    class = c("labs_block", "plot_layer_block", "plot_block"),
+    ...
+  )
+}
+
+new_theme_block <- function(...) {
+  new_block(
+    fields = list(
+      theme = new_select_field("theme_minimal", 
+        (function(x) {
+            x[!x %in% c("theme_set", "theme_get", "theme_update", 
+                "theme_test")]
+        })(grep("^theme_.*$", ls("package:ggplot2"), perl = TRUE, 
+            value = TRUE)), type = "name")
+    ),
+    expr = quote(do.call(.(theme), list())),
+    class = c("theme_block", "plot_layer_block", "plot_block"),
+      ...
+  )
+}
+
+register_blocks(
+  constructor = c(
+    new_customdata_block,
+    new_ungroup_block,
+    new_ggplot_block,
+    new_geompoint_block,
+    new_geomerrorbar_block,
+    new_geomline_block,
+    new_labs_block,
+    new_theme_block
+  ),
+  name = c(
+   "Custom data block",
+   "Ungroup block",
+   "ggplot block",
+   "Geom point block",
+   "Geom error bar block",
+   "Geom line block",
+   "Labs block",
+   "Theme block"
+  ),
+  description = c(
+    "Creates a custom data block",
+    "Creates an ungroup block",
+    "Creates a ggplot block",
+    "Creates a geom point block",
+    "Creates a geom errorbar block",
+    "Creates a geom line block",
+    "Creates a label block",
+    "Creates a theme block"
+  ),
+  classes = list(
+    c("customdata_block", "data_block"),
+    c("ungroup_block", "transform_block"),
+    c("ggplot_block", "plot_block"),
+    c("geompoint_block", "plot_layer_block", "plot_block"),
+    c("geomerrorbar_block", "plot_layer_block", "plot_block"),
+    c("geomline_block", "plot_layer_block", "plot_block"),
+    c("labs_block", "plot_layer_block", "plot_block"),
+    c("theme_block", "plot_layer_block", "plot_block")
+  ),
+  input = c(
+    NA_character_,
+    "data.frame",
+    "data.frame",
+    rep("ggplot", 5)
+  ),
+  output = c(
+    rep("data.frame", 2),
+    rep("ggplot", 6)
+  ),
+  package = "blockr.demo",
+  category = c(
+    "Custom data",
+    "Transform",
+    rep("visualisation", 6)
+  )
+)
+
 set_workspace()
 serve_workspace(clear = FALSE)
 
@@ -226,12 +314,17 @@ serve_workspace(clear = FALSE)
 #    group_by = new_group_by_block("VISIT", "ACTARM"),
 #    summarize = new_summarize_block(func = c("mean", "se"), default_columns = c("LBSTRESN", "LBSTRESN"), submit = TRUE),
 #    ungroup = new_ungroup_block(),
+#    mutate = new_mutate_block(),
 #    title = "Summary data"
 #  ),
 #  plot = new_stack(
-#    new_ggplot_block(x = "VISIT", y = "MEAN"),
-#    new_geompoint_block(func = c("color", "shape"), default_columns = c("ACTARM", "ACTARM"))
+#    new_result_block("summary_data")#,
+#    #new_ggplot_block(x = "VISIT", y = "MEAN"),
+#    #new_geompoint_block(func = c("color", "shape"), default_columns = c("ACTARM", "ACTARM")),
+#    #new_errorbar_block(func = c("ymin", "ymax", "color"), default_columns = c("ymin", "ymax", "ACTARM")),
+#    #new_labs_block(x_lab = "Visit Label", y_lab = "Hemoglobin (g/dL)", title = "Mean and SD of Hemoglobin by Visit"),
+#    #new_theme_block()
 #  )
 #)
-#
+
 #serve_workspace(clear = FALSE)

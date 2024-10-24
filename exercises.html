@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>About us – blockr.workshop</title>
+<title>Exercises – blockr.workshop</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -66,6 +66,10 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
+<script src="site_libs/bslib-component-js-0.8.0/components.min.js"></script>
+<script src="site_libs/bslib-component-js-0.8.0/web-components.min.js" type="module"></script>
+<link href="site_libs/bslib-component-css-0.8.0/components.css" rel="stylesheet">
+<script src="site_libs/bslib-tag-require-0.8.0/tag-require.js"></script>
 
 
 <link rel="stylesheet" href="styles.css">
@@ -96,11 +100,11 @@ ul.task-list li input[type="checkbox"] {
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./exercises.html"> 
+    <a class="nav-link active" href="./exercises.html" aria-current="page"> 
 <span class="menu-text">Exercises</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="./about.html" aria-current="page"> 
+    <a class="nav-link" href="./about.html"> 
 <span class="menu-text">About us</span></a>
   </li>  
 </ul>
@@ -119,19 +123,17 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#karma-tarap-bms" id="toc-karma-tarap-bms" class="nav-link active" data-scroll-target="#karma-tarap-bms">Karma Tarap (BMS)</a></li>
-  <li><a href="#john-coene-the-y-company" id="toc-john-coene-the-y-company" class="nav-link" data-scroll-target="#john-coene-the-y-company">John Coene (The Y Company)</a></li>
-  <li><a href="#david-granjon-cynkra" id="toc-david-granjon-cynkra" class="nav-link" data-scroll-target="#david-granjon-cynkra">David Granjon (cynkra)</a></li>
-  <li><a href="#aknowledgement" id="toc-aknowledgement" class="nav-link" data-scroll-target="#aknowledgement">Aknowledgement</a></li>
+  <li><a href="#instructions" id="toc-instructions" class="nav-link active" data-scroll-target="#instructions">Instructions</a></li>
+  <li><a href="#playground" id="toc-playground" class="nav-link" data-scroll-target="#playground">Playground</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
+<main class="content page-columns page-full" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">About us</h1>
+<h1 class="title">Exercises</h1>
 </div>
 
 
@@ -148,24 +150,45 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="karma-tarap-bms" class="level1">
-<h1>Karma Tarap (BMS)</h1>
-<p><img src="./assets/images/karma.png" class="img-fluid"></p>
-<p>Karma Tarap is an Innovation Strategy and Solutions Lead at Bristol Myers Squibb, bringing over a decade of experience as a statistical programmer in the pharmaceutical industry. With degrees in immunology, microbiology, bioinformatics, and data science. His work focuses on integrating advanced data analytics with insights to accelerate innovation and improve patient outcomes. Additionally, Karma has led multiple introductory R workshops within the industry.</p>
+<section id="instructions" class="level2">
+<h2 class="anchored" data-anchor-id="instructions">Instructions</h2>
+<div class="cell">
+<div class="cell-output-display">
+<div class="accordion mb-5" data-require-bs-caller="accordion()" data-require-bs-version="5" id="bslib-accordion-9514">
+<div class="accordion-item" data-value="Exercise 1: a palmer penguins single stack.">
+<div class="accordion-header">
+<button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#bslib-accordion-panel-9827" aria-controls="bslib-accordion-panel-9827" aria-expanded="true">
+<div class="accordion-icon"></div>
+<div class="accordion-title">Exercise 1: a palmer penguins single stack.</div>
+</button>
+</div>
+<div id="bslib-accordion-panel-9827" class="accordion-collapse collapse show">
+<div class="accordion-body">
+<ol>
+<li>Click on the `+` button (top right corner).</li>
+<li>Add a `palmer_penguins` block. You may search in the list.</li>
+<li>Add a new `filter_block`, selecting `sex` as __column__ and `female` as __value__. Click on `run`.</li>
+<li>Add a new `ggplot_block`. Select `x` and `y` wizely.</li>
+<li>Add a new `geompoint_block`. You may change `shape` and `color`.</li>
+<li>You can remove and re-add blocks as you like ...</li>
+<li>Export the stack code and try to run it.</li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
 </section>
-<section id="john-coene-the-y-company" class="level1">
-<h1>John Coene (The Y Company)</h1>
-<p><img src="./assets/images/john.png" class="img-fluid"></p>
-<p>John is a senior developer and data analytics professional with 9 years of working experience. He is the founder and co-founder of Opifex and The Y company. He is an expert in the R/JavaScript and Go languages and has developed hundreds of R packages. John has given numerous talks and workshops, at WhyR, eRum, as a guest on the Shiny dev series podcast discussing user experience, and R in Pharma. John is also the author of the book JavaScript for R published by CRC Press as part of the R series.</p>
-</section>
-<section id="david-granjon-cynkra" class="level1">
-<h1>David Granjon (cynkra)</h1>
-<p><img src="./assets/images/david.jpg" class="img-fluid"></p>
-<p>David is lead Shiny developer at cynkra and holds a Ph.D.&nbsp;in applied mathematics from Université Pierre et Marie Curie and Université de Lausanne. He is the founder of the open source Interface organization, where he develops Shiny extensions, writes books and delivers advanced Shiny workshops from Posit Conf to R in Pharma. David worked 5 years in the pharma industry where he helped design production-ready Shiny apps.</p>
-</section>
-<section id="aknowledgement" class="level1">
-<h1>Aknowledgement</h1>
-<p>Workshop authors want to warmly thank Nicolas Bennett, Mike Page and Christoph Sax for their involvment in the blockr core development team.</p>
+<section id="playground" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="playground">Playground</h2>
+<div class="column-screen-inset">
+<div class="cell">
+<div class="cell-output-display">
+<iframe class="html-fill-item" src="https://rinpharma2024.rinterface.com/" height="800" width="100%" style="border: 1px solid rgba(0,0,0,0.175); border-radius: .375rem;" allowfullscreen="" allow="autoplay" data-external="1"></iframe>
+</div>
+</div>
+</div>
 
 
 </section>

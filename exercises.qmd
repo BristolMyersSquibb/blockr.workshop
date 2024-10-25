@@ -62,7 +62,7 @@ accordion(
       ),
       tags$li(
         p(
-            "Add a",  tags$code("ggplot_block") , "with",  tags$var("x"), "as", tags$strong("func"), "and",  tags$var("AGE") , "as", tags$strong("default_columns"), "."
+            "Add a",  tags$code("ggplot_block") , "with", tags$var("AGE"), " as variable for the",  tags$var("x"), "axis."
         )
       ),
       tags$li(

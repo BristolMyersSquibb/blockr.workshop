@@ -4,6 +4,7 @@ webr::install("blockr.data", repos = c("https://bristolmyerssquibb.github.io/web
 library(blockr)
 library(ggplot2)
 library(dplyr)
+library(shinyAce)
 
 new_customdata_block <- function(selected = character(), ...) {
   new_dataset_block(selected, package = "blockr.data", ...)
@@ -296,8 +297,29 @@ register_blocks(
   )
 )
 
-set_workspace()
-serve_workspace(clear = FALSE)
+ws <- get_workspace()
+ui <- bslib::page_fluid(
+  div(
+    style = "display: none",
+    shinyAce::aceEditor(
+      outputId = "ace",
+      # to access content of `selectionId` in server.R use `ace_selection`
+      # i.e., the outputId is prepended to the selectionId for use
+      # with Shiny modules
+      selectionId = "selection",
+      value = "plop",
+      placeholder = "Show a placeholder when the editor is empty ..."
+    )
+  ),
+  generate_ui(ws, id = "myworkspace")
+)
+server <- function(input, output, session) {
+  generate_server(ws, id = "myworkspace")
+}
+shinyApp(ui, server)
+
+#set_workspace()
+#serve_workspace(clear = FALSE)
 
 #set_workspace(
 #  lab_data = new_stack(

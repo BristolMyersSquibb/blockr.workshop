@@ -154,24 +154,150 @@ ul.task-list li input[type="checkbox"] {
 <h2 class="anchored" data-anchor-id="instructions">Instructions</h2>
 <div class="cell">
 <div class="cell-output-display">
-<div class="accordion mb-5" data-require-bs-caller="accordion()" data-require-bs-version="5" id="bslib-accordion-9514">
-<div class="accordion-item" data-value="Exercise 1: a palmer penguins single stack.">
+<div class="accordion mb-5" data-require-bs-caller="accordion()" data-require-bs-version="5" id="bslib-accordion-5804">
+<div class="accordion-item" data-value="Exercise 1: a palmer penguins, single stack.">
 <div class="accordion-header">
-<button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#bslib-accordion-panel-9827" aria-controls="bslib-accordion-panel-9827" aria-expanded="true">
+<button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#bslib-accordion-panel-3566" aria-controls="bslib-accordion-panel-3566" aria-expanded="true">
 <div class="accordion-icon"></div>
-<div class="accordion-title">Exercise 1: a palmer penguins single stack.</div>
+<div class="accordion-title">Exercise 1: a palmer penguins, single stack.</div>
 </button>
 </div>
-<div id="bslib-accordion-panel-9827" class="accordion-collapse collapse show">
+<div id="bslib-accordion-panel-3566" class="accordion-collapse collapse show">
 <div class="accordion-body">
 <ol>
-<li>Click on the `+` button (top right corner).</li>
-<li>Add a `palmer_penguins` block. You may search in the list.</li>
-<li>Add a new `filter_block`, selecting `sex` as __column__ and `female` as __value__. Click on `run`.</li>
-<li>Add a new `ggplot_block`. Select `x` and `y` wizely.</li>
-<li>Add a new `geompoint_block`. You may change `shape` and `color`.</li>
+<li>
+<p>
+Click on the stack
+<strong>+</strong>
+button (top right corner).
+</p>
+</li>
+<li>
+<p>
+Add a
+<code>palmer_penguins</code>
+block. You may search in the list.
+</p>
+</li>
+<li>
+<p>
+Add a new
+<code>filter_block</code>
+selecting
+<var>sex</var>
+as
+<strong>column</strong>
+and
+<var>female</var>
+as
+<strong>value</strong>
+. Click on run.
+</p>
+</li>
+<li>
+<p>
+Add a new
+<code>ggplot_block</code>
+. Select
+<var>x</var>
+and
+<var>y</var>
+wizely.
+</p>
+</li>
+<li>
+<p>
+Add a new
+<code>geompoint_block</code>
+. You may change
+<var>shape</var>
+and
+<var>color</var>
+.
+</p>
+</li>
 <li>You can remove and re-add blocks as you like ...</li>
 <li>Export the stack code and try to run it.</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="accordion-item" data-value="Exercise 2: distribution of age, single stack.">
+<div class="accordion-header">
+<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#bslib-accordion-panel-4792" aria-expanded="false" aria-controls="bslib-accordion-panel-4792">
+<div class="accordion-icon"></div>
+<div class="accordion-title">Exercise 2: distribution of age, single stack.</div>
+</button>
+</div>
+<div id="bslib-accordion-panel-4792" class="accordion-collapse collapse">
+<div class="accordion-body">
+<ol>
+<li>
+<p>
+Click on the
+<strong>+</strong>
+stack button (top right corner).
+</p>
+</li>
+<li>
+<p>
+Add a
+<code>customdata_block</code>
+with
+<var>demo</var>
+as
+<strong>selected</strong>
+dataset.
+</p>
+</li>
+<li>
+<p>
+Add a
+<code>ggplot_block</code>
+with
+<var>x</var>
+as
+<strong>func</strong>
+and
+<var>AGE</var>
+as
+<strong>default_columns</strong>
+.
+</p>
+</li>
+<li>
+<p>
+Add a
+<code>geomhistogram_block</code>
+.
+</p>
+</li>
+<li>
+<p>
+Add a
+<code>labs_block</code>
+with
+<code>title = 'Distribution of Age'</code>
+<code>x = 'Age (Years)'</code>
+and
+<code>y = 'Count'</code>
+as settings.
+</p>
+</li>
+<li>
+<p>
+Add a
+<code>theme_block</code>
+.
+</p>
+</li>
+<li>
+<p>
+Add a
+<code>scalefillbrewer_block</code>
+.
+</p>
+</li>
 </ol>
 </div>
 </div>

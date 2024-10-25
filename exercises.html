@@ -154,15 +154,15 @@ ul.task-list li input[type="checkbox"] {
 <h2 class="anchored" data-anchor-id="instructions">Instructions</h2>
 <div class="cell">
 <div class="cell-output-display">
-<div class="accordion mb-5" data-require-bs-caller="accordion()" data-require-bs-version="5" id="bslib-accordion-7375">
+<div class="accordion mb-5" data-require-bs-caller="accordion()" data-require-bs-version="5" id="bslib-accordion-8164">
 <div class="accordion-item" data-value="Exercise 1: a palmer penguins, single stack.">
 <div class="accordion-header">
-<button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#bslib-accordion-panel-2931" aria-controls="bslib-accordion-panel-2931" aria-expanded="true">
+<button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#bslib-accordion-panel-8441" aria-controls="bslib-accordion-panel-8441" aria-expanded="true">
 <div class="accordion-icon"></div>
 <div class="accordion-title">Exercise 1: a palmer penguins, single stack.</div>
 </button>
 </div>
-<div id="bslib-accordion-panel-2931" class="accordion-collapse collapse show">
+<div id="bslib-accordion-panel-8441" class="accordion-collapse collapse show">
 <div class="accordion-body">
 <ol>
 <li>
@@ -224,12 +224,12 @@ and
 </div>
 <div class="accordion-item" data-value="Exercise 2: distribution of age, single stack.">
 <div class="accordion-header">
-<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#bslib-accordion-panel-5736" aria-expanded="false" aria-controls="bslib-accordion-panel-5736">
+<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#bslib-accordion-panel-6809" aria-expanded="false" aria-controls="bslib-accordion-panel-6809">
 <div class="accordion-icon"></div>
 <div class="accordion-title">Exercise 2: distribution of age, single stack.</div>
 </button>
 </div>
-<div id="bslib-accordion-panel-5736" class="accordion-collapse collapse">
+<div id="bslib-accordion-panel-6809" class="accordion-collapse collapse">
 <div class="accordion-body">
 <ol>
 <li>
@@ -293,6 +293,288 @@ Add a
 <code>scalefillbrewer_block</code>
 .
 </p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="accordion-item" data-value="Exercise 3: a palmer penguins workspace.">
+<div class="accordion-header">
+<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#bslib-accordion-panel-3837" aria-expanded="false" aria-controls="bslib-accordion-panel-3837">
+<div class="accordion-icon"></div>
+<div class="accordion-title">Exercise 3: a palmer penguins workspace.</div>
+</button>
+</div>
+<div id="bslib-accordion-panel-3837" class="accordion-collapse collapse">
+<div class="accordion-body">
+<ol>
+<li>
+<p>
+Click on
+<strong>Add stack</strong>
+.
+</p>
+</li>
+<li>
+<p>
+From the new stack: click on
+<strong>+</strong>
+to add a new
+<code>result_block</code>
+.
+</p>
+</li>
+<li>
+<p>
+Add a new
+<code>filter_block</code>
+selecting
+<var>sex</var>
+as
+<strong>column</strong>
+and
+<var>female</var>
+as
+<strong>value</strong>
+. Click on run.
+</p>
+</li>
+<li>Notice how the result block of the second stack changes.</li>
+<li>
+<p>
+Add a new
+<code>ggplot_block</code>
+. Select
+<var>x</var>
+and
+<var>y</var>
+wizely.
+</p>
+</li>
+<li>
+<p>
+Add a new
+<code>geompoint_block</code>
+. You may change
+<var>shape</var>
+and
+<var>color</var>
+.
+</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="accordion-item" data-value="Exercise 4: 'Hemoglobin by Visit plot' workspace.">
+<div class="accordion-header">
+<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#bslib-accordion-panel-6712" aria-expanded="false" aria-controls="bslib-accordion-panel-6712">
+<div class="accordion-icon"></div>
+<div class="accordion-title">Exercise 4: 'Hemoglobin by Visit plot' workspace.</div>
+</button>
+</div>
+<div id="bslib-accordion-panel-6712" class="accordion-collapse collapse">
+<div class="accordion-body">
+<ol>
+<li>
+<p>
+Click on
+<strong>Add stack</strong>
+then add it a
+<strong>customdata_block</strong>
+with
+<var>lab</var>
+as data. Change the title to 'Lab data'.
+</p>
+</li>
+<li>
+<ul>
+<li>
+<p>
+Click on
+<strong>Add stack</strong>
+, then add a
+<code>customdata_block</code>
+with
+<var>demo</var>
+as data.
+</p>
+</li>
+<li>
+<p>
+Add a
+<strong>join_block</strong>
+with
+<code>y = 'lab_data'</code>
+<code>type = 'inner</code>
+<code>by = c('STUDYID', 'USUBJID')</code>
+.
+</p>
+</li>
+<li>
+<p>
+Add a
+<strong>filter_block</strong>
+with
+<code>colums = 'LBTEST'</code>
+<code>values = 'Hemoglobin</code>
+.
+</p>
+</li>
+<li>
+<p>
+Add an
+<code>arrange_block</code>
+width
+<var>VISITNUM</var>
+as column.
+</p>
+</li>
+<li>
+<p>
+Add a
+<code>mutate_block</code>
+with the following expression:
+<code>VISIT = factor(VISIT, levels = unique(VISIT), ordered = TRUE)</code>
+</p>
+</li>
+<li>Rename the stack to 'Hemoglobin data'</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>
+<p>
+Click on
+<strong>Add stack</strong>
+then add a
+<code>result_block</code>
+selecting the 'hemoglobin_data' stack.
+</p>
+</li>
+<li>
+<p>
+Add a
+<code>group_by_block</code>
+with
+<var>VISIT</var>
+and
+<var>ACTARM</var>
+as columns
+</p>
+</li>
+<li>
+<p>
+Add a
+<code>summarize_block</code>
+with
+<var>mean</var>
+and
+<var>se</var>
+as selected functions and
+<var>LBSTRESN</var>
+as column for each function.
+</p>
+</li>
+<li>
+<p>
+Add an
+<code>ungroup_block</code>
+.
+</p>
+</li>
+<li>
+<p>
+Add a
+<code>mutate_block</code>
+with
+<code>ymin = 'MEAN - SE'</code>
+and then click
+<strong>+</strong>
+to add another expression, that is, 
+<code>ymax = 'MEAN + SE'</code>
+.
+</p>
+</li>
+<li>Rename the stack to 'Summary data'</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>
+<p>
+Click on
+<strong>Add stack</strong>
+then add a
+<code>result_block</code>
+selecting the 'summary_data' stack.
+</p>
+</li>
+<li>
+<p>
+Add a
+<code>ggplot_block</code>
+with
+<code>x = 'VISIT</code>
+and
+<code>x = 'MEAN</code>
+as aesthetics.
+</p>
+</li>
+<li>
+<p>
+Add a
+<code>geompoint_block</code>
+with
+<code>func = c('color', 'shape')</code>
+and
+<var>ACTARM</var>
+as variable for each aesthetic.
+</p>
+</li>
+<li>
+<p>
+Add a
+<code>geomerrorbar_block</code>
+with
+<code>ymin = ymin</code>
+<code>ymax = ymax</code>
+and
+<code>color = ACTARM</code>
+.
+</p>
+</li>
+<li>
+<p>
+Add a
+<code>geomline_block</code>
+with
+<code>group = ACTARM</code>
+and
+<code>color = ACTARM</code>
+.
+</p>
+</li>
+<li>
+<p>
+Add a
+<code>labs_block</code>
+with
+<code>title = 'Mean and SD of Hemoglobin by Visit'</code>
+<code>x = 'Visit Label'</code>
+and
+<code>y = 'Hemoglobin (g/dL)'</code>
+.
+</p>
+</li>
+<li>
+<p>
+Add a
+<code>theme_block</code>
+.
+</p>
+</li>
+</ul>
 </li>
 </ol>
 </div>

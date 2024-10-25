@@ -285,7 +285,7 @@ register_blocks(
   category = c(
     "Custom data",
     "Transform",
-    rep("visualisation", 6)
+    rep("visualization", 6)
   )
 )
 

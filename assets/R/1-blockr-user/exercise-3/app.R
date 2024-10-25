@@ -58,7 +58,7 @@ register_blocks(
   input = c(NA_character_, "data.frame", "ggplot"),
   output = c("data.frame", "ggplot", "ggplot"),
   package = "blockr.demo",
-  category = c("custom data", "visualisation", "visualisation")
+  category = c("custom data", "visualization", "visualization")
 )
 
 set_workspace(

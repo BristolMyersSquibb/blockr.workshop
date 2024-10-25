@@ -66,7 +66,7 @@ accordion(
         )
       ),
       tags$li(
-        p("Add a", tags$code("geomhistogram_block"), ".")
+        p("Add a", tags$code("geomhistogram_block"), ". You can change the parameters.")
       ),
       tags$li(
         p(

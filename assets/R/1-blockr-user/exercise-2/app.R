@@ -59,7 +59,7 @@ new_labs_block <- function(x_lab = character(), y_lab = x_lab, title = x_lab, ..
       title = new_string_field(title)
     ), 
     expr = quote(ggplot2::labs(x = .(x), y = .(y), title = .(title))),
-    class = c("label_block", "plot_layer_block", "plot_block"),
+    class = c("labs_block", "plot_layer_block", "plot_block"),
     ...
   )
 }
@@ -106,14 +106,14 @@ register_blocks(
     c("customdata_block", "dataset_block", "data_block"),
     c("geomhistogram_block", "plot_layer_block", "plot_block"),
     c("theme_block", "plot_layer_block", "plot_block"),
-    c("label_block", "plot_layer_block", "plot_block"),
+    c("labs_block", "plot_layer_block", "plot_block"),
     c("scalefillbrewer_block", "plot_layer_block", "plot_block"),
     c("ggplot_block", "plot_block")
   ),
   input = c(NA_character_, "ggplot", "ggplot", "ggplot", "ggplot", "data.frame"),
   output = c("data.frame", "ggplot", "ggplot", "ggplot", "ggplot", "ggplot"),
   package = "blockr.demo",
-  category = c("custom data", "visualization", "visualization", "visualization", "visualization", "visualisation")
+  category = c("custom data", "visualization", "visualization", "visualization", "visualization", "visualization")
 )
 stack <- new_stack()
 serve_stack(stack)

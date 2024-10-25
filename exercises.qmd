@@ -12,15 +12,73 @@ library(shiny)
 accordion(
   class = "mb-5",
   accordion_panel(
-    title = "Exercise 1: a palmer penguins single stack.",
+    title = "Exercise 1: a palmer penguins, single stack.",
     tags$ol(
-      tags$li("Click on the `+` button (top right corner)."),
-      tags$li("Add a `palmer_penguins` block. You may search in the list."),
-      tags$li("Add a new `filter_block`, selecting `sex` as __column__ and `female` as __value__. Click on `run`."),
-      tags$li("Add a new `ggplot_block`. Select `x` and `y` wizely."),
-      tags$li("Add a new `geompoint_block`. You may change `shape` and `color`."),
+      tags$li(
+        p(
+            "Click on the stack",
+            tags$strong("+"),
+            "button (top right corner)."
+        )
+      ),
+      tags$li(
+        p(
+            "Add a",
+            tags$code("palmer_penguins"),
+            "block. You may search in the list."
+        )
+      ),
+      tags$li(
+        p(
+            "Add a new",
+             tags$code("filter_block"),
+             "selecting", tags$var("sex"), "as", tags$strong("column"), "and", tags$var("female"), "as", tags$strong("value"), ". Click on run."
+        )
+      ),
+      tags$li(
+        p(
+            "Add a new", tags$code("ggplot_block"), ". Select", tags$var("x"), "and", tags$var("y") , "wizely."
+        )
+      ),
+      tags$li(
+        p(
+            "Add a new", tags$code("geompoint_block"), ". You may change", tags$var("shape") , "and", tags$var("color"), "."
+        )
+      ),
       tags$li("You can remove and re-add blocks as you like ..."),
       tags$li("Export the stack code and try to run it.")
+    )
+  ),
+  accordion_panel(
+    title = "Exercise 2: distribution of age, single stack.",
+    tags$ol(
+      tags$li(
+        p("Click on the", tags$strong("+") , "stack button (top right corner).")
+      ),
+      tags$li(
+        p(
+            "Add a", tags$code("customdata_block"), "with", tags$var("demo"), "as", tags$strong("selected"), "dataset."
+        )
+      ),
+      tags$li(
+        p(
+            "Add a",  tags$code("ggplot_block") , "with",  tags$var("x"), "as", tags$strong("func"), "and",  tags$var("AGE") , "as", tags$strong("default_columns"), "."
+        )
+      ),
+      tags$li(
+        p("Add a", tags$code("geomhistogram_block"), ".")
+      ),
+      tags$li(
+        p(
+            "Add a",  tags$code("labs_block"), "with", tags$code("title = 'Distribution of Age'"), tags$code("x = 'Age (Years)'"), "and",  tags$code("y = 'Count'"), "as settings."
+        )
+      ),
+      tags$li(
+        p("Add a", tags$code("theme_block"), ".")
+      ),
+      tags$li(
+        p("Add a", tags$code("scalefillbrewer_block"), ".")
+      )
     )
   )
 )

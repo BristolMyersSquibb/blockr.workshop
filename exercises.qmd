@@ -80,6 +80,113 @@ accordion(
         p("Add a", tags$code("scalefillbrewer_block"), ".")
       )
     )
+  ),
+  accordion_panel(
+    title = "Exercise 3: a palmer penguins workspace.",
+    tags$ol(
+      tags$li(
+        p("Click on", tags$strong("Add stack"), ".")
+      ),
+      tags$li(
+        p("From the new stack: click on", tags$strong("+"), "to add a new", tags$code("result_block"), ".")
+      ),
+      tags$li(
+        p(
+            "Add a new",
+             tags$code("filter_block"),
+             "selecting", tags$var("sex"), "as", tags$strong("column"), "and", tags$var("female"), "as", tags$strong("value"), ". Click on run."
+        )
+      ),
+      tags$li("Notice how the result block of the second stack changes."),
+      tags$li(
+        p(
+            "Add a new", tags$code("ggplot_block"), ". Select", tags$var("x"), "and", tags$var("y") , "wizely."
+        )
+      ),
+      tags$li(
+        p(
+            "Add a new", tags$code("geompoint_block"), ". You may change", tags$var("shape") , "and", tags$var("color"), "."
+        )
+      )
+    )
+  ),
+  accordion_panel(
+    title = "Exercise 4: 'Hemoglobin by Visit plot' workspace.",
+    tags$ol(
+      tags$li(
+        p(
+            "Click on", tags$strong("Add stack"), "then add it a",
+             tags$strong("customdata_block"),  "with", tags$var("lab"), "as data. Change the title to 'Lab data'."
+        )
+      ),
+      tags$li(
+        tags$ul(
+            tags$li(
+                p("Click on", tags$strong("Add stack"), ", then add a", tags$code("customdata_block"), "with", tags$var("demo"), "as data.")
+            ),
+            tags$li(
+                p("Add a", tags$strong("join_block"), "with",
+                tags$code("y = 'lab_data'"), tags$code("type = 'inner"), tags$code("by = c('STUDYID', 'USUBJID')"), ".")
+            ),
+            tags$li(
+                p("Add a", tags$strong("filter_block"), "with",
+                tags$code("colums = 'LBTEST'"), tags$code("values = 'Hemoglobin"), ".")
+            ),
+            tags$li(
+                p("Add an", tags$code("arrange_block"), "width", tags$var("VISITNUM"), "as column.")
+            ),
+            tags$li(
+                p("Add a", tags$code("mutate_block"), "with the following expression:", tags$code("VISIT = factor(VISIT, levels = unique(VISIT), ordered = TRUE)"))
+            ),
+            tags$li("Rename the stack to 'Hemoglobin data'")
+        )
+      ),
+      tags$li(
+        tags$ul(
+            tags$li(
+                p("Click on", tags$strong("Add stack"), "then add a", tags$code("result_block"), "selecting the 'hemoglobin_data' stack.")
+            ),
+            tags$li(
+                p("Add a", tags$code("group_by_block"), "with", tags$var("VISIT"), "and", tags$var("ACTARM"), "as columns")
+            ),
+            tags$li(
+                p("Add a", tags$code("summarize_block"), "with", tags$var("mean"), "and", tags$var("se"), "as selected functions and", tags$var("LBSTRESN"), "as column for each function.")
+            ),
+            tags$li(
+                p("Add an", tags$code("ungroup_block"), ".")
+            ),
+            tags$li(
+                p("Add a", tags$code("mutate_block"), "with", tags$code("ymin = 'MEAN - SE'"), "and then click", tags$strong("+"), "to add another expression, that is, ", tags$code("ymax = 'MEAN + SE'"), ".")
+            ),
+            tags$li("Rename the stack to 'Summary data'")
+        )
+      ),
+      tags$li(
+        tags$ul(
+            tags$li(
+                p("Click on", tags$strong("Add stack"), "then add a", tags$code("result_block"), "selecting the 'summary_data' stack.")
+            ),
+            tags$li(
+                p("Add a", tags$code("ggplot_block"), "with", tags$code("x = 'VISIT"), "and", tags$code("x = 'MEAN"), "as aesthetics.")
+            ),
+            tags$li(
+                p("Add a", tags$code("geompoint_block"), "with", tags$code("func = c('color', 'shape')"), "and", tags$var("ACTARM"), "as variable for each aesthetic.")
+            ),
+            tags$li(
+                p("Add a", tags$code("geomerrorbar_block"), "with", tags$code("ymin = ymin"), tags$code("ymax = ymax"), "and", tags$code("color = ACTARM"), ".")
+            ),
+            tags$li(
+                p("Add a", tags$code("geomline_block"), "with", tags$code("group = ACTARM"), "and", tags$code("color = ACTARM"), ".")
+            ),
+            tags$li(
+                p("Add a", tags$code("labs_block"), "with", tags$code("title = 'Mean and SD of Hemoglobin by Visit'"), tags$code("x = 'Visit Label'"), "and", tags$code("y = 'Hemoglobin (g/dL)'"), ".")
+            ),
+            tags$li(
+                p("Add a", tags$code("theme_block"), ".")
+            )
+        )
+      )
+    )
   )
 )
 ```

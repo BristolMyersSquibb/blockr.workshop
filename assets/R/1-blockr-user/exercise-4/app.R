@@ -224,7 +224,14 @@ new_theme_block <- function(...) {
         })(grep("^theme_.*$", ls("package:ggplot2"), perl = TRUE, 
             value = TRUE)), type = "name")
     ),
-    expr = quote(do.call(.(theme), list())),
+    expr = quote({
+      do.call(.(theme), list()) +
+      ggplot2::theme(
+        axis.text.x = element_text(angle = 45, hjust = 1),  # Rotate x-axis text
+        legend.title = element_text(face = "bold"),  # Make legend title bold
+        legend.position = "bottom"  # Position legend at the bottom
+      )
+    }),
     class = c("theme_block", "plot_layer_block", "plot_block"),
       ...
   )
@@ -284,7 +291,7 @@ register_blocks(
   package = "blockr.demo",
   category = c(
     "Custom data",
-    "Transform",
+    "transform",
     rep("visualization", 6)
   )
 )

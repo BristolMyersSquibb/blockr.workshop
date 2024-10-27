@@ -18,10 +18,12 @@ Imports:
     shinylive,
     shiny,
     bslib,
-    dplyr
+    dplyr,
+    shinyAce
 Remotes:
     BristolMyersSquibb/blockr,
-    pharmaverse/cardinal
+    pharmaverse/cardinal,
+    trestletech/shinyAce
 Suggests:
     pkgload
 RoxygenNote: 7.3.2

@@ -24,8 +24,8 @@
     "objectID": "slides/0-welcome/welcome.html#before-we-start",
     "href": "slides/0-welcome/welcome.html#before-we-start",
     "title": "Introduction",
-    "section": "",
-    "text": "Workshop website: https://bristolmyerssquibb.github.io/blockr.workshop/.\nLink to Posit Cloud: https://posit.cloud/spaces/562609/join?access_code=mg7T-WK4LDzIKbdkrRdFVHPBOWo-HaldODyqtjBk.\n…"
+    "section": "Before we start",
+    "text": "Before we start\n\nWorkshop website: https://bristolmyerssquibb.github.io/blockr.workshop/.\nLink to Posit Cloud: https://posit.cloud/spaces/562609/join?access_code=mg7T-WK4LDzIKbdkrRdFVHPBOWo-HaldODyqtjBk.\n…"
   },
   {
     "objectID": "slides/0-welcome/welcome.html#workshop-pre-requisites",
@@ -39,21 +39,21 @@
     "href": "slides/0-welcome/welcome.html#karma",
     "title": "Introduction",
     "section": "Karma",
-    "text": "Karma\n\n\n\n\n\n\nKarma is an Innovation Strategy and Solutions Lead at Bristol Myers Squibb."
+    "text": "Karma\n\n\nKarma is an Innovation Strategy and Solutions Lead at Bristol Myers Squibb."
   },
   {
     "objectID": "slides/0-welcome/welcome.html#john",
     "href": "slides/0-welcome/welcome.html#john",
     "title": "Introduction",
     "section": "John",
-    "text": "John\n\n\n\n\n\n\nJohn is senior R/JS/Go developer and founder/co-founder of Opifex and The Y company."
+    "text": "John\n\n\nJohn is senior R/JS/Go developer and founder/co-founder of Opifex and The Y company."
   },
   {
     "objectID": "slides/0-welcome/welcome.html#david-granjon",
     "href": "slides/0-welcome/welcome.html#david-granjon",
     "title": "Introduction",
     "section": "David Granjon",
-    "text": "David Granjon\n\n\n\n\n\n\nDavid works as a Lead Shiny Developer at Cynkra and founder of the open source RinteRface organisation."
+    "text": "David Granjon\n\n\nDavid works as a Lead Shiny Developer at Cynkra and founder of the open source RinteRface organisation."
   },
   {
     "objectID": "slides/1-blockr-user/blockr-user.html#developing-enterprise-grade-dashboards-isnt-easy",
@@ -151,7 +151,7 @@
     "href": "slides/1-blockr-user/blockr-user.html#problem-palmer-penguins-plot",
     "title": "Introduction to blockr for users",
     "section": "Problem: palmer penguins plot",
-    "text": "Problem: palmer penguins plot\n\nWhat penguin species has the largest flippers?\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nHow can I produce this plot?\n\n\n\n\nShould I ask my colleagues to develop an interactive app for this?"
+    "text": "Problem: palmer penguins plot\n\nWhat penguin species has the largest flippers?\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nHow can I produce this plot?"
   },
   {
     "objectID": "slides/1-blockr-user/blockr-user.html#zoom-on-blocks",
@@ -409,8 +409,8 @@
     "objectID": "slides/1-blockr-user/blockr-user.html#exercise-4-joining-data",
     "href": "slides/1-blockr-user/blockr-user.html#exercise-4-joining-data",
     "title": "Introduction to blockr for users",
-    "section": "Exercise 4: joining data",
-    "text": "Exercise 4: joining data\n\n\n\n\n\n\n\n\n\nClick on Add stack, then add it a customdata_block with lab data.\nClick on Add stack.\n\nAdd a customdata_block with demo data.\nAdd a join_block with Stack = \"lab_data\", type = \"inner\", by = c(\"STUDYID\", \"USUBJID\")"
+    "section": "🧪 Exercise 4: joining data",
+    "text": "🧪 Exercise 4: joining data\n\n\n\n\n\n\n\n\n\nClick on Add stack, then add it a customdata_block with lab data.\nClick on Add stack.\n\nAdd a customdata_block with demo data.\nAdd a join_block with Stack = \"lab_data\", type = \"inner\", by = c(\"STUDYID\", \"USUBJID\")"
   },
   {
     "objectID": "slides/1-blockr-user/blockr-user.html#exercise-5-hemoglobin-by-visit-plot",

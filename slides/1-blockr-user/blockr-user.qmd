@@ -36,13 +36,6 @@ library(dplyr)
 source("../../assets/R/tools.R")
 ```
 
-# {background-image="../../assets/images/bechamel-sauce.jpg" background-size="cover"}
-
-<!--
-Imagine if we could build an interactive datapipeline like we would prepare a meal 😳
---->
-
-
 ## ![shiny homepage](../../assets/images/easy-browser.png){.center width=50% style="margin-left: 350px;"}
 
 ## ![shiny homepage corrected](../../assets/images/notsoeasy-browser.png){.center width=50% style="margin-left: 350px;"}
@@ -111,7 +104,7 @@ What penguin species has the largest flippers?
 ```{r}
 #| echo: false
 #| fig-align: center
-#| out-width: 65%
+#| out-width: 50%
 penguins |>
   filter(sex == "female") |>
   ggplot(
@@ -133,9 +126,6 @@ penguins |>
 
 - How can I produce this plot?
 
-. . .
-
-- Should I ask my colleagues to develop an interactive app for this?
 
 ## The stack: a data analysis recipe {style="font-size: 1.5em"}
 
@@ -410,7 +400,7 @@ serve_workspace(clear = FALSE) # <3>
 2. Optional: add stacks.
 3. Serve Shiny app.
 
-## Exercise 4: joining data
+## 🧪 Exercise 4: joining data
 
 ::::{.columns style="font-size: 0.75em"}
 
@@ -458,4 +448,4 @@ create_link_iframe("https://rinpharma2024.rinterface.com/#exercise-5")
 :::
 ::::
 
-## How far can I go with blockr? {background-image="../../assets/images/undraw_add_post_re_174w.svg" background-size="90%" style="margin-left: 450px; margin-top: 700px; font-size: 1.5em"}
+## How far can I go with blockr? {background-image="../../assets/images/undraw_add_post_re_174w.svg" background-size="90%" style="margin-left: 500px; margin-top: 700px; font-size: 1.5em"}

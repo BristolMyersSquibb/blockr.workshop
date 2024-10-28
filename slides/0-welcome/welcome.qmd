@@ -24,7 +24,8 @@ editor:
 
 ## Before we start
 
-- Link to Posit Cloud: TBD 
+- Workshop website: https://bristolmyerssquibb.github.io/blockr.workshop/. 
+- Link to Posit Cloud: https://posit.cloud/spaces/562609/join?access_code=mg7T-WK4LDzIKbdkrRdFVHPBOWo-HaldODyqtjBk. 
 - ...
 
 

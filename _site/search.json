@@ -270,7 +270,7 @@
     "href": "slides/2-blockr-dev/blockr-dev.html#the-registry-the-blocks-supermarket",
     "title": "Introduction to blockr for developers",
     "section": "The registry: the blocks supermarket",
-    "text": "The registry: the blocks supermarket\n\n\n\n\n\n\n\n\n\n\n\nregister\n\n\n\nregister\n\n\n\nRegistry\n\n\n\nunregister\n\n\n\nSelect block\n\n\n\nName: select block\n\n\n\nDescription: select columns in a table\n\n\n\nClasses: select_block, tranform_block\n\n\n\nInput: data.frame\n\n\n\nOutput: data.frame\n\n\n\nPackage: blockr\n\n\n\nFilter block\n\n\n\n\n\n\n\nblockr.echarts4r\n\n\n\nNew block\n\n\n\nNew block\n\n\n\nblockr.ggplot2\n\n\n\nNew block\n\n\n\nNew block\n\n\n\n\n\n\n\n\n\n\nInformation about blocks.\nShared between block packages."
+    "text": "The registry: the blocks supermarket\n\n\n\n\n\n\n\n\n\nregister\n\n\nregister\n\n\nRegistry\n\n\nunregister\n\n\nSelect block\n\n\nName: select block\n\n\nDescription: select columns in a table\n\n\nClasses: select_block, tranform_block\n\n\nInput: data.frame\n\n\nOutput: data.frame\n\n\nPackage: blockr\n\n\nFilter block\n\n\n\n\n\nblockr.echarts4r\n\n\nNew block\n\n\nNew block\n\n\nblockr.ggplot2\n\n\nNew block\n\n\nNew block\n\n\n\n\n\n\n\n\n\n\nInformation about blocks.\n\nShared between block packages."
   },
   {
     "objectID": "slides/2-blockr-dev/blockr-dev.html#filling-the-supermarket-with-block",
@@ -425,5 +425,33 @@
     "title": "Introduction",
     "section": "",
     "text": "Workshop website: https://bristolmyerssquibb.github.io/blockr.workshop/.\nLink to Posit Cloud: https://posit.cloud/spaces/562609/join?access_code=mg7T-WK4LDzIKbdkrRdFVHPBOWo-HaldODyqtjBk.\n…"
+  },
+  {
+    "objectID": "slides/2-blockr-dev/blockr-dev.html#zoom-on-blocks-and-fields",
+    "href": "slides/2-blockr-dev/blockr-dev.html#zoom-on-blocks-and-fields",
+    "title": "Introduction to blockr for developers",
+    "section": "Zoom on blocks and fields 🥦 🥚",
+    "text": "Zoom on blocks and fields 🥦 🥚\n\n\n\n\n\n\n\nflowchart TD\n  blk_data_in(Data input)\n  blk_data_out[Output]\n  subgraph blk_block[Block]\n    subgraph blk_field1[Field 1]\n      value(Value)\n      title(Title)\n      descr(Description)\n      status(Status)\n    end\n    blk_field2(Field 2)\n    blk_field1 --&gt; blk_expr\n    blk_field2 --&gt; blk_expr\n    blk_expr(Expression)\n    blk_res(result)\n    blk_expr --&gt; blk_res\n  end\n  blk_data_in --&gt; blk_block --&gt; blk_data_out\n\n\n\n\n\n\n\n\nFields are ingredients.\n\nA block is a recipe step:\n\n(Optional) input data.\n\nfields, build the block expression and translated into Shiny inputs.\nAn expression, evaluated with input data: data |&gt; select(&lt;COLNAMES&gt;).\nA result, of the evaluated expression.\nA class for customization (see advanced part)."
+  },
+  {
+    "objectID": "slides/2-blockr-dev/blockr-dev.html#how-does-a-select_block-looks-like",
+    "href": "slides/2-blockr-dev/blockr-dev.html#how-does-a-select_block-looks-like",
+    "title": "Introduction to blockr for developers",
+    "section": "How does a select_block looks like?",
+    "text": "How does a select_block looks like?\nnew_select_block &lt;- function (columns = character(), ...) \n{\n  all_cols &lt;- function(data) colnames(data)\n  fields &lt;- list(\n    columns = new_select_field(columns, all_cols, \n      multiple = TRUE, title = \"Columns\")\n  )\n  new_block(\n    fields = fields,\n    expr = quote(dplyr::select(.(columns))), \n    ...,\n    class = c(\"select_block\", \"transform_block\")\n  )\n}"
+  },
+  {
+    "objectID": "slides/2-blockr-dev/blockr-dev.html#how-does-a-select-block-looks-like",
+    "href": "slides/2-blockr-dev/blockr-dev.html#how-does-a-select-block-looks-like",
+    "title": "Introduction to blockr for developers",
+    "section": "How does a select block looks like?",
+    "text": "How does a select block looks like?\nnew_select_block &lt;- function (columns = character(), ...) \n{\n  all_cols &lt;- function(data) colnames(data)\n  fields &lt;- list(\n    columns = new_select_field(columns, all_cols, \n      multiple = TRUE, title = \"Columns\")\n  )\n  new_block(\n    fields = fields,\n    expr = quote(dplyr::select(.(columns))), \n    ...,\n    class = c(\"select_block\", \"transform_block\")\n  )\n}"
+  },
+  {
+    "objectID": "slides/2-blockr-dev/blockr-dev.html#how-does-a-select-block-look-like",
+    "href": "slides/2-blockr-dev/blockr-dev.html#how-does-a-select-block-look-like",
+    "title": "Introduction to blockr for developers",
+    "section": "How does a select block look like?",
+    "text": "How does a select block look like?\n\nnew_select_block &lt;- function (columns = character(), ...) \n{\n  all_cols &lt;- function(data) colnames(data)\n  fields &lt;- list(\n    columns = new_select_field(columns, all_cols, \n      multiple = TRUE, title = \"Columns\")\n  )\n  new_block(\n    fields = fields,\n    expr = quote(dplyr::select(.(columns))), \n    ...,\n    class = c(\"select_block\", \"transform_block\")\n  )\n}"
   }
 ]

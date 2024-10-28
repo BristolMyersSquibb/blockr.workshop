@@ -35,6 +35,67 @@ editor:
 
 # Create your own blocks </br> supermarket {background-image="../../assets/images/undraw_empty_cart_co35.svg" background-size="60%" style="margin-top: -300px; font-size: 1.5em"}
 
+## Zoom on blocks and fields 🥦 🥚 {style="font-size: 1.5em"}
+
+::::{.columns}
+
+:::{.column}
+```{mermaid}
+flowchart TD
+  blk_data_in(Data input)
+  blk_data_out[Output]
+  subgraph blk_block[Block]
+    subgraph blk_field1[Field 1]
+      value(Value)
+      title(Title)
+      descr(Description)
+      status(Status)
+    end
+    blk_field2(Field 2)
+    blk_field1 --> blk_expr
+    blk_field2 --> blk_expr
+    blk_expr(Expression)
+    blk_res(result)
+    blk_expr --> blk_res
+  end
+  blk_data_in --> blk_block --> blk_data_out
+```
+:::
+
+:::{.column style="font-size: 0.75em"}
+- __Fields__ are __ingredients__.
+- A __block__ is a recipe __step__:
+
+    - (Optional) input data.
+    - __fields__, build the block expression and translated into Shiny inputs.
+    - An __expression__, evaluated with input data: `data |> select(<COLNAMES>)`.
+    - A __result__, of the evaluated expression.
+    - A __class__ for customization (see advanced part).
+:::
+
+:::
+
+## How does a select block look like?
+
+<br>
+
+```r
+new_select_block <- function (columns = character(), ...) 
+{
+  all_cols <- function(data) colnames(data)
+  fields <- list(
+    columns = new_select_field(columns, all_cols, 
+      multiple = TRUE, title = "Columns")
+  )
+  new_block(
+    fields = fields,
+    expr = quote(dplyr::select(.(columns))), 
+    ...,
+    class = c("select_block", "transform_block")
+  )
+}
+```
+
 ## Today's mission {style="font-size: 1.5em"}
 
 Create a new cardinal[^cardinal] block: 

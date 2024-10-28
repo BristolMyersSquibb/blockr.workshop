@@ -46,7 +46,7 @@
     "href": "slides/1-blockr-user/blockr-user.html#problem-palmer-penguins-plot",
     "title": "Introduction to blockr for users",
     "section": "Problem: palmer penguins plot",
-    "text": "Problem: palmer penguins plot\n\nWhat penguin species has the largest flippers?\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nHow can I produce this plot?\n\n\n\n\nShould I ask my colleagues to develop an interactive app for this?"
+    "text": "Problem: palmer penguins plot\n\nWhat penguin species has the largest flippers?\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nHow can I produce this plot?"
   },
   {
     "objectID": "slides/1-blockr-user/blockr-user.html#the-stack-a-data-analysis-recipe",
@@ -129,8 +129,8 @@
     "objectID": "slides/1-blockr-user/blockr-user.html#exercise-4-joining-data",
     "href": "slides/1-blockr-user/blockr-user.html#exercise-4-joining-data",
     "title": "Introduction to blockr for users",
-    "section": "Exercise 4: joining data",
-    "text": "Exercise 4: joining data\n\n\n\n\n\n\n\n\n\nClick on Add stack, then add it a customdata_block with lab data.\nClick on Add stack.\n\nAdd a customdata_block with demo data.\nAdd a join_block with Stack = \"lab_data\", type = \"inner\", by = c(\"STUDYID\", \"USUBJID\")"
+    "section": "🧪 Exercise 4: joining data",
+    "text": "🧪 Exercise 4: joining data\n\n\n\n\n\n\n\n\n\nClick on Add stack, then add it a customdata_block with lab data.\nClick on Add stack.\n\nAdd a customdata_block with demo data.\nAdd a join_block with Stack = \"lab_data\", type = \"inner\", by = c(\"STUDYID\", \"USUBJID\")"
   },
   {
     "objectID": "slides/1-blockr-user/blockr-user.html#exercise-5-hemoglobin-by-visit-plot",
@@ -201,6 +201,20 @@
     "title": "Introduction",
     "section": "David Granjon",
     "text": "David Granjon\n\n\nDavid works as a Lead Shiny Developer at Cynkra and founder of the open source RinteRface organisation."
+  },
+  {
+    "objectID": "slides/2-blockr-dev/blockr-dev.html#zoom-on-blocks-and-fields",
+    "href": "slides/2-blockr-dev/blockr-dev.html#zoom-on-blocks-and-fields",
+    "title": "Introduction to blockr for developers",
+    "section": "Zoom on blocks and fields 🥦 🥚",
+    "text": "Zoom on blocks and fields 🥦 🥚\n\n\n\n\n\n\n\nflowchart TD\n  blk_data_in(Data input)\n  blk_data_out[Output]\n  subgraph blk_block[Block]\n    subgraph blk_field1[Field 1]\n      value(Value)\n      title(Title)\n      descr(Description)\n      status(Status)\n    end\n    blk_field2(Field 2)\n    blk_field1 --&gt; blk_expr\n    blk_field2 --&gt; blk_expr\n    blk_expr(Expression)\n    blk_res(result)\n    blk_expr --&gt; blk_res\n  end\n  blk_data_in --&gt; blk_block --&gt; blk_data_out\n\n\n\n\n\n\n\n\nFields are ingredients.\nA block is a recipe step:\n\n(Optional) input data.\nfields, build the block expression and translated into Shiny inputs.\nAn expression, evaluated with input data: data |&gt; select(&lt;COLNAMES&gt;).\nA result, of the evaluated expression.\nA class for customization (see advanced part)."
+  },
+  {
+    "objectID": "slides/2-blockr-dev/blockr-dev.html#how-does-a-select-block-look-like",
+    "href": "slides/2-blockr-dev/blockr-dev.html#how-does-a-select-block-look-like",
+    "title": "Introduction to blockr for developers",
+    "section": "How does a select block look like?",
+    "text": "How does a select block look like?\n\nnew_select_block &lt;- function (columns = character(), ...) \n{\n  all_cols &lt;- function(data) colnames(data)\n  fields &lt;- list(\n    columns = new_select_field(columns, all_cols, \n      multiple = TRUE, title = \"Columns\")\n  )\n  new_block(\n    fields = fields,\n    expr = quote(dplyr::select(.(columns))), \n    ...,\n    class = c(\"select_block\", \"transform_block\")\n  )\n}"
   },
   {
     "objectID": "slides/2-blockr-dev/blockr-dev.html#todays-mission",

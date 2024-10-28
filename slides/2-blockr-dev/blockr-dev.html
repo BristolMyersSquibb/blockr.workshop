@@ -413,6 +413,71 @@ David Granjon (cynkra GmbH), Karma Tarap (BMS) and John Coene (The Y Company)
 <h1>Create your own blocks <br> supermarket</h1>
 
 </section>
+<section id="zoom-on-blocks-and-fields" class="slide level2" style="font-size: 1.5em">
+<h2>Zoom on blocks and fields 🥦 🥚</h2>
+<div class="columns">
+<div class="column">
+<div class="cell" data-reveal="true" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class=""><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart TD
+  blk_data_in(Data input)
+  blk_data_out[Output]
+  subgraph blk_block[Block]
+    subgraph blk_field1[Field 1]
+      value(Value)
+      title(Title)
+      descr(Description)
+      status(Status)
+    end
+    blk_field2(Field 2)
+    blk_field1 --&gt; blk_expr
+    blk_field2 --&gt; blk_expr
+    blk_expr(Expression)
+    blk_res(result)
+    blk_expr --&gt; blk_res
+  end
+  blk_data_in --&gt; blk_block --&gt; blk_data_out
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+</div><div class="column" style="font-size: 0.75em">
+<ul>
+<li><p><strong>Fields</strong> are <strong>ingredients</strong>.</p></li>
+<li><p>A <strong>block</strong> is a recipe <strong>step</strong>:</p>
+<ul>
+<li>(Optional) input data.</li>
+<li><strong>fields</strong>, build the block expression and translated into Shiny inputs.</li>
+<li>An <strong>expression</strong>, evaluated with input data: <code>data |&gt; select(&lt;COLNAMES&gt;)</code>.</li>
+<li>A <strong>result</strong>, of the evaluated expression.</li>
+<li>A <strong>class</strong> for customization (see advanced part).</li>
+</ul></li>
+</ul>
+</div></div>
+</section>
+<section id="how-does-a-select-block-look-like" class="slide level2">
+<h2>How does a select block look like?</h2>
+<p><br></p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a>new_select_block <span class="ot">&lt;-</span> <span class="cf">function</span> (<span class="at">columns =</span> <span class="fu">character</span>(), ...) </span>
+<span id="cb1-2"><a></a>{</span>
+<span id="cb1-3"><a></a>  all_cols <span class="ot">&lt;-</span> <span class="cf">function</span>(data) <span class="fu">colnames</span>(data)</span>
+<span id="cb1-4"><a></a>  fields <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
+<span id="cb1-5"><a></a>    <span class="at">columns =</span> <span class="fu">new_select_field</span>(columns, all_cols, </span>
+<span id="cb1-6"><a></a>      <span class="at">multiple =</span> <span class="cn">TRUE</span>, <span class="at">title =</span> <span class="st">"Columns"</span>)</span>
+<span id="cb1-7"><a></a>  )</span>
+<span id="cb1-8"><a></a>  <span class="fu">new_block</span>(</span>
+<span id="cb1-9"><a></a>    <span class="at">fields =</span> fields,</span>
+<span id="cb1-10"><a></a>    <span class="at">expr =</span> <span class="fu">quote</span>(dplyr<span class="sc">::</span><span class="fu">select</span>(.(columns))), </span>
+<span id="cb1-11"><a></a>    ...,</span>
+<span id="cb1-12"><a></a>    <span class="at">class =</span> <span class="fu">c</span>(<span class="st">"select_block"</span>, <span class="st">"transform_block"</span>)</span>
+<span id="cb1-13"><a></a>  )</span>
+<span id="cb1-14"><a></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
 <section id="todays-mission" class="slide level2" style="font-size: 1.5em">
 <h2>Today’s mission</h2>
 <p>Create a new cardinal<sup>1</sup> block:</p>
@@ -424,24 +489,24 @@ David Granjon (cynkra GmbH), Karma Tarap (BMS) and John Coene (The Y Company)
 <h2 data-id="quarto-animate-title">Create new blocks: cardinal block 1/4</h2>
 <div style="font-size: 1em">
 <div class="cell">
-<div class="sourceCode cell-code" id="annotated-cell-3"><pre class="sourceCode numberSource r code-annotation-code number-lines code-with-copy code-annotated" data-id="quarto-animate-code"><code class="sourceCode r hljs"><a class="code-annotation-anchor hljs-ln-code" data-target-cell="annotated-cell-3" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-3-1" class="code-annotation-target hljs-ln-code"><a href="#annotated-cell-3-1"></a>new_cardinal09_block <span class="ot">&lt;-</span> <span class="cf">function</span>(</span>
-<a class="code-annotation-anchor hljs-ln-code" data-target-cell="annotated-cell-3" data-target-annotation="2" onclick="event.preventDefault();">2</a><span id="annotated-cell-3-2" class="code-annotation-target hljs-ln-code"><a href="#annotated-cell-3-2"></a>  <span class="at">id_var =</span> <span class="st">"USUBJID"</span>,</span>
-<span id="annotated-cell-3-3" class="hljs-ln-code"><a href="#annotated-cell-3-3"></a>  <span class="at">arm_var =</span> <span class="st">"ARM"</span>,</span>
-<span id="annotated-cell-3-4" class="hljs-ln-code"><a href="#annotated-cell-3-4"></a>  <span class="at">saffl_var =</span> <span class="st">"SAFFL"</span>,</span>
-<span id="annotated-cell-3-5" class="hljs-ln-code"><a href="#annotated-cell-3-5"></a>  <span class="at">pref_var =</span> <span class="st">"AEDECOD"</span>,</span>
-<span id="annotated-cell-3-6" class="hljs-ln-code"><a href="#annotated-cell-3-6"></a>  <span class="at">show_colcounts =</span> <span class="cn">TRUE</span>,</span>
-<span id="annotated-cell-3-7" class="hljs-ln-code"><a href="#annotated-cell-3-7"></a>  ...) {</span>
-<span id="annotated-cell-3-8" class="hljs-ln-code"><a href="#annotated-cell-3-8"></a></span>
-<span id="annotated-cell-3-9" class="hljs-ln-code"><a href="#annotated-cell-3-9"></a>}</span><div class="code-annotation-gutter-bg hljs-ln-code"></div><div class="code-annotation-gutter hljs-ln-code"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="annotated-cell-4"><pre class="sourceCode numberSource r code-annotation-code number-lines code-with-copy code-annotated" data-id="quarto-animate-code"><code class="sourceCode r hljs"><a class="code-annotation-anchor hljs-ln-code" data-target-cell="annotated-cell-4" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-4-1" class="code-annotation-target hljs-ln-code"><a href="#annotated-cell-4-1"></a>new_cardinal09_block <span class="ot">&lt;-</span> <span class="cf">function</span>(</span>
+<a class="code-annotation-anchor hljs-ln-code" data-target-cell="annotated-cell-4" data-target-annotation="2" onclick="event.preventDefault();">2</a><span id="annotated-cell-4-2" class="code-annotation-target hljs-ln-code"><a href="#annotated-cell-4-2"></a>  <span class="at">id_var =</span> <span class="st">"USUBJID"</span>,</span>
+<span id="annotated-cell-4-3" class="hljs-ln-code"><a href="#annotated-cell-4-3"></a>  <span class="at">arm_var =</span> <span class="st">"ARM"</span>,</span>
+<span id="annotated-cell-4-4" class="hljs-ln-code"><a href="#annotated-cell-4-4"></a>  <span class="at">saffl_var =</span> <span class="st">"SAFFL"</span>,</span>
+<span id="annotated-cell-4-5" class="hljs-ln-code"><a href="#annotated-cell-4-5"></a>  <span class="at">pref_var =</span> <span class="st">"AEDECOD"</span>,</span>
+<span id="annotated-cell-4-6" class="hljs-ln-code"><a href="#annotated-cell-4-6"></a>  <span class="at">show_colcounts =</span> <span class="cn">TRUE</span>,</span>
+<span id="annotated-cell-4-7" class="hljs-ln-code"><a href="#annotated-cell-4-7"></a>  ...) {</span>
+<span id="annotated-cell-4-8" class="hljs-ln-code"><a href="#annotated-cell-4-8"></a></span>
+<span id="annotated-cell-4-9" class="hljs-ln-code"><a href="#annotated-cell-4-9"></a>}</span><div class="code-annotation-gutter-bg hljs-ln-code"></div><div class="code-annotation-gutter hljs-ln-code"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-annotation">
 <dl class="code-annotation-container-grid">
-<dt data-target-cell="annotated-cell-3" data-target-annotation="1">1</dt>
+<dt data-target-cell="annotated-cell-4" data-target-annotation="1">1</dt>
 <dd>
-<span data-code-cell="annotated-cell-3" data-code-lines="1" data-code-annotation="1">Create the <code>constructor</code>.</span>
+<span data-code-cell="annotated-cell-4" data-code-lines="1" data-code-annotation="1">Create the <code>constructor</code>.</span>
 </dd>
-<dt data-target-cell="annotated-cell-3" data-target-annotation="2">2</dt>
+<dt data-target-cell="annotated-cell-4" data-target-annotation="2">2</dt>
 <dd>
-<span data-code-cell="annotated-cell-3" data-code-lines="2,3,4,5,6" data-code-annotation="2">Select parameters to expose as <strong>interactive</strong> inputs.</span>
+<span data-code-cell="annotated-cell-4" data-code-lines="2,3,4,5,6" data-code-annotation="2">Select parameters to expose as <strong>interactive</strong> inputs.</span>
 </dd>
 </dl>
 </div>
@@ -452,38 +517,38 @@ David Granjon (cynkra GmbH), Karma Tarap (BMS) and John Coene (The Y Company)
 <h2 data-id="quarto-animate-title">Create new blocks: cardinal block 2/4</h2>
 <div style="font-size: 1em">
 <div class="cell">
-<div class="sourceCode cell-code" id="annotated-cell-4" data-code-line-numbers="9|11-17|20"><pre class="sourceCode numberSource r code-annotation-code number-lines code-with-copy code-annotated" data-id="quarto-animate-code"><code class="sourceCode r hljs"><span id="annotated-cell-4-1" class="hljs-ln-code"><a href="#annotated-cell-4-1"></a>new_cardinal09_block <span class="ot">&lt;-</span> <span class="cf">function</span>(</span>
-<span id="annotated-cell-4-2" class="hljs-ln-code"><a href="#annotated-cell-4-2"></a>  <span class="at">id_var =</span> <span class="st">"USUBJID"</span>,</span>
-<span id="annotated-cell-4-3" class="hljs-ln-code"><a href="#annotated-cell-4-3"></a>  <span class="at">arm_var =</span> <span class="st">"ARM"</span>,</span>
-<span id="annotated-cell-4-4" class="hljs-ln-code"><a href="#annotated-cell-4-4"></a>  <span class="at">saffl_var =</span> <span class="st">"SAFFL"</span>,</span>
-<span id="annotated-cell-4-5" class="hljs-ln-code"><a href="#annotated-cell-4-5"></a>  <span class="at">pref_var =</span> <span class="st">"AEDECOD"</span>,</span>
-<span id="annotated-cell-4-6" class="hljs-ln-code"><a href="#annotated-cell-4-6"></a>  <span class="at">show_colcounts =</span> <span class="cn">TRUE</span>,</span>
-<span id="annotated-cell-4-7" class="hljs-ln-code"><a href="#annotated-cell-4-7"></a>  ...) {</span>
-<span id="annotated-cell-4-8" class="hljs-ln-code"><a href="#annotated-cell-4-8"></a></span>
-<a class="code-annotation-anchor hljs-ln-code" data-target-cell="annotated-cell-4" data-target-annotation="3" onclick="event.preventDefault();">3</a><span id="annotated-cell-4-9" class="code-annotation-target hljs-ln-code"><a href="#annotated-cell-4-9"></a>  all_cols <span class="ot">&lt;-</span> <span class="cf">function</span>(data) <span class="fu">colnames</span>(data)</span>
-<span id="annotated-cell-4-10" class="hljs-ln-code"><a href="#annotated-cell-4-10"></a></span>
-<a class="code-annotation-anchor hljs-ln-code" data-target-cell="annotated-cell-4" data-target-annotation="4" onclick="event.preventDefault();">4</a><span id="annotated-cell-4-11" class="code-annotation-target hljs-ln-code"><a href="#annotated-cell-4-11"></a>  fields <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
-<span id="annotated-cell-4-12" class="hljs-ln-code"><a href="#annotated-cell-4-12"></a>    <span class="at">id_var =</span> <span class="fu">new_select_field</span>(id_var, all_cols, <span class="at">title =</span> <span class="st">"ID"</span>),</span>
-<span id="annotated-cell-4-13" class="hljs-ln-code"><a href="#annotated-cell-4-13"></a>    <span class="at">arm_var =</span> <span class="fu">new_select_field</span>(arm_var, all_cols, <span class="at">title =</span> <span class="st">"ARM"</span>),</span>
-<span id="annotated-cell-4-14" class="hljs-ln-code"><a href="#annotated-cell-4-14"></a>    <span class="at">saffl_var =</span> <span class="fu">new_select_field</span>(saffl_var, all_cols, <span class="at">title =</span> <span class="st">"SAFFL"</span>),</span>
-<span id="annotated-cell-4-15" class="hljs-ln-code"><a href="#annotated-cell-4-15"></a>    <span class="at">pref_var =</span> <span class="fu">new_select_field</span>(pref_var, all_cols, <span class="at">title =</span> <span class="st">"Pref"</span>),</span>
-<span id="annotated-cell-4-16" class="hljs-ln-code"><a href="#annotated-cell-4-16"></a>    <span class="at">show_colcounts =</span> <span class="fu">new_switch_field</span>(show_colcounts, <span class="at">title =</span> <span class="st">"Show column counts"</span>)</span>
-<span id="annotated-cell-4-17" class="hljs-ln-code"><a href="#annotated-cell-4-17"></a>  )</span>
-<span id="annotated-cell-4-18" class="hljs-ln-code"><a href="#annotated-cell-4-18"></a></span>
-<span id="annotated-cell-4-19" class="hljs-ln-code"><a href="#annotated-cell-4-19"></a>  <span class="fu">new_block</span>(</span>
-<span id="annotated-cell-4-20" class="hljs-ln-code"><a href="#annotated-cell-4-20"></a>    <span class="at">fields =</span> fields,</span>
-<span id="annotated-cell-4-21" class="hljs-ln-code"><a href="#annotated-cell-4-21"></a></span>
-<span id="annotated-cell-4-22" class="hljs-ln-code"><a href="#annotated-cell-4-22"></a>  )</span>
-<span id="annotated-cell-4-23" class="hljs-ln-code"><a href="#annotated-cell-4-23"></a>}</span><div class="code-annotation-gutter-bg hljs-ln-code"></div><div class="code-annotation-gutter hljs-ln-code"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="annotated-cell-5" data-code-line-numbers="9|11-17|20"><pre class="sourceCode numberSource r code-annotation-code number-lines code-with-copy code-annotated" data-id="quarto-animate-code"><code class="sourceCode r hljs"><span id="annotated-cell-5-1" class="hljs-ln-code"><a href="#annotated-cell-5-1"></a>new_cardinal09_block <span class="ot">&lt;-</span> <span class="cf">function</span>(</span>
+<span id="annotated-cell-5-2" class="hljs-ln-code"><a href="#annotated-cell-5-2"></a>  <span class="at">id_var =</span> <span class="st">"USUBJID"</span>,</span>
+<span id="annotated-cell-5-3" class="hljs-ln-code"><a href="#annotated-cell-5-3"></a>  <span class="at">arm_var =</span> <span class="st">"ARM"</span>,</span>
+<span id="annotated-cell-5-4" class="hljs-ln-code"><a href="#annotated-cell-5-4"></a>  <span class="at">saffl_var =</span> <span class="st">"SAFFL"</span>,</span>
+<span id="annotated-cell-5-5" class="hljs-ln-code"><a href="#annotated-cell-5-5"></a>  <span class="at">pref_var =</span> <span class="st">"AEDECOD"</span>,</span>
+<span id="annotated-cell-5-6" class="hljs-ln-code"><a href="#annotated-cell-5-6"></a>  <span class="at">show_colcounts =</span> <span class="cn">TRUE</span>,</span>
+<span id="annotated-cell-5-7" class="hljs-ln-code"><a href="#annotated-cell-5-7"></a>  ...) {</span>
+<span id="annotated-cell-5-8" class="hljs-ln-code"><a href="#annotated-cell-5-8"></a></span>
+<a class="code-annotation-anchor hljs-ln-code" data-target-cell="annotated-cell-5" data-target-annotation="3" onclick="event.preventDefault();">3</a><span id="annotated-cell-5-9" class="code-annotation-target hljs-ln-code"><a href="#annotated-cell-5-9"></a>  all_cols <span class="ot">&lt;-</span> <span class="cf">function</span>(data) <span class="fu">colnames</span>(data)</span>
+<span id="annotated-cell-5-10" class="hljs-ln-code"><a href="#annotated-cell-5-10"></a></span>
+<a class="code-annotation-anchor hljs-ln-code" data-target-cell="annotated-cell-5" data-target-annotation="4" onclick="event.preventDefault();">4</a><span id="annotated-cell-5-11" class="code-annotation-target hljs-ln-code"><a href="#annotated-cell-5-11"></a>  fields <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
+<span id="annotated-cell-5-12" class="hljs-ln-code"><a href="#annotated-cell-5-12"></a>    <span class="at">id_var =</span> <span class="fu">new_select_field</span>(id_var, all_cols, <span class="at">title =</span> <span class="st">"ID"</span>),</span>
+<span id="annotated-cell-5-13" class="hljs-ln-code"><a href="#annotated-cell-5-13"></a>    <span class="at">arm_var =</span> <span class="fu">new_select_field</span>(arm_var, all_cols, <span class="at">title =</span> <span class="st">"ARM"</span>),</span>
+<span id="annotated-cell-5-14" class="hljs-ln-code"><a href="#annotated-cell-5-14"></a>    <span class="at">saffl_var =</span> <span class="fu">new_select_field</span>(saffl_var, all_cols, <span class="at">title =</span> <span class="st">"SAFFL"</span>),</span>
+<span id="annotated-cell-5-15" class="hljs-ln-code"><a href="#annotated-cell-5-15"></a>    <span class="at">pref_var =</span> <span class="fu">new_select_field</span>(pref_var, all_cols, <span class="at">title =</span> <span class="st">"Pref"</span>),</span>
+<span id="annotated-cell-5-16" class="hljs-ln-code"><a href="#annotated-cell-5-16"></a>    <span class="at">show_colcounts =</span> <span class="fu">new_switch_field</span>(show_colcounts, <span class="at">title =</span> <span class="st">"Show column counts"</span>)</span>
+<span id="annotated-cell-5-17" class="hljs-ln-code"><a href="#annotated-cell-5-17"></a>  )</span>
+<span id="annotated-cell-5-18" class="hljs-ln-code"><a href="#annotated-cell-5-18"></a></span>
+<span id="annotated-cell-5-19" class="hljs-ln-code"><a href="#annotated-cell-5-19"></a>  <span class="fu">new_block</span>(</span>
+<span id="annotated-cell-5-20" class="hljs-ln-code"><a href="#annotated-cell-5-20"></a>    <span class="at">fields =</span> fields,</span>
+<span id="annotated-cell-5-21" class="hljs-ln-code"><a href="#annotated-cell-5-21"></a></span>
+<span id="annotated-cell-5-22" class="hljs-ln-code"><a href="#annotated-cell-5-22"></a>  )</span>
+<span id="annotated-cell-5-23" class="hljs-ln-code"><a href="#annotated-cell-5-23"></a>}</span><div class="code-annotation-gutter-bg hljs-ln-code"></div><div class="code-annotation-gutter hljs-ln-code"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-annotation">
 <dl class="code-annotation-container-grid">
-<dt data-target-cell="annotated-cell-4" data-target-annotation="3">3</dt>
+<dt data-target-cell="annotated-cell-5" data-target-annotation="3">3</dt>
 <dd>
-<span data-code-cell="annotated-cell-4" data-code-lines="9" data-code-annotation="3">Construct columns dynamically.</span>
+<span data-code-cell="annotated-cell-5" data-code-lines="9" data-code-annotation="3">Construct columns dynamically.</span>
 </dd>
-<dt data-target-cell="annotated-cell-4" data-target-annotation="4">4</dt>
+<dt data-target-cell="annotated-cell-5" data-target-annotation="4">4</dt>
 <dd>
-<span data-code-cell="annotated-cell-4" data-code-lines="11,12,13,14,15,16,17,20" data-code-annotation="4">Add field(s) for interactivity. (Note: <code>type</code> allows to pass in cols as name instead of strings.)</span>
+<span data-code-cell="annotated-cell-5" data-code-lines="11,12,13,14,15,16,17,20" data-code-annotation="4">Add field(s) for interactivity. (Note: <code>type</code> allows to pass in cols as name instead of strings.)</span>
 </dd>
 </dl>
 </div>
@@ -494,43 +559,43 @@ David Granjon (cynkra GmbH), Karma Tarap (BMS) and John Coene (The Y Company)
 <h2 data-id="quarto-animate-title">Create new blocks: cardinal block 3/4</h2>
 <div style="font-size: 1em">
 <div class="cell">
-<div class="sourceCode cell-code" id="annotated-cell-5" data-code-line-numbers="21-30"><pre class="sourceCode numberSource r code-annotation-code number-lines code-with-copy code-annotated" data-id="quarto-animate-code"><code class="sourceCode r hljs"><span id="annotated-cell-5-1" class="hljs-ln-code"><a href="#annotated-cell-5-1"></a>new_cardinal09_block <span class="ot">&lt;-</span> <span class="cf">function</span>(</span>
-<span id="annotated-cell-5-2" class="hljs-ln-code"><a href="#annotated-cell-5-2"></a>  <span class="at">id_var =</span> <span class="st">"USUBJID"</span>,</span>
-<span id="annotated-cell-5-3" class="hljs-ln-code"><a href="#annotated-cell-5-3"></a>  <span class="at">arm_var =</span> <span class="st">"ARM"</span>,</span>
-<span id="annotated-cell-5-4" class="hljs-ln-code"><a href="#annotated-cell-5-4"></a>  <span class="at">saffl_var =</span> <span class="st">"SAFFL"</span>,</span>
-<span id="annotated-cell-5-5" class="hljs-ln-code"><a href="#annotated-cell-5-5"></a>  <span class="at">pref_var =</span> <span class="st">"AEDECOD"</span>,</span>
-<span id="annotated-cell-5-6" class="hljs-ln-code"><a href="#annotated-cell-5-6"></a>  <span class="at">show_colcounts =</span> <span class="cn">TRUE</span>,</span>
-<span id="annotated-cell-5-7" class="hljs-ln-code"><a href="#annotated-cell-5-7"></a>  ...) {</span>
-<span id="annotated-cell-5-8" class="hljs-ln-code"><a href="#annotated-cell-5-8"></a></span>
-<span id="annotated-cell-5-9" class="hljs-ln-code"><a href="#annotated-cell-5-9"></a>  all_cols <span class="ot">&lt;-</span> <span class="cf">function</span>(data) <span class="fu">colnames</span>(data)</span>
-<span id="annotated-cell-5-10" class="hljs-ln-code"><a href="#annotated-cell-5-10"></a></span>
-<span id="annotated-cell-5-11" class="hljs-ln-code"><a href="#annotated-cell-5-11"></a>  fields <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
-<span id="annotated-cell-5-12" class="hljs-ln-code"><a href="#annotated-cell-5-12"></a>    <span class="at">id_var =</span> <span class="fu">new_select_field</span>(id_var, all_cols, <span class="at">title =</span> <span class="st">"ID"</span>),</span>
-<span id="annotated-cell-5-13" class="hljs-ln-code"><a href="#annotated-cell-5-13"></a>    <span class="at">arm_var =</span> <span class="fu">new_select_field</span>(arm_var, all_cols, <span class="at">title =</span> <span class="st">"ARM"</span>),</span>
-<span id="annotated-cell-5-14" class="hljs-ln-code"><a href="#annotated-cell-5-14"></a>    <span class="at">saffl_var =</span> <span class="fu">new_select_field</span>(saffl_var, all_cols, <span class="at">title =</span> <span class="st">"SAFFL"</span>),</span>
-<span id="annotated-cell-5-15" class="hljs-ln-code"><a href="#annotated-cell-5-15"></a>    <span class="at">pref_var =</span> <span class="fu">new_select_field</span>(pref_var, all_cols, <span class="at">title =</span> <span class="st">"Pref"</span>),</span>
-<span id="annotated-cell-5-16" class="hljs-ln-code"><a href="#annotated-cell-5-16"></a>    <span class="at">show_colcounts =</span> <span class="fu">new_switch_field</span>(show_colcounts, <span class="at">title =</span> <span class="st">"Show column counts"</span>)</span>
-<span id="annotated-cell-5-17" class="hljs-ln-code"><a href="#annotated-cell-5-17"></a>  )</span>
-<span id="annotated-cell-5-18" class="hljs-ln-code"><a href="#annotated-cell-5-18"></a></span>
-<span id="annotated-cell-5-19" class="hljs-ln-code"><a href="#annotated-cell-5-19"></a>  <span class="fu">new_block</span>(</span>
-<span id="annotated-cell-5-20" class="hljs-ln-code"><a href="#annotated-cell-5-20"></a>    <span class="at">fields =</span> fields,</span>
-<a class="code-annotation-anchor hljs-ln-code" data-target-cell="annotated-cell-5" data-target-annotation="5" onclick="event.preventDefault();">5</a><span id="annotated-cell-5-21" class="code-annotation-target hljs-ln-code"><a href="#annotated-cell-5-21"></a>    <span class="at">expr =</span> <span class="fu">quote</span>({</span>
-<span id="annotated-cell-5-22" class="hljs-ln-code"><a href="#annotated-cell-5-22"></a>      cardinal<span class="sc">::</span><span class="fu">make_table_09_gtsum</span>(</span>
-<span id="annotated-cell-5-23" class="hljs-ln-code"><a href="#annotated-cell-5-23"></a>        <span class="at">adae =</span> data,</span>
-<span id="annotated-cell-5-24" class="hljs-ln-code"><a href="#annotated-cell-5-24"></a>        <span class="at">arm_var =</span> .(arm_var),</span>
-<span id="annotated-cell-5-25" class="hljs-ln-code"><a href="#annotated-cell-5-25"></a>        <span class="at">saffl_var =</span> .(saffl_var),</span>
-<span id="annotated-cell-5-26" class="hljs-ln-code"><a href="#annotated-cell-5-26"></a>        <span class="at">id_var =</span> .(id_var),</span>
-<span id="annotated-cell-5-27" class="hljs-ln-code"><a href="#annotated-cell-5-27"></a>        <span class="at">pref_var =</span> .(pref_var),</span>
-<span id="annotated-cell-5-28" class="hljs-ln-code"><a href="#annotated-cell-5-28"></a>        <span class="at">show_colcounts =</span> .(show_colcounts)</span>
-<span id="annotated-cell-5-29" class="hljs-ln-code"><a href="#annotated-cell-5-29"></a>      )</span>
-<span id="annotated-cell-5-30" class="hljs-ln-code"><a href="#annotated-cell-5-30"></a>    })</span>
-<span id="annotated-cell-5-31" class="hljs-ln-code"><a href="#annotated-cell-5-31"></a>  )</span>
-<span id="annotated-cell-5-32" class="hljs-ln-code"><a href="#annotated-cell-5-32"></a>}</span><div class="code-annotation-gutter-bg hljs-ln-code"></div><div class="code-annotation-gutter hljs-ln-code"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="annotated-cell-6" data-code-line-numbers="21-30"><pre class="sourceCode numberSource r code-annotation-code number-lines code-with-copy code-annotated" data-id="quarto-animate-code"><code class="sourceCode r hljs"><span id="annotated-cell-6-1" class="hljs-ln-code"><a href="#annotated-cell-6-1"></a>new_cardinal09_block <span class="ot">&lt;-</span> <span class="cf">function</span>(</span>
+<span id="annotated-cell-6-2" class="hljs-ln-code"><a href="#annotated-cell-6-2"></a>  <span class="at">id_var =</span> <span class="st">"USUBJID"</span>,</span>
+<span id="annotated-cell-6-3" class="hljs-ln-code"><a href="#annotated-cell-6-3"></a>  <span class="at">arm_var =</span> <span class="st">"ARM"</span>,</span>
+<span id="annotated-cell-6-4" class="hljs-ln-code"><a href="#annotated-cell-6-4"></a>  <span class="at">saffl_var =</span> <span class="st">"SAFFL"</span>,</span>
+<span id="annotated-cell-6-5" class="hljs-ln-code"><a href="#annotated-cell-6-5"></a>  <span class="at">pref_var =</span> <span class="st">"AEDECOD"</span>,</span>
+<span id="annotated-cell-6-6" class="hljs-ln-code"><a href="#annotated-cell-6-6"></a>  <span class="at">show_colcounts =</span> <span class="cn">TRUE</span>,</span>
+<span id="annotated-cell-6-7" class="hljs-ln-code"><a href="#annotated-cell-6-7"></a>  ...) {</span>
+<span id="annotated-cell-6-8" class="hljs-ln-code"><a href="#annotated-cell-6-8"></a></span>
+<span id="annotated-cell-6-9" class="hljs-ln-code"><a href="#annotated-cell-6-9"></a>  all_cols <span class="ot">&lt;-</span> <span class="cf">function</span>(data) <span class="fu">colnames</span>(data)</span>
+<span id="annotated-cell-6-10" class="hljs-ln-code"><a href="#annotated-cell-6-10"></a></span>
+<span id="annotated-cell-6-11" class="hljs-ln-code"><a href="#annotated-cell-6-11"></a>  fields <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
+<span id="annotated-cell-6-12" class="hljs-ln-code"><a href="#annotated-cell-6-12"></a>    <span class="at">id_var =</span> <span class="fu">new_select_field</span>(id_var, all_cols, <span class="at">title =</span> <span class="st">"ID"</span>),</span>
+<span id="annotated-cell-6-13" class="hljs-ln-code"><a href="#annotated-cell-6-13"></a>    <span class="at">arm_var =</span> <span class="fu">new_select_field</span>(arm_var, all_cols, <span class="at">title =</span> <span class="st">"ARM"</span>),</span>
+<span id="annotated-cell-6-14" class="hljs-ln-code"><a href="#annotated-cell-6-14"></a>    <span class="at">saffl_var =</span> <span class="fu">new_select_field</span>(saffl_var, all_cols, <span class="at">title =</span> <span class="st">"SAFFL"</span>),</span>
+<span id="annotated-cell-6-15" class="hljs-ln-code"><a href="#annotated-cell-6-15"></a>    <span class="at">pref_var =</span> <span class="fu">new_select_field</span>(pref_var, all_cols, <span class="at">title =</span> <span class="st">"Pref"</span>),</span>
+<span id="annotated-cell-6-16" class="hljs-ln-code"><a href="#annotated-cell-6-16"></a>    <span class="at">show_colcounts =</span> <span class="fu">new_switch_field</span>(show_colcounts, <span class="at">title =</span> <span class="st">"Show column counts"</span>)</span>
+<span id="annotated-cell-6-17" class="hljs-ln-code"><a href="#annotated-cell-6-17"></a>  )</span>
+<span id="annotated-cell-6-18" class="hljs-ln-code"><a href="#annotated-cell-6-18"></a></span>
+<span id="annotated-cell-6-19" class="hljs-ln-code"><a href="#annotated-cell-6-19"></a>  <span class="fu">new_block</span>(</span>
+<span id="annotated-cell-6-20" class="hljs-ln-code"><a href="#annotated-cell-6-20"></a>    <span class="at">fields =</span> fields,</span>
+<a class="code-annotation-anchor hljs-ln-code" data-target-cell="annotated-cell-6" data-target-annotation="5" onclick="event.preventDefault();">5</a><span id="annotated-cell-6-21" class="code-annotation-target hljs-ln-code"><a href="#annotated-cell-6-21"></a>    <span class="at">expr =</span> <span class="fu">quote</span>({</span>
+<span id="annotated-cell-6-22" class="hljs-ln-code"><a href="#annotated-cell-6-22"></a>      cardinal<span class="sc">::</span><span class="fu">make_table_09_gtsum</span>(</span>
+<span id="annotated-cell-6-23" class="hljs-ln-code"><a href="#annotated-cell-6-23"></a>        <span class="at">adae =</span> data,</span>
+<span id="annotated-cell-6-24" class="hljs-ln-code"><a href="#annotated-cell-6-24"></a>        <span class="at">arm_var =</span> .(arm_var),</span>
+<span id="annotated-cell-6-25" class="hljs-ln-code"><a href="#annotated-cell-6-25"></a>        <span class="at">saffl_var =</span> .(saffl_var),</span>
+<span id="annotated-cell-6-26" class="hljs-ln-code"><a href="#annotated-cell-6-26"></a>        <span class="at">id_var =</span> .(id_var),</span>
+<span id="annotated-cell-6-27" class="hljs-ln-code"><a href="#annotated-cell-6-27"></a>        <span class="at">pref_var =</span> .(pref_var),</span>
+<span id="annotated-cell-6-28" class="hljs-ln-code"><a href="#annotated-cell-6-28"></a>        <span class="at">show_colcounts =</span> .(show_colcounts)</span>
+<span id="annotated-cell-6-29" class="hljs-ln-code"><a href="#annotated-cell-6-29"></a>      )</span>
+<span id="annotated-cell-6-30" class="hljs-ln-code"><a href="#annotated-cell-6-30"></a>    })</span>
+<span id="annotated-cell-6-31" class="hljs-ln-code"><a href="#annotated-cell-6-31"></a>  )</span>
+<span id="annotated-cell-6-32" class="hljs-ln-code"><a href="#annotated-cell-6-32"></a>}</span><div class="code-annotation-gutter-bg hljs-ln-code"></div><div class="code-annotation-gutter hljs-ln-code"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-annotation">
 <dl class="code-annotation-container-grid">
-<dt data-target-cell="annotated-cell-5" data-target-annotation="5">5</dt>
+<dt data-target-cell="annotated-cell-6" data-target-annotation="5">5</dt>
 <dd>
-<span data-code-cell="annotated-cell-5" data-code-lines="21,22,23,24,25,26,27,28,29,30" data-code-annotation="5">Provide expression: use <code>quote</code> and pass field name with <code>.(field_name)</code>. <sup>1</sup></span>
+<span data-code-cell="annotated-cell-6" data-code-lines="21,22,23,24,25,26,27,28,29,30" data-code-annotation="5">Provide expression: use <code>quote</code> and pass field name with <code>.(field_name)</code>. <sup>1</sup></span>
 </dd>
 </dl>
 </div>
@@ -541,40 +606,40 @@ David Granjon (cynkra GmbH), Karma Tarap (BMS) and John Coene (The Y Company)
 <h2 data-id="quarto-animate-title">Create new blocks: cardinal block 4/4</h2>
 <div style="font-size: 1em">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1" data-code-line-numbers="32"><pre class="sourceCode numberSource r number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode r hljs"><span id="cb1-1" class="hljs-ln-code"><a></a>new_cardinal09_block <span class="ot">&lt;-</span> <span class="cf">function</span>(</span>
-<span id="cb1-2" class="hljs-ln-code"><a></a>  <span class="at">id_var =</span> <span class="st">"USUBJID"</span>,</span>
-<span id="cb1-3" class="hljs-ln-code"><a></a>  <span class="at">arm_var =</span> <span class="st">"ARM"</span>,</span>
-<span id="cb1-4" class="hljs-ln-code"><a></a>  <span class="at">saffl_var =</span> <span class="st">"SAFFL"</span>,</span>
-<span id="cb1-5" class="hljs-ln-code"><a></a>  <span class="at">pref_var =</span> <span class="st">"AEDECOD"</span>,</span>
-<span id="cb1-6" class="hljs-ln-code"><a></a>  <span class="at">show_colcounts =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb1-7" class="hljs-ln-code"><a></a>  ...) {</span>
-<span id="cb1-8" class="hljs-ln-code"><a></a></span>
-<span id="cb1-9" class="hljs-ln-code"><a></a>  all_cols <span class="ot">&lt;-</span> <span class="cf">function</span>(data) <span class="fu">colnames</span>(data)</span>
-<span id="cb1-10" class="hljs-ln-code"><a></a></span>
-<span id="cb1-11" class="hljs-ln-code"><a></a>  fields <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
-<span id="cb1-12" class="hljs-ln-code"><a></a>    <span class="at">id_var =</span> <span class="fu">new_select_field</span>(id_var, all_cols, <span class="at">title =</span> <span class="st">"ID"</span>),</span>
-<span id="cb1-13" class="hljs-ln-code"><a></a>    <span class="at">arm_var =</span> <span class="fu">new_select_field</span>(arm_var, all_cols, <span class="at">title =</span> <span class="st">"ARM"</span>),</span>
-<span id="cb1-14" class="hljs-ln-code"><a></a>    <span class="at">saffl_var =</span> <span class="fu">new_select_field</span>(saffl_var, all_cols, <span class="at">title =</span> <span class="st">"SAFFL"</span>),</span>
-<span id="cb1-15" class="hljs-ln-code"><a></a>    <span class="at">pref_var =</span> <span class="fu">new_select_field</span>(pref_var, all_cols, <span class="at">title =</span> <span class="st">"Pref"</span>),</span>
-<span id="cb1-16" class="hljs-ln-code"><a></a>    <span class="at">show_colcounts =</span> <span class="fu">new_switch_field</span>(show_colcounts, <span class="at">title =</span> <span class="st">"Show column counts"</span>)</span>
-<span id="cb1-17" class="hljs-ln-code"><a></a>  )</span>
-<span id="cb1-18" class="hljs-ln-code"><a></a></span>
-<span id="cb1-19" class="hljs-ln-code"><a></a>  <span class="fu">new_block</span>(</span>
-<span id="cb1-20" class="hljs-ln-code"><a></a>    <span class="at">fields =</span> fields,</span>
-<span id="cb1-21" class="hljs-ln-code"><a></a>    <span class="at">expr =</span> <span class="fu">quote</span>({</span>
-<span id="cb1-22" class="hljs-ln-code"><a></a>      cardinal<span class="sc">::</span><span class="fu">make_table_09_gtsum</span>(</span>
-<span id="cb1-23" class="hljs-ln-code"><a></a>        <span class="at">adae =</span> data,</span>
-<span id="cb1-24" class="hljs-ln-code"><a></a>        <span class="at">arm_var =</span> .(arm_var),</span>
-<span id="cb1-25" class="hljs-ln-code"><a></a>        <span class="at">saffl_var =</span> .(saffl_var),</span>
-<span id="cb1-26" class="hljs-ln-code"><a></a>        <span class="at">id_var =</span> .(id_var),</span>
-<span id="cb1-27" class="hljs-ln-code"><a></a>        <span class="at">pref_var =</span> .(pref_var),</span>
-<span id="cb1-28" class="hljs-ln-code"><a></a>        <span class="at">show_colcounts =</span> .(show_colcounts)</span>
-<span id="cb1-29" class="hljs-ln-code"><a></a>      )</span>
-<span id="cb1-30" class="hljs-ln-code"><a></a>    }),</span>
-<span id="cb1-31" class="hljs-ln-code"><a></a>    ...,</span>
-<span id="cb1-32" class="hljs-ln-code"><a></a>    <span class="at">class =</span> <span class="fu">c</span>(<span class="st">"cardinal09_block"</span>)</span>
-<span id="cb1-33" class="hljs-ln-code"><a></a>  )</span>
-<span id="cb1-34" class="hljs-ln-code"><a></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2" data-code-line-numbers="32"><pre class="sourceCode numberSource r number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode r hljs"><span id="cb2-1" class="hljs-ln-code"><a></a>new_cardinal09_block <span class="ot">&lt;-</span> <span class="cf">function</span>(</span>
+<span id="cb2-2" class="hljs-ln-code"><a></a>  <span class="at">id_var =</span> <span class="st">"USUBJID"</span>,</span>
+<span id="cb2-3" class="hljs-ln-code"><a></a>  <span class="at">arm_var =</span> <span class="st">"ARM"</span>,</span>
+<span id="cb2-4" class="hljs-ln-code"><a></a>  <span class="at">saffl_var =</span> <span class="st">"SAFFL"</span>,</span>
+<span id="cb2-5" class="hljs-ln-code"><a></a>  <span class="at">pref_var =</span> <span class="st">"AEDECOD"</span>,</span>
+<span id="cb2-6" class="hljs-ln-code"><a></a>  <span class="at">show_colcounts =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb2-7" class="hljs-ln-code"><a></a>  ...) {</span>
+<span id="cb2-8" class="hljs-ln-code"><a></a></span>
+<span id="cb2-9" class="hljs-ln-code"><a></a>  all_cols <span class="ot">&lt;-</span> <span class="cf">function</span>(data) <span class="fu">colnames</span>(data)</span>
+<span id="cb2-10" class="hljs-ln-code"><a></a></span>
+<span id="cb2-11" class="hljs-ln-code"><a></a>  fields <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
+<span id="cb2-12" class="hljs-ln-code"><a></a>    <span class="at">id_var =</span> <span class="fu">new_select_field</span>(id_var, all_cols, <span class="at">title =</span> <span class="st">"ID"</span>),</span>
+<span id="cb2-13" class="hljs-ln-code"><a></a>    <span class="at">arm_var =</span> <span class="fu">new_select_field</span>(arm_var, all_cols, <span class="at">title =</span> <span class="st">"ARM"</span>),</span>
+<span id="cb2-14" class="hljs-ln-code"><a></a>    <span class="at">saffl_var =</span> <span class="fu">new_select_field</span>(saffl_var, all_cols, <span class="at">title =</span> <span class="st">"SAFFL"</span>),</span>
+<span id="cb2-15" class="hljs-ln-code"><a></a>    <span class="at">pref_var =</span> <span class="fu">new_select_field</span>(pref_var, all_cols, <span class="at">title =</span> <span class="st">"Pref"</span>),</span>
+<span id="cb2-16" class="hljs-ln-code"><a></a>    <span class="at">show_colcounts =</span> <span class="fu">new_switch_field</span>(show_colcounts, <span class="at">title =</span> <span class="st">"Show column counts"</span>)</span>
+<span id="cb2-17" class="hljs-ln-code"><a></a>  )</span>
+<span id="cb2-18" class="hljs-ln-code"><a></a></span>
+<span id="cb2-19" class="hljs-ln-code"><a></a>  <span class="fu">new_block</span>(</span>
+<span id="cb2-20" class="hljs-ln-code"><a></a>    <span class="at">fields =</span> fields,</span>
+<span id="cb2-21" class="hljs-ln-code"><a></a>    <span class="at">expr =</span> <span class="fu">quote</span>({</span>
+<span id="cb2-22" class="hljs-ln-code"><a></a>      cardinal<span class="sc">::</span><span class="fu">make_table_09_gtsum</span>(</span>
+<span id="cb2-23" class="hljs-ln-code"><a></a>        <span class="at">adae =</span> data,</span>
+<span id="cb2-24" class="hljs-ln-code"><a></a>        <span class="at">arm_var =</span> .(arm_var),</span>
+<span id="cb2-25" class="hljs-ln-code"><a></a>        <span class="at">saffl_var =</span> .(saffl_var),</span>
+<span id="cb2-26" class="hljs-ln-code"><a></a>        <span class="at">id_var =</span> .(id_var),</span>
+<span id="cb2-27" class="hljs-ln-code"><a></a>        <span class="at">pref_var =</span> .(pref_var),</span>
+<span id="cb2-28" class="hljs-ln-code"><a></a>        <span class="at">show_colcounts =</span> .(show_colcounts)</span>
+<span id="cb2-29" class="hljs-ln-code"><a></a>      )</span>
+<span id="cb2-30" class="hljs-ln-code"><a></a>    }),</span>
+<span id="cb2-31" class="hljs-ln-code"><a></a>    ...,</span>
+<span id="cb2-32" class="hljs-ln-code"><a></a>    <span class="at">class =</span> <span class="fu">c</span>(<span class="st">"cardinal09_block"</span>)</span>
+<span id="cb2-33" class="hljs-ln-code"><a></a>  )</span>
+<span id="cb2-34" class="hljs-ln-code"><a></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ol start="5" type="1">
 <li>Give it the correct classes: as we don’t get data out of it, we can’t call it <code>transform_block</code>.</li>
@@ -613,16 +678,16 @@ David Granjon (cynkra GmbH), Karma Tarap (BMS) and John Coene (The Y Company)
 <li>We need a function that renders <code>gt</code> <strong>outputs</strong> (server and ui side).</li>
 <li>We need a server method for <code>cardinal09_block</code>. We can inherit the transform block one.</li>
 </ul>
-<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a></a>generate_server.cardinal09_block <span class="ot">&lt;-</span> blockr<span class="sc">:::</span>generate_server.</span>
-<span id="cb2-2"><a></a>transform_block</span>
-<span id="cb2-3"><a></a></span>
-<span id="cb2-4"><a></a>uiOutputBlock.cardinal09_block <span class="ot">&lt;-</span> <span class="cf">function</span>(x, ns) {</span>
-<span id="cb2-5"><a></a>  gt<span class="sc">::</span><span class="fu">gt_output</span>(<span class="fu">ns</span>(<span class="st">"res"</span>))</span>
-<span id="cb2-6"><a></a>}</span>
-<span id="cb2-7"><a></a></span>
-<span id="cb2-8"><a></a>server_output.cardinal09_block <span class="ot">&lt;-</span> <span class="cf">function</span>(x, result, output) {</span>
-<span id="cb2-9"><a></a>  gt<span class="sc">::</span><span class="fu">render_gt</span>(<span class="fu">result</span>())</span>
-<span id="cb2-10"><a></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a>generate_server.cardinal09_block <span class="ot">&lt;-</span> blockr<span class="sc">:::</span>generate_server.</span>
+<span id="cb3-2"><a></a>transform_block</span>
+<span id="cb3-3"><a></a></span>
+<span id="cb3-4"><a></a>uiOutputBlock.cardinal09_block <span class="ot">&lt;-</span> <span class="cf">function</span>(x, ns) {</span>
+<span id="cb3-5"><a></a>  gt<span class="sc">::</span><span class="fu">gt_output</span>(<span class="fu">ns</span>(<span class="st">"res"</span>))</span>
+<span id="cb3-6"><a></a>}</span>
+<span id="cb3-7"><a></a></span>
+<span id="cb3-8"><a></a>server_output.cardinal09_block <span class="ot">&lt;-</span> <span class="cf">function</span>(x, result, output) {</span>
+<span id="cb3-9"><a></a>  gt<span class="sc">::</span><span class="fu">render_gt</span>(<span class="fu">result</span>())</span>
+<span id="cb3-10"><a></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="how-do-we-make-custom-blocks-available-to-users" class="slide level2" style="font-size: 1.5em" data-background-image="../../assets/images/undraw_shopping_app_flsj.svg" data-background-size="40%">
 <h2>How do we make custom blocks available to users?</h2>
@@ -731,23 +796,23 @@ David Granjon (cynkra GmbH), Karma Tarap (BMS) and John Coene (The Y Company)
 <section id="filling-the-supermarket-with-block" class="slide level2" style="font-size: 1.5em">
 <h2>Filling the supermarket with block</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a>register_lm_block <span class="ot">&lt;-</span> <span class="cf">function</span>(pkg) {</span>
-<span id="cb3-2"><a></a>  <span class="fu">register_block</span>(</span>
-<span id="cb3-3"><a></a>    <span class="at">constructor =</span> new_cardinal09_block,</span>
-<span id="cb3-4"><a></a>    <span class="at">name =</span> <span class="st">"cardinal09 block"</span>,</span>
-<span id="cb3-5"><a></a>    <span class="at">description =</span> <span class="st">"Create a cardinal09 block"</span>,</span>
-<span id="cb3-6"><a></a>    <span class="at">classes =</span> <span class="fu">c</span>(<span class="st">"cardinal09_block"</span>, <span class="st">"transform_block"</span>),</span>
-<span id="cb3-7"><a></a>    <span class="at">input =</span> <span class="st">"data.frame"</span>,</span>
-<span id="cb3-8"><a></a>    <span class="at">output =</span> <span class="st">"gt"</span>,</span>
-<span id="cb3-9"><a></a>    <span class="at">package =</span> pkg</span>
-<span id="cb3-10"><a></a>  )</span>
-<span id="cb3-11"><a></a>}</span>
-<span id="cb3-12"><a></a></span>
-<span id="cb3-13"><a></a><span class="co"># Put in zzz.R</span></span>
-<span id="cb3-14"><a></a>.onLoad <span class="ot">&lt;-</span> <span class="cf">function</span>(libname, pkgname) {</span>
-<span id="cb3-15"><a></a>  <span class="fu">register_lm_block</span>(pkgname)</span>
-<span id="cb3-16"><a></a>  <span class="fu">invisible</span>(<span class="cn">NULL</span>)</span>
-<span id="cb3-17"><a></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a></a>register_lm_block <span class="ot">&lt;-</span> <span class="cf">function</span>(pkg) {</span>
+<span id="cb4-2"><a></a>  <span class="fu">register_block</span>(</span>
+<span id="cb4-3"><a></a>    <span class="at">constructor =</span> new_cardinal09_block,</span>
+<span id="cb4-4"><a></a>    <span class="at">name =</span> <span class="st">"cardinal09 block"</span>,</span>
+<span id="cb4-5"><a></a>    <span class="at">description =</span> <span class="st">"Create a cardinal09 block"</span>,</span>
+<span id="cb4-6"><a></a>    <span class="at">classes =</span> <span class="fu">c</span>(<span class="st">"cardinal09_block"</span>, <span class="st">"transform_block"</span>),</span>
+<span id="cb4-7"><a></a>    <span class="at">input =</span> <span class="st">"data.frame"</span>,</span>
+<span id="cb4-8"><a></a>    <span class="at">output =</span> <span class="st">"gt"</span>,</span>
+<span id="cb4-9"><a></a>    <span class="at">package =</span> pkg</span>
+<span id="cb4-10"><a></a>  )</span>
+<span id="cb4-11"><a></a>}</span>
+<span id="cb4-12"><a></a></span>
+<span id="cb4-13"><a></a><span class="co"># Put in zzz.R</span></span>
+<span id="cb4-14"><a></a>.onLoad <span class="ot">&lt;-</span> <span class="cf">function</span>(libname, pkgname) {</span>
+<span id="cb4-15"><a></a>  <span class="fu">register_lm_block</span>(pkgname)</span>
+<span id="cb4-16"><a></a>  <span class="fu">invisible</span>(<span class="cn">NULL</span>)</span>
+<span id="cb4-17"><a></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 
 <div class="quarto-auto-generated-content">

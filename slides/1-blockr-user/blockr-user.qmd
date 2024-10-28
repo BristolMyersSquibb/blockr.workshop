@@ -1,6 +1,6 @@
 ---
 title: "Introduction to blockr for users"
-author: "Karma Tarap (BMS), John Coene (The Y Company) and David Granjon (cynkra GmbH)"
+author: "David Granjon (cynkra GmbH), Karma Tarap (BMS) and John Coene (The Y Company)"
 format: 
   revealjs:
     #code-annotations: select
@@ -410,42 +410,45 @@ serve_workspace(clear = FALSE) # <3>
 2. Optional: add stacks.
 3. Serve Shiny app.
 
+## Exercise 4: joining data
 
-## 🧪 Exercise 4: with pharma data
+::::{.columns style="font-size: 0.75em"}
+
+:::{.column width="60%"}
+```{r}
+create_link_iframe("https://rinpharma2024.rinterface.com/#exercise-4")
+```
+:::
+
+:::{.column width="40%"}
+1. Click on `Add stack`, then add it a `customdata_block` with `lab` data.
+
+
+2. Click on `Add stack`.
+    
+    a. Add a `customdata_block` with `demo` data. 
+    b. Add a `join_block` with `Stack = "lab_data"`, `type = "inner"`, `by = c("STUDYID", "USUBJID")`
+:::
+
+::::
+
+
+## 🧪 Exercise 5: Hemoglobin by Visit plot
 
 
 ::::{.columns style="font-size: 0.75em"}
 
 :::{.column}
-:::{.incremental}
-1. Click on `Add stack`, then add it a `customdata_block` with `lab` data. Change the title to `Lab data`.
-
-
-2. Click on `Add stack`, then add a `customdata_block` with `demo` data: 
-
-    a. Add a `join_block` with `y = "lab_data"`, `type = "inner"`, `by = c("STUDYID", "USUBJID")`.
-    b. Add a `filter_block` with `columns = "LBTEST"`, `values = "Hemoglobin"`.
-    c. Add an `arrange_block` with `VISITNUM`.
-    d. Add a `mutate_block` with the following expression: `VISIT = factor(VISIT, levels = unique(VISIT), ordered = TRUE)`.
-    e. Rename the stack to `Hemoglobin data`.
-
-
-3. Click on `Add stack`, then add a `result_block` selecting the `Hemoglobin_data` stack:
-
-    a. Add a `group_by_block` with `"VISIT` and `ACTARM` as columns.
-    b. Add a `summarize_block` with `func = c("mean", "se")`, `default_columns = c("LBSTRESN", "LBSTRESN")`.
-    c. Add an `ungroup_block`.
-    d. Add a `mutate_block` with `ymin = "MEAN -SE"` and then click `+` to add another expression, `ymax = "MEAN + SE"`.
-    e. Change the stack title to `Summary data`.
-:::
-
+```{r}
+create_link_iframe("https://rinpharma2024.rinterface.com/#exercise-5")
+```
 :::
 
 :::{.column}
-:::{.incremental} 
-4. Click on `Add stack`, then add a `result_block`, targeting the `Summary data` stack:
+1. Consider the previous 2 stacks (lab data merged with demo data).
+2. Click on `Add stack`, then add a `result_block`, targeting the `hb_data` stack:
 
-    a. Add a `ggplot_block` with `x = "VISIT"` and `y = "MEAN"` as aesthetics.
+    a. Add a `ggplot_block` with `x = "VISIT"` and `y = "Mean"` as aesthetics.
     b. Add a `geompoint_block` with `func = c("color", "shape")` and `default_columns = c("ACTARM", "ACTARM")`.
     c. Add a `geomerrorbar_block` with `ymin = ymin`, `ymax = ymax` and `color = ACTARM`.
     d. Add a `geomline_block` with `group = ACTARM` and `color = ACTARM`.
@@ -453,9 +456,6 @@ serve_workspace(clear = FALSE) # <3>
     f. Add a `theme_block`, selecting whatever theme you like.
     g. TBC...
 :::
-
-:::
-
 ::::
 
 ## How far can I go with blockr? {background-image="../../assets/images/undraw_add_post_re_174w.svg" background-size="90%" style="margin-left: 450px; margin-top: 700px; font-size: 1.5em"}

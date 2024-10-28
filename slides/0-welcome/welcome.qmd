@@ -1,6 +1,6 @@
 ---
 title: "Introduction"
-author: "Karma Tarap (BMS), John Coene (The Y Company) and David Granjon (cynkra GmbH)"
+author: "David Granjon (cynkra GmbH), Karma Tarap (BMS) and John Coene (The Y Company)"
 format: 
   revealjs:
     #code-annotations: select

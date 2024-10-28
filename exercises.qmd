@@ -111,63 +111,34 @@ accordion(
     )
   ),
   accordion_panel(
-    title = "Exercise 4: 'Hemoglobin by Visit plot' workspace.",
+    title = "Exercise 4: joining data.",
     tags$ol(
       tags$li(
+        p("Click on", tags$strong("Add stack"), ".")
+      ),
+      tags$li(
+        p("From the new stack: click on", tags$strong("+"), "to add a new", tags$code("customdata_block"), " with", tags$var("lab") , " as selected data.")
+      ),
+      tags$li(
+        p("Click on", tags$strong("Add stack"), ".")
+      ),
+      tags$li(
         p(
-            "Click on", tags$strong("Add stack"), "then add it a",
-             tags$strong("customdata_block"),  "with", tags$var("lab"), "as data. Change the title to 'Lab data'."
+            "Add a new",
+             tags$code("join_block"),
+             "selecting", tags$var("lab_data"), "as", tags$strong("Stack"), "and", tags$var("inner"), "as", tags$strong("type"), "and", tags$var("c('STUDYID', 'USUBJID')"), "as", tags$strong("by"), ". Click on run."
         )
-      ),
+      )
+    )
+  ),
+  accordion_panel(
+    title = "Exercise 5: 'Hemoglobin by Visit plot' workspace.",
+    tags$ol(
       tags$li(
-        tags$ul(
-            tags$li(
-                p("Click on", tags$strong("Add stack"), ", then add a", tags$code("customdata_block"), "with", tags$var("demo"), "as data.")
+                p("Click on", tags$strong("Add stack"), "then add a", tags$code("result_block"), "selecting the 'hb_data' stack.")
             ),
             tags$li(
-                p("Add a", tags$strong("join_block"), "with",
-                tags$code("y = 'lab_data'"), tags$code("type = 'inner"), tags$code("by = c('STUDYID', 'USUBJID')"), ".")
-            ),
-            tags$li(
-                p("Add a", tags$strong("filter_block"), "with",
-                tags$code("colums = 'LBTEST'"), tags$code("values = 'Hemoglobin"), ".")
-            ),
-            tags$li(
-                p("Add an", tags$code("arrange_block"), "width", tags$var("VISITNUM"), "as column.")
-            ),
-            tags$li(
-                p("Add a", tags$code("mutate_block"), "with the following expression:", tags$code("VISIT = factor(VISIT, levels = unique(VISIT), ordered = TRUE)"))
-            ),
-            tags$li("Rename the stack to 'Hemoglobin data'")
-        )
-      ),
-      tags$li(
-        tags$ul(
-            tags$li(
-                p("Click on", tags$strong("Add stack"), "then add a", tags$code("result_block"), "selecting the 'hemoglobin_data' stack.")
-            ),
-            tags$li(
-                p("Add a", tags$code("group_by_block"), "with", tags$var("VISIT"), "and", tags$var("ACTARM"), "as columns")
-            ),
-            tags$li(
-                p("Add a", tags$code("summarize_block"), "with", tags$var("mean"), "and", tags$var("se"), "as selected functions and", tags$var("LBSTRESN"), "as column for each function.")
-            ),
-            tags$li(
-                p("Add an", tags$code("ungroup_block"), ".")
-            ),
-            tags$li(
-                p("Add a", tags$code("mutate_block"), "with", tags$code("ymin = 'MEAN - SE'"), "and then click", tags$strong("+"), "to add another expression, that is, ", tags$code("ymax = 'MEAN + SE'"), ".")
-            ),
-            tags$li("Rename the stack to 'Summary data'")
-        )
-      ),
-      tags$li(
-        tags$ul(
-            tags$li(
-                p("Click on", tags$strong("Add stack"), "then add a", tags$code("result_block"), "selecting the 'summary_data' stack.")
-            ),
-            tags$li(
-                p("Add a", tags$code("ggplot_block"), "with", tags$code("x = 'VISIT"), "and", tags$code("x = 'MEAN"), "as aesthetics.")
+                p("Add a", tags$code("ggplot_block"), "with", tags$code("x = 'VISIT"), "and", tags$code("y = 'Mean"), "as aesthetics.")
             ),
             tags$li(
                 p("Add a", tags$code("geompoint_block"), "with", tags$code("func = c('color', 'shape')"), "and", tags$var("ACTARM"), "as variable for each aesthetic.")
@@ -184,8 +155,6 @@ accordion(
             tags$li(
                 p("Add a", tags$code("theme_block"), ".")
             )
-        )
-      )
     )
   )
 )

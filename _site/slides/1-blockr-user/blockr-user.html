@@ -10,7 +10,7 @@
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
   <meta name="generator" content="quarto-1.5.57">
 
-  <meta name="author" content="Karma Tarap (BMS), John Coene (The Y Company) and David Granjon (cynkra GmbH)">
+  <meta name="author" content="David Granjon (cynkra GmbH), Karma Tarap (BMS) and John Coene (The Y Company)">
   <title>blockr.workshop – Introduction to blockr for users</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -400,7 +400,7 @@
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
 <div class="quarto-title-author-name">
-Karma Tarap (BMS), John Coene (The Y Company) and David Granjon (cynkra GmbH) 
+David Granjon (cynkra GmbH), Karma Tarap (BMS) and John Coene (The Y Company) 
 </div>
 </div>
 </div>
@@ -843,46 +843,49 @@ Imagine if we could build an interactive datapipeline like we would prepare a me
 </div>
 </div>
 </section>
-<section id="exercise-4-with-pharma-data" class="slide level2">
-<h2>🧪 Exercise 4: with pharma data</h2>
+<section id="exercise-4-joining-data" class="slide level2">
+<h2>Exercise 4: joining data</h2>
+<div class="columns" style="font-size: 0.75em">
+<div class="column" style="width:60%;">
+<div class="cell">
+<div class="cell-output-display">
+<iframe class="html-fill-item" src="https://rinpharma2024.rinterface.com/#exercise-4" height="800" width="100%" style="border: 1px solid rgba(0,0,0,0.175); border-radius: .375rem;" allowfullscreen="" allow="autoplay" data-external="1"></iframe>
+</div>
+</div>
+</div><div class="column" style="width:40%;">
+<ol type="1">
+<li><p>Click on <code>Add stack</code>, then add it a <code>customdata_block</code> with <code>lab</code> data.</p></li>
+<li><p>Click on <code>Add stack</code>.</p>
+<ol type="a">
+<li>Add a <code>customdata_block</code> with <code>demo</code> data.</li>
+<li>Add a <code>join_block</code> with <code>Stack = "lab_data"</code>, <code>type = "inner"</code>, <code>by = c("STUDYID", "USUBJID")</code></li>
+</ol></li>
+</ol>
+</div></div>
+</section>
+<section id="exercise-5-hemoglobin-by-visit-plot" class="slide level2">
+<h2>🧪 Exercise 5: Hemoglobin by Visit plot</h2>
 <div class="columns" style="font-size: 0.75em">
 <div class="column">
-<div>
-<ol type="1">
-<li class="fragment"><p>Click on <code>Add stack</code>, then add it a <code>customdata_block</code> with <code>lab</code> data. Change the title to <code>Lab data</code>.</p></li>
-<li class="fragment"><p>Click on <code>Add stack</code>, then add a <code>customdata_block</code> with <code>demo</code> data:</p>
-<ol type="a">
-<li class="fragment">Add a <code>join_block</code> with <code>y = "lab_data"</code>, <code>type = "inner"</code>, <code>by = c("STUDYID", "USUBJID")</code>.</li>
-<li class="fragment">Add a <code>filter_block</code> with <code>columns = "LBTEST"</code>, <code>values = "Hemoglobin"</code>.</li>
-<li class="fragment">Add an <code>arrange_block</code> with <code>VISITNUM</code>.</li>
-<li class="fragment">Add a <code>mutate_block</code> with the following expression: <code>VISIT = factor(VISIT, levels = unique(VISIT), ordered = TRUE)</code>.</li>
-<li class="fragment">Rename the stack to <code>Hemoglobin data</code>.</li>
-</ol></li>
-<li class="fragment"><p>Click on <code>Add stack</code>, then add a <code>result_block</code> selecting the <code>Hemoglobin_data</code> stack:</p>
-<ol type="a">
-<li class="fragment">Add a <code>group_by_block</code> with <code>"VISIT</code> and <code>ACTARM</code> as columns.</li>
-<li class="fragment">Add a <code>summarize_block</code> with <code>func = c("mean", "se")</code>, <code>default_columns = c("LBSTRESN", "LBSTRESN")</code>.</li>
-<li class="fragment">Add an <code>ungroup_block</code>.</li>
-<li class="fragment">Add a <code>mutate_block</code> with <code>ymin = "MEAN -SE"</code> and then click <code>+</code> to add another expression, <code>ymax = "MEAN + SE"</code>.</li>
-<li class="fragment">Change the stack title to <code>Summary data</code>.</li>
-</ol></li>
-</ol>
+<div class="cell">
+<div class="cell-output-display">
+<iframe class="html-fill-item" src="https://rinpharma2024.rinterface.com/#exercise-5" height="800" width="100%" style="border: 1px solid rgba(0,0,0,0.175); border-radius: .375rem;" allowfullscreen="" allow="autoplay" data-external="1"></iframe>
+</div>
 </div>
 </div><div class="column">
-<div>
-<ol start="4" type="1">
-<li class="fragment"><p>Click on <code>Add stack</code>, then add a <code>result_block</code>, targeting the <code>Summary data</code> stack:</p>
+<ol type="1">
+<li><p>Consider the previous 2 stacks (lab data merged with demo data).</p></li>
+<li><p>Click on <code>Add stack</code>, then add a <code>result_block</code>, targeting the <code>hb_data</code> stack:</p>
 <ol type="a">
-<li class="fragment">Add a <code>ggplot_block</code> with <code>x = "VISIT"</code> and <code>y = "MEAN"</code> as aesthetics.</li>
-<li class="fragment">Add a <code>geompoint_block</code> with <code>func = c("color", "shape")</code> and <code>default_columns = c("ACTARM", "ACTARM")</code>.</li>
-<li class="fragment">Add a <code>geomerrorbar_block</code> with <code>ymin = ymin</code>, <code>ymax = ymax</code> and <code>color = ACTARM</code>.</li>
-<li class="fragment">Add a <code>geomline_block</code> with <code>group = ACTARM</code> and <code>color = ACTARM</code>.</li>
-<li class="fragment">Add a <code>labs_block</code> with <code>title = "Mean and SD of Hemoglobin by Visit"</code>, <code>x = "Visit Label"</code> and <code>y = "Hemoglobin (g/dL)"</code>.</li>
-<li class="fragment">Add a <code>theme_block</code>, selecting whatever theme you like.</li>
-<li class="fragment">TBC…</li>
+<li>Add a <code>ggplot_block</code> with <code>x = "VISIT"</code> and <code>y = "Mean"</code> as aesthetics.</li>
+<li>Add a <code>geompoint_block</code> with <code>func = c("color", "shape")</code> and <code>default_columns = c("ACTARM", "ACTARM")</code>.</li>
+<li>Add a <code>geomerrorbar_block</code> with <code>ymin = ymin</code>, <code>ymax = ymax</code> and <code>color = ACTARM</code>.</li>
+<li>Add a <code>geomline_block</code> with <code>group = ACTARM</code> and <code>color = ACTARM</code>.</li>
+<li>Add a <code>labs_block</code> with <code>title = "Mean and SD of Hemoglobin by Visit"</code>, <code>x = "Visit Label"</code> and <code>y = "Hemoglobin (g/dL)"</code>.</li>
+<li>Add a <code>theme_block</code>, selecting whatever theme you like.</li>
+<li>TBC…</li>
 </ol></li>
 </ol>
-</div>
 </div></div>
 </section>
 <section id="how-far-can-i-go-with-blockr" class="slide level2" data-background-image="../../assets/images/undraw_add_post_re_174w.svg" data-background-size="90%" style="margin-left: 450px; margin-top: 700px; font-size: 1.5em">

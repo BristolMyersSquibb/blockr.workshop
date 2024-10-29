@@ -75,26 +75,116 @@ flowchart TD
 
 :::
 
-## How does a select block look like?
+## How does a select block look like? (1/4) {auto-animate=true style="font-size: 1.5em"}
 
 <br>
 
-```r
-new_select_block <- function (columns = character(), ...) 
-{
+```{r, eval=FALSE, echo=TRUE}
+#| code-line-numbers: "1"
+new_select_block <- function (columns = character(), ...) { # <1>
   all_cols <- function(data) colnames(data)
   fields <- list(
-    columns = new_select_field(columns, all_cols, 
-      multiple = TRUE, title = "Columns")
+    columns = new_select_field(columns, all_cols, multiple = TRUE, title = "Columns")
   )
+
+  select_expr <- quote(dplyr::select(.(columns)))
+
   new_block(
     fields = fields,
-    expr = quote(dplyr::select(.(columns))), 
-    ...,
-    class = c("select_block", "transform_block")
+    expr = select_expr,
+    class = c("select_block", "transform_block"),
+    ...
   )
 }
 ```
+
+1. __Constructor__ with parameters.
+
+## How does a select block look like? (2/4) {auto-animate=true style="font-size: 1.5em"}
+
+<br>
+
+```{r, eval=FALSE, echo=TRUE}
+#| code-line-numbers: "3|4-6|11"
+new_select_block <- function (columns = character(), ...)
+{
+  all_cols <- function(data) colnames(data) # <2>
+  fields <- list( # <2>
+    columns = new_select_field(columns, all_cols, multiple = TRUE, title = "Columns") # <2>
+  ) # <2>
+
+  select_expr <- quote(dplyr::select(.(columns)))
+
+  new_block(
+    fields = fields, # <2>
+    expr = select_expr,
+    class = c("select_block", "transform_block"),
+    ...
+  )
+}
+```
+
+1. __Constructor__ with parameters.
+2. Dynamic __field__ (changes with data).
+
+## How does a select block look like? (3/4) {auto-animate=true style="font-size: 1.5em"}
+
+<br>
+
+```{r, eval=FALSE, echo=TRUE}
+#| code-line-numbers: "8|12"
+new_select_block <- function (columns = character(), ...)
+{
+  all_cols <- function(data) colnames(data)
+  fields <- list(
+    columns = new_select_field(columns, all_cols, multiple = TRUE, title = "Columns")
+  )
+
+  select_expr <- quote(dplyr::select(.(columns))) # <3>
+
+  new_block(
+    fields = fields,
+    expr = select_expr, # <3>
+    class = c("select_block", "transform_block"),
+    ...
+  )
+}
+```
+
+1. __Constructor__ with parameters.
+2. Dynamic __field__ (changes with data).
+3. Create the __expression__ (to calculate the result).
+
+## How does a select block look like? (3/4) {auto-animate=true style="font-size: 1.5em"}
+
+<br>
+
+```{r, eval=FALSE, echo=TRUE}
+#| code-line-numbers: "13|14|10-15"
+new_select_block <- function (columns = character(), ...)
+{
+  all_cols <- function(data) colnames(data)
+  fields <- list(
+    columns = new_select_field(columns, all_cols, multiple = TRUE, title = "Columns")
+  )
+
+  select_expr <- quote(dplyr::select(.(columns)))
+
+  new_block( # <6>
+    fields = fields,
+    expr = select_expr,
+    class = c("select_block", "transform_block"), # <4>
+    ... # <5>
+  )
+}
+```
+
+1. __Constructor__ with parameters.
+2. Dynamic __field__ (changes with data).
+3. Create the __expression__ (to calculate the result).
+4. Add custom class `transform_block`.
+5. `...` for extra parameters like `submit`.
+6. Call __new_block__, passing fields, an expression and custom __class__.
 
 ## Today's mission {style="font-size: 1.5em"}
 
@@ -106,27 +196,29 @@ Create a new cardinal[^cardinal] block:
 
 [^cardinal]: code: https://github.com/pharmaverse/cardinal/blob/main/R/fda-table_09.R#L375
 
-## Create new blocks: cardinal block 1/4 {auto-animate=true style="font-size: 1.5em"}
+## 🧪 Exercise 1: create new blocks (fields) {auto-animate=true style="font-size: 1.5em"}
 
 ::: {style="font-size: 1em"}
 ```{r, eval=FALSE, echo=TRUE}
-new_cardinal09_block <- function( # <1>
-  id_var = "USUBJID", # <2>
-  arm_var = "ARM", # <2>
-  saffl_var = "SAFFL", # <2>
-  pref_var = "AEDECOD", # <2>
-  show_colcounts = TRUE, # <2>
+new_cardinal09_block <- function(
+  id_var = "USUBJID",
+  arm_var = "ARM",
+  saffl_var = "SAFFL",
+  pref_var = "AEDECOD",
+  show_colcounts = TRUE,
   ...) {
 
 }
 ```
 
-1. Create the `constructor`.
-2. Select parameters to expose as __interactive__ inputs.
+1. Open the Posit Cloud project.
+2. Open `R/cardinal.R`.
+3. Create a field for each parameter. For booleans you can use `new_switch_field(<VALUE>)` and `new_select_field(values, choices)` for
+other parameters. You can use the existing `all_cols` for dynamic choices.
 
 :::
 
-## Create new blocks: cardinal block 2/4 {auto-animate=true style="font-size: 1.5em"}
+## 🧪 Exercise 1: solution {auto-animate=true style="font-size: 1.5em"}
 
 ::: {style="font-size: 1em"}
 ```{r, eval=FALSE, echo=TRUE}
@@ -139,29 +231,66 @@ new_cardinal09_block <- function(
   show_colcounts = TRUE,
   ...) {
 
-  all_cols <- function(data) colnames(data) # <3>
+  all_cols <- function(data) colnames(data) # <1>
 
-  fields <- list(# <4>
-    id_var = new_select_field(id_var, all_cols, title = "ID"), # <4>
-    arm_var = new_select_field(arm_var, all_cols, title = "ARM"), # <4>
-    saffl_var = new_select_field(saffl_var, all_cols, title = "SAFFL"), # <4>
-    pref_var = new_select_field(pref_var, all_cols, title = "Pref"), # <4>
-    show_colcounts = new_switch_field(show_colcounts, title = "Show column counts") # <4>
-  ) # <4>
+  fields <- list(# <2>
+    id_var = new_select_field(id_var, all_cols, title = "ID"), # <2>
+    arm_var = new_select_field(arm_var, all_cols, title = "ARM"), # <2>
+    saffl_var = new_select_field(saffl_var, all_cols, title = "SAFFL"), # <2>
+    pref_var = new_select_field(pref_var, all_cols, title = "Pref"), # <2>
+    show_colcounts = new_switch_field(show_colcounts, title = "Show column counts") # <2>
+  ) # <2>
 
   new_block(
-    fields = fields, # <4>
+    fields = fields, # <2>
 
   )
 }
 ```
-3. Construct columns dynamically.
-4. Add field(s) for interactivity. (Note: `type` allows to pass in cols as name instead of strings.)
+1. Construct columns dynamically.
+2. Add field(s) for interactivity.
+:::
+
+## 🧪 Exercise 2: create new blocks (expression)
+
+::: {style="font-size: 1em"}
+```{r, eval=FALSE, echo=TRUE}
+#| code-line-numbers: "21-30"
+new_cardinal09_block <- function(
+  id_var = "USUBJID",
+  arm_var = "ARM",
+  saffl_var = "SAFFL",
+  pref_var = "AEDECOD",
+  show_colcounts = TRUE,
+  ...) {
+
+  all_cols <- function(data) colnames(data)
+
+  fields <- list(
+    id_var = new_select_field(id_var, all_cols, title = "ID"),
+    arm_var = new_select_field(arm_var, all_cols, title = "ARM"),
+    saffl_var = new_select_field(saffl_var, all_cols, title = "SAFFL"),
+    pref_var = new_select_field(pref_var, all_cols, title = "Pref"),
+    show_colcounts = new_switch_field(show_colcounts, title = "Show column counts")
+  )
+
+  new_block(
+    fields = fields,
+    expr = quote({
+      cardinal::make_table_09_gtsum(
+        adae = data,
+        # TO DO
+      )
+    })
+  )
+}
+```
+3. Fill in the `cardinal::make_table_09_gtsum` call to pass in fields name like so: `<param_name> = .(field_name)`. This strange notation is needed by `bquote` for partial substitution.
 
 :::
 
 
-## Create new blocks: cardinal block 3/4 {auto-animate=true style="font-size: 1.5em"}
+## 🧪 Exercise 2: solution {auto-animate=true style="font-size: 1.5em"}
 
 
 ::: {style="font-size: 1em"}
@@ -187,25 +316,69 @@ new_cardinal09_block <- function(
 
   new_block(
     fields = fields,
-    expr = quote({ # <5>
-      cardinal::make_table_09_gtsum( # <5>
-        adae = data, # <5>
-        arm_var = .(arm_var), # <5>
-        saffl_var = .(saffl_var), # <5>
-        id_var = .(id_var), # <5>
-        pref_var = .(pref_var), # <5>
-        show_colcounts = .(show_colcounts) # <5>
-      ) # <5>
-    }) # <5>
+    expr = quote({ # <3>
+      cardinal::make_table_09_gtsum( # <3>
+        adae = data, # <3>
+        arm_var = .(arm_var), # <3>
+        saffl_var = .(saffl_var), # <3>
+        id_var = .(id_var), # <3>
+        pref_var = .(pref_var), # <3>
+        show_colcounts = .(show_colcounts) # <3>
+      ) # <3>
+    }) # <3>
   )
 }
 ```
-5. Provide expression: use `quote` and pass field name with `.(field_name)`. ^[Needed by `bquote` for partial substitution.]
+3. This __expression__ is then __evaluated__ later with the previous block's __data__ and field values.
 
 :::
 
 
-## Create new blocks: cardinal block 4/4 {auto-animate=true style="font-size: 1.5em"}
+## How to control block's behavior? About blockr classes {style="font-size: 1.5em"}
+
+::::{.columns}
+
+:::{.column width=40%}
+```{mermaid}
+flowchart LR
+  block_generic[Block generic] --> data_block_method[Data block method]
+  block_generic --> transform_block_method[Transform block method]
+  block_generic --> plot_block_method[Plot block method]
+```
+:::
+
+:::{.column width=60%}
+__S3 OO system__[^S3]: __customize__ behavior depending on object __class__.
+
+```r
+uiOutputBlock.block <- function(x, ns) {
+  DT::dataTableOutput(ns("res"))
+}
+
+server_output.block <- function(x, result, output) {
+  DT::renderDT(
+    {
+      result() |>
+        DT::datatable(
+          selection = "none",
+          options = list(
+            pageLength = 5L,
+            processing = FALSE
+          )
+        )
+    },
+    server = TRUE
+  )
+}
+```
+:::
+
+::::
+
+[^S3]: S3 Object Oriented system https://adv-r.hadley.nz/s3.html
+
+
+## 🧪 Exercise 3: create new blocks (adding class) {auto-animate=true style="font-size: 1.5em"}
 :::{style="font-size: 1em"}
 ```{r, eval=FALSE, echo=TRUE}
 #| code-line-numbers: "32"
@@ -240,30 +413,30 @@ new_cardinal09_block <- function(
       )
     }),
     ...,
-    class = c("cardinal09_block")
+    class =  "<TO_REPLACE>"
   )
 }
 ```
-5. Give it the correct classes: as we don't get data out of it, we can't call it `transform_block`.
+4. Give it the correct classes. Hints:
+
+    - This isn't a entry point block, so no `data_block` class.
+    - As `cardinal::make_table_09_gtsum` does not return data, we can't call it `transform_block`.
 
 :::
 
-## Why does this fail? {style="font-size: 1.5em"}
 
-```{r, eval=FALSE}
-webr::install("blockr", repos = "https://bristolmyerssquibb.github.io/webr-repos/")
-webr::install("cardinal", repos = "https://bristolmyerssquibb.github.io/webr-repos/")
-library(blockr)
-library(cardinal)
-
+## 🧪 Exercise 3: solution {auto-animate=true style="font-size: 1.5em"}
+:::{style="font-size: 1em"}
+```{r, eval=FALSE, echo=TRUE}
+#| code-line-numbers: "32"
 new_cardinal09_block <- function(
-  ...,
   id_var = "USUBJID",
   arm_var = "ARM",
   saffl_var = "SAFFL",
   pref_var = "AEDECOD",
-  show_colcounts = TRUE
-){
+  show_colcounts = TRUE,
+  ...) {
+
   all_cols <- function(data) colnames(data)
 
   fields <- list(
@@ -274,71 +447,55 @@ new_cardinal09_block <- function(
     show_colcounts = new_switch_field(show_colcounts, title = "Show column counts")
   )
 
-  expr <- quote({
-    make_table_09_gtsum(
-      adae = data,
-      arm_var = .(arm_var),
-      saffl_var = .(saffl_var),
-      id_var = .(id_var),
-      pref_var = .(pref_var),
-      show_colcounts = .(show_colcounts)
-    )
-  })
-
-  blockr::new_block(
-    expr = expr,
+  new_block(
     fields = fields,
+    expr = quote({
+      cardinal::make_table_09_gtsum(
+        adae = data,
+        arm_var = .(arm_var),
+        saffl_var = .(saffl_var),
+        id_var = .(id_var),
+        pref_var = .(pref_var),
+        show_colcounts = .(show_colcounts)
+      )
+    }),
     ...,
-    class = c("cardinal09_block", "transform_block")
+    class = c("cardinal09_block") # <4>
   )
 }
+```
+4. We'll call it `cardinal09_block`. Note that blockr does not support any method for this class. This is important for the following.
 
-# TBD: explain this
-generate_server.cardinal09_block <- blockr:::generate_server.
-transform_block
+:::
 
-# TBD: explain S3 customization
-uiOutputBlock.cardinal09_block <- function(x, ns) {
-  gt::gt_output(ns("res"))
-}
+## Testing our block? {style="font-size: 1.5em"}
 
-server_output.cardinal09_block <- function(x, result, output) {
-  gt::render_gt(result())
-}
-
+```r
+pkgload::load_all()
+library(blockr)
+library(cardinal)
 my_stack <- new_stack(
   new_dataset_block("cadae", "random.cdisc.data"),
   new_cardinal09_block()
 )
-
 serve_stack(my_stack)
 ```
 
-## About blockr classes {style="font-size: 1.5em"}
-
-::::{.columns}
-
-:::{.column width=60%}
-```{mermaid}
-flowchart LR
-  block_generic[Block generic] --> data_block_method[Data block method]
-  block_generic --> transform_block_method[Transform block method]
-  block_generic --> plot_block_method[Plot block method]
-```
-:::
-
-:::{.column width=40%}
-__S3 OO system__[^S3]: __customize__ behavior depending on object __class__.
-:::
-
-::::
-
-[^S3]: S3 Object Oriented system https://adv-r.hadley.nz/s3.html
+1. Open `inst/examples/app.R` (code above) and run it.
+2. Why does this fail?
+3. What did we miss?
 
 ## Adding missing pieces
 
-- We need a function that renders `gt` __outputs__ (server and ui side).
-- We need a server method for `cardinal09_block`. We can inherit the transform block one.
+. . .
+
+1. We need a function that renders `gt` __outputs__ (server and ui side).
+
+. . .
+
+2. We need a server method for `cardinal09_block`. We can inherit the transform block one.
+
+. . .
 
 ```r
 generate_server.cardinal09_block <- blockr:::generate_server.
@@ -397,8 +554,26 @@ flowchart LR
 
 ::::
 
+## 🧪 Exercise 4: filling the supermarket with block {style="font-size: 1.5em"}
 
-## Filling the supermarket with block {style="font-size: 1.5em"}
+1. Still within `R/cardinal.R`, have a look at `register_cardinal_blocks`.
+2. Fill in relevant information for your `new_cardinal09_block`.
+3. Within `R/zzz.R`, call `register_cardinal_blocks` to register the block(s) on package load.
+4. Run the following:
+
+```r
+pkgload::load_all()
+library(blockr)
+library(cardinal)
+my_stack <- new_stack(
+  new_dataset_block("cadae", "random.cdisc.data")
+)
+serve_stack(my_stack)
+```
+5. CLick on the stack `+` button, look for the `cardinal09_block` and select it.
+
+
+## 🧪 Exercise 4: solution {style="font-size: 1.5em"}
 
 ```{r echo=TRUE, eval=FALSE}
 register_lm_block <- function(pkg) {

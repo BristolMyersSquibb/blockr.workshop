@@ -1,4 +1,5 @@
 .onLoad <- function(libname, pkgname) {
-  register_cardinal_blocks(pkgname)
+  # Exercise 4 TBD
+
   invisible(NULL)
 }

@@ -210,32 +210,46 @@
     "text": "Zoom on blocks and fields 🥦 🥚\n\n\n\n\n\n\n\nflowchart TD\n  blk_data_in(Data input)\n  blk_data_out[Output]\n  subgraph blk_block[Block]\n    subgraph blk_field1[Field 1]\n      value(Value)\n      title(Title)\n      descr(Description)\n      status(Status)\n    end\n    blk_field2(Field 2)\n    blk_field1 --&gt; blk_expr\n    blk_field2 --&gt; blk_expr\n    blk_expr(Expression)\n    blk_res(result)\n    blk_expr --&gt; blk_res\n  end\n  blk_data_in --&gt; blk_block --&gt; blk_data_out\n\n\n\n\n\n\n\n\nFields are ingredients.\nA block is a recipe step:\n\n(Optional) input data.\nfields, build the block expression and translated into Shiny inputs.\nAn expression, evaluated with input data: data |&gt; select(&lt;COLNAMES&gt;).\nA result, of the evaluated expression.\nA class for customization (see advanced part)."
   },
   {
-    "objectID": "slides/2-blockr-dev/blockr-dev.html#how-does-a-select-block-look-like-14",
-    "href": "slides/2-blockr-dev/blockr-dev.html#how-does-a-select-block-look-like-14",
+    "objectID": "slides/2-blockr-dev/blockr-dev.html#how-does-a-select-block-look-like-16",
+    "href": "slides/2-blockr-dev/blockr-dev.html#how-does-a-select-block-look-like-16",
     "title": "Introduction to blockr for developers",
-    "section": "How does a select block look like? (1/4)",
-    "text": "How does a select block look like? (1/4)\n\n\n1new_select_block &lt;- function (columns = character(), ...) {\n  all_cols &lt;- function(data) colnames(data)\n  fields &lt;- list(\n    columns = new_select_field(columns, all_cols, multiple = TRUE, title = \"Columns\")\n  )\n\n  select_expr &lt;- quote(dplyr::select(.(columns)))\n\n  new_block(\n    fields = fields,\n    expr = select_expr,\n    class = c(\"select_block\", \"transform_block\"),\n    ...\n  )\n}\n\n\n1\n\nConstructor with parameters."
+    "section": "How does a select block look like? (1/6)",
+    "text": "How does a select block look like? (1/6)\n\n\n1new_select_block &lt;- function (columns = character(), ...) {\n  all_cols &lt;- function(data) colnames(data)\n  fields &lt;- list(\n    columns = new_select_field(columns, all_cols, multiple = TRUE, title = \"Columns\")\n  )\n\n  select_expr &lt;- quote(dplyr::select(.(columns)))\n\n  new_block(\n    fields = fields,\n    expr = select_expr,\n    class = c(\"select_block\", \"transform_block\"),\n    ...\n  )\n}\n\n\n1\n\nConstructor with parameters."
   },
   {
-    "objectID": "slides/2-blockr-dev/blockr-dev.html#how-does-a-select-block-look-like-24",
-    "href": "slides/2-blockr-dev/blockr-dev.html#how-does-a-select-block-look-like-24",
+    "objectID": "slides/2-blockr-dev/blockr-dev.html#how-does-a-select-block-look-like-26",
+    "href": "slides/2-blockr-dev/blockr-dev.html#how-does-a-select-block-look-like-26",
     "title": "Introduction to blockr for developers",
-    "section": "How does a select block look like? (2/4)",
-    "text": "How does a select block look like? (2/4)\n\n\nnew_select_block &lt;- function (columns = character(), ...)\n{\n2  all_cols &lt;- function(data) colnames(data)\n  fields &lt;- list(\n    columns = new_select_field(columns, all_cols, multiple = TRUE, title = \"Columns\")\n  )\n\n  select_expr &lt;- quote(dplyr::select(.(columns)))\n\n  new_block(\n    fields = fields,\n    expr = select_expr,\n    class = c(\"select_block\", \"transform_block\"),\n    ...\n  )\n}\n\n\n2\n\nDynamic field (changes with data)."
+    "section": "How does a select block look like? (2/6)",
+    "text": "How does a select block look like? (2/6)\n\n\nnew_select_block &lt;- function (columns = character(), ...)\n{\n2  all_cols &lt;- function(data) colnames(data)\n  fields &lt;- list(\n    columns = new_select_field(columns, all_cols, multiple = TRUE, title = \"Columns\")\n  )\n\n  select_expr &lt;- quote(dplyr::select(.(columns)))\n\n  new_block(\n    fields = fields,\n    expr = select_expr,\n    class = c(\"select_block\", \"transform_block\"),\n    ...\n  )\n}\n\n\n2\n\nDynamic field (changes with data)."
   },
   {
-    "objectID": "slides/2-blockr-dev/blockr-dev.html#how-does-a-select-block-look-like-34",
-    "href": "slides/2-blockr-dev/blockr-dev.html#how-does-a-select-block-look-like-34",
+    "objectID": "slides/2-blockr-dev/blockr-dev.html#how-does-a-select-block-look-like-36",
+    "href": "slides/2-blockr-dev/blockr-dev.html#how-does-a-select-block-look-like-36",
     "title": "Introduction to blockr for developers",
-    "section": "How does a select block look like? (3/4)",
-    "text": "How does a select block look like? (3/4)\n\n\nnew_select_block &lt;- function (columns = character(), ...)\n{\n  all_cols &lt;- function(data) colnames(data)\n  fields &lt;- list(\n    columns = new_select_field(columns, all_cols, multiple = TRUE, title = \"Columns\")\n  )\n\n3  select_expr &lt;- quote(dplyr::select(.(columns)))\n\n  new_block(\n    fields = fields,\n    expr = select_expr,\n    class = c(\"select_block\", \"transform_block\"),\n    ...\n  )\n}\n\n\n3\n\nCreate the expression (to calculate the result)."
+    "section": "How does a select block look like? (3/6)",
+    "text": "How does a select block look like? (3/6)\n\n\nnew_select_block &lt;- function (columns = character(), ...)\n{\n  all_cols &lt;- function(data) colnames(data)\n  fields &lt;- list(\n    columns = new_select_field(columns, all_cols, multiple = TRUE, title = \"Columns\")\n  )\n\n3  select_expr &lt;- quote(dplyr::select(.(columns)))\n\n  new_block(\n    fields = fields,\n    expr = select_expr,\n    class = c(\"select_block\", \"transform_block\"),\n    ...\n  )\n}\n\n\n3\n\nCreate the expression (to calculate the result)."
   },
   {
-    "objectID": "slides/2-blockr-dev/blockr-dev.html#how-does-a-select-block-look-like-34-1",
-    "href": "slides/2-blockr-dev/blockr-dev.html#how-does-a-select-block-look-like-34-1",
+    "objectID": "slides/2-blockr-dev/blockr-dev.html#how-does-a-select-block-look-like-46",
+    "href": "slides/2-blockr-dev/blockr-dev.html#how-does-a-select-block-look-like-46",
     "title": "Introduction to blockr for developers",
-    "section": "How does a select block look like? (3/4)",
-    "text": "How does a select block look like? (3/4)\n\n\nnew_select_block &lt;- function (columns = character(), ...)\n{\n  all_cols &lt;- function(data) colnames(data)\n  fields &lt;- list(\n    columns = new_select_field(columns, all_cols, multiple = TRUE, title = \"Columns\")\n  )\n\n  select_expr &lt;- quote(dplyr::select(.(columns)))\n\n6  new_block(\n    fields = fields,\n    expr = select_expr,\n4    class = c(\"select_block\", \"transform_block\"),\n5    ...\n  )\n}\n\n\n4\n\nAdd custom class transform_block.\n\n5\n\n... for extra parameters like submit.\n\n6\n\nCall new_block, passing fields, an expression and custom class."
+    "section": "How does a select block look like? (4/6)",
+    "text": "How does a select block look like? (4/6)\n\n\nnew_select_block &lt;- function (columns = character(), ...)\n{\n  all_cols &lt;- function(data) colnames(data)\n  fields &lt;- list(\n    columns = new_select_field(columns, all_cols, multiple = TRUE, title = \"Columns\")\n  )\n\n  select_expr &lt;- quote(dplyr::select(.(columns)))\n\n  new_block(\n    fields = fields,\n    expr = select_expr,\n4    class = c(\"select_block\", \"transform_block\"),\n    ...\n  )\n}\n\n\n4\n\nAdd custom class transform_block."
+  },
+  {
+    "objectID": "slides/2-blockr-dev/blockr-dev.html#how-does-a-select-block-look-like-56",
+    "href": "slides/2-blockr-dev/blockr-dev.html#how-does-a-select-block-look-like-56",
+    "title": "Introduction to blockr for developers",
+    "section": "How does a select block look like? (5/6)",
+    "text": "How does a select block look like? (5/6)\n\n\nnew_select_block &lt;- function (columns = character(), ...)\n{\n  all_cols &lt;- function(data) colnames(data)\n  fields &lt;- list(\n    columns = new_select_field(columns, all_cols, multiple = TRUE, title = \"Columns\")\n  )\n\n  select_expr &lt;- quote(dplyr::select(.(columns)))\n\n  new_block(\n    fields = fields,\n    expr = select_expr,\n    class = c(\"select_block\", \"transform_block\"),\n5    ...\n  )\n}\n\n\n5\n\n... for extra parameters like submit."
+  },
+  {
+    "objectID": "slides/2-blockr-dev/blockr-dev.html#how-does-a-select-block-look-like-66",
+    "href": "slides/2-blockr-dev/blockr-dev.html#how-does-a-select-block-look-like-66",
+    "title": "Introduction to blockr for developers",
+    "section": "How does a select block look like? (6/6)",
+    "text": "How does a select block look like? (6/6)\n\n\nnew_select_block &lt;- function (columns = character(), ...)\n{\n  all_cols &lt;- function(data) colnames(data)\n  fields &lt;- list(\n    columns = new_select_field(columns, all_cols, multiple = TRUE, title = \"Columns\")\n  )\n\n  select_expr &lt;- quote(dplyr::select(.(columns)))\n\n6  new_block(\n    fields = fields,\n    expr = select_expr,\n    class = c(\"select_block\", \"transform_block\"),\n    ...\n  )\n}\n\n\n6\n\nCall new_block, passing fields, an expression and custom class."
   },
   {
     "objectID": "slides/2-blockr-dev/blockr-dev.html#todays-mission",

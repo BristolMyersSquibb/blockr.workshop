@@ -75,7 +75,7 @@ flowchart TD
 
 :::
 
-## How does a select block look like? (1/4) {auto-animate=true style="font-size: 1.5em"}
+## How does a select block look like? (1/6) {auto-animate=true style="font-size: 1.5em"}
 
 <br>
 
@@ -100,7 +100,7 @@ new_select_block <- function (columns = character(), ...) { # <1>
 
 1. __Constructor__ with parameters.
 
-## How does a select block look like? (2/4) {auto-animate=true style="font-size: 1.5em"}
+## How does a select block look like? (2/6) {auto-animate=true style="font-size: 1.5em"}
 
 <br>
 
@@ -127,7 +127,7 @@ new_select_block <- function (columns = character(), ...)
 1. __Constructor__ with parameters.
 2. Dynamic __field__ (changes with data).
 
-## How does a select block look like? (3/4) {auto-animate=true style="font-size: 1.5em"}
+## How does a select block look like? (3/6) {auto-animate=true style="font-size: 1.5em"}
 
 <br>
 
@@ -155,12 +155,71 @@ new_select_block <- function (columns = character(), ...)
 2. Dynamic __field__ (changes with data).
 3. Create the __expression__ (to calculate the result).
 
-## How does a select block look like? (3/4) {auto-animate=true style="font-size: 1.5em"}
+## How does a select block look like? (4/6) {auto-animate=true style="font-size: 1.5em"}
 
 <br>
 
 ```{r, eval=FALSE, echo=TRUE}
-#| code-line-numbers: "13|14|10-15"
+#| code-line-numbers: "13"
+new_select_block <- function (columns = character(), ...)
+{
+  all_cols <- function(data) colnames(data)
+  fields <- list(
+    columns = new_select_field(columns, all_cols, multiple = TRUE, title = "Columns")
+  )
+
+  select_expr <- quote(dplyr::select(.(columns)))
+
+  new_block(
+    fields = fields,
+    expr = select_expr,
+    class = c("select_block", "transform_block"), # <4>
+    ...
+  )
+}
+```
+
+1. __Constructor__ with parameters.
+2. Dynamic __field__ (changes with data).
+3. Create the __expression__ (to calculate the result).
+4. Add custom class `transform_block`.
+
+## How does a select block look like? (5/6) {auto-animate=true style="font-size: 1.5em"}
+
+<br>
+
+```{r, eval=FALSE, echo=TRUE}
+#| code-line-numbers: "14"
+new_select_block <- function (columns = character(), ...)
+{
+  all_cols <- function(data) colnames(data)
+  fields <- list(
+    columns = new_select_field(columns, all_cols, multiple = TRUE, title = "Columns")
+  )
+
+  select_expr <- quote(dplyr::select(.(columns)))
+
+  new_block(
+    fields = fields,
+    expr = select_expr,
+    class = c("select_block", "transform_block"),
+    ... # <5>
+  )
+}
+```
+
+1. __Constructor__ with parameters.
+2. Dynamic __field__ (changes with data).
+3. Create the __expression__ (to calculate the result).
+4. Add custom class `transform_block`.
+5. `...` for extra parameters like `submit`.
+
+## How does a select block look like? (6/6) {auto-animate=true style="font-size: 1.5em"}
+
+<br>
+
+```{r, eval=FALSE, echo=TRUE}
+#| code-line-numbers: "10-15"
 new_select_block <- function (columns = character(), ...)
 {
   all_cols <- function(data) colnames(data)
@@ -173,8 +232,8 @@ new_select_block <- function (columns = character(), ...)
   new_block( # <6>
     fields = fields,
     expr = select_expr,
-    class = c("select_block", "transform_block"), # <4>
-    ... # <5>
+    class = c("select_block", "transform_block"),
+    ...
   )
 }
 ```
@@ -485,7 +544,7 @@ serve_stack(my_stack)
 2. Why does this fail?
 3. What did we miss?
 
-## Adding missing pieces
+## Adding missing pieces {style="font-size: 1.5em"}
 
 . . .
 

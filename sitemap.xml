@@ -2,26 +2,30 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://BristolMyersSquibb.github.io/blockr.workshop/exercises.html</loc>
-    <lastmod>2024-10-29T15:56:24.008Z</lastmod>
+    <lastmod>2024-10-31T09:30:13.468Z</lastmod>
   </url>
   <url>
-    <loc>https://BristolMyersSquibb.github.io/blockr.workshop/slides/1-blockr-user/blockr-user.html</loc>
-    <lastmod>2024-10-29T15:56:24.404Z</lastmod>
-  </url>
-  <url>
-    <loc>https://BristolMyersSquibb.github.io/blockr.workshop/index.html</loc>
-    <lastmod>2024-10-29T15:56:24.008Z</lastmod>
-  </url>
-  <url>
-    <loc>https://BristolMyersSquibb.github.io/blockr.workshop/about.html</loc>
-    <lastmod>2024-10-29T15:56:23.984Z</lastmod>
+    <loc>https://BristolMyersSquibb.github.io/blockr.workshop/slides/3-closing/closing.html</loc>
+    <lastmod>2024-10-31T09:30:13.860Z</lastmod>
   </url>
   <url>
     <loc>https://BristolMyersSquibb.github.io/blockr.workshop/slides/0-welcome/welcome.html</loc>
-    <lastmod>2024-10-29T15:56:24.404Z</lastmod>
+    <lastmod>2024-10-31T09:30:13.860Z</lastmod>
+  </url>
+  <url>
+    <loc>https://BristolMyersSquibb.github.io/blockr.workshop/about.html</loc>
+    <lastmod>2024-10-31T09:30:13.436Z</lastmod>
+  </url>
+  <url>
+    <loc>https://BristolMyersSquibb.github.io/blockr.workshop/index.html</loc>
+    <lastmod>2024-10-31T09:30:13.468Z</lastmod>
+  </url>
+  <url>
+    <loc>https://BristolMyersSquibb.github.io/blockr.workshop/slides/1-blockr-user/blockr-user.html</loc>
+    <lastmod>2024-10-31T09:30:13.860Z</lastmod>
   </url>
   <url>
     <loc>https://BristolMyersSquibb.github.io/blockr.workshop/slides/2-blockr-dev/blockr-dev.html</loc>
-    <lastmod>2024-10-29T15:56:24.408Z</lastmod>
+    <lastmod>2024-10-31T09:30:13.860Z</lastmod>
   </url>
 </urlset>

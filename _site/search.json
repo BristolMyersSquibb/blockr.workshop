@@ -53,7 +53,7 @@
     "href": "slides/0-welcome/welcome.html#david-granjon",
     "title": "Introduction",
     "section": "David Granjon",
-    "text": "David Granjon\n\n\nDavid works as a Lead Shiny Developer at Cynkra and founder of the open source RinteRface organisation."
+    "text": "David Granjon\n\n\nDavid works as a Lead Shiny Developer at cynkra GmbH and founder of the open source RinteRface organisation."
   },
   {
     "objectID": "slides/1-blockr-user/blockr-user.html#developing-enterprise-grade-dashboards-isnt-easy",
@@ -137,7 +137,7 @@
     "href": "slides/1-blockr-user/blockr-user.html#how-far-can-i-go-with-blockr",
     "title": "Introduction to blockr for users",
     "section": "How far can I go with blockr?",
-    "text": "How far can I go with blockr?\n\n\n\nFunded by"
+    "text": "How far can I go with blockr?"
   },
   {
     "objectID": "slides/1-blockr-user/blockr-user.html#commercial-solutions",
@@ -522,7 +522,7 @@
     "href": "slides/2-blockr-dev/blockr-dev.html#exercise-4-solution",
     "title": "Introduction to blockr for developers",
     "section": "🧪 Exercise 4: solution",
-    "text": "🧪 Exercise 4: solution\n\nregister_lm_block &lt;- function(pkg) {\n  register_block(\n    constructor = new_cardinal09_block,\n    name = \"cardinal09 block\",\n    description = \"Create a cardinal09 block\",\n    classes = c(\"cardinal09_block\", \"transform_block\"),\n    input = \"data.frame\",\n    output = \"gt\",\n    package = pkg\n  )\n}\n\n# Put in zzz.R\n.onLoad &lt;- function(libname, pkgname) {\n  register_lm_block(pkgname)\n  invisible(NULL)\n}\n\n\n\n\nFunded by"
+    "text": "🧪 Exercise 4: solution\n\nregister_lm_block &lt;- function(pkg) {\n  register_block(\n    constructor = new_cardinal09_block,\n    name = \"cardinal09 block\",\n    description = \"Create a cardinal09 block\",\n    classes = c(\"cardinal09_block\", \"transform_block\"),\n    input = \"data.frame\",\n    output = \"gt\",\n    package = pkg\n  )\n}\n\n# Put in zzz.R\n.onLoad &lt;- function(libname, pkgname) {\n  register_lm_block(pkgname)\n  invisible(NULL)\n}"
   },
   {
     "objectID": "slides/2-blockr-dev/blockr-dev.html#how-does-a-select-block-look-like-14",
@@ -593,5 +593,33 @@
     "title": "Introduction to blockr for developers",
     "section": "How does a select block look like? (6/6)",
     "text": "How does a select block look like? (6/6)\n\n\nnew_select_block &lt;- function (columns = character(), ...)\n{\n  all_cols &lt;- function(data) colnames(data)\n  fields &lt;- list(\n    columns = new_select_field(columns, all_cols, multiple = TRUE, title = \"Columns\")\n  )\n\n  select_expr &lt;- quote(dplyr::select(.(columns)))\n\n6  new_block(\n    fields = fields,\n    expr = select_expr,\n    class = c(\"select_block\", \"transform_block\"),\n    ...\n  )\n}\n\n\n6\n\nCall new_block, passing fields, an expression and custom class."
+  },
+  {
+    "objectID": "slides/0-welcome/welcome.html#hi-and-welcome",
+    "href": "slides/0-welcome/welcome.html#hi-and-welcome",
+    "title": "Introduction",
+    "section": "Hi and Welcome!",
+    "text": "Hi and Welcome!"
+  },
+  {
+    "objectID": "slides/0-welcome/welcome.html#important-information",
+    "href": "slides/0-welcome/welcome.html#important-information",
+    "title": "Introduction",
+    "section": "Important information",
+    "text": "Important information\n\nWorkshop website: https://bristolmyerssquibb.github.io/blockr.workshop/.\nLink to Posit Cloud: https://posit.cloud/spaces/562609/join?access_code=mg7T-WK4LDzIKbdkrRdFVHPBOWo-HaldODyqtjBk.\n…"
+  },
+  {
+    "objectID": "slides/0-welcome/welcome.html#who-are-you-workshop-pre-requisites",
+    "href": "slides/0-welcome/welcome.html#who-are-you-workshop-pre-requisites",
+    "title": "Introduction",
+    "section": "Who are you: workshop pre-requisites",
+    "text": "Who are you: workshop pre-requisites\n\n\nYou are interested in data analysis.\nYou are an R user.\nYou are an R developer with package development knowledge."
+  },
+  {
+    "objectID": "slides/0-welcome/welcome.html#objectives",
+    "href": "slides/0-welcome/welcome.html#objectives",
+    "title": "Introduction",
+    "section": "Objectives",
+    "text": "Objectives\n\n\nAs an end-user: learn how to leverage blockr to create reproducible data pipelines in minutes without writing any code.\nAs a developer: learn how to empower users to use blockr by developing new blockr and deploying blockr applications."
   }
 ]

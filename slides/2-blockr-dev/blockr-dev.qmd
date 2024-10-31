@@ -4,7 +4,7 @@ author: "David Granjon (cynkra GmbH), Karma Tarap (BMS) and John Coene (The Y Co
 format: 
   revealjs:
     #code-annotations: select
-    footer: "Funded by <img class=\"mb-4\" src=\"../../assets/images/bms.svg\"/>"
+    footer: "<div class=\"container\"><img src=\"../../assets/images/bms.svg\"/> <img src=\"../../assets/images/cynkra.svg\" width=\"15%\"/><img src=\"../../assets/images/y-company.png\" width=\"15%\"/></div>"
     include-in-header:
       - text: |
           <script src="https://cdn.jsdelivr.net/npm/mermaid@10.9.1/dist/mermaid.min.js"></script>

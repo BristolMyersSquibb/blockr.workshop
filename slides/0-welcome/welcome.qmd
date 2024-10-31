@@ -4,7 +4,10 @@ author: "David Granjon (cynkra GmbH), Karma Tarap (BMS) and John Coene (The Y Co
 format: 
   revealjs:
     #code-annotations: select
-    footer: "Funded by <img class=\"mb-4\" src=\"../../assets/images/bms.svg\"/>"
+    footer: "<div class=\"container\"><img src=\"../../assets/images/bms.svg\"/> <img src=\"../../assets/images/cynkra.svg\" width=\"15%\"/><img src=\"../../assets/images/y-company.png\" width=\"15%\"/></div>"
+    css: [
+      "../../assets/css/custom.css"
+    ]
     height: 900
     width: 1600
     code-link: true
@@ -20,44 +23,48 @@ editor:
     render-on-save: true
 ---
 
-# Important information
+## Hi and Welcome! {style="font-size: 1.5em"}
 
-## Before we start
+![](../../assets/images/hello.gif){fig-align="center" width=100%}
+
+
+## Important information {style="font-size: 1.5em"}
+
 
 - Workshop website: https://bristolmyerssquibb.github.io/blockr.workshop/. 
 - Link to Posit Cloud: https://posit.cloud/spaces/562609/join?access_code=mg7T-WK4LDzIKbdkrRdFVHPBOWo-HaldODyqtjBk. 
 - ...
 
 
-# Who are you?
+## Who are you: workshop pre-requisites {style="font-size: 1.5em"}
 
-## Workshop pre-requisites
-
-- You are interested into data analysis.
+:::{.incremental}
+- You are interested in __data analysis__.
 - You are an R user.
 - You are an __R developer__ with package development knowledge.
+:::
 
-# Who are we?
+## **David Granjon**  {style="font-size: 1.5em"}
 
-## **Karma**
+![](./../../assets/images/david.jpg){fig-align="center" width=70%}
+
+<p style="text-align: center">David works as a Lead Shiny Developer at [__cynkra GmbH__](https://cynkra.com/) and founder of the open source [__RinteRface__](https://rinterface.com/) organisation.</p>
+
+## **Karma** {style="font-size: 1.5em"}
 
 ![](./../../assets/images/karma.png){fig-align="center"}
 
 <p style="text-align: center">Karma is an Innovation Strategy and Solutions Lead at Bristol Myers Squibb.</p>
 
-## **John**
+## **John** {style="font-size: 1.5em"}
 
 ![](./../../assets/images/john.png){fig-align="center"}
 
 <p style="text-align: center">John is senior R/JS/Go developer and founder/co-founder of [Opifex](https://opifex.org/) and [The Y company](https://the-y-company.com/).</p>
 
-## **David Granjon** 
+## Objectives {style="font-size: 1.5em"}
 
-![](./../../assets/images/david.jpg){fig-align="center"}
-
-<p style="text-align: center">David works as a Lead Shiny Developer at Cynkra and founder of the open source [__RinteRface__](https://rinterface.com/) organisation.</p>
-
-# Objectives
-
-- As an end-user: learn how to leverage block to create data analysises in minutes without writing any code.
-- As a developer: learn how to empower users to use blockr by developing new blockr and deploying blockr applications.
+:::{.incremental}
+- As an end-user: learn how to leverage blockr to create __reproducible__ data __pipelines__ in minutes without writing any code.
+- As a developer: learn how to __empower__ users to use blockr by developing new blockr and __deploying__ blockr applications.
+:::

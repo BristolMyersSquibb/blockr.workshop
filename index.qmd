@@ -25,7 +25,7 @@ We actually recommend people to __create groups__ with at least a user and a dev
 | 14:10-15:30 | 📚 [blockr as an end-user](./slides/1-blockr-user/blockr-user.html) |
 | 15:30-15:45 | ☕ Break |
 | 15:45-16:45 | 📚 [blockr as a developer](./slides/2-blockr-dev/blockr-dev.html) |
-| 16:45-17:00 | 🎁 Wrap up |
+| 16:45-17:00 | 🎁 [Wrap up](./slides/3-closing/closing.html) |
 
 
 ## Detailed schedule

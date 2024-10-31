@@ -621,5 +621,47 @@
     "title": "Introduction",
     "section": "Objectives",
     "text": "Objectives\n\n\nAs an end-user: learn how to leverage blockr to create reproducible data pipelines in minutes without writing any code.\nAs a developer: learn how to empower users to use blockr by developing new blockr and deploying blockr applications."
+  },
+  {
+    "objectID": "slides/3-closing/closing.html#congrats",
+    "href": "slides/3-closing/closing.html#congrats",
+    "title": "Closing remarks",
+    "section": "🏆 Congrats 🏆",
+    "text": "🏆 Congrats 🏆\nYou made it!"
+  },
+  {
+    "objectID": "slides/3-closing/closing.html#we-need-you",
+    "href": "slides/3-closing/closing.html#we-need-you",
+    "title": "Closing remarks",
+    "section": "We need you!",
+    "text": "We need you!"
+  },
+  {
+    "objectID": "slides/3-closing/closing.html#getting-started-locally",
+    "href": "slides/3-closing/closing.html#getting-started-locally",
+    "title": "Closing remarks",
+    "section": "Getting started locally",
+    "text": "Getting started locally\n\n\nInstall\n\n\npak::pak(\"blockr-org/blockr\")\n\nlibrary(blockr)\nserve_stack(new_stack())\n\n\n\n\nRead the doc at https://blockr-org.github.io/blockr/index.html.\n\n\n\n\nEnjoy!"
+  },
+  {
+    "objectID": "slides/3-closing/closing.html#use-blocks-and-build-dashboards",
+    "href": "slides/3-closing/closing.html#use-blocks-and-build-dashboards",
+    "title": "Closing remarks",
+    "section": "Use blocks and build dashboards",
+    "text": "Use blocks and build dashboards\n\n\n\n\n\nYou have no programming experience … No worries this is fine:\n\nExplore blockr documentation for non developers here.\nUse the playground.\nShare dashboards with your teams to speed up data analysis"
+  },
+  {
+    "objectID": "slides/3-closing/closing.html#create-blocks-to-help-your-data-scientists",
+    "href": "slides/3-closing/closing.html#create-blocks-to-help-your-data-scientists",
+    "title": "Closing remarks",
+    "section": "Create blocks to help your data scientists",
+    "text": "Create blocks to help your data scientists\n\n\n\n\nYou’re an advanced R developer, you can extend blockr:\n\nInstall: pak::pak(\"blockr-org/blockr\")\nRead the doc at https://blockr-org.github.io/blockr/index.html.\nEnjoy!"
+  },
+  {
+    "objectID": "slides/3-closing/closing.html#blockr-is-a-collaborative-concept",
+    "href": "slides/3-closing/closing.html#blockr-is-a-collaborative-concept",
+    "title": "Closing remarks",
+    "section": "blockr is a collaborative concept",
+    "text": "blockr is a collaborative concept"
   }
 ]

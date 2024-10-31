@@ -1,0 +1,75 @@
+---
+title: "Closing remarks"
+author: "David Granjon (cynkra GmbH), Karma Tarap (BMS) and John Coene (The Y Company)"
+format: 
+  revealjs:
+    #code-annotations: select
+    footer: "<div class=\"container\"><img src=\"../../assets/images/bms.svg\"/> <img src=\"../../assets/images/cynkra.svg\" width=\"15%\"/><img src=\"../../assets/images/y-company.png\" width=\"15%\"/></div>"
+    css: [
+      "../../assets/css/custom.css"
+    ]
+    height: 900
+    width: 1600
+    code-link: true
+    code-copy: true
+    fontsize: 24pt
+    navigation-mode: vertical
+    controls-layout: bottom-right
+    controls-tutorial: true
+    chalkboard: false
+    transition: none
+    background-transition: none
+editor:
+    render-on-save: true
+---
+
+## 🏆 Congrats 🏆 {style="font-size: 1.5em"}
+
+You made it!
+
+# What's next? {style="font-size: 1.5em"}
+
+## blockr is a collaborative concept {data-stack-name="Conclusion" background-image="../../assets/images/undraw_co_workers_re_1i6i.svg" background-size="50%" style="font-size: 1.5em; margin-top: -350px"}
+
+
+## Use blocks and build dashboards {style="font-size: 1.5em"}
+
+::::{.columns}
+
+:::{.column}
+![](../../assets/images/undraw_data_trends_re_2cdy.svg){width="100%"}
+:::
+
+:::{.column}
+
+:::{incremental}
+You have no programming experience ... No worries this is fine:
+
+- Explore blockr documentation for non developers [here](https://bristolmyerssquibb.github.io/blockr/articles/blockr.html#blockr-for-non-coders).
+- Use the [playground](https://bristolmyerssquibb.github.io/blockr/articles/blockr.html#toward-a-dashboard).
+- __Share__ dashboards with your teams to __speed up__ data analysis
+:::
+
+:::
+
+::::
+
+
+## Create blocks to help your data scientists {style="font-size: 1.5em"}
+
+::::{.columns}
+
+:::{.column}
+![](../../assets/images/undraw_building_blocks_re_5ahy.svg){width="80%"}
+:::
+
+:::{.column}
+You're an __advanced__ R developer, you can __extend__ blockr:
+
+1. Install: `pak::pak("blockr-org/blockr")`
+2. Read the doc at [https://blockr-org.github.io/blockr/index.html](https://blockr-org.github.io/blockr/index.html).
+3. Enjoy!
+:::
+
+::::
+

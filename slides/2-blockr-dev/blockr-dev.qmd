@@ -557,8 +557,7 @@ serve_stack(my_stack)
 . . .
 
 ```r
-generate_server.cardinal09_block <- blockr:::generate_server.
-transform_block
+generate_server.cardinal09_block <- blockr:::generate_server.transform_block
 
 uiOutputBlock.cardinal09_block <- function(x, ns) {
   gt::gt_output(ns("res"))

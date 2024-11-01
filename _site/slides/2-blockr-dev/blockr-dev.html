@@ -962,16 +962,15 @@ David Granjon (cynkra GmbH), Karma Tarap (BMS) and John Coene (The Y Company)
 </ol>
 </div>
 <div class="fragment">
-<div class="sourceCode" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a></a>generate_server.cardinal09_block <span class="ot">&lt;-</span> blockr<span class="sc">:::</span>generate_server.</span>
-<span id="cb6-2"><a></a>transform_block</span>
-<span id="cb6-3"><a></a></span>
-<span id="cb6-4"><a></a>uiOutputBlock.cardinal09_block <span class="ot">&lt;-</span> <span class="cf">function</span>(x, ns) {</span>
-<span id="cb6-5"><a></a>  gt<span class="sc">::</span><span class="fu">gt_output</span>(<span class="fu">ns</span>(<span class="st">"res"</span>))</span>
-<span id="cb6-6"><a></a>}</span>
-<span id="cb6-7"><a></a></span>
-<span id="cb6-8"><a></a>server_output.cardinal09_block <span class="ot">&lt;-</span> <span class="cf">function</span>(x, result, output) {</span>
-<span id="cb6-9"><a></a>  gt<span class="sc">::</span><span class="fu">render_gt</span>(<span class="fu">result</span>())</span>
-<span id="cb6-10"><a></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a></a>generate_server.cardinal09_block <span class="ot">&lt;-</span> blockr<span class="sc">:::</span>generate_server.transform_block</span>
+<span id="cb6-2"><a></a></span>
+<span id="cb6-3"><a></a>uiOutputBlock.cardinal09_block <span class="ot">&lt;-</span> <span class="cf">function</span>(x, ns) {</span>
+<span id="cb6-4"><a></a>  gt<span class="sc">::</span><span class="fu">gt_output</span>(<span class="fu">ns</span>(<span class="st">"res"</span>))</span>
+<span id="cb6-5"><a></a>}</span>
+<span id="cb6-6"><a></a></span>
+<span id="cb6-7"><a></a>server_output.cardinal09_block <span class="ot">&lt;-</span> <span class="cf">function</span>(x, result, output) {</span>
+<span id="cb6-8"><a></a>  gt<span class="sc">::</span><span class="fu">render_gt</span>(<span class="fu">result</span>())</span>
+<span id="cb6-9"><a></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="how-do-we-make-custom-blocks-available-to-users" class="slide level2" style="font-size: 1.5em" data-background-image="../../assets/images/undraw_shopping_app_flsj.svg" data-background-size="40%">

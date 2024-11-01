@@ -333,7 +333,7 @@
     "href": "slides/2-blockr-dev/blockr-dev.html#adding-missing-pieces",
     "title": "Introduction to blockr for developers",
     "section": "Adding missing pieces",
-    "text": "Adding missing pieces\n\n\nWe need a function that renders gt outputs (server and ui side).\n\n\n\n\nWe need a server method for cardinal09_block. We can inherit the transform block one.\n\n\n\ngenerate_server.cardinal09_block &lt;- blockr:::generate_server.\ntransform_block\n\nuiOutputBlock.cardinal09_block &lt;- function(x, ns) {\n  gt::gt_output(ns(\"res\"))\n}\n\nserver_output.cardinal09_block &lt;- function(x, result, output) {\n  gt::render_gt(result())\n}"
+    "text": "Adding missing pieces\n\n\nWe need a function that renders gt outputs (server and ui side).\n\n\n\n\nWe need a server method for cardinal09_block. We can inherit the transform block one.\n\n\n\ngenerate_server.cardinal09_block &lt;- blockr:::generate_server.transform_block\n\nuiOutputBlock.cardinal09_block &lt;- function(x, ns) {\n  gt::gt_output(ns(\"res\"))\n}\n\nserver_output.cardinal09_block &lt;- function(x, result, output) {\n  gt::render_gt(result())\n}"
   },
   {
     "objectID": "slides/1-blockr-user/blockr-user.html#exercise-2-with-pharma-data",

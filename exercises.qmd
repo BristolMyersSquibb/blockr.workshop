@@ -85,10 +85,7 @@ accordion(
     title = "Exercise 3: a palmer penguins workspace.",
     tags$ol(
       tags$li(
-        p("Click on", tags$strong("Add stack"), ".")
-      ),
-      tags$li(
-        p("From the new stack: click on", tags$strong("+"), "to add a new", tags$code("result_block"), ".")
+        p("Click on", tags$strong("Add stack"), ". From the new stack: click on", tags$strong("+"), "to add a new", tags$code("result_block"), ".")
       ),
       tags$li(
         p(
@@ -114,13 +111,10 @@ accordion(
     title = "Exercise 4: joining data.",
     tags$ol(
       tags$li(
-        p("Click on", tags$strong("Add stack"), ".")
+        p("Click on", tags$strong("Add stack"), ". From the new stack: click on", tags$strong("+"), "to add a new", tags$code("customdata_block"), " with", tags$var("lab") , " as selected data.")
       ),
       tags$li(
-        p("From the new stack: click on", tags$strong("+"), "to add a new", tags$code("customdata_block"), " with", tags$var("lab") , " as selected data.")
-      ),
-      tags$li(
-        p("Click on", tags$strong("Add stack"), ".")
+        p("Click on", tags$strong("Add stack"), ". From the new stack: click on", tags$strong("+"), "to add a new", tags$code("customdata_block"), " with", tags$var("demo") , " as selected data.")
       ),
       tags$li(
         p(
